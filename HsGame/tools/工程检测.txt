@@ -1,0 +1,4 @@
+1:网络环境 ServerConfig.lua
+2：版本号 ChannelConfig.lua
+3：渠道号 main.lua 
+4：热更开关 conf.lua

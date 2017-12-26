@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>Lobby_cardType.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{614,344}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{614,344}}</string>
+				<key>sourceSize</key>
+				<string>{614,344}</string>
+			</dict>
+
+			<key>Lobby_help_btn.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,420},{168,74}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{168,74}}</string>
+				<key>sourceSize</key>
+				<string>{168,74}</string>
+			</dict>
+
+			<key>Lobby_help_btn0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,345},{182,74}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{182,74}}</string>
+				<key>sourceSize</key>
+				<string>{182,74}</string>
+			</dict>
+
+			<key>Lobby_list_bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{169,420},{48,47}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{48,47}}</string>
+				<key>sourceSize</key>
+				<string>{48,47}</string>
+			</dict>
+
+		</dict>
+
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>size</key>
+			<string>{1024,512}</string>
+			<key>textureFileName</key>
+			<string>Lobby_help.png</string>
+			</dict>
+		</dict>
+</plist>

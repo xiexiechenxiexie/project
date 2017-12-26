@@ -1,0 +1,1 @@
+start %~dp0\simulator\win32\HSGame.exe -workdir %~dp0

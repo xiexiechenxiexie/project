@@ -1,0 +1,7 @@
+{
+	"packageUrl":"http://resource.suit.wang/packages/1.1.0/brnn/",
+	"remoteManifestUrl":"http://resource.suit.wang/packages/1.1.0/brnn/project_dev.manifest",
+	"remoteVersionUrl":"http://resource.suit.wang/packages/1.1.0/brnn/version_dev.manifest",
+	"version" : "1.1.0",
+	"engineVersion" : "3.15.0"
+}

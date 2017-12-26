@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>btn_chat_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{71,150},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{70,70}}</string>
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+
+			<key>btn_chat_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,150},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{70,70}}</string>
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+
+			<key>niuniu_btn_15_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,75},{157,74}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{157,74}}</string>
+				<key>sourceSize</key>
+				<string>{157,74}</string>
+			</dict>
+
+			<key>niuniu_btn_15_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{0,0},{157,74}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false/>
+				<key>sourceColorRect</key>
+				<string>{{0,0},{157,74}}</string>
+				<key>sourceSize</key>
+				<string>{157,74}</string>
+			</dict>
+
+		</dict>
+
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>size</key>
+			<string>{256,256}</string>
+			<key>textureFileName</key>
+			<string>GameBtn_L.png</string>
+			</dict>
+		</dict>
+</plist>
