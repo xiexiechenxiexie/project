@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>frames</key>
+        <dict>
+            <key>count_down .png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{76,2},{62,62}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,1},{62,62}}</string>
+                <key>sourceSize</key>
+                <string>{64,64}</string>
+            </dict>
+            <key>ludan_effect_.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{72,70}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,70}}</string>
+                <key>sourceSize</key>
+                <string>{72,70}</string>
+            </dict>
+        </dict>
+        <key>metadata</key>
+        <dict>
+            <key>format</key>
+            <integer>2</integer>
+            <key>realTextureFileName</key>
+            <string>ludanAction.png</string>
+            <key>size</key>
+            <string>{140,74}</string>
+            <key>smartupdate</key>
+            <string>$TexturePacker:SmartUpdate:2d2d98c19f0b6da9dcd3cb63e9f7f7c0:970c96577b58873e7ed9271b29dfd71f:2ffe44ccd2d13e23e5d4371bdfd6bb7c$</string>
+            <key>textureFileName</key>
+            <string>ludanAction.png</string>
+        </dict>
+    </dict>
+</plist>

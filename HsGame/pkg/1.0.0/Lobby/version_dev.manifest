@@ -1,0 +1,7 @@
+{
+	"packageUrl":"http://resource.suit.wang/packages/1.0.0/Lobby/",
+	"remoteManifestUrl":"http://resource.suit.wang/packages/1.0.0/Lobby/project_dev.manifest",
+	"remoteVersionUrl":"http://resource.suit.wang/packages/1.0.0/Lobby/version_dev.manifest",
+	"version" : "1.0.0",
+	"engineVersion" : "3.15.0"
+}

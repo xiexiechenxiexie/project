@@ -1,0 +1,7 @@
+{
+	"packageUrl":"http://resource.suit.wang/packages/1.0.3/niuniu/",
+	"remoteManifestUrl":"http://resource.suit.wang/packages/1.0.3/niuniu/project_dev.manifest",
+	"remoteVersionUrl":"http://resource.suit.wang/packages/1.0.3/niuniu/version_dev.manifest",
+	"version" : "1.0.3",
+	"engineVersion" : "3.15.0"
+}
