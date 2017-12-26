@@ -1,0 +1,14 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="Login" Type="Plist" ID="2c16e530-f8df-4d8b-8fa1-573065d47c5d" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="TP/Login/login_btn_qq_0.png" />
+      <FilePathData Path="TP/Login/login_btn_qq_1.png" />
+      <FilePathData Path="TP/Login/login_btn_visitor_0.png" />
+      <FilePathData Path="TP/Login/login_btn_visitor_1.png" />
+      <FilePathData Path="TP/Login/login_btn_wechat_0.png" />
+      <FilePathData Path="TP/Login/login_btn_wechat_1.png" />
+    </ImageFiles>
+    <MaxSize Width="897" Height="184" />
+  </Content>
+</PlistInfoProjectFile>

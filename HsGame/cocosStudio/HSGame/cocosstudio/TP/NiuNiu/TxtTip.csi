@@ -1,0 +1,32 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="TxtTip" Type="Plist" ID="703df486-bb76-47a8-aae8-baf9b70d7ca8" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_bg.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_complete.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_four.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_hua.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu2.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu3.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu4.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu5.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu6.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu7.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu8.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_niu9.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiag5.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiang1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiang2.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiang20.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiang25.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiang3.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiang4.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_qiang5.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_txt_xiao.png" />
+    </ImageFiles>
+    <MaxSize Width="365" Height="341" />
+  </Content>
+</PlistInfoProjectFile>

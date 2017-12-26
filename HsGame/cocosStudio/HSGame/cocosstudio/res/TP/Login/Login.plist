@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>TP/Login/login_btn_qq_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{297,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{299,91}</string>
+			</dict>
+			<key>TP/Login/login_btn_qq_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,93},{297,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{299,91}</string>
+			</dict>
+			<key>TP/Login/login_btn_visitor_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{300,1},{297,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{299,91}</string>
+			</dict>
+			<key>TP/Login/login_btn_visitor_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{300,93},{297,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{299,91}</string>
+			</dict>
+			<key>TP/Login/login_btn_wechat_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{599,1},{297,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{299,91}</string>
+			</dict>
+			<key>TP/Login/login_btn_wechat_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{599,93},{297,90}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{299,91}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>Login.png</string>
+			<key>realTextureFileName</key>
+			<string>Login.png</string>
+			<key>size</key>
+			<string>{897,184}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>897</integer>
+			<key>height</key>
+			<integer>184</integer>
+		</dict>
+	</dict>
+</plist>

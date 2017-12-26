@@ -1,0 +1,18 @@
+<Solution>
+  <PropertyGroup Name="shop_effect" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="gamecommon">
+          <PlistImageFolder Image="shopAction.png" PListFile="shopAction.plist" Name=".shopAction_PList.Dir">
+            <PlistImageFile Name="shop_car.png" Key="shop_car.png" />
+            <PlistImageFile Name="shop_effect.png" Key="shop_effect.png" />
+            <PlistImageFile Name="shop_effect_.png" Key="shop_effect_.png" />
+            <PlistImageFile Name="shop_effect_2.png" Key="shop_effect_2.png" />
+          </PlistImageFolder>
+        </Folder>
+        <Project Name="shop_ani.csd" Type="Skeleton" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

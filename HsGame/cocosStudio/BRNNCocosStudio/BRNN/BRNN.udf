@@ -1,0 +1,48 @@
+<UserData Version="3.10.0.0">
+  <Properties>
+    <Item Key="CocosRecentOperation">
+      <Value ctype="CocosRecentOperation">
+        <LastPublishType Value="Resource" />
+        <IsLastPublish Value="True" />
+        <LastRunType Value="Windows" />
+      </Value>
+    </Item>
+    <Item Key="PackageParamsKey">
+      <Value ctype="PackageParams">
+        <LuaIsEncrypt Value="False" />
+        <LuaEncryptKey Value="" />
+        <LuaEncryptSign Value="" />
+        <Android_PackageName Value="org.cocos.BRNN" />
+        <AndroidkeyStore Value="" />
+        <AndroidVersion Value="" />
+        <iOS_Target Value="BRNN-mobile" />
+        <iOS_BundleID Value="" />
+        <Platform Value="None" />
+        <RunPlatform Value="None" />
+        <FrameworkVersion Value="cocos2d-x-3.10" />
+        <IsDebugKeystore Value="True" />
+        <KeystorePassword Value="" />
+        <KeystoreAliasName Value="" />
+        <KeystoreAliasPassword Value="" />
+        <EnableSourceMap Value="False" />
+        <EnableHTML5Advanced Value="False" />
+      </Value>
+    </Item>
+    <Item Key="TabsParamsKey">
+      <Value ctype="TabsInfo">
+        <OpenedDocuments>
+          <FilePathData Path="brnn/res/BRNNScene.csd" />
+          <FilePathData Path="gamecommon/chat/res/ChatNode.csd" />
+          <FilePathData Path="brnn/res/SZListNode.csd" />
+          <FilePathData Path="brnn/res/WinRecordNode.csd" />
+          <FilePathData Path="brnn/res/HelpNode.csd" />
+          <FilePathData Path="brnn/res/MenuNode.csd" />
+          <FilePathData Path="brnn/res/NiuNiuNumNode.csd" />
+          <FilePathData Path="brnn/res/PlayerListNode.csd" />
+          <FilePathData Path="brnn/res/PlayerNode.csd" />
+        </OpenedDocuments>
+        <ActiveDocument Path="brnn/res/NiuNiuNumNode.csd" />
+      </Value>
+    </Item>
+  </Properties>
+</UserData>

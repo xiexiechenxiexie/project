@@ -1,0 +1,417 @@
+<Solution>
+  <PropertyGroup Name="HSGame" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="GameLayout">
+          <Folder Name="Dialog">
+            <Image Name="dialog_bg.png" />
+            <Image Name="dialog_btn_close_0.png" />
+            <Image Name="dialogbtn_close_1.png" />
+          </Folder>
+          <Folder Name="Head">
+            <Image Name="lobby_head_bg.png" />
+            <Image Name="lobby_head_clip.png" />
+            <Image Name="playerInfo_head_bg.png" />
+            <Image Name="playerInfo_head_clip.png" />
+          </Folder>
+          <Folder Name="Help">
+            <PlistImageFolder Image="Help.png" PListFile="help.plist" Name=".help_PList.Dir">
+              <PlistImageFile Name="common_btn_close.png" Key="common_btn_close.png" />
+              <PlistImageFile Name="Lobby_cardType.png" Key="Lobby_cardType.png" />
+              <PlistImageFile Name="Lobby_help_bg.png" Key="Lobby_help_bg.png" />
+              <PlistImageFile Name="Lobby_help_btn.png" Key="Lobby_help_btn.png" />
+              <PlistImageFile Name="Lobby_help_btn0.png" Key="Lobby_help_btn0.png" />
+              <PlistImageFile Name="Lobby_list_bg.png" Key="Lobby_list_bg.png" />
+              <PlistImageFile Name="Lobby_title_help.png" Key="Lobby_title_help.png" />
+            </PlistImageFolder>
+            <Project Name="help.csd" Type="Layer" />
+          </Folder>
+          <Folder Name="Login">
+            <PlistImageFolder Image="Login.png" PListFile="Login.plist" Name=".Login_PList.Dir">
+              <PlistImageFile Name="TP_Login_login_btn_qq_0.png" Key="TP/Login/login_btn_qq_0.png" />
+              <PlistImageFile Name="TP_Login_login_btn_qq_1.png" Key="TP/Login/login_btn_qq_1.png" />
+              <PlistImageFile Name="TP_Login_login_btn_visitor_0.png" Key="TP/Login/login_btn_visitor_0.png" />
+              <PlistImageFile Name="TP_Login_login_btn_visitor_1.png" Key="TP/Login/login_btn_visitor_1.png" />
+              <PlistImageFile Name="TP_Login_login_btn_wechat_0.png" Key="TP/Login/login_btn_wechat_0.png" />
+              <PlistImageFile Name="TP_Login_login_btn_wechat_1.png" Key="TP/Login/login_btn_wechat_1.png" />
+            </PlistImageFolder>
+            <Image Name="bg.png" />
+            <Image Name="btn_bg.png" />
+            <Image Name="btn_qq.png" />
+            <Image Name="btn_visitor.png" />
+            <Image Name="btn_weixin.png" />
+            <Image Name="imgGirl.png" />
+            <Image Name="info.png" />
+            <Project Name="LoginScene.csd" Type="Scene" />
+          </Folder>
+          <Folder Name="NiuNiu">
+            <PlistImageFolder Image="GameBtn.png" PListFile="GameBtn.plist" Name=".GameBtn_PList.Dir">
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_0_0.png" Key="TP/NiuNiu/niuniu_btn_0_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_0_1.png" Key="TP/NiuNiu/niuniu_btn_0_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_1_0.png" Key="TP/NiuNiu/niuniu_btn_1_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_1_1.png" Key="TP/NiuNiu/niuniu_btn_1_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_10_0.png" Key="TP/NiuNiu/niuniu_btn_10_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_10_1.png" Key="TP/NiuNiu/niuniu_btn_10_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_2_0.png" Key="TP/NiuNiu/niuniu_btn_2_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_2_1.png" Key="TP/NiuNiu/niuniu_btn_2_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_20_0.png" Key="TP/NiuNiu/niuniu_btn_20_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_20_1.png" Key="TP/NiuNiu/niuniu_btn_20_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_25_0.png" Key="TP/NiuNiu/niuniu_btn_25_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_25_1.png" Key="TP/NiuNiu/niuniu_btn_25_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_3_0.png" Key="TP/NiuNiu/niuniu_btn_3_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_3_1.png" Key="TP/NiuNiu/niuniu_btn_3_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_4_0.png" Key="TP/NiuNiu/niuniu_btn_4_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_4_1.png" Key="TP/NiuNiu/niuniu_btn_4_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_5_0.png" Key="TP/NiuNiu/niuniu_btn_5_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_5_1.png" Key="TP/NiuNiu/niuniu_btn_5_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_has_niu_0.png" Key="TP/NiuNiu/niuniu_btn_has_niu_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_has_niu_1.png" Key="TP/NiuNiu/niuniu_btn_has_niu_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_has_niu_2.png" Key="TP/NiuNiu/niuniu_btn_has_niu_2.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_no_niu_0.png" Key="TP/NiuNiu/niuniu_btn_no_niu_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_no_niu_1.png" Key="TP/NiuNiu/niuniu_btn_no_niu_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_no_niu_2.png" Key="TP/NiuNiu/niuniu_btn_no_niu_2.png" />
+            </PlistImageFolder>
+            <PlistImageFolder Image="TxtTip.png" PListFile="TxtTip.plist" Name=".TxtTip_PList.Dir">
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_bg.png" Key="TP/NiuNiu/niuniu_txt_bg.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_complete.png" Key="TP/NiuNiu/niuniu_txt_complete.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_four.png" Key="TP/NiuNiu/niuniu_txt_four.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_hua.png" Key="TP/NiuNiu/niuniu_txt_hua.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu.png" Key="TP/NiuNiu/niuniu_txt_niu.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu0.png" Key="TP/NiuNiu/niuniu_txt_niu0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu1.png" Key="TP/NiuNiu/niuniu_txt_niu1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu2.png" Key="TP/NiuNiu/niuniu_txt_niu2.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu3.png" Key="TP/NiuNiu/niuniu_txt_niu3.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu4.png" Key="TP/NiuNiu/niuniu_txt_niu4.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu5.png" Key="TP/NiuNiu/niuniu_txt_niu5.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu6.png" Key="TP/NiuNiu/niuniu_txt_niu6.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu7.png" Key="TP/NiuNiu/niuniu_txt_niu7.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu8.png" Key="TP/NiuNiu/niuniu_txt_niu8.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu9.png" Key="TP/NiuNiu/niuniu_txt_niu9.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiag5.png" Key="TP/NiuNiu/niuniu_txt_qiag5.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang1.png" Key="TP/NiuNiu/niuniu_txt_qiang1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang2.png" Key="TP/NiuNiu/niuniu_txt_qiang2.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang20.png" Key="TP/NiuNiu/niuniu_txt_qiang20.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang25.png" Key="TP/NiuNiu/niuniu_txt_qiang25.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang3.png" Key="TP/NiuNiu/niuniu_txt_qiang3.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang4.png" Key="TP/NiuNiu/niuniu_txt_qiang4.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang5.png" Key="TP/NiuNiu/niuniu_txt_qiang5.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_txt_xiao.png" Key="TP/NiuNiu/niuniu_txt_xiao.png" />
+            </PlistImageFolder>
+            <PlistImageFolder Image="UserBtn.png" PListFile="UserBtn.plist" Name=".UserBtn_PList.Dir">
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_bg.png" Key="TP/NiuNiu/niuniu_btn_bg.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_cards_type_0.png" Key="TP/NiuNiu/niuniu_btn_cards_type_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_cards_type_1.png" Key="TP/NiuNiu/niuniu_btn_cards_type_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_change_table_0.png" Key="TP/NiuNiu/niuniu_btn_change_table_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_change_table_1.png" Key="TP/NiuNiu/niuniu_btn_change_table_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_chat_0.png" Key="TP/NiuNiu/niuniu_btn_chat_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_chat_1.png" Key="TP/NiuNiu/niuniu_btn_chat_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_exit_0.png" Key="TP/NiuNiu/niuniu_btn_exit_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_exit_1.png" Key="TP/NiuNiu/niuniu_btn_exit_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_more_hide_0.png" Key="TP/NiuNiu/niuniu_btn_more_hide_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_more_hide_1.png" Key="TP/NiuNiu/niuniu_btn_more_hide_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_more_show_0.png" Key="TP/NiuNiu/niuniu_btn_more_show_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_more_show_1.png" Key="TP/NiuNiu/niuniu_btn_more_show_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_set_0.png" Key="TP/NiuNiu/niuniu_btn_set_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_set_1.png" Key="TP/NiuNiu/niuniu_btn_set_1.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_shop.png" Key="TP/NiuNiu/niuniu_btn_shop.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_sit.png" Key="TP/NiuNiu/niuniu_btn_sit.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_stand_0.png" Key="TP/NiuNiu/niuniu_btn_stand_0.png" />
+              <PlistImageFile Name="TP_NiuNiu_niuniu_btn_stand_1.png" Key="TP/NiuNiu/niuniu_btn_stand_1.png" />
+            </PlistImageFolder>
+            <Image Name="bg.png" />
+            <Image Name="btn_chat_0.png" />
+            <Image Name="btn_chat_1.png" />
+            <Image Name="btn_sit.png" />
+            <Project Name="NiuNiuScene.csd" Type="Scene" />
+            <Image Name="player_bg_lr.png" />
+            <Image Name="player_bg_tb.png" />
+            <Project Name="PlayerLF.csd" Type="Node" />
+            <Project Name="PlayerTB.csd" Type="Node" />
+            <Image Name="preview.png" />
+          </Folder>
+          <Folder Name="PlayerInfo">
+            <PlistImageFolder Image="PlayerInfo.png" PListFile="PlayerInfo.plist" Name=".PlayerInfo_PList.Dir">
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_bomb_0.png" Key="TP/PlayerInfo/playerinfo_btn_bomb_0.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_bomb_1.png" Key="TP/PlayerInfo/playerinfo_btn_bomb_1.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_rose_0.png" Key="TP/PlayerInfo/playerinfo_btn_rose_0.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_rose_1.png" Key="TP/PlayerInfo/playerinfo_btn_rose_1.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_temato_0.png" Key="TP/PlayerInfo/playerinfo_btn_temato_0.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_temato_1.png" Key="TP/PlayerInfo/playerinfo_btn_temato_1.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_water_0.png" Key="TP/PlayerInfo/playerinfo_btn_water_0.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_btn_water_1.png" Key="TP/PlayerInfo/playerinfo_btn_water_1.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_female.png" Key="TP/PlayerInfo/playerinfo_female.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_gold.png" Key="TP/PlayerInfo/playerinfo_gold.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_male.png" Key="TP/PlayerInfo/playerinfo_male.png" />
+              <PlistImageFile Name="TP_PlayerInfo_playerinfo_pos.png" Key="TP/PlayerInfo/playerinfo_pos.png" />
+            </PlistImageFolder>
+            <Image Name="info_bg.png" />
+            <Project Name="PlayerInfo.csd" Type="Layer" />
+          </Folder>
+          <Folder Name="Promote">
+            <PlistImageFolder Image="promote.png" PListFile="promote.plist" Name=".promote_PList.Dir">
+              <PlistImageFile Name="Lobby_Promote_bg.png" Key="Lobby_Promote_bg.png" />
+              <PlistImageFile Name="Lobby_Promote_blue_bg.png" Key="Lobby_Promote_blue_bg.png" />
+              <PlistImageFile Name="Lobby_Promote_btn_ back.png" Key="Lobby_Promote_btn_ back.png" />
+              <PlistImageFile Name="Lobby_Promote_btn_check.png" Key="Lobby_Promote_btn_check.png" />
+              <PlistImageFile Name="Lobby_Promote_btn_copy.png" Key="Lobby_Promote_btn_copy.png" />
+              <PlistImageFile Name="Lobby_Promote_btn_down.png" Key="Lobby_Promote_btn_down.png" />
+              <PlistImageFile Name="Lobby_Promote_btn_getGift.png" Key="Lobby_Promote_btn_getGift.png" />
+              <PlistImageFile Name="Lobby_Promote_btn_share.png" Key="Lobby_Promote_btn_share.png" />
+              <PlistImageFile Name="Lobby_Promote_code.png" Key="Lobby_Promote_code.png" />
+              <PlistImageFile Name="Lobby_Promote_code_bg.png" Key="Lobby_Promote_code_bg.png" />
+              <PlistImageFile Name="Lobby_Promote_friend_get.png" Key="Lobby_Promote_friend_get.png" />
+              <PlistImageFile Name="Lobby_Promote_getBg.png" Key="Lobby_Promote_getBg.png" />
+              <PlistImageFile Name="Lobby_Promote_gift.png" Key="Lobby_Promote_gift.png" />
+              <PlistImageFile Name="Lobby_Promote_giftbg.png" Key="Lobby_Promote_giftbg.png" />
+              <PlistImageFile Name="Lobby_Promote_icon_coins.png" Key="Lobby_Promote_icon_coins.png" />
+              <PlistImageFile Name="Lobby_Promote_icon_diamond.png" Key="Lobby_Promote_icon_diamond.png" />
+              <PlistImageFile Name="Lobby_Promote_icon_roomCard.png" Key="Lobby_Promote_icon_roomCard.png" />
+              <PlistImageFile Name="Lobby_Promote_jiantou.png" Key="Lobby_Promote_jiantou.png" />
+              <PlistImageFile Name="Lobby_Promote_paoguang.png" Key="Lobby_Promote_paoguang.png" />
+              <PlistImageFile Name="Lobby_Promote_star.png" Key="Lobby_Promote_star.png" />
+              <PlistImageFile Name="Lobby_Promote_title.png" Key="Lobby_Promote_title.png" />
+              <PlistImageFile Name="Lobby_Promote_top_ani.png" Key="Lobby_Promote_top_ani.png" />
+              <PlistImageFile Name="Lobby_Promote_topbg.png" Key="Lobby_Promote_topbg.png" />
+              <PlistImageFile Name="Lobby_Promote_up.png" Key="Lobby_Promote_up.png" />
+            </PlistImageFolder>
+            <Project Name="PromoteLayer.csd" Type="Layer" />
+          </Folder>
+        </Folder>
+        <Folder Name="Logo">
+          <Image Name="bg.png" />
+          <Image Name="loading.png" />
+          <Image Name="loading_bg.png" />
+          <Project Name="LogoScene.csd" Type="Scene" />
+        </Folder>
+        <Folder Name="preload">
+          <Image Name="A.png" />
+          <Image Name="bg.png" />
+          <Image Name="chouma.png" />
+          <Image Name="coin.png" />
+          <Image Name="girl.png" />
+          <Image Name="hongxina.png" />
+          <Project Name="LogoScene.csd" Type="Layer" />
+          <Image Name="shining.png" />
+          <Image Name="touzi.png" />
+          <Image Name="xiaoguotu.png" />
+        </Folder>
+        <Folder Name="TP">
+          <Folder Name="Dialog">
+            <Image Name="dialog_bg.png" />
+            <Image Name="dialog_btn_close_0.png" />
+            <Image Name="dialogbtn_close_1.png" />
+          </Folder>
+          <Folder Name="Head">
+            <Image Name="lobby_head_bg.png" />
+            <Image Name="lobby_head_clip.png" />
+            <Image Name="playerInfo_head_bg.png" />
+            <Image Name="playerInfo_head_clip.png" />
+          </Folder>
+          <Folder Name="lobbyEnter">
+            <Folder Name="btnBRNN">
+              <Image Name="btnBRNN.png" />
+              <Image Name="imgBRNNBody.png" />
+              <Image Name="imgBRNNHead.png" />
+              <Image Name="imgBRNNPork.png" />
+              <Image Name="imgBRNNText.png" />
+            </Folder>
+            <Folder Name="btnHHDZ">
+              <Image Name="btnHHDZ.png" />
+              <Image Name="imgHHDZBlack.png" />
+              <Image Name="imgHHDZRed.png" />
+              <Image Name="imgHHDZText.png" />
+            </Folder>
+            <Folder Name="btnKPQZ">
+              <Image Name="btnKPQZ.png" />
+              <Image Name="imgKPQZ.png" />
+              <Image Name="imgKPQZBody.png" />
+              <Image Name="imgKPQZHead.png" />
+              <Image Name="imgKPQZText.png" />
+            </Folder>
+            <Folder Name="btnKSKS">
+              <Image Name="btnKSKS.png" />
+              <Image Name="imgKSKSHuoJian.png" />
+              <Image Name="imgKSKSText.png" />
+            </Folder>
+            <Folder Name="btnPSZ">
+              <Image Name="btnPSZ.png" />
+              <Image Name="imgPSZHongChouMa.png" />
+              <Image Name="imgPSZHuangChouMa.png" />
+              <Image Name="imgPSZLvChouMa.png" />
+              <Image Name="imgPSZPork.png" />
+              <Image Name="imgPSZText.png" />
+            </Folder>
+            <Folder Name="btnSRF">
+              <Image Name="btnSRF.png" />
+              <Image Name="imgSRFMM.png" />
+              <Image Name="imgSRFText.png" />
+            </Folder>
+            <Folder Name="star">
+              <Image Name="imgBigStar.png" />
+              <Image Name="imgSmallStar.png" />
+            </Folder>
+            <Image Name="imgPaoGuang.png" />
+          </Folder>
+          <Folder Name="Login">
+            <PlistInfo Name="Login.csi" Type="Plist" />
+            <Image Name="login_bg.png" />
+            <Image Name="login_btn_bg.png" />
+            <Image Name="login_btn_qq_0.png" />
+            <Image Name="login_btn_qq_1.png" />
+            <Image Name="login_btn_visitor_0.png" />
+            <Image Name="login_btn_visitor_1.png" />
+            <Image Name="login_btn_wechat_0.png" />
+            <Image Name="login_btn_wechat_1.png" />
+          </Folder>
+          <Folder Name="Logo">
+            <Image Name="logo_bg.png" />
+            <Image Name="logo_loading.png" />
+            <Image Name="logo_loading_bg.png" />
+          </Folder>
+          <Folder Name="Mall">
+            <Folder Name="Store">
+              <Image Name="mall_dialog_bg.png" />
+              <Image Name="mall_dialog_title_bg.png" />
+              <Image Name="mall_dialog_title_btn_normal.png" />
+              <Image Name="mall_dialog_title_btn_selected.png" />
+            </Folder>
+            <PlistInfo Name="Mall.csi" Type="Plist" />
+            <Image Name="mall_bg.png" />
+            <Image Name="mall_btn_bg_normall.png" />
+            <Image Name="mall_btn_bg_select.png" />
+            <Image Name="mall_btn_iap.png" />
+            <Image Name="mall_btn_menu_diamond_normal.png" />
+            <Image Name="mall_btn_menu_diamond_selected.png" />
+            <Image Name="mall_btn_menu_gold_normal.png" />
+            <Image Name="mall_btn_menu_gold_selected.png" />
+            <Image Name="mall_btn_menu_room_card_normal.png" />
+            <Image Name="mall_btn_menu_rooom_card_selected.png" />
+            <Image Name="mall_btn_un.png" />
+            <Image Name="mall_btn_wx.png" />
+            <Image Name="mall_btn_zfb.png" />
+            <Image Name="mall_info_diamond.png" />
+            <Image Name="mall_info_gold.png" />
+            <Image Name="mall_info_room_card.png" />
+            <Image Name="mall_item_bg.png" />
+            <Image Name="mall_item_diamond.png" />
+            <Image Name="mall_item_gold.png" />
+            <Image Name="mall_item_gold_btn_buy_icon.png" />
+            <Image Name="mall_item_gold_send_num.png" />
+            <Image Name="mall_item_gold_title_send.png" />
+            <Image Name="mall_item_goods_bg.png" />
+            <Image Name="mall_item_goods_btn_buy.png" />
+            <Image Name="mall_item_light.png" />
+            <Image Name="mall_item_room_card.png" />
+            <Image Name="mall_item_room_card_title_date.png" />
+            <Image Name="mall_item_room_card_title_days.png" />
+            <Image Name="mall_left_menu_bg.png" />
+            <Image Name="mall_logo.png" />
+            <Image Name="mall_logo_flash.png" />
+            <Image Name="mall_logo_light1.png" />
+            <Image Name="mall_logo_light2.png" />
+            <Image Name="mall_sale_flag.png" />
+            <Image Name="mall_title_pay_type.png" />
+            <Image Name="mall_top_info_bg.png" />
+            <Image Name="mall_top_info_item_bg.png" />
+            <Image Name="mall_txt_line.png" />
+          </Folder>
+          <Folder Name="NiuNiu">
+            <PlistInfo Name="GameBtn.csi" Type="Plist" />
+            <Image Name="niuniu_banker.png" />
+            <Image Name="niuniu_bg.png" />
+            <Image Name="niuniu_btn_0_0.png" />
+            <Image Name="niuniu_btn_0_1.png" />
+            <Image Name="niuniu_btn_1_0.png" />
+            <Image Name="niuniu_btn_1_1.png" />
+            <Image Name="niuniu_btn_10_0.png" />
+            <Image Name="niuniu_btn_10_1.png" />
+            <Image Name="niuniu_btn_2_0.png" />
+            <Image Name="niuniu_btn_2_1.png" />
+            <Image Name="niuniu_btn_20_0.png" />
+            <Image Name="niuniu_btn_20_1.png" />
+            <Image Name="niuniu_btn_25_0.png" />
+            <Image Name="niuniu_btn_25_1.png" />
+            <Image Name="niuniu_btn_3_0.png" />
+            <Image Name="niuniu_btn_3_1.png" />
+            <Image Name="niuniu_btn_4_0.png" />
+            <Image Name="niuniu_btn_4_1.png" />
+            <Image Name="niuniu_btn_5_0.png" />
+            <Image Name="niuniu_btn_5_1.png" />
+            <Image Name="niuniu_btn_bg.png" />
+            <Image Name="niuniu_btn_cards_type_0.png" />
+            <Image Name="niuniu_btn_cards_type_1.png" />
+            <Image Name="niuniu_btn_change_table_0.png" />
+            <Image Name="niuniu_btn_change_table_1.png" />
+            <Image Name="niuniu_btn_chat_0.png" />
+            <Image Name="niuniu_btn_chat_1.png" />
+            <Image Name="niuniu_btn_exit_0.png" />
+            <Image Name="niuniu_btn_exit_1.png" />
+            <Image Name="niuniu_btn_has_niu_0.png" />
+            <Image Name="niuniu_btn_has_niu_1.png" />
+            <Image Name="niuniu_btn_has_niu_2.png" />
+            <Image Name="niuniu_btn_more_hide_0.png" />
+            <Image Name="niuniu_btn_more_hide_1.png" />
+            <Image Name="niuniu_btn_more_show_0.png" />
+            <Image Name="niuniu_btn_more_show_1.png" />
+            <Image Name="niuniu_btn_no_niu_0.png" />
+            <Image Name="niuniu_btn_no_niu_1.png" />
+            <Image Name="niuniu_btn_no_niu_2.png" />
+            <Image Name="niuniu_btn_set_0.png" />
+            <Image Name="niuniu_btn_set_1.png" />
+            <Image Name="niuniu_btn_shop.png" />
+            <Image Name="niuniu_btn_sit.png" />
+            <Image Name="niuniu_btn_stand_0.png" />
+            <Image Name="niuniu_btn_stand_1.png" />
+            <Image Name="niuniu_player_bg_lr.png" />
+            <Image Name="niuniu_player_bg_tb.png" />
+            <Image Name="niuniu_preview.png" />
+            <Image Name="niuniu_txt_bg.png" />
+            <Image Name="niuniu_txt_complete.png" />
+            <Image Name="niuniu_txt_four.png" />
+            <Image Name="niuniu_txt_hua.png" />
+            <Image Name="niuniu_txt_niu.png" />
+            <Image Name="niuniu_txt_niu0.png" />
+            <Image Name="niuniu_txt_niu1.png" />
+            <Image Name="niuniu_txt_niu2.png" />
+            <Image Name="niuniu_txt_niu3.png" />
+            <Image Name="niuniu_txt_niu4.png" />
+            <Image Name="niuniu_txt_niu5.png" />
+            <Image Name="niuniu_txt_niu6.png" />
+            <Image Name="niuniu_txt_niu7.png" />
+            <Image Name="niuniu_txt_niu8.png" />
+            <Image Name="niuniu_txt_niu9.png" />
+            <Image Name="niuniu_txt_qiag5.png" />
+            <Image Name="niuniu_txt_qiang1.png" />
+            <Image Name="niuniu_txt_qiang2.png" />
+            <Image Name="niuniu_txt_qiang20.png" />
+            <Image Name="niuniu_txt_qiang25.png" />
+            <Image Name="niuniu_txt_qiang3.png" />
+            <Image Name="niuniu_txt_qiang4.png" />
+            <Image Name="niuniu_txt_qiang5.png" />
+            <Image Name="niuniu_txt_xiao.png" />
+            <PlistInfo Name="TxtTip.csi" Type="Plist" />
+            <PlistInfo Name="UserBtn.csi" Type="Plist" />
+          </Folder>
+          <Folder Name="PlayerInfo">
+            <PlistInfo Name="PlayerInfo.csi" Type="Plist" />
+            <Image Name="playerinfo_btn_bomb_0.png" />
+            <Image Name="playerinfo_btn_bomb_1.png" />
+            <Image Name="playerinfo_btn_rose_0.png" />
+            <Image Name="playerinfo_btn_rose_1.png" />
+            <Image Name="playerinfo_btn_temato_0.png" />
+            <Image Name="playerinfo_btn_temato_1.png" />
+            <Image Name="playerinfo_btn_water_0.png" />
+            <Image Name="playerinfo_btn_water_1.png" />
+            <Image Name="playerinfo_female.png" />
+            <Image Name="playerinfo_gold.png" />
+            <Image Name="playerinfo_info_bg.png" />
+            <Image Name="playerinfo_male.png" />
+            <Image Name="playerinfo_pos.png" />
+            <Image Name="playerinfo_preview.png" />
+          </Folder>
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

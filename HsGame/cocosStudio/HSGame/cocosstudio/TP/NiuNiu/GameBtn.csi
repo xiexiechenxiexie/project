@@ -1,0 +1,32 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="GameBtn" Type="Plist" ID="00af65ef-5596-4a8e-bce4-f058288b820c" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_0_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_0_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_1_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_1_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_10_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_10_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_2_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_2_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_20_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_20_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_25_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_25_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_3_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_3_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_4_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_4_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_5_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_5_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_has_niu_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_has_niu_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_has_niu_2.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_no_niu_0.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_no_niu_1.png" />
+      <FilePathData Path="TP/NiuNiu/niuniu_btn_no_niu_2.png" />
+    </ImageFiles>
+    <MaxSize Width="536" Height="597" />
+  </Content>
+</PlistInfoProjectFile>

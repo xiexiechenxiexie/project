@@ -1,0 +1,193 @@
+<Solution>
+  <PropertyGroup Name="daoju" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <PlistImageFolder Image="cock.png" PListFile="cock.plist" Name=".cock_PList.Dir">
+          <PlistImageFile Name="cock.png" Key="cock.png" />
+          <PlistImageFile Name="cock_02.png" Key="cock_02.png" />
+          <PlistImageFile Name="cock_03.png" Key="cock_03.png" />
+          <PlistImageFile Name="cock_033.png" Key="cock_033.png" />
+          <PlistImageFile Name="cock_04.png" Key="cock_04.png" />
+          <PlistImageFile Name="cock_055.png" Key="cock_055.png" />
+          <PlistImageFile Name="cock_08.png" Key="cock_08.png" />
+          <PlistImageFile Name="cock_10.png" Key="cock_10.png" />
+          <PlistImageFile Name="cock_12.png" Key="cock_12.png" />
+          <PlistImageFile Name="cock_14.png" Key="cock_14.png" />
+          <PlistImageFile Name="cock_16.png" Key="cock_16.png" />
+          <PlistImageFile Name="cock_18.png" Key="cock_18.png" />
+          <PlistImageFile Name="cock_24.png" Key="cock_24.png" />
+          <PlistImageFile Name="cock_25.png" Key="cock_25.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="dianzan.png" PListFile="dianzan.plist" Name=".dianzan_PList.Dir">
+          <PlistImageFile Name="dianzan.png" Key="dianzan.png" />
+          <PlistImageFile Name="dianzan_1.png" Key="dianzan_1.png" />
+          <PlistImageFile Name="dianzan_10.png" Key="dianzan_10.png" />
+          <PlistImageFile Name="dianzan_11.png" Key="dianzan_11.png" />
+          <PlistImageFile Name="dianzan_12.png" Key="dianzan_12.png" />
+          <PlistImageFile Name="dianzan_13.png" Key="dianzan_13.png" />
+          <PlistImageFile Name="dianzan_14.png" Key="dianzan_14.png" />
+          <PlistImageFile Name="dianzan_15.png" Key="dianzan_15.png" />
+          <PlistImageFile Name="dianzan_16.png" Key="dianzan_16.png" />
+          <PlistImageFile Name="dianzan_17.png" Key="dianzan_17.png" />
+          <PlistImageFile Name="dianzan_18.png" Key="dianzan_18.png" />
+          <PlistImageFile Name="dianzan_19.png" Key="dianzan_19.png" />
+          <PlistImageFile Name="dianzan_2.png" Key="dianzan_2.png" />
+          <PlistImageFile Name="dianzan_20.png" Key="dianzan_20.png" />
+          <PlistImageFile Name="dianzan_21.png" Key="dianzan_21.png" />
+          <PlistImageFile Name="dianzan_22.png" Key="dianzan_22.png" />
+          <PlistImageFile Name="dianzan_23.png" Key="dianzan_23.png" />
+          <PlistImageFile Name="dianzan_24.png" Key="dianzan_24.png" />
+          <PlistImageFile Name="dianzan_25.png" Key="dianzan_25.png" />
+          <PlistImageFile Name="dianzan_26.png" Key="dianzan_26.png" />
+          <PlistImageFile Name="dianzan_3.png" Key="dianzan_3.png" />
+          <PlistImageFile Name="dianzan_4.png" Key="dianzan_4.png" />
+          <PlistImageFile Name="dianzan_5.png" Key="dianzan_5.png" />
+          <PlistImageFile Name="dianzan_6.png" Key="dianzan_6.png" />
+          <PlistImageFile Name="dianzan_7.png" Key="dianzan_7.png" />
+          <PlistImageFile Name="dianzan_8.png" Key="dianzan_8.png" />
+          <PlistImageFile Name="dianzan_9.png" Key="dianzan_9.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="fish.png" PListFile="fish.plist" Name=".fish_PList.Dir">
+          <PlistImageFile Name="fish.png" Key="fish.png" />
+          <PlistImageFile Name="fish_3.png" Key="fish_3.png" />
+          <PlistImageFile Name="fish_4.png" Key="fish_4.png" />
+          <PlistImageFile Name="fish_5.png" Key="fish_5.png" />
+          <PlistImageFile Name="fish_7.png" Key="fish_7.png" />
+          <PlistImageFile Name="fish_8.png" Key="fish_8.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="jiubei.png" PListFile="jiubei.plist" Name=".jiubei_PList.Dir">
+          <PlistImageFile Name="jiubei.png" Key="jiubei.png" />
+          <PlistImageFile Name="jiubei2.png" Key="jiubei2.png" />
+          <PlistImageFile Name="jiubei3.png" Key="jiubei3.png" />
+          <PlistImageFile Name="jiubei4.png" Key="jiubei4.png" />
+          <PlistImageFile Name="jiubei47.png" Key="jiubei47.png" />
+          <PlistImageFile Name="jiubei5.png" Key="jiubei5.png" />
+          <PlistImageFile Name="jiubei6.png" Key="jiubei6.png" />
+          <PlistImageFile Name="jiubei63.png" Key="jiubei63.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="meigui.png" PListFile="meigui.plist" Name=".meigui_PList.Dir">
+          <PlistImageFile Name="meigui.png" Key="meigui.png" />
+          <PlistImageFile Name="meigui_1.png" Key="meigui_1.png" />
+          <PlistImageFile Name="meigui_10.png" Key="meigui_10.png" />
+          <PlistImageFile Name="meigui_11.png" Key="meigui_11.png" />
+          <PlistImageFile Name="meigui_12.png" Key="meigui_12.png" />
+          <PlistImageFile Name="meigui_13.png" Key="meigui_13.png" />
+          <PlistImageFile Name="meigui_14.png" Key="meigui_14.png" />
+          <PlistImageFile Name="meigui_15.png" Key="meigui_15.png" />
+          <PlistImageFile Name="meigui_16.png" Key="meigui_16.png" />
+          <PlistImageFile Name="meigui_17.png" Key="meigui_17.png" />
+          <PlistImageFile Name="meigui_18.png" Key="meigui_18.png" />
+          <PlistImageFile Name="meigui_19.png" Key="meigui_19.png" />
+          <PlistImageFile Name="meigui_2.png" Key="meigui_2.png" />
+          <PlistImageFile Name="meigui_20.png" Key="meigui_20.png" />
+          <PlistImageFile Name="meigui_21.png" Key="meigui_21.png" />
+          <PlistImageFile Name="meigui_22.png" Key="meigui_22.png" />
+          <PlistImageFile Name="meigui_23.png" Key="meigui_23.png" />
+          <PlistImageFile Name="meigui_24.png" Key="meigui_24.png" />
+          <PlistImageFile Name="meigui_25.png" Key="meigui_25.png" />
+          <PlistImageFile Name="meigui_3.png" Key="meigui_3.png" />
+          <PlistImageFile Name="meigui_4.png" Key="meigui_4.png" />
+          <PlistImageFile Name="meigui_5.png" Key="meigui_5.png" />
+          <PlistImageFile Name="meigui_6.png" Key="meigui_6.png" />
+          <PlistImageFile Name="meigui_7.png" Key="meigui_7.png" />
+          <PlistImageFile Name="meigui_8.png" Key="meigui_8.png" />
+          <PlistImageFile Name="meigui_9.png" Key="meigui_9.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="qinwen.png" PListFile="qinwen.plist" Name=".qinwen_PList.Dir">
+          <PlistImageFile Name="qinwen.png" Key="qinwen.png" />
+          <PlistImageFile Name="qinwen_1.png" Key="qinwen_1.png" />
+          <PlistImageFile Name="qinwen_10.png" Key="qinwen_10.png" />
+          <PlistImageFile Name="qinwen_11.png" Key="qinwen_11.png" />
+          <PlistImageFile Name="qinwen_12.png" Key="qinwen_12.png" />
+          <PlistImageFile Name="qinwen_13.png" Key="qinwen_13.png" />
+          <PlistImageFile Name="qinwen_14.png" Key="qinwen_14.png" />
+          <PlistImageFile Name="qinwen_15.png" Key="qinwen_15.png" />
+          <PlistImageFile Name="qinwen_16.png" Key="qinwen_16.png" />
+          <PlistImageFile Name="qinwen_17.png" Key="qinwen_17.png" />
+          <PlistImageFile Name="qinwen_18.png" Key="qinwen_18.png" />
+          <PlistImageFile Name="qinwen_19.png" Key="qinwen_19.png" />
+          <PlistImageFile Name="qinwen_2.png" Key="qinwen_2.png" />
+          <PlistImageFile Name="qinwen_20.png" Key="qinwen_20.png" />
+          <PlistImageFile Name="qinwen_21.png" Key="qinwen_21.png" />
+          <PlistImageFile Name="qinwen_3.png" Key="qinwen_3.png" />
+          <PlistImageFile Name="qinwen_4.png" Key="qinwen_4.png" />
+          <PlistImageFile Name="qinwen_5.png" Key="qinwen_5.png" />
+          <PlistImageFile Name="qinwen_6.png" Key="qinwen_6.png" />
+          <PlistImageFile Name="qinwen_7.png" Key="qinwen_7.png" />
+          <PlistImageFile Name="qinwen_8.png" Key="qinwen_8.png" />
+          <PlistImageFile Name="qinwen_9.png" Key="qinwen_9.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="water.png" PListFile="water.plist" Name=".water_PList.Dir">
+          <PlistImageFile Name="water.png" Key="water.png" />
+          <PlistImageFile Name="water_04.png" Key="water_04.png" />
+          <PlistImageFile Name="water_05.png" Key="water_05.png" />
+          <PlistImageFile Name="water_07.png" Key="water_07.png" />
+          <PlistImageFile Name="water_09.png" Key="water_09.png" />
+          <PlistImageFile Name="water_10.png" Key="water_10.png" />
+          <PlistImageFile Name="water_11.png" Key="water_11.png" />
+          <PlistImageFile Name="water_14.png" Key="water_14.png" />
+          <PlistImageFile Name="water_19.png" Key="water_19.png" />
+          <PlistImageFile Name="water_22.png" Key="water_22.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="xiaotou.png" PListFile="xiaotou.plist" Name=".xiaotou_PList.Dir">
+          <PlistImageFile Name="xiaotou.png" Key="xiaotou.png" />
+          <PlistImageFile Name="xiaotou_1.png" Key="xiaotou_1.png" />
+          <PlistImageFile Name="xiaotou_10.png" Key="xiaotou_10.png" />
+          <PlistImageFile Name="xiaotou_11.png" Key="xiaotou_11.png" />
+          <PlistImageFile Name="xiaotou_12.png" Key="xiaotou_12.png" />
+          <PlistImageFile Name="xiaotou_13.png" Key="xiaotou_13.png" />
+          <PlistImageFile Name="xiaotou_14.png" Key="xiaotou_14.png" />
+          <PlistImageFile Name="xiaotou_15.png" Key="xiaotou_15.png" />
+          <PlistImageFile Name="xiaotou_16.png" Key="xiaotou_16.png" />
+          <PlistImageFile Name="xiaotou_17.png" Key="xiaotou_17.png" />
+          <PlistImageFile Name="xiaotou_18.png" Key="xiaotou_18.png" />
+          <PlistImageFile Name="xiaotou_19.png" Key="xiaotou_19.png" />
+          <PlistImageFile Name="xiaotou_2.png" Key="xiaotou_2.png" />
+          <PlistImageFile Name="xiaotou_20.png" Key="xiaotou_20.png" />
+          <PlistImageFile Name="xiaotou_21.png" Key="xiaotou_21.png" />
+          <PlistImageFile Name="xiaotou_22.png" Key="xiaotou_22.png" />
+          <PlistImageFile Name="xiaotou_3.png" Key="xiaotou_3.png" />
+          <PlistImageFile Name="xiaotou_4.png" Key="xiaotou_4.png" />
+          <PlistImageFile Name="xiaotou_5.png" Key="xiaotou_5.png" />
+          <PlistImageFile Name="xiaotou_6.png" Key="xiaotou_6.png" />
+          <PlistImageFile Name="xiaotou_7.png" Key="xiaotou_7.png" />
+          <PlistImageFile Name="xiaotou_8.png" Key="xiaotou_8.png" />
+          <PlistImageFile Name="xiaotou_9.png" Key="xiaotou_9.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="xihongshi.png" PListFile="xihongshi.plist" Name=".xihongshi_PList.Dir">
+          <PlistImageFile Name="xihongshi.png" Key="xihongshi.png" />
+          <PlistImageFile Name="xihongshi003.png" Key="xihongshi003.png" />
+          <PlistImageFile Name="xihongshi004.png" Key="xihongshi004.png" />
+          <PlistImageFile Name="xihongshi005.png" Key="xihongshi005.png" />
+        </PlistImageFolder>
+        <PlistImageFolder Image="zhadan.png" PListFile="zhadan.plist" Name=".zhadan_PList.Dir">
+          <PlistImageFile Name="zhadan.png" Key="zhadan.png" />
+          <PlistImageFile Name="zhadan_1.png" Key="zhadan_1.png" />
+          <PlistImageFile Name="zhadan_10.png" Key="zhadan_10.png" />
+          <PlistImageFile Name="zhadan_11.png" Key="zhadan_11.png" />
+          <PlistImageFile Name="zhadan_12.png" Key="zhadan_12.png" />
+          <PlistImageFile Name="zhadan_13.png" Key="zhadan_13.png" />
+          <PlistImageFile Name="zhadan_14.png" Key="zhadan_14.png" />
+          <PlistImageFile Name="zhadan_15.png" Key="zhadan_15.png" />
+          <PlistImageFile Name="zhadan_16.png" Key="zhadan_16.png" />
+          <PlistImageFile Name="zhadan_17.png" Key="zhadan_17.png" />
+          <PlistImageFile Name="zhadan_18.png" Key="zhadan_18.png" />
+          <PlistImageFile Name="zhadan_19.png" Key="zhadan_19.png" />
+          <PlistImageFile Name="zhadan_2.png" Key="zhadan_2.png" />
+          <PlistImageFile Name="zhadan_3.png" Key="zhadan_3.png" />
+          <PlistImageFile Name="zhadan_4.png" Key="zhadan_4.png" />
+          <PlistImageFile Name="zhadan_5.png" Key="zhadan_5.png" />
+          <PlistImageFile Name="zhadan_6.png" Key="zhadan_6.png" />
+          <PlistImageFile Name="zhadan_7.png" Key="zhadan_7.png" />
+          <PlistImageFile Name="zhadan_8.png" Key="zhadan_8.png" />
+          <PlistImageFile Name="zhadan_9.png" Key="zhadan_9.png" />
+        </PlistImageFolder>
+        <Project Name="fish.csd" Type="Skeleton" />
+        <Project Name="jiubei.csd" Type="Skeleton" />
+        <Project Name="water.csd" Type="Skeleton" />
+        <Project Name="xihongshi.csd" Type="Skeleton" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

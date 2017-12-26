@@ -1,0 +1,20 @@
+<Solution>
+  <PropertyGroup Name="NewCocosProject1" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Image Name="529827f6e50ca698df4e1e757eb4e2bed2fff5abb2a76-uO1GGp_fw658.png" />
+        <Project Name="bairenniuniu_zimu.csd" Type="Scene" />
+        <Image Name="bg.png" />
+        <Image Name="effect.png" />
+        <Image Name="effect_1.png" />
+        <Image Name="FX_Flare006.png" />
+        <Image Name="FX_Light_010.png" />
+        <PlistParticleFile Name="particle_texture.plist" />
+        <PlistParticleFile Name="star_effect.plist" />
+        <Image Name="txt_bg.png" />
+        <Image Name="txt_WuHuaNiu.png" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

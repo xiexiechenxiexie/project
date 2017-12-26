@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>TP/PlayerInfo/playerinfo_btn_bomb_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_btn_bomb_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,128},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_btn_rose_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,255},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_btn_rose_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{128,1},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_btn_temato_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{255,1},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_btn_temato_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{128,128},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_btn_water_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{128,255},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_btn_water_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{255,128},{125,125}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{125,125}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_female.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{315,292},{28,40}}</string>
+				<key>offset</key>
+				<string>{1,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{35,40}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_gold.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{255,255},{58,50}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{58,50}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_male.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{315,255},{35,36}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{35,40}</string>
+			</dict>
+			<key>TP/PlayerInfo/playerinfo_pos.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{353,255},{27,40}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{27,40}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>PlayerInfo.png</string>
+			<key>realTextureFileName</key>
+			<string>PlayerInfo.png</string>
+			<key>size</key>
+			<string>{381,381}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>381</integer>
+			<key>height</key>
+			<integer>381</integer>
+		</dict>
+	</dict>
+</plist>

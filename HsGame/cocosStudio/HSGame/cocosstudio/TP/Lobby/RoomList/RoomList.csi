@@ -1,0 +1,14 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="RoomList" Type="Plist" ID="0c2b39af-1b53-4f53-b947-6428ff3e5443" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="TP/roomlist_btn_start_0.png" />
+      <FilePathData Path="TP/roomlist_btn_start_1.png" />
+      <FilePathData Path="TP/roomlist_elementary.png" />
+      <FilePathData Path="TP/roomlist_high.png" />
+      <FilePathData Path="TP/roomlist_mid.png" />
+      <FilePathData Path="TP/roomlist_private.png" />
+    </ImageFiles>
+    <MaxSize Width="776" Height="924" />
+  </Content>
+</PlistInfoProjectFile>

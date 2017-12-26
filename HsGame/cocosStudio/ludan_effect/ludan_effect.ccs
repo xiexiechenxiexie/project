@@ -1,0 +1,20 @@
+<Solution>
+  <PropertyGroup Name="ludan_effect" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="brnn">
+          <Folder Name="res">
+            <Folder Name="GameLayout">
+              <PlistImageFolder Image="ludanAction.png" PListFile="ludanAction.plist" Name=".ludanAction_PList.Dir">
+                <PlistImageFile Name="count_down .png" Key="count_down .png" />
+                <PlistImageFile Name="ludan_effect_.png" Key="ludan_effect_.png" />
+              </PlistImageFolder>
+            </Folder>
+          </Folder>
+        </Folder>
+        <Project Name="ludanBtnAction.csd" Type="Skeleton" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

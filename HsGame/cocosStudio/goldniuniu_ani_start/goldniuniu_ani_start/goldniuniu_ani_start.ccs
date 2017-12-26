@@ -1,0 +1,16 @@
+<Solution>
+  <PropertyGroup Name="goldniuniu_ani_start" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="goldniuniu_ani_start.csd" Type="Scene" />
+        <Image Name="guang_b.png" />
+        <Image Name="niu.png" />
+        <Image Name="niujiao.png" />
+        <Image Name="START_bg.png" />
+        <PlistParticleFile Name="start_effect(3).plist" />
+        <Image Name="START_txt.png" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

@@ -1,0 +1,13 @@
+<Solution>
+  <PropertyGroup Name="ludan_effect" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="MainScene.csd" Type="Scene" />
+        <PlistParticleFile Name="quyu_effect_1.plist" />
+        <PlistParticleFile Name="quyu_effect_bomb.plist" />
+        <PlistParticleFile Name="quyu_effect_fly.plist" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

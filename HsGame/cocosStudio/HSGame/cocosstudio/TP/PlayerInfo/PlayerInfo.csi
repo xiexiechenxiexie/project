@@ -1,0 +1,20 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="PlayerInfo" Type="Plist" ID="253cc3a6-a099-426f-8361-b79b8885e0d3" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_bomb_0.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_bomb_1.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_rose_0.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_rose_1.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_temato_0.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_temato_1.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_water_0.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_btn_water_1.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_female.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_gold.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_male.png" />
+      <FilePathData Path="TP/PlayerInfo/playerinfo_pos.png" />
+    </ImageFiles>
+    <MaxSize Width="381" Height="381" />
+  </Content>
+</PlistInfoProjectFile>

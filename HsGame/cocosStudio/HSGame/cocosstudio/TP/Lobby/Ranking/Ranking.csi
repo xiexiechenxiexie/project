@@ -1,0 +1,9 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="Ranking" Type="Plist" ID="4c117acf-8b38-46cb-88b5-fa6864bd2c56" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="TP/Lobby/Ranking/ranking_no_other.png" />
+    </ImageFiles>
+    <MaxSize Width="618" Height="490" />
+  </Content>
+</PlistInfoProjectFile>

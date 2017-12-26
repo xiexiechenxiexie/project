@@ -1,0 +1,50 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="Mall" Type="Plist" ID="8f745b31-f4a3-47d8-a813-c9a8c6f0867f" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <ImageFiles>
+      <FilePathData Path="TP/Mall/mall_bg.png" />
+      <FilePathData Path="TP/Mall/mall_btn_bg_normall.png" />
+      <FilePathData Path="TP/Mall/mall_btn_bg_select.png" />
+      <FilePathData Path="TP/Mall/mall_btn_iap.png" />
+      <FilePathData Path="TP/Mall/mall_btn_menu_diamond_normal.png" />
+      <FilePathData Path="TP/Mall/mall_btn_menu_diamond_selected.png" />
+      <FilePathData Path="TP/Mall/mall_btn_menu_gold_normal.png" />
+      <FilePathData Path="TP/Mall/mall_btn_menu_gold_selected.png" />
+      <FilePathData Path="TP/Mall/mall_btn_menu_room_card_normal.png" />
+      <FilePathData Path="TP/Mall/mall_btn_menu_rooom_card_selected.png" />
+      <FilePathData Path="TP/Mall/mall_btn_wx.png" />
+      <FilePathData Path="TP/Mall/mall_info_diamond.png" />
+      <FilePathData Path="TP/Mall/mall_info_gold.png" />
+      <FilePathData Path="TP/Mall/mall_info_room_card.png" />
+      <FilePathData Path="TP/Mall/mall_item_bg.png" />
+      <FilePathData Path="TP/Mall/mall_item_diamond.png" />
+      <FilePathData Path="TP/Mall/mall_item_gold.png" />
+      <FilePathData Path="TP/Mall/mall_item_gold_btn_buy_icon.png" />
+      <FilePathData Path="TP/Mall/mall_item_gold_send_num.png" />
+      <FilePathData Path="TP/Mall/mall_item_gold_title_send.png" />
+      <FilePathData Path="TP/Mall/mall_item_goods_bg.png" />
+      <FilePathData Path="TP/Mall/mall_item_goods_btn_buy.png" />
+      <FilePathData Path="TP/Mall/mall_item_light.png" />
+      <FilePathData Path="TP/Mall/mall_item_room_card.png" />
+      <FilePathData Path="TP/Mall/mall_item_room_card_title_date.png" />
+      <FilePathData Path="TP/Mall/mall_item_room_card_title_days.png" />
+      <FilePathData Path="TP/Mall/mall_left_menu_bg.png" />
+      <FilePathData Path="TP/Mall/mall_logo.png" />
+      <FilePathData Path="TP/Mall/mall_logo_flash.png" />
+      <FilePathData Path="TP/Mall/mall_logo_light1.png" />
+      <FilePathData Path="TP/Mall/mall_logo_light2.png" />
+      <FilePathData Path="TP/Mall/mall_sale_flag.png" />
+      <FilePathData Path="TP/Mall/mall_title_pay_type.png" />
+      <FilePathData Path="TP/Mall/mall_top_info_bg.png" />
+      <FilePathData Path="TP/Mall/mall_top_info_item_bg.png" />
+      <FilePathData Path="TP/Mall/mall_txt_line.png" />
+      <FilePathData Path="TP/Mall/Store/mall_dialog_bg.png" />
+      <FilePathData Path="TP/Mall/Store/mall_dialog_title_bg.png" />
+      <FilePathData Path="TP/Mall/Store/mall_dialog_title_btn_normal.png" />
+      <FilePathData Path="TP/Mall/Store/mall_dialog_title_btn_selected.png" />
+      <FilePathData Path="TP/Mall/mall_btn_un.png" />
+      <FilePathData Path="TP/Mall/mall_btn_zfb.png" />
+    </ImageFiles>
+    <MaxSize Width="2038" Height="1540" />
+  </Content>
+</PlistInfoProjectFile>

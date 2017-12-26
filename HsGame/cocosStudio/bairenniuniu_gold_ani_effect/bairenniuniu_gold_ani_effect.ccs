@@ -1,0 +1,21 @@
+<Solution>
+  <PropertyGroup Name="bairenniuniu_gold_ani_effect" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="brnn">
+          <Folder Name="res">
+            <Folder Name="GameLayout">
+              <PlistImageFolder Image="win_gold_ani_effect.png" PListFile="win_gold_ani_effect.plist" Name=".win_gold_ani_effect_PList.Dir">
+                <PlistImageFile Name="effect.png" Key="effect.png" />
+                <PlistImageFile Name="effect_2.png" Key="effect_2.png" />
+                <PlistImageFile Name="FX_flare_009.png" Key="FX_flare_009.png" />
+              </PlistImageFolder>
+            </Folder>
+          </Folder>
+        </Folder>
+        <Project Name="gold_effect.csd" Type="Skeleton" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

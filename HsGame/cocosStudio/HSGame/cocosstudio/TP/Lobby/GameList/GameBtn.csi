@@ -1,0 +1,6 @@
+<PlistInfoProjectFile>
+  <PropertyGroup Name="GameBtn" Type="Plist" ID="1d30b1d9-ca38-4c87-b89e-34404c279b3d" Version="3.10.0.0" />
+  <Content ExportType="Png" SortAlgorithm="MaxRects" PicturePadding="1" AllowRotation="True" AllowAnySize="True" AllowTrim="True" ctype="PlistInfoData">
+    <MaxSize Width="1020" Height="950" />
+  </Content>
+</PlistInfoProjectFile>

@@ -1,0 +1,139 @@
+<Solution>
+  <PropertyGroup Name="BRNN" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="brnn">
+          <Folder Name="res">
+            <Folder Name="GameLayout">
+              <PlistImageFolder Image="btn_score.png" PListFile="btn_score.plist" Name=".btn_score_PList.Dir">
+                <PlistImageFile Name="btn_chip_100_0.png" Key="btn_chip_100_0.png" />
+                <PlistImageFile Name="btn_chip_100_1.png" Key="btn_chip_100_1.png" />
+                <PlistImageFile Name="btn_chip_100_2.png" Key="btn_chip_100_2.png" />
+                <PlistImageFile Name="btn_chip_1000_0.png" Key="btn_chip_1000_0.png" />
+                <PlistImageFile Name="btn_chip_1000_1.png" Key="btn_chip_1000_1.png" />
+                <PlistImageFile Name="btn_chip_1000_2.png" Key="btn_chip_1000_2.png" />
+                <PlistImageFile Name="btn_chip_10000_0.png" Key="btn_chip_10000_0.png" />
+                <PlistImageFile Name="btn_chip_10000_1.png" Key="btn_chip_10000_1.png" />
+                <PlistImageFile Name="btn_chip_10000_2.png" Key="btn_chip_10000_2.png" />
+                <PlistImageFile Name="btn_chip_100000_0.png" Key="btn_chip_100000_0.png" />
+                <PlistImageFile Name="btn_chip_100000_1.png" Key="btn_chip_100000_1.png" />
+                <PlistImageFile Name="btn_chip_100000_2.png" Key="btn_chip_100000_2.png" />
+                <PlistImageFile Name="btn_chip_1000000_0.png" Key="btn_chip_1000000_0.png" />
+                <PlistImageFile Name="btn_chip_1000000_1.png" Key="btn_chip_1000000_1.png" />
+                <PlistImageFile Name="btn_chip_1000000_2.png" Key="btn_chip_1000000_2.png" />
+              </PlistImageFolder>
+              <Image Name="banker_head_bg.png" />
+              <Image Name="BG.png" />
+              <Image Name="block.png" />
+              <Image Name="btn_chat_0.png" />
+              <Image Name="btn_chat_1.png" />
+              <Image Name="btn_chip_effect.png" />
+              <Image Name="btn_list_0.png" />
+              <Image Name="btn_list_1.png" />
+              <Image Name="btn_ludan_0.png" />
+              <Image Name="btn_ludan_1.png" />
+              <Image Name="btn_playerlist_0.png" />
+              <Image Name="btn_playerlist_1.png" />
+              <Image Name="btn_shop.png" />
+              <Image Name="game_shangzhuang_0.png" />
+              <Image Name="game_shangzhuang_1.png" />
+              <Image Name="game_xiazhuang_0.png" />
+              <Image Name="game_xiazhuang_1.png" />
+              <Image Name="guang.png" />
+              <Image Name="guang_b.png" />
+              <Image Name="head_bg.png" />
+              <Image Name="head_clip_bg.png" />
+              <Image Name="head_player.png" />
+              <Image Name="player_bg.png" />
+              <Image Name="star_tbg.png" />
+              <Image Name="start_start.png" />
+              <Image Name="start_xiazhu.png" />
+              <Image Name="time_bg.png" />
+              <Image Name="txt_bg.png" />
+              <Image Name="txt_niunum.png" />
+              <Image Name="txt_niunum0.png" />
+              <Image Name="txt_niunum10.png" />
+              <Image Name="txt_niunum11.png" />
+              <Image Name="txt_niunum12.png" />
+              <Image Name="txt_niunum13.png" />
+              <Image Name="vip_sit.png" />
+              <Image Name="xuanqu.png" />
+            </Folder>
+            <Folder Name="HelpLayout">
+              <Image Name="help_txt.png" />
+              <Image Name="title_help.png" />
+            </Folder>
+            <Folder Name="MenuLayout">
+              <Image Name="help_btn_0.png" />
+              <Image Name="help_btn_1.png" />
+              <Image Name="list_bg.png" />
+              <Image Name="quit_btn_0.png" />
+              <Image Name="quit_btn_1.png" />
+            </Folder>
+            <Folder Name="PlayerListLayout">
+              <Image Name="title_PlayerLst.png" />
+            </Folder>
+            <Folder Name="SZListLayout">
+              <PlistImageFolder Image="zhuangjia_btn.png" PListFile="zhuangjia_btn.plist" Name=".zhuangjia_btn_PList.Dir">
+                <PlistImageFile Name="btn_quxiaoshenqing_0.png" Key="btn_quxiaoshenqing_0.png" />
+                <PlistImageFile Name="btn_quxiaoshenqing_1.png" Key="btn_quxiaoshenqing_1.png" />
+                <PlistImageFile Name="btn_shenqingshangzhuang_0.png" Key="btn_shenqingshangzhuang_0.png" />
+                <PlistImageFile Name="btn_shenqingshangzhuang_1.png" Key="btn_shenqingshangzhuang_1.png" />
+                <PlistImageFile Name="btn_shenqingxiazhuang_0.png" Key="btn_shenqingxiazhuang_0.png" />
+                <PlistImageFile Name="btn_shenqingxiazhuang_1.png" Key="btn_shenqingxiazhuang_1.png" />
+              </PlistImageFolder>
+              <Image Name="szList_title.png" />
+            </Folder>
+            <Folder Name="WinRecordLayout">
+              <PlistImageFolder Image="WinRecordLayout.png" PListFile="WinRecordLayout.plist" Name=".WinRecordLayout_PList.Dir">
+                <PlistImageFile Name="data0.png" Key="data0.png" />
+                <PlistImageFile Name="data1.png" Key="data1.png" />
+                <PlistImageFile Name="ico_club.png" Key="ico_club.png" />
+                <PlistImageFile Name="ico_diamond.png" Key="ico_diamond.png" />
+                <PlistImageFile Name="ico_heart.png" Key="ico_heart.png" />
+                <PlistImageFile Name="ico_spabe.png" Key="ico_spabe.png" />
+                <PlistImageFile Name="line.png" Key="line.png" />
+                <PlistImageFile Name="new.png" Key="new.png" />
+                <PlistImageFile Name="title_shengfuzoushi.png" Key="title_shengfuzoushi.png" />
+              </PlistImageFolder>
+            </Folder>
+            <Image Name="bg.png" />
+            <Image Name="bg1.png" />
+            <Image Name="bg2.png" />
+            <Project Name="BRNNScene.csd" Type="Scene" />
+            <Image Name="btn_close_0.png" />
+            <Image Name="btn_close_1.png" />
+            <Project Name="HelpNode.csd" Type="Node" />
+            <Project Name="MenuNode.csd" Type="Node" />
+            <Project Name="NiuNiuNumNode.csd" Type="Node" />
+            <Project Name="PlayerListNode.csd" Type="Node" />
+            <Project Name="PlayerNode.csd" Type="Node" />
+            <Project Name="SZListNode.csd" Type="Node" />
+            <Image Name="title_bg.png" />
+            <Project Name="WinRecordNode.csd" Type="Node" />
+          </Folder>
+        </Folder>
+        <Folder Name="gamecommon">
+          <Folder Name="chat">
+            <Folder Name="res">
+              <PlistImageFolder Image="chat.png" PListFile="chat.plist" Name=".chat_PList.Dir">
+                <PlistImageFile Name="chat_bg1.png" Key="chat_bg1.png" />
+                <PlistImageFile Name="chat_bg2.png" Key="chat_bg2.png" />
+                <PlistImageFile Name="chat_btn_chat_.png" Key="chat_btn_chat_.png" />
+                <PlistImageFile Name="chat_btn_chat_1.png" Key="chat_btn_chat_1.png" />
+                <PlistImageFile Name="chat_btn_emoticons_0.png" Key="chat_btn_emoticons_0.png" />
+                <PlistImageFile Name="chat_btn_emoticons_1.png" Key="chat_btn_emoticons_1.png" />
+                <PlistImageFile Name="chat_btn_jilu_0.png" Key="chat_btn_jilu_0.png" />
+                <PlistImageFile Name="chat_btn_jilu_1.png" Key="chat_btn_jilu_1.png" />
+                <PlistImageFile Name="chat_btn_send.png" Key="chat_btn_send.png" />
+                <PlistImageFile Name="chat_btn_send_1.png" Key="chat_btn_send_1.png" />
+              </PlistImageFolder>
+              <Project Name="ChatNode.csd" Type="Node" />
+            </Folder>
+          </Folder>
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

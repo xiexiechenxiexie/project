@@ -1,0 +1,169 @@
+<Solution>
+  <PropertyGroup Name="NiuNiu" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="gamecommon">
+          <Folder Name="subsidy">
+            <Folder Name="res">
+              <PlistImageFolder Image="subsidy.png" PListFile="subsidy.plist" Name=".subsidy_PList.Dir">
+                <PlistImageFile Name="btn_lingqu.png" Key="btn_lingqu.png" />
+                <PlistImageFile Name="btn_share.png" Key="btn_share.png" />
+                <PlistImageFile Name="goldBg.png" Key="goldBg.png" />
+                <PlistImageFile Name="shop.png" Key="shop.png" />
+                <PlistImageFile Name="sub_txt.png" Key="sub_txt.png" />
+                <PlistImageFile Name="subsidy_close_btn0.png" Key="subsidy_close_btn0.png" />
+                <PlistImageFile Name="subsidybg0.png" Key="subsidybg0.png" />
+                <PlistImageFile Name="title_sub.png" Key="title_sub.png" />
+              </PlistImageFolder>
+              <Project Name="subShare.csd" Type="Layer" />
+              <Project Name="subsidy.csd" Type="Layer" />
+            </Folder>
+          </Folder>
+        </Folder>
+        <Folder Name="niuniu">
+          <Folder Name="res">
+            <Folder Name="GameLayout">
+              <Folder Name="NiuNiu">
+                <PlistImageFolder Image="dismiss.png" PListFile="dismiss.plist" Name=".dismiss_PList.Dir">
+                  <PlistImageFile Name="dis_btn_cancel_0.png" Key="dis_btn_cancel_0.png" />
+                  <PlistImageFile Name="dis_btn_cancel_1.png" Key="dis_btn_cancel_1.png" />
+                  <PlistImageFile Name="dis_btn_enter_0.png" Key="dis_btn_enter_0.png" />
+                  <PlistImageFile Name="dis_btn_enter_1.png" Key="dis_btn_enter_1.png" />
+                  <PlistImageFile Name="dismiss_bg.png" Key="dismiss_bg.png" />
+                  <PlistImageFile Name="dismiss_btn_close.png" Key="dismiss_btn_close.png" />
+                  <PlistImageFile Name="dismiss_tishi.png" Key="dismiss_tishi.png" />
+                  <PlistImageFile Name="dismiss_txt_bg.png" Key="dismiss_txt_bg.png" />
+                  <PlistImageFile Name="title_dismiss_.png" Key="title_dismiss_.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="exploits.png" PListFile="exploits.plist" Name=".exploits_PList.Dir">
+                  <PlistImageFile Name="exp_btn_down_0.png" Key="exp_btn_down_0.png" />
+                  <PlistImageFile Name="exp_btn_down_1.png" Key="exp_btn_down_1.png" />
+                  <PlistImageFile Name="exp_btn_top_0.png" Key="exp_btn_top_0.png" />
+                  <PlistImageFile Name="exp_btn_top_1.png" Key="exp_btn_top_1.png" />
+                  <PlistImageFile Name="exp_niuniu_zi.png" Key="exp_niuniu_zi.png" />
+                  <PlistImageFile Name="exp_player_bg.png" Key="exp_player_bg.png" />
+                  <PlistImageFile Name="exp_title0.png" Key="exp_title0.png" />
+                  <PlistImageFile Name="exp_txtbg.png" Key="exp_txtbg.png" />
+                  <PlistImageFile Name="exp_zhankai.png" Key="exp_zhankai.png" />
+                  <PlistImageFile Name="exp_zi_bg.png" Key="exp_zi_bg.png" />
+                  <PlistImageFile Name="exploit0.png" Key="exploit0.png" />
+                  <PlistImageFile Name="exploit1.png" Key="exploit1.png" />
+                  <PlistImageFile Name="exploits_bg.png" Key="exploits_bg.png" />
+                  <PlistImageFile Name="exploits_close_btn.png" Key="exploits_close_btn.png" />
+                  <PlistImageFile Name="exploits_player_bg.png" Key="exploits_player_bg.png" />
+                  <PlistImageFile Name="exploits_title.png" Key="exploits_title.png" />
+                  <PlistImageFile Name="exploits_zhuang.png" Key="exploits_zhuang.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="GameBtn.png" PListFile="GameBtn.plist" Name=".GameBtn_PList.Dir">
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_0_0.png" Key="TP/NiuNiu/niuniu_btn_0_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_0_1.png" Key="TP/NiuNiu/niuniu_btn_0_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_1_0.png" Key="TP/NiuNiu/niuniu_btn_1_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_1_1.png" Key="TP/NiuNiu/niuniu_btn_1_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_10_0.png" Key="TP/NiuNiu/niuniu_btn_10_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_10_1.png" Key="TP/NiuNiu/niuniu_btn_10_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_2_0.png" Key="TP/NiuNiu/niuniu_btn_2_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_2_1.png" Key="TP/NiuNiu/niuniu_btn_2_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_20_0.png" Key="TP/NiuNiu/niuniu_btn_20_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_20_1.png" Key="TP/NiuNiu/niuniu_btn_20_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_25_0.png" Key="TP/NiuNiu/niuniu_btn_25_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_25_1.png" Key="TP/NiuNiu/niuniu_btn_25_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_3_0.png" Key="TP/NiuNiu/niuniu_btn_3_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_3_1.png" Key="TP/NiuNiu/niuniu_btn_3_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_4_0.png" Key="TP/NiuNiu/niuniu_btn_4_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_4_1.png" Key="TP/NiuNiu/niuniu_btn_4_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_5_0.png" Key="TP/NiuNiu/niuniu_btn_5_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_5_1.png" Key="TP/NiuNiu/niuniu_btn_5_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_has_niu_0.png" Key="TP/NiuNiu/niuniu_btn_has_niu_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_has_niu_1.png" Key="TP/NiuNiu/niuniu_btn_has_niu_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_has_niu_2.png" Key="TP/NiuNiu/niuniu_btn_has_niu_2.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_no_niu_0.png" Key="TP/NiuNiu/niuniu_btn_no_niu_0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_no_niu_1.png" Key="TP/NiuNiu/niuniu_btn_no_niu_1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_btn_no_niu_2.png" Key="TP/NiuNiu/niuniu_btn_no_niu_2.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="GameBtn_L.png" PListFile="GameBtn_L.plist" Name=".GameBtn_L_PList.Dir">
+                  <PlistImageFile Name="btn_chat_0.png" Key="btn_chat_0.png" />
+                  <PlistImageFile Name="btn_chat_1.png" Key="btn_chat_1.png" />
+                  <PlistImageFile Name="niuniu_btn_15_0.png" Key="niuniu_btn_15_0.png" />
+                  <PlistImageFile Name="niuniu_btn_15_1.png" Key="niuniu_btn_15_1.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="help.png" PListFile="help.plist" Name=".help_PList.Dir">
+                  <PlistImageFile Name="btn_cardType_0.png" Key="btn_cardType_0.png" />
+                  <PlistImageFile Name="btn_cardType_1.png" Key="btn_cardType_1.png" />
+                  <PlistImageFile Name="btn_rule_0.png" Key="btn_rule_0.png" />
+                  <PlistImageFile Name="btn_rule_1.png" Key="btn_rule_1.png" />
+                  <PlistImageFile Name="btn_wanfa_0.png" Key="btn_wanfa_0.png" />
+                  <PlistImageFile Name="btn_wanfa_1.png" Key="btn_wanfa_1.png" />
+                  <PlistImageFile Name="cardTypeShuoming.png" Key="cardTypeShuoming.png" />
+                  <PlistImageFile Name="help_bg.png" Key="help_bg.png" />
+                  <PlistImageFile Name="help_btn_close.png" Key="help_btn_close.png" />
+                  <PlistImageFile Name="helptxt_bg.png" Key="helptxt_bg.png" />
+                  <PlistImageFile Name="point.png" Key="point.png" />
+                  <PlistImageFile Name="title_help.png" Key="title_help.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="inform.png" PListFile="inform.plist" Name=".inform_PList.Dir">
+                  <PlistImageFile Name="inform_bg.png" Key="inform_bg.png" />
+                  <PlistImageFile Name="inform_btn_agree.png" Key="inform_btn_agree.png" />
+                  <PlistImageFile Name="inform_btn_close.png" Key="inform_btn_close.png" />
+                  <PlistImageFile Name="inform_btn_refuse.png" Key="inform_btn_refuse.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="niuniu_menuBtn.png" PListFile="niuniu_menuBtn.plist" Name=".niuniu_menuBtn_PList.Dir">
+                  <PlistImageFile Name="btn_more_hide_0.png" Key="btn_more_hide_0.png" />
+                  <PlistImageFile Name="btn_more_hide_1.png" Key="btn_more_hide_1.png" />
+                  <PlistImageFile Name="btn_more_show_0.png" Key="btn_more_show_0.png" />
+                  <PlistImageFile Name="btn_more_show_1.png" Key="btn_more_show_1.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="playerPanel.png" PListFile="playerPanel.plist" Name=".playerPanel_PList.Dir">
+                  <PlistImageFile Name="gold_effect_heng.png" Key="gold_effect_heng.png" />
+                  <PlistImageFile Name="gold_effect_shu.png" Key="gold_effect_shu.png" />
+                  <PlistImageFile Name="gold_effect1.png" Key="gold_effect1.png" />
+                  <PlistImageFile Name="gold_effect2.png" Key="gold_effect2.png" />
+                  <PlistImageFile Name="gold_effectS1.png" Key="gold_effectS1.png" />
+                  <PlistImageFile Name="gold_effectS2.png" Key="gold_effectS2.png" />
+                  <PlistImageFile Name="gold_zhuang.png" Key="gold_zhuang.png" />
+                  <PlistImageFile Name="gold_zhuang_effect.png" Key="gold_zhuang_effect.png" />
+                  <PlistImageFile Name="goldNiu_sit.png" Key="goldNiu_sit.png" />
+                  <PlistImageFile Name="player_mianban_heng.png" Key="player_mianban_heng.png" />
+                  <PlistImageFile Name="player_mianban_shu.png" Key="player_mianban_shu.png" />
+                </PlistImageFolder>
+                <PlistImageFolder Image="TxtTip.png" PListFile="TxtTip.plist" Name=".TxtTip_PList.Dir">
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_bg.png" Key="TP/NiuNiu/niuniu_txt_bg.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_complete.png" Key="TP/NiuNiu/niuniu_txt_complete.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_four.png" Key="TP/NiuNiu/niuniu_txt_four.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_hua.png" Key="TP/NiuNiu/niuniu_txt_hua.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu.png" Key="TP/NiuNiu/niuniu_txt_niu.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu0.png" Key="TP/NiuNiu/niuniu_txt_niu0.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu1.png" Key="TP/NiuNiu/niuniu_txt_niu1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu2.png" Key="TP/NiuNiu/niuniu_txt_niu2.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu3.png" Key="TP/NiuNiu/niuniu_txt_niu3.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu4.png" Key="TP/NiuNiu/niuniu_txt_niu4.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu5.png" Key="TP/NiuNiu/niuniu_txt_niu5.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu6.png" Key="TP/NiuNiu/niuniu_txt_niu6.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu7.png" Key="TP/NiuNiu/niuniu_txt_niu7.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu8.png" Key="TP/NiuNiu/niuniu_txt_niu8.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_niu9.png" Key="TP/NiuNiu/niuniu_txt_niu9.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiag5.png" Key="TP/NiuNiu/niuniu_txt_qiag5.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang1.png" Key="TP/NiuNiu/niuniu_txt_qiang1.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang2.png" Key="TP/NiuNiu/niuniu_txt_qiang2.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang20.png" Key="TP/NiuNiu/niuniu_txt_qiang20.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang25.png" Key="TP/NiuNiu/niuniu_txt_qiang25.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang3.png" Key="TP/NiuNiu/niuniu_txt_qiang3.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang4.png" Key="TP/NiuNiu/niuniu_txt_qiang4.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_qiang5.png" Key="TP/NiuNiu/niuniu_txt_qiang5.png" />
+                  <PlistImageFile Name="TP_NiuNiu_niuniu_txt_xiao.png" Key="TP/NiuNiu/niuniu_txt_xiao.png" />
+                </PlistImageFolder>
+                <Image Name="bg.png" />
+                <Project Name="dismiss_time.csd" Type="Layer" />
+                <Project Name="exploits.csd" Type="Layer" />
+                <Project Name="help.csd" Type="Layer" />
+                <Project Name="inform.csd" Type="Layer" />
+                <Project Name="informNode.csd" Type="Node" />
+                <Project Name="Layer.csd" Type="Layer" />
+              </Folder>
+            </Folder>
+          </Folder>
+        </Folder>
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>

@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+		<key>frames</key>
+		<dict>
+			<key>TP/NiuNiu/niuniu_btn_bg.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{1,1},{193,384}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{193,384}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_cards_type_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{196,1},{175,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_cards_type_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{344,75},{171,70}}</string>
+				<key>offset</key>
+				<string>{0,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_change_table_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{196,178},{175,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_change_table_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{517,113},{171,70}}</string>
+				<key>offset</key>
+				<string>{0,1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_chat_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{442,219},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_chat_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{514,286},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_exit_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{196,355},{175,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_exit_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{589,113},{171,70}}</string>
+				<key>offset</key>
+				<string>{0,1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_more_hide_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{442,291},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_more_hide_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{514,358},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_more_show_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{586,286},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_more_show_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{586,358},{70,70}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{70,70}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_set_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{373,1},{175,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_set_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{344,147},{171,70}}</string>
+				<key>offset</key>
+				<string>{0,1}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_shop.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{342,219},{98,100}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<false />
+				<key>sourceSize</key>
+				<string>{98,100}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_sit.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{550,1},{110,111}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{110,111}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_stand_0.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{270,1},{175,72}}</string>
+				<key>offset</key>
+				<string>{0,0}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+			<key>TP/NiuNiu/niuniu_btn_stand_1.png</key>
+			<dict>
+				<key>frame</key>
+				<string>{{270,178},{171,70}}</string>
+				<key>offset</key>
+				<string>{0,1}</string>
+				<key>rotated</key>
+				<true />
+				<key>sourceSize</key>
+				<string>{175,72}</string>
+			</dict>
+		</dict>
+		<key>metadata</key>
+		<dict>
+			<key>format</key>
+			<integer>2</integer>
+			<key>textureFileName</key>
+			<string>UserBtn.png</string>
+			<key>realTextureFileName</key>
+			<string>UserBtn.png</string>
+			<key>size</key>
+			<string>{662,429}</string>
+		</dict>
+		<key>texture</key>
+		<dict>
+			<key>width</key>
+			<integer>662</integer>
+			<key>height</key>
+			<integer>429</integer>
+		</dict>
+	</dict>
+</plist>

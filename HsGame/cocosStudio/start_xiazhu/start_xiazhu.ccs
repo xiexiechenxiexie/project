@@ -1,0 +1,24 @@
+<Solution>
+  <PropertyGroup Name="start_xiazhu" Version="3.10.0.0" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Folder Name="brnn">
+          <Folder Name="res">
+            <Folder Name="GameLayout">
+              <PlistImageFolder Image="start_xiazhu.png" PListFile="start_xiazhu.plist" Name=".start_xiazhu_PList.Dir">
+                <PlistImageFile Name="guang_1.png" Key="guang_1.png" />
+                <PlistImageFile Name="guang_2.png" Key="guang_2.png" />
+                <PlistImageFile Name="guang_3.png" Key="guang_3.png" />
+                <PlistImageFile Name="star_bg.png" Key="star_bg.png" />
+                <PlistImageFile Name="start_start.png" Key="start_start.png" />
+                <PlistImageFile Name="start_xiazhu .png" Key="start_xiazhu .png" />
+              </PlistImageFolder>
+            </Folder>
+          </Folder>
+        </Folder>
+        <Project Name="start_xiazhu.csd" Type="Skeleton" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
