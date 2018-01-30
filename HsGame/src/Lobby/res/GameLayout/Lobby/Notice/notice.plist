@@ -7,50 +7,50 @@
             <key>Lobby_Notice_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{1049,619}}</string>
+                <string>{{2,2},{1091,683}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{1049,619}}</string>
+                <string>{{0,0},{1091,683}}</string>
                 <key>sourceSize</key>
-                <string>{1049,619}</string>
+                <string>{1091,683}</string>
             </dict>
-            <key>Lobby_notice_btn_bg.png</key>
+            <key>Lobby_notice_btn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1053,484},{508,76}}</string>
+                <string>{{687,248},{217,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{508,76}}</string>
+                <string>{{0,0},{217,76}}</string>
                 <key>sourceSize</key>
-                <string>{510,78}</string>
+                <string>{217,76}</string>
             </dict>
             <key>Lobby_notice_list_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1053,2},{822,480}}</string>
+                <string>{{1011,2},{1,1}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-342,242}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{822,480}}</string>
+                <string>{{0,0},{1,1}}</string>
                 <key>sourceSize</key>
-                <string>{824,482}</string>
+                <string>{685,485}</string>
             </dict>
             <key>Lobby_notice_new.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1053,562},{56,57}}</string>
+                <string>{{952,2},{56,57}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{56,57}}</string>
                 <key>sourceSize</key>
@@ -59,28 +59,80 @@
             <key>Lobby_notice_title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1747,484},{168,74}}</string>
+                <string>{{687,125},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{168,74}}</string>
+                <string>{{0,0},{263,121}}</string>
                 <key>sourceSize</key>
-                <string>{168,74}</string>
+                <string>{263,121}</string>
             </dict>
             <key>Lobby_notice_title_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1563,484},{182,74}}</string>
+                <string>{{687,2},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{182,74}}</string>
+                <string>{{0,0},{263,121}}</string>
                 <key>sourceSize</key>
-                <string>{182,74}</string>
+                <string>{263,121}</string>
+            </dict>
+            <key>Lobby_noticehuod.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{983,180},{118,29}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{118,29}}</string>
+                <key>sourceSize</key>
+                <string>{118,29}</string>
+            </dict>
+            <key>Lobby_noticehuod2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{952,180},{118,29}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{118,29}}</string>
+                <key>sourceSize</key>
+                <string>{118,29}</string>
+            </dict>
+            <key>Lobby_noticexit.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{983,60},{118,29}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{118,29}}</string>
+                <key>sourceSize</key>
+                <string>{118,29}</string>
+            </dict>
+            <key>Lobby_noticexit2.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{952,60},{118,29}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{118,29}}</string>
+                <key>sourceSize</key>
+                <string>{118,29}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -90,9 +142,9 @@
             <key>realTextureFileName</key>
             <string>notice.png</string>
             <key>size</key>
-            <string>{1917,623}</string>
+            <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:9a18bacb09eda29e40cee75d5eb6e8d8$</string>
+            <string>$TexturePacker:SmartUpdate:e42e4f37e78c073f2721863b2a93588f:1/1$</string>
             <key>textureFileName</key>
             <string>notice.png</string>
         </dict>

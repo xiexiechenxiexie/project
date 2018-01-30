@@ -4,7 +4,7 @@
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="Resource" />
         <IsLastPublish Value="True" />
-        <LastRunType Value="Mac" />
+        <LastRunType Value="Windows" />
       </Value>
     </Item>
     <Item Key="PackageParamsKey">
@@ -31,9 +31,9 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="TP/Mall/Mall.csi" />
+          <FilePathData Path="GameLayout/Promote/PromoteLayer.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="TP/Mall/Mall.csi" />
+        <ActiveDocument Path="GameLayout/Promote/PromoteLayer.csd" />
       </Value>
     </Item>
   </Properties>

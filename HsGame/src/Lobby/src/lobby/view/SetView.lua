@@ -41,15 +41,15 @@ function SetView:initHallSet()
     local bgSize = bg:getContentSize()
 
     local title = ccui.ImageView:create("set_title.png", ccui.TextureResType.plistType)
-    title:setPosition(bgSize.width/2, bgSize.height - 25)
+    title:setPosition(bgSize.width/2, bgSize.height - 50)
     bg:addChild(title)
 
-    local line = ccui.ImageView:create("line.png", ccui.TextureResType.plistType)
-    line:setPosition(bgSize.width/2-120, bgSize.height/2-30)
-    bg:addChild(line)
+    -- local line = ccui.ImageView:create("line.png", ccui.TextureResType.plistType)
+    -- line:setPosition(bgSize.width/2-120, bgSize.height/2-30)
+    -- bg:addChild(line)
 
-    local yinyueSp = ccui.ImageView:create("yinyueSp.png", ccui.TextureResType.plistType)
-    yinyueSp:setPosition(bgSize.width/2+80, bgSize.height/2+80)
+    local yinyueSp = cc.Label:createWithTTF("音乐:",GameUtils.getFontName(),30)
+    yinyueSp:setPosition(bgSize.width/2+80-30, bgSize.height/2+80)
     bg:addChild(yinyueSp)
 
     local OffBtnImg="off.png"
@@ -57,13 +57,13 @@ function SetView:initHallSet()
 
     self.MusicBtn={}
     local MusicOffBtn = ccui.Button:create(OffBtnImg,OffBtnImg,OffBtnImg,ccui.TextureResType.plistType)
-	MusicOffBtn:setPosition(bgSize.width/2+250, bgSize.height/2+80)
+	MusicOffBtn:setPosition(bgSize.width/2+250-30, bgSize.height/2+80)
 	MusicOffBtn:setTag(Tag_Music_On)
 	bg:addChild(MusicOffBtn)
 	MusicOffBtn:addClickEventListener(function(sender)self:onButtonClickedEvent(sender)end)
 
 	local MusicOnBtn = ccui.Button:create(OnBtnImg,OnBtnImg,OnBtnImg,ccui.TextureResType.plistType)
-	MusicOnBtn:setPosition(bgSize.width/2+250, bgSize.height/2+80)
+	MusicOnBtn:setPosition(bgSize.width/2+250-30, bgSize.height/2+80)
 	MusicOnBtn:setTag(Tag_Music_Off)
 	bg:addChild(MusicOnBtn)
 	MusicOnBtn:addClickEventListener(function(sender)self:onButtonClickedEvent(sender)end)
@@ -78,19 +78,19 @@ function SetView:initHallSet()
 	table.insert(self.MusicBtn,MusicOffBtn)
 	table.insert(self.MusicBtn,MusicOnBtn)
 
-    local yinxiaoSp = ccui.ImageView:create("yinxiaoSp.png", ccui.TextureResType.plistType)
-    yinxiaoSp:setPosition(bgSize.width/2+80, bgSize.height/2-80)
+    local yinxiaoSp = cc.Label:createWithTTF("音效:",GameUtils.getFontName(),30)
+    yinxiaoSp:setPosition(bgSize.width/2+80-30, bgSize.height/2-80)
     bg:addChild(yinxiaoSp)
 
     self.EffectBtn={}
     local EffectOffBtn = ccui.Button:create(OffBtnImg,OffBtnImg,OffBtnImg,ccui.TextureResType.plistType)
-	EffectOffBtn:setPosition(bgSize.width/2+250, bgSize.height/2-80)
+	EffectOffBtn:setPosition(bgSize.width/2+250-30, bgSize.height/2-80)
 	EffectOffBtn:setTag(Tag_Effect_On)
 	bg:addChild(EffectOffBtn)
 	EffectOffBtn:addClickEventListener(function(sender)self:onButtonClickedEvent(sender)end)
 
 	local EffectOnBtn = ccui.Button:create(OnBtnImg,OnBtnImg,OnBtnImg,ccui.TextureResType.plistType)
-	EffectOnBtn:setPosition(bgSize.width/2+250, bgSize.height/2-80)
+	EffectOnBtn:setPosition(bgSize.width/2+250-30, bgSize.height/2-80)
 	EffectOnBtn:setTag(Tag_Effect_Off)
 	bg:addChild(EffectOnBtn)
 	EffectOnBtn:addClickEventListener(function(sender)self:onButtonClickedEvent(sender)end)
@@ -107,8 +107,9 @@ function SetView:initHallSet()
 
 
     local Headbg=ccui.ImageView:create("headBg.png", ccui.TextureResType.plistType)
-    Headbg:setPosition(bgSize.width/2-300, bgSize.height/2+100)
+    Headbg:setPosition(bgSize.width/2-300+5, bgSize.height/2+100-30-5)
     bg:addChild(Headbg)
+    Headbg:setScale(0.9)
 
     local Gender = UserData.gender or 0
     local GenderStr = GameUtils.getDefalutHeadFileByGender(Gender)
@@ -126,13 +127,13 @@ function SetView:initHallSet()
 
     local IDLabel = cc.Label:createWithTTF("ID："..tostring(UserData.userId),GameUtils.getFontName(),24)
     IDLabel:setAnchorPoint(cc.p(0,0.5))
-    IDLabel:setPosition(bgSize.width/2-380, bgSize.height/2-50)
+    IDLabel:setPosition(bgSize.width/2-380, bgSize.height/2-50-30)
     IDLabel:setColor(cc.c3b(224,221,245))
     bg:addChild(IDLabel)
 
     local ChangeBtnImg = "changeBtn.png"
     local ChangeBtn = ccui.Button:create(ChangeBtnImg,ChangeBtnImg,ChangeBtnImg,ccui.TextureResType.plistType)
-	ChangeBtn:setPosition(bgSize.width/2-300, bgSize.height/2-120)
+	ChangeBtn:setPosition(bgSize.width/2-300, bgSize.height/2-120-30)
 	bg:addChild(ChangeBtn)
 	ChangeBtn:addClickEventListener(function()
 		print("切换账号")
@@ -143,7 +144,8 @@ function SetView:initHallSet()
 
 	local VersionLabel = cc.Label:createWithTTF("版本号：".. self._VersionCode,GameUtils.getFontName(),24)
     VersionLabel:setPosition(bgSize.width/2-300, bgSize.height/2-230)
-    VersionLabel:setColor(cc.c3b(224,221,245))
+    VersionLabel:setColor(cc.c3b(236, 224, 184))
+    -- VersionLabel:setColor(cc.c3b(224,221,245))
     bg:addChild(VersionLabel)
 
 end
@@ -158,7 +160,7 @@ function SetView:initGameSet()
     title:setPosition(bgSize.width/2, bgSize.height - 25)
     bg:addChild(title)
 
-    local yinyueSp = ccui.ImageView:create("yinyueSp.png", ccui.TextureResType.plistType)
+    local yinyueSp = cc.Label:createWithTTF("音效:",GameUtils.getFontName(),30)
     yinyueSp:setPosition(bgSize.width/2-100, bgSize.height/2+80)
     bg:addChild(yinyueSp)
 
@@ -188,7 +190,7 @@ function SetView:initGameSet()
 	table.insert(self.MusicBtn,MusicOffBtn)
 	table.insert(self.MusicBtn,MusicOnBtn)
 
-    local yinxiaoSp = ccui.ImageView:create("yinxiaoSp.png", ccui.TextureResType.plistType)
+    local yinxiaoSp = cc.Label:createWithTTF("音效:",GameUtils.getFontName(),30)
     yinxiaoSp:setPosition(bgSize.width/2-100, bgSize.height/2-80)
     bg:addChild(yinxiaoSp)
 

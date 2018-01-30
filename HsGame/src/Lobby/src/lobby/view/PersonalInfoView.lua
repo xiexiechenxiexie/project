@@ -17,56 +17,72 @@ function PersonalInfoView:initView()
 
 	local bgSize = bg:getContentSize()
 
-	local MidLineImg = ccui.ImageView:create("PlayInfo_line_mid.png",ccui.TextureResType.plistType)
-	MidLineImg:setPosition(bgSize.width/2 - 100, bgSize.height/2)
-	bg:addChild(MidLineImg)
+	-- local MidLineImg = ccui.ImageView:create("PlayInfo_line_mid.png",ccui.TextureResType.plistType)
+	-- MidLineImg:setPosition(bgSize.width/2 - 100, bgSize.height/2)
+	-- bg:addChild(MidLineImg)
 
 	local LeftLineImg = ccui.ImageView:create("PlayInfo_line_right.png",ccui.TextureResType.plistType)
-	LeftLineImg:setPosition(bgSize.width/2 + 50, bgSize.height/2 - 100)
+	LeftLineImg:setPosition(bgSize.width/2 -10, bgSize.height/2 - 120)
 	bg:addChild(LeftLineImg)
 
 	local RightLineImg = ccui.ImageView:create("PlayInfo_line_left.png",ccui.TextureResType.plistType)
-	RightLineImg:setPosition(bgSize.width/2 + 350, bgSize.height/2  - 100)
+	RightLineImg:setPosition(bgSize.width/2 + 290, bgSize.height/2  - 120)
 	bg:addChild(RightLineImg)
 
 	local GameNameText = cc.Label:createWithTTF("看牌抢庄",GameUtils.getFontName(),30)
     GameNameText:setAnchorPoint(cc.p(0.5, 0.5))
-    GameNameText:setPosition(bgSize.width/2 + 200, bgSize.height/2 - 100)
+    GameNameText:setPosition(bgSize.width/2 + 140, bgSize.height/2 - 120)
     bg:addChild(GameNameText)
 
     local WinText = cc.Label:createWithTTF("胜:",GameUtils.getFontName(),28)
     WinText:setColor(cc.c3b(224,221,245))
     WinText:setAnchorPoint(cc.p(0.5, 0.5))
-    WinText:setPosition(bgSize.width/2, bgSize.height/2 - 160)
+    WinText:setPosition(bgSize.width/2-60, bgSize.height/2 - 180)
     bg:addChild(WinText)
 
     self._WinNumText = cc.Label:createWithTTF("",GameUtils.getFontName(),28)
     self._WinNumText:setAnchorPoint(cc.p(0, 0.5))
     self._WinNumText:setColor(cc.c3b(255,210,0))
-    self._WinNumText:setPosition(bgSize.width/2 + 25 , bgSize.height/2 - 160)
+    self._WinNumText:setPosition(bgSize.width/2 + 25-60 , bgSize.height/2 - 180)
     bg:addChild(self._WinNumText)
     self._WinNumText:hide()
 
     local LoseText = cc.Label:createWithTTF("负:",GameUtils.getFontName(),28)
     LoseText:setColor(cc.c3b(224,221,245))
     LoseText:setAnchorPoint(cc.p(0.5, 0.5))
-    LoseText:setPosition(bgSize.width/2 + 170, bgSize.height/2 - 160)
+    LoseText:setPosition(bgSize.width/2 + 170-60, bgSize.height/2 - 180)
     bg:addChild(LoseText)
 
     self._LoseNumText = cc.Label:createWithTTF("",GameUtils.getFontName(),28)
     self._LoseNumText:setAnchorPoint(cc.p(0, 0.5))
     self._LoseNumText:setColor(cc.c3b(194,84,28))
-    self._LoseNumText:setPosition(bgSize.width/2 + 195, bgSize.height/2 - 160)
+    self._LoseNumText:setPosition(bgSize.width/2 + 195-60, bgSize.height/2 - 180)
     bg:addChild(self._LoseNumText)
     self._LoseNumText:hide()
 
-    local writeImg = "PlayInfo_btn_write.png"
+    local WinRateText = cc.Label:createWithTTF("胜率:",GameUtils.getFontName(),28)
+    WinRateText:setColor(cc.c3b(224,221,245))
+    WinRateText:setAnchorPoint(cc.p(0.5, 0.5))
+    WinRateText:setPosition(bgSize.width/2 + 330-30, bgSize.height/2 - 180)
+    bg:addChild(WinRateText)
+
+    self._WinRateNumText = cc.Label:createWithTTF("",GameUtils.getFontName(),28)
+    self._WinRateNumText:setAnchorPoint(cc.p(0, 0.5))
+    self._WinRateNumText:setColor(cc.c3b(255,210,0))
+    self._WinRateNumText:setPosition(bgSize.width/2 + 370-30, bgSize.height/2 - 180)
+    bg:addChild(self._WinRateNumText)
+    self._WinRateNumText:hide()
+
+    local writeImg = "PlayInfo_btn_bg.png"
     local btnWrite  = ccui.Button:create(writeImg, writeImg, writeImg, ccui.TextureResType.plistType)
 	btnWrite:addClickEventListener(function()
 		self:showCompileName()
 	end)
-	btnWrite:setPosition(bgSize.width/2 + 220, bgSize.height - 115)
+	btnWrite:setPosition(bgSize.width/2 + 220-30+20, bgSize.height - 115-40)
 	bg:addChild(btnWrite)
+    local writeTitle = ccui.ImageView:create("PlayInfo_btn_write.png",ccui.TextureResType.plistType)
+    writeTitle:setPosition(btnWrite:getContentSize().width/2, btnWrite:getContentSize().height/2)
+    btnWrite:addChild(writeTitle)
 
 	local SelectSexImg = "PlayInfo_btn_sex_select.png"
     local btnSelectMan  = ccui.Button:create(SelectSexImg, SelectSexImg, SelectSexImg, ccui.TextureResType.plistType)
@@ -80,7 +96,7 @@ function PersonalInfoView:initView()
             end
         end)	
 	end)
-	btnSelectMan:setPosition(bgSize.width/2 + 120, bgSize.height - 195)
+	btnSelectMan:setPosition(bgSize.width/2 + 120-30, bgSize.height - 275-40)
 	bg:addChild(btnSelectMan)
 
     local btnSelectWomen  = ccui.Button:create(SelectSexImg, SelectSexImg, SelectSexImg, ccui.TextureResType.plistType)
@@ -94,7 +110,7 @@ function PersonalInfoView:initView()
             end
         end)
 	end)
-	btnSelectWomen:setPosition(bgSize.width/2 + 275, bgSize.height - 195)
+	btnSelectWomen:setPosition(bgSize.width/2 + 275-30, bgSize.height - 275-40)
 	bg:addChild(btnSelectWomen)
 
     local btnSelectUnknown  = ccui.Button:create(SelectSexImg, SelectSexImg, SelectSexImg, ccui.TextureResType.plistType)
@@ -108,96 +124,83 @@ function PersonalInfoView:initView()
             end
         end)
 	end)
-	btnSelectUnknown:setPosition(bgSize.width/2 + 420, bgSize.height - 195)
+	btnSelectUnknown:setPosition(bgSize.width/2 + 420-30, bgSize.height - 275-40)
 	bg:addChild(btnSelectUnknown)
 
 	self._selectManImg = ccui.ImageView:create("PlayInfo_img_select.png",ccui.TextureResType.plistType)
-	self._selectManImg:setPosition(bgSize.width/2 + 120, bgSize.height - 195)
+	self._selectManImg:setPosition(bgSize.width/2 + 120-30, bgSize.height - 275-40)
 	bg:addChild(self._selectManImg)
 	self._selectManImg:hide()
 
 	self._selectWomenImg = ccui.ImageView:create("PlayInfo_img_select.png",ccui.TextureResType.plistType)
-	self._selectWomenImg:setPosition(bgSize.width/2 + 275, bgSize.height - 195)
+	self._selectWomenImg:setPosition(bgSize.width/2 + 275-30, bgSize.height - 275-40)
 	bg:addChild(self._selectWomenImg)
 	self._selectWomenImg:hide()
 
 	self._selectUnknowImg = ccui.ImageView:create("PlayInfo_img_select.png",ccui.TextureResType.plistType)
-	self._selectUnknowImg:setPosition(bgSize.width/2 + 420, bgSize.height - 195)
+	self._selectUnknowImg:setPosition(bgSize.width/2 + 420-30, bgSize.height - 275-40)
 	bg:addChild(self._selectUnknowImg)
 	self._selectUnknowImg:hide()
-
-    local WinRateText = cc.Label:createWithTTF("胜率:",GameUtils.getFontName(),28)
-    WinRateText:setColor(cc.c3b(224,221,245))
-    WinRateText:setAnchorPoint(cc.p(0.5, 0.5))
-    WinRateText:setPosition(bgSize.width/2 + 330, bgSize.height/2 - 160)
-    bg:addChild(WinRateText)
-
-    self._WinRateNumText = cc.Label:createWithTTF("",GameUtils.getFontName(),28)
-    self._WinRateNumText:setAnchorPoint(cc.p(0, 0.5))
-    self._WinRateNumText:setColor(cc.c3b(255,210,0))
-    self._WinRateNumText:setPosition(bgSize.width/2 + 370, bgSize.height/2 - 160)
-    bg:addChild(self._WinRateNumText)
-    self._WinRateNumText:hide()
 
     local NickNameText = cc.Label:createWithTTF("昵称:",GameUtils.getFontName(),28)
     NickNameText:setAnchorPoint(cc.p(0.5, 0.5))
     NickNameText:setColor(cc.c3b(224,221,245))
-    NickNameText:setPosition(bgSize.width/2 - 30, bgSize.height - 115)
+    NickNameText:setPosition(bgSize.width/2 - 30-30, bgSize.height - 115-40)
     bg:addChild(NickNameText)
 
     self._NickName = cc.Label:createWithTTF("",GameUtils.getFontName(),28)
     self._NickName:setAnchorPoint(cc.p(0, 0.5))
     self._NickName:setColor(cc.c3b(224,221,245))
-    self._NickName:setPosition(bgSize.width/2+ 10, bgSize.height - 115)
+    self._NickName:setPosition(bgSize.width/2+ 10-30, bgSize.height - 115-40)
     bg:addChild(self._NickName)
     self._NickName:hide()
 
     local SexText = cc.Label:createWithTTF("性别:",GameUtils.getFontName(),28)
     SexText:setAnchorPoint(cc.p(0.5, 0.5))
     SexText:setColor(cc.c3b(224,221,245))
-    SexText:setPosition(bgSize.width/2 -30, bgSize.height - 195)
+    SexText:setPosition(bgSize.width/2 -30-30, bgSize.height - 275-40)
     bg:addChild(SexText)
 
     local manSexLabel = cc.Label:createWithTTF("男",GameUtils.getFontName(),28)
     manSexLabel:setAnchorPoint(cc.p(0.5, 0.5))
     manSexLabel:setColor(cc.c3b(224,221,245))
-    manSexLabel:setPosition(bgSize.width/2 + 70, bgSize.height - 195)
+    manSexLabel:setPosition(bgSize.width/2 + 70-30, bgSize.height - 275-40)
     bg:addChild(manSexLabel)
 
     local womenSexLabel = cc.Label:createWithTTF("女",GameUtils.getFontName(),28)
     womenSexLabel:setAnchorPoint(cc.p(0.5, 0.5))
     womenSexLabel:setColor(cc.c3b(224,221,245))
-    womenSexLabel:setPosition(bgSize.width/2 + 225, bgSize.height - 195)
+    womenSexLabel:setPosition(bgSize.width/2 + 225-30, bgSize.height - 275-40)
     bg:addChild(womenSexLabel)
 
     local unknowSexLabel = cc.Label:createWithTTF("保密",GameUtils.getFontName(),28)
     unknowSexLabel:setAnchorPoint(cc.p(0.5, 0.5))
     unknowSexLabel:setColor(cc.c3b(224,221,245))
-    unknowSexLabel:setPosition(bgSize.width/2 + 360, bgSize.height - 195)
+    unknowSexLabel:setPosition(bgSize.width/2 + 360-30, bgSize.height - 275-40)
     bg:addChild(unknowSexLabel)
 
     local manSexImg = ccui.ImageView:create("PlayInfo_img_man.png",ccui.TextureResType.plistType)
-	manSexImg:setPosition(bgSize.width/2 + 30, bgSize.height - 195)
+	manSexImg:setPosition(bgSize.width/2 + 30-30, bgSize.height - 275-40)
 	bg:addChild(manSexImg)
 
 	local womenSexImg = ccui.ImageView:create("PlayInfo_img_women.png",ccui.TextureResType.plistType)
-	womenSexImg:setPosition(bgSize.width/2 + 190, bgSize.height - 195)
+	womenSexImg:setPosition(bgSize.width/2 + 190-30, bgSize.height - 275-40)
 	bg:addChild(womenSexImg)
 
 	local IdText = cc.Label:createWithTTF("ID:",GameUtils.getFontName(),28)
     IdText:setAnchorPoint(cc.p(0.5, 0.5))
     IdText:setColor(cc.c3b(224,221,245))
-    IdText:setPosition(65, bgSize.height/2 - 45)
+    IdText:setPosition(bgSize.width/2-45-30, bgSize.height - 195-40)
     bg:addChild(IdText)
 
     self._IDLabel = cc.Label:createWithTTF("",GameUtils.getFontName(),28)
     self._IDLabel:setAnchorPoint(cc.p(0, 0.5))
     self._IDLabel:setColor(cc.c3b(224,221,245))
-    self._IDLabel:setPosition(90, bgSize.height/2 - 45)
+    self._IDLabel:setPosition(bgSize.width/2-30, bgSize.height - 195-40)
     bg:addChild(self._IDLabel)
     self._IDLabel:hide()
 
-    local copyImg = "PlayInfo_btn_copy.png"
+    local copyImg = "PlayInfo_btn_bg.png"
     local btnCopy = lib.uidisplay.createUIButton({
         normal = copyImg,
         textureType = ccui.TextureResType.plistType,
@@ -207,42 +210,58 @@ function PersonalInfoView:initView()
         end
         })
 
-    btnCopy:setPosition(280, bgSize.height/2 - 45)
+    btnCopy:setPosition(bgSize.width/2+220-30+20, bgSize.height - 195-40)
     bg:addChild(btnCopy,3)
 
+    local copyTitle = ccui.ImageView:create("PlayInfo_btn_copy.png",ccui.TextureResType.plistType)
+    copyTitle:setPosition(btnCopy:getContentSize().width/2, btnCopy:getContentSize().height/2)
+    btnCopy:addChild(copyTitle)
+
+    local diamondbg = ccui.ImageView:create("PlayInfo_img_faceList_bg.png",ccui.TextureResType.plistType)
+    diamondbg:setPosition(155, bgSize.height/2 - 95+3)
+    bg:addChild(diamondbg)
+
 	local diamondImg = ccui.ImageView:create("PlayInfo_icon_diamond.png",ccui.TextureResType.plistType)
-	diamondImg:setPosition(120, bgSize.height/2 - 105)
+	diamondImg:setPosition(120-30, bgSize.height/2 - 95)
 	bg:addChild(diamondImg)
 
     self._DiamondLabel = GameUtils.createSwitchNumNode(0)
     self._DiamondLabel:setAnchorPoint(cc.p(0, 0.5))
-    self._DiamondLabel:setPosition(160, bgSize.height/2 - 105)
+    self._DiamondLabel:setPosition(160-30, bgSize.height/2 - 95)
     bg:addChild(self._DiamondLabel)
     self._DiamondLabel:hide()
 
+    local coinsbg = ccui.ImageView:create("PlayInfo_img_faceList_bg.png",ccui.TextureResType.plistType)
+    coinsbg:setPosition(155,bgSize.height/2 - 160+3)
+    bg:addChild(coinsbg)
+
 	local coinsImg = ccui.ImageView:create("PlayInfo_icon_coisn.png",ccui.TextureResType.plistType)
-	coinsImg:setPosition(120, bgSize.height/2 - 170)
+	coinsImg:setPosition(120-30, bgSize.height/2 - 160)
 	bg:addChild(coinsImg)
 
     self._CoinsLabel = GameUtils.createSwitchNumNode(0)
     self._CoinsLabel:setAnchorPoint(cc.p(0, 0.5))
-    self._CoinsLabel:setPosition(160, bgSize.height/2 - 170)
+    self._CoinsLabel:setPosition(160-30, bgSize.height/2 - 160)
     bg:addChild(self._CoinsLabel)
     self._CoinsLabel:hide()
 
+    local roomCardbg = ccui.ImageView:create("PlayInfo_img_faceList_bg.png",ccui.TextureResType.plistType)
+    roomCardbg:setPosition(155,bgSize.height/2 - 225+3)
+    bg:addChild(roomCardbg)
+
     local roomCardImg = ccui.ImageView:create("PlayInfo_icon_roomcard.png",ccui.TextureResType.plistType)
-	roomCardImg:setPosition(120, bgSize.height/2 - 235)
+	roomCardImg:setPosition(120-30, bgSize.height/2 - 225)
 	bg:addChild(roomCardImg)
 
     self._RoomCardLabel = GameUtils.createSwitchNumNode(0)
     self._RoomCardLabel:setAnchorPoint(cc.p(0, 0.5))
-    self._RoomCardLabel:setPosition(160, bgSize.height/2 - 235)
+    self._RoomCardLabel:setPosition(160-30, bgSize.height/2 - 225)
     bg:addChild(self._RoomCardLabel)
     self._RoomCardLabel:hide()
 
     local editBoxSize = cc.size(178,44)
-    self._EditBox = cc.EditBox:create(editBoxSize,"Lobby_Promote_view_editBox_bg.png", ccui.TextureResType.plistType)
-    self._EditBox:setPosition(bgSize.width/2 + 100, bgSize.height - 115)
+    self._EditBox = cc.EditBox:create(editBoxSize,"PlayInfo_write_name_bg.png", ccui.TextureResType.plistType)
+    self._EditBox:setPosition(bgSize.width/2 + 100-30, bgSize.height - 115-40)
     self._EditBox:setFontName(GameUtils.getFontName())
     self._EditBox:setFontSize(24)
     self._EditBox:setFontColor(cc.c3b(255,255,255))
@@ -341,7 +360,7 @@ function PersonalInfoView:showPersonalView(data)
      defalutFile = GenderStr,
      frameFile = nil,
         })
-    awatar:setPosition(80,270)
+    awatar:setPosition(80-35,230)
     awatar:setTag(AVATAR_TAG)
     self._bg:addChild(awatar)
 
@@ -396,7 +415,7 @@ function PersonalInfoView:updataAvatar( ... )
      defalutFile = GenderStr,
      frameFile = nil,
         })
-    awatar:setPosition(80,270)
+    awatar:setPosition(80-35,230)
     awatar:setTag(AVATAR_TAG)
     self._bg:addChild(awatar)
 end

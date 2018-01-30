@@ -38,7 +38,7 @@ function RoomCreateConfigView:ctor( ... )
 			normal = "Lobby/res/common/common_btn_close.png",
 			callback = handler(self,self.back),
 			isActionEnabled = true,
-			pos = cc.p(size.width - 30,size.height - 30)
+			pos = cc.p(size.width - 111,size.height - 56)
 	})
 	button:setTag(TagEnterGame)
 	bg:addChild(button)
@@ -48,7 +48,7 @@ function RoomCreateConfigView:initLabel( __tableId )
 	
     local richText = GameUtils.createRichText({{Color3B = cc.c3b(224,221,245), opacity = 255, richText = lobby.CreateRoomManager:getInstance():findRoomCreateSuccessString(), fontSize = 24},
                         {Color3B = cc.c3b(254,243,123), opacity = 255, richText = "【"..__tableId.."】", fontSize = 24}})
-    richText:setPosition(self._bg:getContentSize().width * 0.5,self._bg:getContentSize().height * 2 / 3)
+    richText:setPosition(self._bg:getContentSize().width * 0.5,self._bg:getContentSize().height * 2 / 3-60)
     richText:setAnchorPoint(cc.p(0.5,0.5))
     self._bg:addChild(richText)
 end

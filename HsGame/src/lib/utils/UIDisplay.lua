@@ -81,11 +81,11 @@ local UIDisplay = {
 		local imgMinus = __params.imgMinus
 		local imgMinusPrssed = __params.imgMinusPrssed or imgMinus
 		local imgMinusDisabled = __params.imgMinusDisabled or imgMinus
-		local imgMinusSize = __params.imgMinusSize or cc.size(42,36)
+		local imgMinusSize = __params.imgMinusSize or cc.size(53,53)
 		local imgAdd = __params.imgAdd
 		local imgAddPrssed = __params.imgAddPrssed or imgAdd
 		local imgAddDisabled = __params.imgAddDisabled or imgAdd
-		local imgAddSize = __params.imgAddSize or cc.size(42,36)
+		local imgAddSize = __params.imgAddSize or cc.size(53,53)
 		local textureType = __params.textureType
 		local textSize = __params.textSize or 16
 		local textColor = __params.textColor or cc.c4b(255,255,255,255)
@@ -101,14 +101,14 @@ local UIDisplay = {
 		local buttonMinus = ccui.Button:create(imgMinus,imgMinusPrssed,imgMinusDisabled,textureType)
 		buttonMinus:setPressedActionEnabled(true)
 
-		buttonMinus:setPosition(cc.p(imgMinusSize.height/2 + 5,size.height * 0.5))
+		buttonMinus:setPosition(cc.p(imgMinusSize.width/2-5,size.height * 0.5-2))
 		imgBg:addChild(buttonMinus)
 
 
 		local buttonAdd = ccui.Button:create(imgAdd,imgAddPrssed,imgAddDisabled,textureType)
 		buttonAdd:setPressedActionEnabled(true)
 		buttonAdd:addClickEventListener(callback)
-		buttonAdd:setPosition(cc.p(size.width - imgAddSize.height/2 -5 ,size.height * 0.5))
+		buttonAdd:setPosition(cc.p(size.width - imgAddSize.height/2+5 ,size.height * 0.5-2))
 		imgBg:addChild(buttonAdd)
 		buttonAdd:setTag(1)
 

@@ -169,7 +169,9 @@ function LobbyGameEnter:initScrollViewData( ... )
 	for i=1,#gameListData do
 		print("initScrollViewData",i,gameListData[i].GameId)
 		local item = GameIconFactory:createIconBtn(gameListData[i].GameId,handler(self,self.onItemClick))
-		self._scrollView:addItem(item)
+		-- self._scrollView:addItem(item)
+		item:setPosition(1000,730-i*150)
+		self:addChild(item)
 	end
 end
 
@@ -237,7 +239,7 @@ function LobbyGameEnter:_refreshGameList()
 			end
 		end
 	end
-	self:_addKSKSTip()
+	-- self:_addKSKSTip()
 end
 
 function LobbyGameEnter:_addUpateTip( __targetNode )
@@ -296,30 +298,25 @@ end
 function LobbyGameEnter:createPrivateRoomBtn( ... )
 	-- 662 217
 	local parentDir = SRF_DIR
-	local btnSrf =  parentDir .. "btnSRF.png"
-	local imgSRFMM = parentDir .. "imgSRFMM.png"
-	local imgSRFText = parentDir .. "imgSRFText.png" 
-	local imgPaoGuang = LOBBY_GAME_ENTER_DIR.."imgPaoGuang.png"
+	local btnSrf =  parentDir .. "btnSmall_bg.png"
+	-- local imgSRFMM = parentDir .. "imgSRFMM.png"
+	-- local imgSRFText = parentDir .. "imgSRFText.png" 
+	-- local imgPaoGuang = LOBBY_GAME_ENTER_DIR.."imgPaoGuang.png"
 	local button = ccui.Button:create(btnSrf,btnSrf,btnSrf,ccui.TextureResType.plistType)
 	button:setPressedActionEnabled(true)
-	button:setPosition(662,217)
+	button:setPosition(880,140)
 	button:addClickEventListener(handler(self,self.onSRFCallback))
 	self:addChild(button)
-	self:_addPaoGuang(button)
 
-	local size = button:getContentSize()
-	
-	local imgSRFMM = ccui.ImageView:create(imgSRFMM,ccui.TextureResType.plistType)
-	button:addChild(imgSRFMM)
-	imgSRFMM:setPosition(284,size.height / 2 + 23)
+	local dir = "GameLayout/Animation/srfj_ty_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."srfj_ty_Animation0.png",dir.."srfj_ty_Animation0.plist",dir.."srfj_ty_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("srfj_ty_Animation") 
+    adAnim:setPosition(button:getContentSize().width/2,button:getContentSize().height/2) 
+    button:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+    adAnim:getAnimation():setSpeedScale(0.5)
 
-	local imgSRFText = ccui.ImageView:create(imgSRFText,ccui.TextureResType.plistType)
-	button:addChild(imgSRFText)
-	imgSRFText:setPosition(imgSRFText:getContentSize().width / 2 + 30,size.height / 2 + 4)
-
-	GameIconFactory:addStarEffect(imgSRFText,GameIconFactory.imgBigStar,{{x = 62,y = 80},{x = 120,y = 70},{x = 140,y = 40}})
-	GameIconFactory:addStarEffect(imgSRFMM,GameIconFactory.imgBigStar,{{x = 120,y = 120}})
-	
+    return button
 end
 
 function LobbyGameEnter:_addPaoGuang( __targetNode )
@@ -364,68 +361,62 @@ function LobbyGameEnter:_addKSKSTip( ... )
 	local gameId = managerClazz:getInstance():findKSKSGameId()
 	print("ksks gameId",gameId)
 	local imgFileFrameName = imgCache[gameId].imgFile
-	local imgTipFileFrameName = LOBBY_GAME_ENTER_DIR.."imgTipPaoPao.png"
-    local imgTipNode = ccui.ImageView:create(imgTipFileFrameName,ccui.TextureResType.plistType)
-    imgTipNode:setLocalZOrder(-1)
+	-- local imgTipFileFrameName = LOBBY_GAME_ENTER_DIR.."imgTipPaoPao.png"
+ --    local imgTipNode = ccui.ImageView:create(imgTipFileFrameName,ccui.TextureResType.plistType)
+ --    imgTipNode:setLocalZOrder(-1)
 
-	local targetNode = self._btnKSKS
-	targetNode:addChild(imgTipNode)
-	local action = cc.RepeatForever:create(cc.Sequence:create(cc.MoveBy:create(1,cc.p(0,10)),cc.MoveBy:create(1,cc.p(0,-10))))
-	imgTipNode:runAction(action)
-	imgTipNode:setPosition(targetNode:getContentSize().width / 2 - 20 ,targetNode:getContentSize().height + 25)
+	-- local targetNode = self._btnKSKS
+	-- targetNode:addChild(imgTipNode)
+	-- local action = cc.RepeatForever:create(cc.Sequence:create(cc.MoveBy:create(1,cc.p(0,10)),cc.MoveBy:create(1,cc.p(0,-10))))
+	-- imgTipNode:runAction(action)
+	-- imgTipNode:setPosition(targetNode:getContentSize().width / 2 - 20 ,targetNode:getContentSize().height + 25)
 
-	local imgTipText = ccui.ImageView:create(imgFileFrameName,ccui.TextureResType.plistType)
-	imgTipNode:addChild(imgTipText)
-	imgTipText:setPosition(imgTipNode:getContentSize().width / 2,imgTipNode:getContentSize().height / 2 + 10)
+	-- local imgTipText = ccui.ImageView:create(imgFileFrameName,ccui.TextureResType.plistType)
+	-- imgTipNode:addChild(imgTipText)
+	-- imgTipText:setPosition(imgTipNode:getContentSize().width / 2,imgTipNode:getContentSize().height / 2 + 10)
 
 
         --创建动画
-	local spriteFrame  = cc.SpriteFrameCache:getInstance()
-   	spriteFrame:addSpriteFrames("Lobby/res/GameLayout/Lobby/LobbyEnter/lightEffect.plist",
-        "Lobby/res/GameLayout/Lobby/LobbyEnter/lightEffect.png")
+	-- local spriteFrame  = cc.SpriteFrameCache:getInstance()
+ --   	spriteFrame:addSpriteFrames("Lobby/res/GameLayout/Lobby/LobbyEnter/lightEffect.plist",
+ --        "Lobby/res/GameLayout/Lobby/LobbyEnter/lightEffect.png")
 
-    local animation =cc.Animation:create()
-    for i=1,12 do  
-        local frameName = string.format("qipaopaoguang_%d.png",i)
-        local sFrame = spriteFrame:getSpriteFrame(frameName)
-        animation:addSpriteFrame(sFrame)
-    end
-    animation:setDelayPerUnit(0.1)          --设置两个帧播放时间
-    animation:setRestoreOriginalFrame(true)
-    local action =cc.Animate:create(animation)
+ --    local animation =cc.Animation:create()
+ --    for i=1,12 do  
+ --        local frameName = string.format("qipaopaoguang_%d.png",i)
+ --        local sFrame = spriteFrame:getSpriteFrame(frameName)
+ --        animation:addSpriteFrame(sFrame)
+ --    end
+ --    animation:setDelayPerUnit(0.1)          --设置两个帧播放时间
+ --    animation:setRestoreOriginalFrame(true)
+ --    local action =cc.Animate:create(animation)
     
-    local testSprite = cc.Sprite:createWithSpriteFrameName("qipaopaoguang_1.png")
-    testSprite:setPosition(imgTipNode:getContentSize().width / 2,imgTipNode:getContentSize().height / 2)
-    imgTipNode:addChild(testSprite)
-    testSprite:runAction(cc.RepeatForever:create(action))
+ --    local testSprite = cc.Sprite:createWithSpriteFrameName("qipaopaoguang_1.png")
+ --    testSprite:setPosition(imgTipNode:getContentSize().width / 2,imgTipNode:getContentSize().height / 2)
+ --    imgTipNode:addChild(testSprite)
+ --    testSprite:runAction(cc.RepeatForever:create(action))
 end
 
 
 function LobbyGameEnter:createFastStartBtn( ... )
 	--1093 217
 	local parentDir = KSKS_DIR
-	local btnKSKS = parentDir .. "btnKSKS.png"
-	local imgKSKSText = parentDir .. "imgKSKSText.png"
-	local imgKSKSHuoJian = parentDir .. "imgKSKSHuoJian.png"
-	
+	local btnKSKS = parentDir .. "btnSmall_bg.png"
 	local button = ccui.Button:create(btnKSKS,btnKSKS,btnKSKS,ccui.TextureResType.plistType)
 	button:setPressedActionEnabled(true)
-	button:setPosition(1093,217)
+	button:setPosition(1093,140)
 	button:addClickEventListener(handler(self,self.onKsksCallback))
 	self._btnKSKS = button
 	self:addChild(button)
-	self:_addPaoGuang(button)
-	local size = button:getContentSize()
 
-	local imgKSKSText = ccui.ImageView:create(imgKSKSText,ccui.TextureResType.plistType)
-	imgKSKSText:setPosition(125,size.height / 2 + 4)
-	button:addChild(imgKSKSText)
+	local dir = "GameLayout/Animation/DT_ksks_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."DT_ksks_Animation0.png",dir.."DT_ksks_Animation0.plist",dir.."DT_ksks_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("DT_ksks_Animation") 
+    adAnim:setPosition(button:getContentSize().width/2,button:getContentSize().height/2) 
+    button:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+    adAnim:getAnimation():setSpeedScale(0.5)
 
-	local imgKSKSHuoJian = ccui.ImageView:create(imgKSKSHuoJian,ccui.TextureResType.plistType)
-	button:addChild(imgKSKSHuoJian)
-	imgKSKSHuoJian:setPosition(284,90)
-	GameIconFactory:addStarEffect(imgKSKSText,GameIconFactory.imgBigStar,{{x = 62,y = 80},{x = 120,y = 70},{x = 140,y = 40}})
-	GameIconFactory:addStarEffect(imgKSKSHuoJian,GameIconFactory.imgBigStar,{{x = 75,y = 132}})
 	return button
 end
 
@@ -528,6 +519,7 @@ end
 游戏列表按钮回调
 ]]
 function LobbyGameEnter:onItemClick( sender )
+print("游戏列表按钮回调",sender)
 	local gameId = sender:getTag() 
 	if self:onGamePreEnter(gameId) then self:_enterGame(gameId) end
 end

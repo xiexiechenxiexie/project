@@ -2,6 +2,9 @@
 -- @date 2017.08.14
 -- @author tangwen
 
+
+--------------------------------未改
+
 local GamePlayerInfoView = class("GamePlayerInfoView", lib.layer.Window)
 
 local GameRequest = require "request/GameRequest"
@@ -31,9 +34,9 @@ function GamePlayerInfoView:initView()
 
 	local bgSize = bg:getContentSize()
 
-	local MidLineImg = ccui.ImageView:create("PlayInfo_line_mid.png",ccui.TextureResType.plistType)
-	MidLineImg:setPosition(bgSize.width/2 - 120, bgSize.height/2)
-	bg:addChild(MidLineImg)
+	-- local MidLineImg = ccui.ImageView:create("PlayInfo_line_mid.png",ccui.TextureResType.plistType)
+	-- MidLineImg:setPosition(bgSize.width/2 - 120, bgSize.height/2)
+	-- bg:addChild(MidLineImg)
 
 	local LeftLineImg = ccui.ImageView:create("PlayInfo_line_right.png",ccui.TextureResType.plistType)
 	LeftLineImg:setPosition(bgSize.width/2 + 50, bgSize.height/2 + 40)

@@ -11,7 +11,7 @@ function MoreView:ctor()
 end
 
 function MoreView:initView()
-	local size = cc.size(365, 116)
+	local size = cc.size(519, 112)
 
 	local bg = ccui.ImageView:create("lobby_more_btn_bg.png", ccui.TextureResType.plistType)
     bg:setAnchorPoint(cc.p(0.5, 0.5))
@@ -19,7 +19,8 @@ function MoreView:initView()
     self:addChild(bg)
     
     local noticeBtnImg = "lobby_btn_activity.png"
-    local noticeBtn = ccui.Button:create(noticeBtnImg,noticeBtnImg,noticeBtnImg,ccui.TextureResType.plistType)
+    local noticeBtnImg1 = "lobby_btn_activity1.png"
+    local noticeBtn = ccui.Button:create(noticeBtnImg,noticeBtnImg1,"",ccui.TextureResType.plistType)
 	noticeBtn:setPosition(size.width / 5 - 15, size.height/2 + 15)
 	bg:addChild(noticeBtn)
 	noticeBtn:addClickEventListener(function()
@@ -27,7 +28,8 @@ function MoreView:initView()
 	end)
 
 	local signBtnImg = "lobby_more_btn_sign.png"
-    local signBtn = ccui.Button:create(signBtnImg,signBtnImg,signBtnImg,ccui.TextureResType.plistType)
+	local signBtnImg1 = "lobby_more_btn_sign1.png"
+    local signBtn = ccui.Button:create(signBtnImg,signBtnImg1,"",ccui.TextureResType.plistType)
 	signBtn:setPosition(size.width / 5 * 2 - 5, size.height/2 + 15)
 	bg:addChild(signBtn)
 	signBtn:addClickEventListener(function()
@@ -35,7 +37,8 @@ function MoreView:initView()
 	end)
 
 	local settingBtnImg = "lobby_more_btn_set.png"
-    local settingBtn = ccui.Button:create(settingBtnImg,settingBtnImg,settingBtnImg,ccui.TextureResType.plistType)
+	local settingBtnImg1 = "lobby_more_btn_set1.png"
+    local settingBtn = ccui.Button:create(settingBtnImg,settingBtnImg1,"",ccui.TextureResType.plistType)
 	settingBtn:setPosition(size.width / 5 * 3 + 5, size.height/2 + 15)
 	bg:addChild(settingBtn)
 	settingBtn:addClickEventListener(function()
@@ -44,7 +47,8 @@ function MoreView:initView()
 	end)
 
 	local serverBtnImg = "lobby_btn_service.png"
-    local serverBtnImg = ccui.Button:create(serverBtnImg,serverBtnImg,serverBtnImg,ccui.TextureResType.plistType)
+	local serverBtnImg1 = "lobby_btn_service1.png"
+    local serverBtnImg = ccui.Button:create(serverBtnImg,serverBtnImg1,"",ccui.TextureResType.plistType)
 	serverBtnImg:setPosition(size.width / 5 * 4 + 15, size.height/2 + 15)
 	bg:addChild(serverBtnImg)
 	serverBtnImg:addClickEventListener(function()

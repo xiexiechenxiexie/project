@@ -10,7 +10,7 @@ local environment = {
 	-- ENVIRONMENT_TEST = 5, --测试地址
 }
 
-environment.ENVIRONMENT  = environment.ENVIRONMENT_OUTER_NET
+environment.ENVIRONMENT  = environment.ENVIRONMENT_RELEASE_NET
 local ServerConfig = class("ServerConfig")
 
 ServerConfig.config = {

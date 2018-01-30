@@ -306,17 +306,26 @@ function goldNiuScene:CreateView()
     	shop_btn:setPosition(1250,670)
     	shop_btn:setTag(conf.Tag.shop)
     	shop_btn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+        shop_btn:setOpacity(0)
     	self.bg:addChild(shop_btn)
 
+        local dir = GameResPath.."Animation/shop2_Animation/"
+        ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."shop2_Animation0.png",dir.."shop2_Animation0.plist",dir.."shop2_Animation.ExportJson")  
+        local adAnim = ccs.Armature:create("shop2_Animation") 
+        adAnim:setPosition(shop_btn:getContentSize().width/2,shop_btn:getContentSize().height/2) 
+        shop_btn:addChild(adAnim);
+        adAnim:getAnimation():playWithIndex(0)
+        -- adAnim:getAnimation():setSpeedScale(0.5)
 
-    	local shop_btn_node = cc.CSLoader:createNode("gamecommon/shop_ani.csb")
-    	shop_btn:setTag(conf.Tag.shop)
-    	shop_btn_node:setPosition(1250,670)
-    	self.bg:addChild(shop_btn_node)
-        local shopAct = cc.CSLoader:createTimeline("gamecommon/shop_ani.csb")
-        shopAct:setTimeSpeed(1)
-        shop_btn_node:runAction(shopAct)
-        shopAct:gotoFrameAndPlay(0,true)
+
+    	-- local shop_btn_node = cc.CSLoader:createNode("gamecommon/shop_ani.csb")
+    	-- shop_btn:setTag(conf.Tag.shop)
+    	-- shop_btn_node:setPosition(1250,670)
+    	-- self.bg:addChild(shop_btn_node)
+     --    local shopAct = cc.CSLoader:createTimeline("gamecommon/shop_ani.csb")
+     --    shopAct:setTimeSpeed(1)
+     --    shop_btn_node:runAction(shopAct)
+     --    shopAct:gotoFrameAndPlay(0,true)
     end
 
     --开始动画
@@ -387,7 +396,7 @@ function goldNiuScene:CreateView()
     self.luckEffect=luckEffect
     self.luckNode=luckNode
     self.luckAction=luckAct
-    self:setLuckActCard()
+    -- self:setLuckActCard()
 	
     --算牛框
     local suanniukuang = cc.Sprite:create(GameResPath.."suanniukuang.png")
@@ -543,12 +552,13 @@ function goldNiuScene:updateAvatarByData(__data)
                 end
             end
         end
-        local gameCoin = cc.Label:createWithSystemFont(conf.switchNum(__data.Score),SYSFONT,24)
+        local gameCoin = cc.Label:createWithSystemFont(conf.switchNum(__data.Score),SYSFONT,22)
+        gameCoin:setColor(cc.c3b(255,222,1))
 		gameCoin:setTag(swichId)
 		if swichId == 2 or swichId == 5 then
-			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+68,conf.PlayerPosArray[swichId].y+35)
+			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+80,conf.PlayerPosArray[swichId].y+38)
 		else
-			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+180,conf.PlayerPosArray[swichId].y+40)
+			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+195,conf.PlayerPosArray[swichId].y+28)
 		end
 		
         self.playerCoinArr[swichId] = gameCoin
@@ -909,7 +919,7 @@ end
 --游戏开始倒计时
 function goldNiuScene:startTime(time)
     self:hideCard()
-    self:setLuckAct()
+    -- self:setLuckAct()
     if self.isOnTable then
     	self:createClock(conf.time.wait,time)
         self:hideGameTips()
@@ -2070,14 +2080,14 @@ function goldNiuScene:hideCard()
         self.winPart = nil
     end
 
-    self.luckNode:setVisible(false)
-    self.luckEffect:setVisible(false)
-    self.luckLayerColor:setVisible(false)
-    self.luckScoreNode:setVisible(false)
-    self.luckTxtBg:setVisible(false)
-    for i,v in ipairs(self.luckCardData) do
-        v:setVisible(false)
-    end
+    -- self.luckNode:setVisible(false)
+    -- self.luckEffect:setVisible(false)
+    -- self.luckLayerColor:setVisible(false)
+    -- self.luckScoreNode:setVisible(false)
+    -- self.luckTxtBg:setVisible(false)
+    -- for i,v in ipairs(self.luckCardData) do
+    --     v:setVisible(false)
+    -- end
 
 	self:reSet()
 end
@@ -2357,14 +2367,14 @@ function goldNiuScene:clearCache()
     self.xiazhu_node:hide()
     self.loseNode:hide()
 
-    self.luckNode:setVisible(false)
-    self.luckEffect:setVisible(false)
-    self.luckLayerColor:setVisible(false)
-    self.luckScoreNode:setVisible(false)
-    self.luckTxtBg:setVisible(false)
-    for i,v in ipairs(self.luckCardData) do
-        v:setVisible(false)
-    end
+    -- self.luckNode:setVisible(false)
+    -- self.luckEffect:setVisible(false)
+    -- self.luckLayerColor:setVisible(false)
+    -- self.luckScoreNode:setVisible(false)
+    -- self.luckTxtBg:setVisible(false)
+    -- for i,v in ipairs(self.luckCardData) do
+    --     v:setVisible(false)
+    -- end
 end     
 --请求玩家战旗
 function goldNiuScene:RequestPlayerStandUp()

@@ -9,7 +9,7 @@ local SIGN_MAX_RECORD = 8 	 -- 最大奖励
 function SignView:ctor(data,callback)
 	self._signData = data
 	self._callback = callback
-	SignView.super.ctor(self,ConstantsData.WindowType.WINDOW_BIG)
+	SignView.super.ctor(self,ConstantsData.WindowType.WINDOW_SIGN)
 	self:initView()
 end
 
@@ -19,31 +19,44 @@ function SignView:initView()
 
     local bgSize = bg:getContentSize()
 
+    local title = ccui.ImageView:create("Lobby_sign_title.png", ccui.TextureResType.plistType)
+    title:setPosition(bgSize.width/2, bgSize.height-60)
+	bg:addChild(title)
+
+	local text = cc.Label:createWithTTF("累计登陆7天即可获得相应奖励",GameUtils.getFontName(),32)
+	text:setColor(cc.c3b(237, 203, 128))
+	text:setAnchorPoint(1,0.5)
+    text:setPosition(bgSize.width-270, 70)
+    bg:addChild(text)
+
     local signImg = "Lobby_sign_btn_sign.png"
+    local signImg0 = "Lobby_sign_btn_sign0.png"
     self._btnSign = lib.uidisplay.createUIButton({
         normal = signImg,
+        pressed = signImg,
+        disable = signImg0,
         textureType = ccui.TextureResType.plistType,
         isActionEnabled = true,
         callback = function() 
             self:requestSignCheckIn()
         end
         })
-	self._btnSign:setPosition(bgSize.width/2, 50)
+	self._btnSign:setPosition(bgSize.width-150, 70)
 	bg:addChild(self._btnSign,3)
 
-	self._imgGotSign = ccui.ImageView:create("Lobby_sign_btn_got.png", ccui.TextureResType.plistType)
-    self._imgGotSign:setPosition(bgSize.width/2, 50)
-	bg:addChild(self._imgGotSign,4)
-	self._imgGotSign:hide()
+	-- self._imgGotSign = ccui.ImageView:create("Lobby_sign_btn_got.png", ccui.TextureResType.plistType)
+ --    self._imgGotSign:setPosition(bgSize.width/2, 50)
+	-- bg:addChild(self._imgGotSign,4)
+	-- self._imgGotSign:hide()
 
 	self._SignList = {}
 
 	for i=1,SIGN_MAX_RECORD do
 		local record = self:createSignNode(i,self._signData.CheckinSetting[i])
 		if i <= 4 then
-			record:setPosition(180 + (i-1)*230, bgSize.height/2 + 120)
+			record:setPosition(180 + (i-1)*188+230, bgSize.height/2 + 122)
 		else
-			record:setPosition(180 + (i-5)*230, bgSize.height/2 - 100)
+			record:setPosition(180 + (i-5)*188+230, bgSize.height/2 - 113)
 		end
 		table.insert(self._SignList,record)
 		bg:addChild(record)
@@ -51,33 +64,36 @@ function SignView:initView()
 
 	self:showCurSignView()
 
-	local __AniNode =cc.CSLoader:createNode("GameLayout/Lobby/Sign/qiandao.csb")
-    __AniNode:setPosition(bgSize.width/2, bgSize.height/2 + 25)
-    bg:addChild(__AniNode)
-    self._giftLiftBg = __AniNode:getChildByName("sanxinguang")
+	-- local __AniNode =cc.CSLoader:createNode("GameLayout/Lobby/Sign/qiandao.csb")
+ --    __AniNode:setPosition(bgSize.width/2, bgSize.height/2 + 25)
+ --    bg:addChild(__AniNode)
+ --    self._giftLiftBg = __AniNode:getChildByName("sanxinguang")
 
-    local act = cc.CSLoader:createTimeline("GameLayout/Lobby/Sign/qiandao.csb")
-    act:setTimeSpeed(1) --设置执行动画速度
-    __AniNode:runAction(act)
-    act:gotoFrameAndPlay(0,false)
-    act:setLastFrameCallFunc(function()
-        local sb1 = cc.ScaleTo:create(2/3,0.7)
-        local sb2 = cc.ScaleTo:create(2/3,0.6)
-        local ft1 = cc.FadeTo:create(2/3,255*0.7)
-		local ft2 = cc.FadeTo:create(2/3,255*0.6)  
-        local spawn1 = cc.Spawn:create({sb1,ft1})
-        local spawn2 = cc.Spawn:create({sb2,ft2})
-        local RepeaAction = cc.RepeatForever:create(transition.sequence({ spawn2, spawn1 }))
-        self._giftLiftBg:runAction(RepeaAction)
-    end)
+ --    local act = cc.CSLoader:createTimeline("GameLayout/Lobby/Sign/qiandao.csb")
+ --    act:setTimeSpeed(1) --设置执行动画速度
+ --    __AniNode:runAction(act)
+ --    act:gotoFrameAndPlay(0,false)
+ --    act:setLastFrameCallFunc(function()
+ --        local sb1 = cc.ScaleTo:create(2/3,0.7)
+ --        local sb2 = cc.ScaleTo:create(2/3,0.6)
+ --        local ft1 = cc.FadeTo:create(2/3,255*0.7)
+	-- 	local ft2 = cc.FadeTo:create(2/3,255*0.6)  
+ --        local spawn1 = cc.Spawn:create({sb1,ft1})
+ --        local spawn2 = cc.Spawn:create({sb2,ft2})
+ --        local RepeaAction = cc.RepeatForever:create(transition.sequence({ spawn2, spawn1 }))
+ --        self._giftLiftBg:runAction(RepeaAction)
+ --    end)
 
 end
 
 function SignView:requestSignCheckIn()
 	logic.LobbyManager:getInstance():requestSignCheckIn(function( result )
     	if result then
-        	self._btnSign:hide()
-        	self._imgGotSign:show()
+        	-- self._btnSign:hide()
+        	-- self._imgGotSign:show()
+
+        	self._btnSign:setBright(false)
+        	self._btnSign:setTouchEnabled(false)
 
 			local curSignNum = self._signData.ContinuousTimes + 1
 			if curSignNum > 8 then
@@ -85,7 +101,7 @@ function SignView:requestSignCheckIn()
 			end
 
 			self._SignList[curSignNum].maskBg:show()
-			self._SignList[curSignNum].imgGot:show()
+			-- self._SignList[curSignNum].imgGot:show()
 
 			self._curSignAni:stopAllActions()
 			self._curSignAni:hide()
@@ -100,7 +116,7 @@ function SignView:requestSignCheckIn()
 end
 
 function SignView:createSignNode(__index, __data)
-	local size = cc.size(169, 200)
+	local size = cc.size(185, 230)
 	local record = ccui.Layout:create()
 
    	local bg =  ccui.ImageView:create("Lobby_sign_recond_bg.png", ccui.TextureResType.plistType)
@@ -108,11 +124,16 @@ function SignView:createSignNode(__index, __data)
     bg:setPosition(cc.p(0,0))
     record:addChild(bg)
 
-    local lightBg = ccui.ImageView:create("Lobby_sign_recond_title.png", ccui.TextureResType.plistType)
-    lightBg:setPosition(size.width/2,size.height/2 -10)
-    lightBg:setOpacity(200)
-    lightBg:setScale(0.9)
-	bg:addChild(lightBg)
+    record.imgLightAni = ccui.ImageView:create("Lobby_sign_recond_now.png", ccui.TextureResType.plistType)
+    record.imgLightAni:setPosition(size.width/2,size.height/2)
+	bg:addChild(record.imgLightAni)
+	record.imgLightAni:hide()
+
+ --    local lightBg = ccui.ImageView:create("Lobby_sign_recond_title.png", ccui.TextureResType.plistType)
+ --    lightBg:setPosition(size.width/2,size.height/2 -10)
+ --    lightBg:setOpacity(200)
+ --    lightBg:setScale(0.9)
+	-- bg:addChild(lightBg)
 
 	local __DayStr = ""
 	if __index > 7 then
@@ -123,7 +144,7 @@ function SignView:createSignNode(__index, __data)
 
 	local dayText = cc.Label:createWithTTF(__DayStr,GameUtils.getFontName(),24)
     dayText:setAnchorPoint(cc.p(0.5, 0.5))
-    dayText:setPosition(size.width/2, size.height - 30)
+    dayText:setPosition(size.width/2, size.height - 25)
     bg:addChild(dayText)
 
  	local iconStr = ""
@@ -132,13 +153,13 @@ function SignView:createSignNode(__index, __data)
  	end
 
     local imgIcon = ccui.ImageView:create(iconStr, ccui.TextureResType.plistType)
-    imgIcon:setPosition(size.width/2,size.height/2 -10)
+    imgIcon:setPosition(size.width/2,size.height/2)
 	bg:addChild(imgIcon)
 
 	record.coinsText = cc.Label:createWithTTF(__data.num,GameUtils.getFontName(),24)
     record.coinsText:setAnchorPoint(cc.p(0.5, 0.5))
     record.coinsText:setColor(cc.c3b(255,210,0))
-    record.coinsText:setPosition(size.width/2, 20)
+    record.coinsText:setPosition(size.width/2, 25)
     bg:addChild(record.coinsText)
 
     record.maskBg = ccui.ImageView:create("Lobby_sign_recond_mask.png", ccui.TextureResType.plistType)
@@ -146,15 +167,10 @@ function SignView:createSignNode(__index, __data)
 	bg:addChild(record.maskBg)
 	record.maskBg:hide()
 
-	record.imgGot = ccui.ImageView:create("Lobby_sign_img_got.png", ccui.TextureResType.plistType)
-    record.imgGot:setPosition(size.width/2,size.height/2)
-	bg:addChild(record.imgGot)
-	record.imgGot:hide()
-
-	record.imgLightAni = ccui.ImageView:create("Lobby_sign_recond_now.png", ccui.TextureResType.plistType)
-    record.imgLightAni:setPosition(size.width/2,size.height/2)
-	bg:addChild(record.imgLightAni)
-	record.imgLightAni:hide()
+	-- record.imgGot = ccui.ImageView:create("Lobby_sign_img_got.png", ccui.TextureResType.plistType)
+ --    record.imgGot:setPosition(size.width/2,size.height/2)
+	-- bg:addChild(record.imgGot)
+	-- record.imgGot:hide()
 
     return record
 end
@@ -173,7 +189,7 @@ function SignView:showCurSignView()
 	end
 	for i=1,self._signData.ContinuousTimes do
 		self._SignList[i].maskBg:show()
-		self._SignList[i].imgGot:show()
+		-- self._SignList[i].imgGot:show()
 	end
 
 	if self._signData.CanCheckin == 1 then  -- 表示当天没有领取奖励
@@ -185,8 +201,11 @@ function SignView:showCurSignView()
 		local RepeaAction = cc.RepeatForever:create(seq)
 		self._curSignAni:runAction(RepeaAction)
 	else
-		self._btnSign:hide()
-		self._imgGotSign:show()
+		-- self._btnSign:hide()
+		-- self._imgGotSign:show()
+
+		self._btnSign:setBright(false)
+		self._btnSign:setTouchEnabled(false)
 	end
 
 end

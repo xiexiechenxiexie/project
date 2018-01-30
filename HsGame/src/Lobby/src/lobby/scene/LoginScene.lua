@@ -7,18 +7,17 @@
 
 local SocketClient = require "Lobby/src/net/SocketClient"
 
-local LOGINSCENE_CSB = "GameLayout/Login/LoginScene.csb"
+-- local LOGINSCENE_BG = "GameLayout/Login/bg.jpg"
 
 local LoginScene = class("LoginScene", cc.Layer)
 
 LoginScene.isAutoLogin = true
 
 function LoginScene:ctor()
-    -- 初始化csb场景文件
-    local loginScene = cc.CSLoader:createNode(LOGINSCENE_CSB)
+
     LoginManager:initSDK()
-	self:addChild(loginScene)
-    self:initView(loginScene)
+	
+    self:initView()
     self:enableNodeEvents()
 end
 
@@ -37,7 +36,22 @@ function LoginScene:onExit( ... )
 end
 
 -- 初始化视图控件
-function LoginScene:initView(loginScene)
+function LoginScene:initView()
+
+	local loginScene = display.newSprite("GameLayout/Login/bg.png")
+    loginScene:setPosition(667,375)
+	self:addChild(loginScene)
+
+	local dir = "GameLayout/Animation/DL_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."DL_Animation0.png",dir.."DL_Animation0.plist",dir.."DL_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("DL_Animation") 
+    adAnim:setPosition(loginScene:getContentSize().width/2,loginScene:getContentSize().height/2) 
+    loginScene:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+
+	local info = display.newSprite("GameLayout/Login/info.png")
+    info:setPosition(667,50)
+	loginScene:addChild(info)
 
 	-- 微信安装检查 return yes or  no
 	local isWXInstall =  MultiPlatform:getInstance():isPlatformInstalled(LoginManager.LoginType_Wechat)
@@ -112,7 +126,7 @@ function LoginScene:initView(loginScene)
 	-- 加载测试玩家列表
 	-- self:showTestPlayerList()
 
-    self:playWaitingAnimation()
+    -- self:playWaitingAnimation()
 	
 	-- 监听android实体按键
 	local function onrelease(code, event)

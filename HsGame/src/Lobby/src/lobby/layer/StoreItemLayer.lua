@@ -23,13 +23,13 @@ function StoreItemGold:_initView(index, storeDataList)
 	end
 
 	-- 商品背景
-	local itemGoldBg = ccui.ImageView:create("TP/Mall/mall_item_goods_bg.png", ccui.TextureResType.plistType)
+	local itemGoldBg = ccui.ImageView:create("mall_item_goods_bg.png", ccui.TextureResType.plistType)
 	itemGoldBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height - itemGoldBg:getContentSize().height/2))
 	self:addChild(itemGoldBg)
 
 	-- 商品特惠标签
 	if 2 == storeDataList[index].tag then
-		local itemGoldSaleFlag = ccui.ImageView:create("TP/Mall/mall_sale_flag.png", ccui.TextureResType.plistType)
+		local itemGoldSaleFlag = ccui.ImageView:create("mall_sale_flag.png", ccui.TextureResType.plistType)
 		itemGoldSaleFlag:setPosition(cc.p(itemGoldSaleFlag:getContentSize().width/2+10, itemGoldBg:getContentSize().height - itemGoldSaleFlag:getContentSize().height/2 + 5))
 		itemGoldBg:addChild(itemGoldSaleFlag)
 	end
@@ -44,11 +44,11 @@ function StoreItemGold:_initView(index, storeDataList)
 	itemGoldBg:addChild(itemGoldName)
 
 	-- 商品图片
-	-- local itemGoldIcon = ccui.ImageView:create("TP/Mall/mall_item_gold_1.png")
+	-- local itemGoldIcon = ccui.ImageView:create("mall_item_gold_1.png")
 	-- itemGoldIcon:setPosition(cc.p(itemGoldBg:getContentSize().width/2, itemGoldBg:getContentSize().height*0.55))
 	-- itemGoldBg:addChild(itemGoldIcon)
 
-	local itemGoldIcon = lib.node.RemoteImageView:create("TP/Mall/mall_item_gold.png")
+	local itemGoldIcon = lib.node.RemoteImageView:create("mall_item_gold.png")
 	itemGoldIcon:setDownloadParams({
 		dir = "mall",
 		url = storeDataList[index].imageUrl
@@ -57,7 +57,7 @@ function StoreItemGold:_initView(index, storeDataList)
 	itemGoldBg:addChild(itemGoldIcon)
 
 	-- 赠送金币文字图片
-	local itemGoldTitleSend = ccui.ImageView:create("TP/Mall/mall_item_gold_title_send.png", ccui.TextureResType.plistType)
+	local itemGoldTitleSend = ccui.ImageView:create("mall_item_gold_title_send.png", ccui.TextureResType.plistType)
 	itemGoldTitleSend:setPosition(cc.p(itemGoldBg:getContentSize().width/2, itemGoldBg:getContentSize().height*0.30))
 	itemGoldBg:addChild(itemGoldTitleSend)
 
@@ -68,7 +68,7 @@ function StoreItemGold:_initView(index, storeDataList)
 
 	-- 购买button
 	local itemGoldBtnBuy = ccui.Button:create()
-	itemGoldBtnBuy:loadTextureNormal("TP/Mall/mall_item_goods_btn_buy.png", ccui.TextureResType.plistType)
+	itemGoldBtnBuy:loadTextureNormal("mall_item_goods_btn_buy.png", ccui.TextureResType.plistType)
 	itemGoldBtnBuy:setTag(index)
 	itemGoldBtnBuy:setPosition(cc.p(itemGoldBg:getContentSize().width/2, - itemGoldBtnBuy:getContentSize().height/2 -10))
 	itemGoldBg:addChild(itemGoldBtnBuy, 5)
@@ -79,7 +79,7 @@ function StoreItemGold:_initView(index, storeDataList)
 	itemGoldBtnBuy:addClickEventListener(btnBuyCallback)
 
 	-- 购买图标
-	local itemGoldBtnBuyIcon = ccui.ImageView:create("TP/Mall/mall_item_gold_btn_buy_icon.png", ccui.TextureResType.plistType)
+	local itemGoldBtnBuyIcon = ccui.ImageView:create("mall_item_gold_btn_buy_icon.png", ccui.TextureResType.plistType)
 	itemGoldBtnBuyIcon:setPosition(cc.p(itemGoldBtnBuy:getContentSize().width*0.2, itemGoldBtnBuy:getContentSize().height/2))
 	itemGoldBtnBuy:addChild(itemGoldBtnBuyIcon)
 
@@ -93,7 +93,7 @@ function StoreItemGold:_initView(index, storeDataList)
 	itemGoldBtnBuy:addChild(itemGoldBtnBuyText)
 
 	-- -- 商品射灯
-	-- local itemLight = ccui.ImageView:create("TP/Mall/mall_item_light.png")
+	-- local itemLight = ccui.ImageView:create("mall_item_light.png")
 	-- itemLight:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height - itemLight:getContentSize().height/2 + 25))
 	-- self:addChild(itemLight)
 
@@ -119,13 +119,13 @@ function StoreItemDiamond:_initView(index, storeDataList)
 	end
 
 	-- 商品背景
-	local itemDiamondBg = ccui.ImageView:create("TP/Mall/mall_item_goods_bg.png", ccui.TextureResType.plistType)
+	local itemDiamondBg = ccui.ImageView:create("mall_item_goods_bg.png", ccui.TextureResType.plistType)
 	itemDiamondBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height - itemDiamondBg:getContentSize().height/2))
 	self:addChild(itemDiamondBg)
 
 	-- 商品特惠标签
 	if 2 == storeDataList[index].tag then
-		local itemDiamondSaleFlag = ccui.ImageView:create("TP/Mall/mall_sale_flag.png", ccui.TextureResType.plistType)
+		local itemDiamondSaleFlag = ccui.ImageView:create("mall_sale_flag.png", ccui.TextureResType.plistType)
 		itemDiamondSaleFlag:setPosition(cc.p(itemDiamondSaleFlag:getContentSize().width/2+10, itemDiamondBg:getContentSize().height - itemDiamondSaleFlag:getContentSize().height/2 + 5))
 		itemDiamondBg:addChild(itemDiamondSaleFlag)
 	end
@@ -140,11 +140,11 @@ function StoreItemDiamond:_initView(index, storeDataList)
 	itemDiamondBg:addChild(itemDiamondName)
 
 	-- 商品图片
-	-- local itemDiamondIcon = ccui.ImageView:create("TP/Mall/mall_item_diamond_1.png")
+	-- local itemDiamondIcon = ccui.ImageView:create("mall_item_diamond_1.png")
 	-- itemDiamondIcon:setPosition(cc.p(itemDiamondBg:getContentSize().width/2, itemDiamondBg:getContentSize().height*0.4))
 	-- itemDiamondBg:addChild(itemDiamondIcon)
 
-	local itemDiamondIcon = lib.node.RemoteImageView:create("TP/Mall/mall_item_diamond.png")
+	local itemDiamondIcon = lib.node.RemoteImageView:create("mall_item_diamond.png")
 	itemDiamondIcon:setDownloadParams({
 		dir = "mall",
 		url = storeDataList[index].imageUrl
@@ -153,18 +153,18 @@ function StoreItemDiamond:_initView(index, storeDataList)
 	itemDiamondBg:addChild(itemDiamondIcon)
 
 	-- 赠送金币文字图片
-	-- local itemDiamondTitleSend = ccui.ImageView:create("TP/Mall/mall_item_diamond_title_send.png")
+	-- local itemDiamondTitleSend = ccui.ImageView:create("mall_item_diamond_title_send.png")
 	-- itemDiamondTitleSend:setPosition(cc.p(itemDiamondBg:getContentSize().width/2, itemDiamondBg:getContentSize().height*0.35))
 	-- itemDiamondBg:addChild(itemDiamondTitleSend)
 
 	-- 赠送金币数量
-	-- local itemDiamondTextSendNum = ccui.TextAtlas:create("66/000", "TP/Mall/mall_item_gold_send_num.png", 20, 26, "/")
+	-- local itemDiamondTextSendNum = ccui.TextAtlas:create("66/000", "mall_item_gold_send_num.png", 20, 26, "/")
 	-- itemDiamondTextSendNum:setPosition(cc.p(itemDiamondBg:getContentSize().width / 2, itemDiamondBg:getContentSize().height * 0.25))
 	-- itemDiamondBg:addChild(itemDiamondTextSendNum)
 
 	-- 购买button
 	local itemDiamondBtnBuy = ccui.Button:create()
-	itemDiamondBtnBuy:loadTextureNormal("TP/Mall/mall_item_goods_btn_buy.png", ccui.TextureResType.plistType)
+	itemDiamondBtnBuy:loadTextureNormal("mall_item_goods_btn_buy.png", ccui.TextureResType.plistType)
 	itemDiamondBtnBuy:setTag(index)
 	itemDiamondBtnBuy:setPosition(cc.p(itemDiamondBg:getContentSize().width/2, - itemDiamondBtnBuy:getContentSize().height/2 -10))
 	itemDiamondBg:addChild(itemDiamondBtnBuy)
@@ -178,7 +178,7 @@ function StoreItemDiamond:_initView(index, storeDataList)
 	itemDiamondBtnBuy:addClickEventListener(btnBuyCallback)
 
 	-- 购买图标
-	-- local itemDiamondBtnBuyIcon = ccui.ImageView:create("TP/Mall/mall_item_gold_btn_buy_icon.png")
+	-- local itemDiamondBtnBuyIcon = ccui.ImageView:create("mall_item_gold_btn_buy_icon.png")
 	-- itemDiamondBtnBuyIcon:setPosition(cc.p(itemDiamondBtnBuy:getContentSize().width*0.2, itemDiamondBtnBuy:getContentSize().height/2))
 	-- itemDiamondBtnBuy:addChild(itemDiamondBtnBuyIcon)
 
@@ -192,7 +192,7 @@ function StoreItemDiamond:_initView(index, storeDataList)
 	itemDiamondBtnBuy:addChild(itemDiamondBtnBuyText)
 
 	-- 商品射灯
-	-- local itemLight = ccui.ImageView:create("TP/Mall/mall_item_light.png")
+	-- local itemLight = ccui.ImageView:create("mall_item_light.png")
 	-- itemLight:setPosition(cc.p(itemDiamondBg:getContentSize().width/2, itemDiamondBg:getContentSize().height - itemLight:getContentSize().height/2 + 25))
 	-- itemDiamondBg:addChild(itemLight)
 
@@ -212,17 +212,17 @@ end
 -- 初始化视图
 function StoreItemRoomCard:_initView(index, storeDataList)
 	self:setContentSize(cc.size(260, 360))
-	-- local itemBg = ccui.ImageView:create("TP/Mall/mall_item_bg.png")
+	-- local itemBg = ccui.ImageView:create("mall_item_bg.png")
 	-- itemBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height/2))
 	-- self:addChild(itemBg)
 	-- 商品背景
-	local itemRoomCardBg = ccui.ImageView:create("TP/Mall/mall_item_goods_bg.png", ccui.TextureResType.plistType)
+	local itemRoomCardBg = ccui.ImageView:create("mall_item_goods_bg.png", ccui.TextureResType.plistType)
 	itemRoomCardBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height - itemRoomCardBg:getContentSize().height/2))
 	self:addChild(itemRoomCardBg)
 
 	-- 商品特惠标签
 	if 2 == storeDataList[index].tag then
-		local itemRoomCardSaleFlag = ccui.ImageView:create("TP/Mall/mall_sale_flag.png", ccui.TextureResType.plistType)
+		local itemRoomCardSaleFlag = ccui.ImageView:create("mall_sale_flag.png", ccui.TextureResType.plistType)
 		itemRoomCardSaleFlag:setPosition(cc.p(itemRoomCardSaleFlag:getContentSize().width/2+10, itemRoomCardBg:getContentSize().height - itemRoomCardSaleFlag:getContentSize().height/2 + 5))
 		itemRoomCardBg:addChild(itemRoomCardSaleFlag)
 	end
@@ -237,11 +237,11 @@ function StoreItemRoomCard:_initView(index, storeDataList)
 	itemRoomCardBg:addChild(itemRoomCardName)
 
 	-- 商品图片
-	-- local itemRoomCardIcon = ccui.ImageView:create("TP/Mall/mall_item_room_card_1.png")
+	-- local itemRoomCardIcon = ccui.ImageView:create("mall_item_room_card_1.png")
 	-- itemRoomCardIcon:setPosition(cc.p(itemRoomCardBg:getContentSize().width/2, itemRoomCardBg:getContentSize().height*0.5))
 	-- itemRoomCardBg:addChild(itemRoomCardIcon)
 
-	local itemRoomCardIcon = lib.node.RemoteImageView:create("TP/Mall/mall_item_room_card.png")
+	local itemRoomCardIcon = lib.node.RemoteImageView:create("mall_item_room_card.png")
 	itemRoomCardIcon:setDownloadParams({
 		dir = "mall",
 		url = storeDataList[index].imageUrl
@@ -252,7 +252,7 @@ function StoreItemRoomCard:_initView(index, storeDataList)
 	if 0 < storeDataList[index].date then
 		itemRoomCardIcon:setPosition(cc.p(itemRoomCardBg:getContentSize().width/2, itemRoomCardBg:getContentSize().height*0.5))
 		-- 有效期文字图片
-		local itemRoomCardDate = ccui.ImageView:create("TP/Mall/mall_item_room_card_title_date.png", ccui.TextureResType.plistType)
+		local itemRoomCardDate = ccui.ImageView:create("mall_item_room_card_title_date.png", ccui.TextureResType.plistType)
 
 		-- itemRoomCardDate:setPosition(cc.p(itemRoomCardBg:getContentSize().width*0.32, itemRoomCardBg:getContentSize().height*0.3))
 		-- itemRoomCardBg:addChild(itemRoomCardDate)
@@ -264,7 +264,7 @@ function StoreItemRoomCard:_initView(index, storeDataList)
 		-- itemRoomCardBg:addChild(itemRoomCardTextDate)
 
 		-- 天文字图片
-		local itemRoomCardDay = ccui.ImageView:create("TP/Mall/mall_item_room_card_title_days.png", ccui.TextureResType.plistType)
+		local itemRoomCardDay = ccui.ImageView:create("mall_item_room_card_title_days.png", ccui.TextureResType.plistType)
 
 		-- itemRoomCardDay:setPosition(cc.p(itemRoomCardBg:getContentSize().width*0.72, itemRoomCardBg:getContentSize().height*0.3))
 		-- itemRoomCardBg:addChild(itemRoomCardDay)
@@ -296,7 +296,7 @@ function StoreItemRoomCard:_initView(index, storeDataList)
 
 	-- 购买button
 	local itemRoomCardBtnBuy = ccui.Button:create()
-	itemRoomCardBtnBuy:loadTextureNormal("TP/Mall/mall_item_goods_btn_buy.png", ccui.TextureResType.plistType)
+	itemRoomCardBtnBuy:loadTextureNormal("mall_item_goods_btn_buy.png", ccui.TextureResType.plistType)
 	itemRoomCardBtnBuy:setTag(index)-- itemRoomCardBtnBuy:setUserObject(itemData)
 	itemRoomCardBtnBuy:setPosition(cc.p(itemRoomCardBg:getContentSize().width/2, - itemRoomCardBtnBuy:getContentSize().height/2 -10))
 	itemRoomCardBg:addChild(itemRoomCardBtnBuy)
@@ -312,7 +312,7 @@ function StoreItemRoomCard:_initView(index, storeDataList)
 	itemRoomCardBtnBuy:addClickEventListener(btnBuyCallback)
 
 	-- 购买图标
-	local itemRoomCardBtnBuyIcon = ccui.ImageView:create("TP/Mall/mall_item_gold_btn_buy_icon.png", ccui.TextureResType.plistType)
+	local itemRoomCardBtnBuyIcon = ccui.ImageView:create("mall_item_gold_btn_buy_icon.png", ccui.TextureResType.plistType)
 	itemRoomCardBtnBuyIcon:setPosition(cc.p(itemRoomCardBtnBuy:getContentSize().width*0.2, itemRoomCardBtnBuy:getContentSize().height/2))
 	itemRoomCardBtnBuy:addChild(itemRoomCardBtnBuyIcon)
 
@@ -327,12 +327,12 @@ function StoreItemRoomCard:_initView(index, storeDataList)
 		itemRoomCardBtnBuyText:setPosition(cc.p(itemRoomCardBtnBuy:getContentSize().width*0.55, itemRoomCardBtnBuy:getContentSize().height*0.55))
 		itemRoomCardBtnBuy:addChild(itemRoomCardBtnBuyText)
 
-		local txtLine = cc.Scale9Sprite:createWithSpriteFrameName("TP/Mall/mall_txt_line.png", cc.rect(0, 0, 2, 2))
-		txtLine:setContentSize(cc.size(itemRoomCardBtnBuyText:getContentSize().width, 4))
-		txtLine:setAnchorPoint(cc.p(0.5, 0.5))
-		txtLine:setPosition(itemRoomCardBtnBuyText:getContentSize().width/2, itemRoomCardBtnBuyText:getContentSize().height/2)
-		txtLine:setScale9Enabled(true)
-		itemRoomCardBtnBuyText:addChild(txtLine)
+		-- local txtLine = cc.Scale9Sprite:createWithSpriteFrameName("mall_txt_line.png", cc.rect(0, 0, 2, 2))
+		-- txtLine:setContentSize(cc.size(itemRoomCardBtnBuyText:getContentSize().width, 4))
+		-- txtLine:setAnchorPoint(cc.p(0.5, 0.5))
+		-- txtLine:setPosition(itemRoomCardBtnBuyText:getContentSize().width/2, itemRoomCardBtnBuyText:getContentSize().height/2)
+		-- txtLine:setScale9Enabled(true)
+		-- itemRoomCardBtnBuyText:addChild(txtLine)
 
 		local itemRoomCardBtnBuyTextSale = ccui.Text:create()
 		itemRoomCardBtnBuyTextSale:setText("0")
@@ -354,7 +354,7 @@ function StoreItemRoomCard:_initView(index, storeDataList)
 	end
 
 	-- 商品射灯
-	-- local itemLight = ccui.ImageView:create("TP/Mall/mall_item_light.png")
+	-- local itemLight = ccui.ImageView:create("mall_item_light.png")
 	-- itemLight:setPosition(cc.p(itemRoomCardBg:getContentSize().width/2, itemRoomCardBg:getContentSize().height - itemLight:getContentSize().height/2 + 25))
 	-- itemRoomCardBg:addChild(itemLight)
 end

@@ -173,10 +173,10 @@ function LogoScene:initView(logoScene)
 	self:addChild(bg)
 	bg:setPosition(display.width * 0.5,display.height * 0.5)
 
-	local imgGirl = ccui.ImageView:create("src/preload/res/imgGirl.png")
-	bg:addChild(imgGirl)
+	-- local imgGirl = ccui.ImageView:create("src/preload/res/imgGirl.png")
+	-- bg:addChild(imgGirl)
 
-	imgGirl:setPosition(cc.p(667,345))
+	-- imgGirl:setPosition(cc.p(667,345))
 
 		
  	local loadBarBg = ccui.ImageView:create("src/preload/res/loading_bg.png")
@@ -213,7 +213,7 @@ function LogoScene:initView(logoScene)
 	self.textProgressValue = cc.exports.lib.uidisplay.createLabel(labelConfig)
 	bg:addChild(self.textProgressValue)
 
-    self:playWaitingAnimation()
+    -- self:playWaitingAnimation()
 end
 
 --播放加载时等待动画

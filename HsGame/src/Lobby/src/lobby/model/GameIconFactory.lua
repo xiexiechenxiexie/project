@@ -11,7 +11,7 @@ local PSZ_DIR = ""
 
 GameIconFactory.imgRotate = LOBBY_ENTER_DIR .. "imgRotate.png"
 GameIconFactory.imgScale = LOBBY_ENTER_DIR .. "imgScale.png"
-GameIconFactory.imgBigStar = STAR_DIR .. "imgBigStar.png"
+-- GameIconFactory.imgBigStar = STAR_DIR .. "imgBigStar.png"
 GameIconFactory.imgSmallStar = STAR_DIR ..  "imgSmallStar.png"
 
 function GameIconFactory:createIconBtn( __gameId ,__callback)
@@ -69,27 +69,27 @@ function GameIconFactory:addStarEffect(__targetNode,__imgStarFile,__posArr)
 end
 
 function GameIconFactory:_addLightEffect( __targetNode )
-	assert(__targetNode,"invalid __targetNode")
-	local imgLight = ccui.ImageView:create(self.imgRotate,ccui.TextureResType.plistType)
-	__targetNode:addChild(imgLight)
-	local size = __targetNode:getContentSize()
-	imgLight:setPosition(size.width * 0.5,size.height * 0.5)
-    local action = cc.RepeatForever:create(cc.RotateBy:create(3, 360))
-    imgLight:runAction(action)
+	-- assert(__targetNode,"invalid __targetNode")
+	-- local imgLight = ccui.ImageView:create(self.imgRotate,ccui.TextureResType.plistType)
+	-- -- __targetNode:addChild(imgLight)
+	-- local size = __targetNode:getContentSize()
+	-- imgLight:setPosition(size.width * 0.5,size.height * 0.5)
+ --    local action = cc.RepeatForever:create(cc.RotateBy:create(3, 360))
+ --    imgLight:runAction(action)
 
-    local imgScale = ccui.ImageView:create(self.imgScale,ccui.TextureResType.plistType)
-	__targetNode:addChild(imgScale)
-	local size = __targetNode:getContentSize()
-	imgScale:setPosition(size.width * 0.5,size.height * 0.5)
-	local actionTo = cc.ScaleTo:create(1.0, 0.3)
-	imgScale:setOpacity(0)
+ --    local imgScale = ccui.ImageView:create(self.imgScale,ccui.TextureResType.plistType)
+	-- __targetNode:addChild(imgScale)
+	-- local size = __targetNode:getContentSize()
+	-- imgScale:setPosition(size.width * 0.5,size.height * 0.5)
+	-- local actionTo = cc.ScaleTo:create(1.0, 0.3)
+	-- imgScale:setOpacity(0)
 
-    local action = cc.RepeatForever:create(cc.Sequence:create(cc.Spawn:create(cc.FadeIn:create(1),cc.DelayTime:create(math.random(1,20) * 0.1)),actionTo,cc.CallFunc:create(function (sender )
-    	sender:setOpacity(0)
-    	sender:setScale(1)
+ --    local action = cc.RepeatForever:create(cc.Sequence:create(cc.Spawn:create(cc.FadeIn:create(1),cc.DelayTime:create(math.random(1,20) * 0.1)),actionTo,cc.CallFunc:create(function (sender )
+ --    	sender:setOpacity(0)
+ --    	sender:setScale(1)
 
-    end)))
-    imgScale:runAction(action)
+ --    end)))
+ --    imgScale:runAction(action)
 end
 
 function GameIconFactory:_addHuangDongEffect( __targetNode,__time,__rotation )
@@ -131,46 +131,20 @@ function GameIconFactory:_addLeftRightEffect( __targetNode,__time,__width )
 end
 
 function GameIconFactory:_createBRNNIconBtn( __gameId ,__callback )
-	local parentDir = BRNN_DIR
-
-	local btnBRNN = parentDir .. "btnBRNN.png"
-	local imgBRNNBody = parentDir .. "imgBRNNBody.png"
-	local imgBRNNHead = parentDir .. "imgBRNNHead.png"
-	local imgBRNNLight = parentDir .. "imgBRNNLight.png"
-	local imgBRNNPork  = parentDir .. "imgBRNNPork.png"
-	local imgBRNNText = parentDir .. "imgBRNNText.png"
-
-	local button = ccui.Button:create(btnBRNN,btnBRNN,btnBRNN,ccui.TextureResType.plistType)
+	local parentDir = KPQZ_DIR
+	local btnKPQZ = parentDir .. "btnbig_bg.png"
+	local button = ccui.Button:create(btnKPQZ,btnKPQZ,btnKPQZ,ccui.TextureResType.plistType)
 	button:setPressedActionEnabled(true)
-
 	button:addClickEventListener(__callback)
 	button:setTag(__gameId)
 
-	local size = button:getContentSize()
-	print("size.width " .. size.width)
-
-	self:_addLightEffect(button)
-
-	local pork = ccui.ImageView:create(imgBRNNPork,ccui.TextureResType.plistType)
-	button:addChild(pork)
-
-	pork:setPosition(size.width *  0.38,size.height *  0.47)
-    self:_addHuangDongEffect(pork,2,3)
-
-	local head = ccui.ImageView:create(imgBRNNHead,ccui.TextureResType.plistType)
-	button:addChild(head)
-	head:setPosition(size.width * 0.57,size.height * 0.655 )
-	self:addStarEffect(head,self.imgBigStar,{{x = 110,y = 60},{x = 130,y = 40}})
-	self:addStarEffect(head,self.imgBigStar,{{x = 25,y = 110}})
-    self:_addHuangDongEffect(head,1,3)
-
-	local imgBRNNBody = ccui.ImageView:create(imgBRNNBody,ccui.TextureResType.plistType)
-	button:addChild(imgBRNNBody)
-	imgBRNNBody:setPosition(size.width * 0.6,size.height * 0.364)
-
-	local imgBRNNText = ccui.ImageView:create(imgBRNNText,ccui.TextureResType.plistType)
-	button:addChild(imgBRNNText)
-	imgBRNNText:setPosition(size.width * 0.5,size.height * 0.15)
+	local dir = "GameLayout/Animation/brnn_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."brnn_Animation0.png",dir.."brnn_Animation0.plist",dir.."brnn_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("brnn_Animation") 
+    adAnim:setPosition(button:getContentSize().width/2,button:getContentSize().height/2) 
+    button:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+    adAnim:getAnimation():setSpeedScale(0.5)
 
 	return button
 
@@ -178,108 +152,39 @@ end
 
 function GameIconFactory:_createKPQZIconBtn( __gameId ,__callback )
 	local parentDir = KPQZ_DIR
-
-	local btnKPQZ = parentDir .. "btnKPQZ.png"
-	local imgKPQZBody = parentDir .. "imgKPQZBody.png"
-	local imgKPQZHead = parentDir .. "imgKPQZHead.png"
-	local imgKPQZLight = parentDir .. "imgKPQZLight.png"
-	local imgKPQZ  = parentDir .. "imgKPQZ.png"
-	local imgKPQZText = parentDir .. "imgKPQZText.png"
-
-
+	local btnKPQZ = parentDir .. "btnbig_bg.png"
 	local button = ccui.Button:create(btnKPQZ,btnKPQZ,btnKPQZ,ccui.TextureResType.plistType)
 	button:setPressedActionEnabled(true)
-
 	button:addClickEventListener(__callback)
 	button:setTag(__gameId)
 
-	self:_addLightEffect(button)
+	local dir = "GameLayout/Animation/qznn_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."qznn_Animation0.png",dir.."qznn_Animation0.plist",dir.."qznn_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("qznn_Animation") 
+    adAnim:setPosition(button:getContentSize().width/2,button:getContentSize().height/2) 
+    button:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+    adAnim:getAnimation():setSpeedScale(0.5)
 
-	local size = button:getContentSize()
-	print("size.width " .. size.width)
-
-	local head = ccui.ImageView:create(imgKPQZHead,ccui.TextureResType.plistType)
-	button:addChild(head)
-	head:setPosition(size.width * 0.43,size.height * 0.655)
-	self:_addHuangDongEffect(head,1,2)
-	self:addStarEffect(head,self.imgBigStar,{{x = 150,y = 71}})
-	self:addStarEffect(head,self.imgBigStar,{{x = 20,y = 106}})
-
-	local imgKPQZ = ccui.ImageView:create(imgKPQZ,ccui.TextureResType.plistType)
-	button:addChild(imgKPQZ)
-	imgKPQZ:setPosition(head:getPositionX() - head:getContentSize().width *  0.26,head:getPositionY() + head:getContentSize().height *  0.32)
-	self:_addHuangDongEffect(imgKPQZ,1,5)
-
-	local imgKPQZBody = ccui.ImageView:create(imgKPQZBody,ccui.TextureResType.plistType)
-	button:addChild(imgKPQZBody)
-	imgKPQZBody:setPosition(size.width * 0.49,size.height * 0.364)
-
-	local imgKPQZText = ccui.ImageView:create(imgKPQZText,ccui.TextureResType.plistType)
-	button:addChild(imgKPQZText)
-	imgKPQZText:setPosition(size.width * 0.5,size.height * 0.15)
 
 	return button
 end
 
-function GameIconFactory:_createPSZIconBtn( __gameId ,__callback )
+function GameIconFactory:_createPSZIconBtn( __gameId ,__callback)
 	local parentDir = PSZ_DIR
-
-	local btnPSZ = parentDir .. "btnPSZ.png"
-	local imgPSZHongChouMa = parentDir .. "imgPSZHongChouMa.png"
-	local imgPSZHuangChouMa = parentDir .. "imgPSZHuangChouMa.png"
-	local imgPSZLvChouMa = parentDir .. "imgPSZLvChouMa.png"
-	local imgPSZPork  = parentDir .. "imgPSZPork.png"
-	local imgPSZLight  = parentDir .. "imgPSZLight.png"
-	local imgPSZText = parentDir .. "imgPSZText.png"
-
-
+	local btnPSZ = parentDir .. "btnbig_bg.png"
 	local button = ccui.Button:create(btnPSZ,btnPSZ,btnPSZ,ccui.TextureResType.plistType)
 	button:setPressedActionEnabled(true)
-
 	button:addClickEventListener(__callback)
 	button:setTag(__gameId)
 
-	self:_addLightEffect(button)
-
-	local size = button:getContentSize()
-	print("size.width " .. size.width)
-
-	local imgPSZPork = ccui.ImageView:create(imgPSZPork,ccui.TextureResType.plistType)
-	button:addChild(imgPSZPork)
-	imgPSZPork:setPosition(size.width * 0.6,size.height * 0.61)
-	self:_addHuangDongEffect(imgPSZPork,1,3)
-	self:addStarEffect(imgPSZPork,self.imgBigStar,{{x = 155,y = 35}})
-
-	local chouMaNode = cc.Node:create()
-	chouMaNode:setContentSize(size)
-	chouMaNode:setPosition(0,0)
-	button:addChild(chouMaNode)
-
-	local chouMaIcons = {
-		[1] = {iconName = imgPSZHuangChouMa,pos = {x = size.width * 0.53,y = size.height * 0.33},starPos = {x = 79,y = 39}},
-		[2] = {iconName = imgPSZLvChouMa,pos = {x = size.width * 0.34,y = size.height * 0.4},starPos = {x = 79,y = 39}},
-		[3] = {iconName = imgPSZHongChouMa,pos = {x = size.width * 0.25,y = size.height * 0.46},starPos = {x = 50,y = 45}}
-	} 
-	for i=1,#chouMaIcons do
-		local chouMaIcon = chouMaIcons[i]
-		print("---" .. chouMaIcon.iconName .. "...")
-		local imgIcon = ccui.ImageView:create(chouMaIcon.iconName,ccui.TextureResType.plistType)
-		chouMaNode:addChild(imgIcon)
-		imgIcon:setPosition(chouMaIcon.pos.x,chouMaIcon.pos.y)
-		if math.mod(i,2) == 0  then 
-			self:addUpDownEffect(imgIcon,2,-3)
-		else
-			self:addUpDownEffect(imgIcon,2,3)
-		end
-
-		if i == 3 then
-			self:addStarEffect(imgIcon,self.imgBigStar,{chouMaIcon.starPos})
-		end
-	end
-
-	local imgPSZText = ccui.ImageView:create(imgPSZText,ccui.TextureResType.plistType)
-	button:addChild(imgPSZText)
-	imgPSZText:setPosition(size.width * 0.5,size.height * 0.15)
+	local dir = "GameLayout/Animation/zjh_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."zjh_Animation0.png",dir.."zjh_Animation0.plist",dir.."zjh_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("zjh_Animation") 
+    adAnim:setPosition(button:getContentSize().width/2,button:getContentSize().height/2) 
+    button:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+    adAnim:getAnimation():setSpeedScale(0.5)
 
 	return button
 end

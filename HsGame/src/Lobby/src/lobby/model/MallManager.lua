@@ -406,7 +406,7 @@ function MallManager:buyGoods(mallData)
 	    	GameUtils.showMsg(MallManager.DIAMOND_LOST)
 	    	self:gotoBuyDiamond()
 		else
-			self:getGoodsOrder(mallData.goodsId)	
+			self:getGoodsOrder(mallData.goodsId)
 		end
 	else
 		GameUtils.showMsg(MallManager.UNKNOW_MALL_INFO)
