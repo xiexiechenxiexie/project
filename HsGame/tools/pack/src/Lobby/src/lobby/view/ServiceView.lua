@@ -7,7 +7,7 @@ local ServiceView = class("ServiceView", lib.layer.Window)
 
 function ServiceView:ctor(data)
 	self._ServiceData = data
-    ServiceView.super.ctor(self,ConstantsData.WindowType.WINDOW_BIG)
+    ServiceView.super.ctor(self,ConstantsData.WindowType.WINDOW_SERVICE)
 	self:initView()
 end
 
@@ -17,33 +17,18 @@ function ServiceView:initView()
 
     local bgSize = bg:getContentSize()
 
-    -- local serviceBg = ccui.ImageView:create("Lobby_service_title.png", ccui.TextureResType.plistType)
-    -- serviceBg:setPosition(bgSize.width/2, bgSize.height - 25)
-    -- bg:addChild(serviceBg)
-
-    local titleBg = ccui.ImageView:create("res/common/common_title_bg.png")
-    titleBg:setPosition(bgSize.width/2, bgSize.height - 25)
-    bg:addChild(titleBg)
-
-    local title = cc.Label:createWithTTF("客服中心",GameUtils.getFontName(), 36)
-    title:setPosition(titleBg:getContentSize().width/2,titleBg:getContentSize().height/2+3)
-    title:setTextColor(cc.c3b(141,62,30))
-    title:enableOutline(cc.c3b(255, 250, 152),2)
-    titleBg:addChild(title)
-
-    local title = ccui.ImageView:create("Lobby_service_bg.png", ccui.TextureResType.plistType)
-    title:setPosition(bgSize.width/2, bgSize.height/2 - 25)
+    local title = ccui.ImageView:create("Lobby_service_title.png", ccui.TextureResType.plistType)
+    title:setPosition(bgSize.width/2, bgSize.height - 25-35)
     bg:addChild(title)
 
-    local meinvImg = ccui.ImageView:create("meinv.png", ccui.TextureResType.plistType)
-    meinvImg:setScale(0.73)
-    meinvImg:setPosition(198, bgSize.height/2 - 42)
-    bg:addChild(meinvImg)
+    local contact = ccui.ImageView:create("Lobby_service_lianxi.png", ccui.TextureResType.plistType)
+    contact:setPosition(bgSize.width/2, bgSize.height - 135)
+    bg:addChild(contact)
 
 
-    local codeImg = ccui.ImageView:create("Lobby_service_code.png", ccui.TextureResType.plistType)
-    codeImg:setPosition(bgSize.width/2 + 100, 135)
-    bg:addChild(codeImg)
+    -- local codeImg = ccui.ImageView:create("Lobby_service_code.png", ccui.TextureResType.plistType)
+    -- codeImg:setPosition(bgSize.width/2 + 240, 165)
+    -- bg:addChild(codeImg)
 
     local qqServiceStr = self._ServiceData.QQService or ""
     local qqProxyStr = self._ServiceData.QQProxy or ""
@@ -51,23 +36,18 @@ function ServiceView:initView()
 
     local textStrList = {}
 
-    local textStr1 = "房卡代理商QQ:" .. qqProxyStr
-    local textStr2 = "产品代理联运微信:" .. weChatProxyStr
-    local textStr3 = "游戏咨询QQ:" .. qqServiceStr
-    local textStr4 = "官方公众号:花色互娱"
+    local textStr1 = "招房卡代理商QQ:" .. qqProxyStr
+    local textStr2 = "招代理商微信:" .. weChatProxyStr
+    local textStr3 = "游戏客服QQ:" .. qqServiceStr
+    -- local textStr4 = "官方公众号"
     table.insert(textStrList,textStr1)
     table.insert(textStrList,textStr2)
     table.insert(textStrList,textStr3)
-    table.insert(textStrList,textStr4)
+    -- table.insert(textStrList,textStr4)
 
-    for i=1,4 do
-        local textStr = string.format("Lobby_service_tex_%d.png", i)
-        local textImg = ccui.ImageView:create(textStr, ccui.TextureResType.plistType)
-        textImg:setPosition(bgSize.width/2 - 55, bgSize.height - (i-1)*75 - 125)
-        bg:addChild(textImg)
-
+    for i=1,3 do
         local textLabel = cc.Label:createWithTTF(textStrList[i],GameUtils.getFontName(),30)
-        textLabel:setPosition(bgSize.width/2 - 10 , bgSize.height - (i-1)*75 - 125)
+        textLabel:setPosition(bgSize.width/2-70 , bgSize.height - (i-1)*75 - 125-75)
         textLabel:setAnchorPoint(0,0.5)
         bg:addChild(textLabel)
     end

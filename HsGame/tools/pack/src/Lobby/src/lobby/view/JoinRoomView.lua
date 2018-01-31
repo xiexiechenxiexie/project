@@ -23,36 +23,30 @@ end
 function JoinRoomView:_addInputPanel( ... )
 	local dir = self:findCreateRoomDir()
 	local imgInputPanel = dir .. "imgInputPanel.png"
-	local imgBg = ccui.Scale9Sprite:createWithSpriteFrameName(imgInputPanel,cc.rect(166,120,20,20))
-	imgBg:setContentSize(cc.size(600,600))
+	local imgBg = ccui.ImageView:create(imgInputPanel,ccui.TextureResType.plistType)
 	self:addChild(imgBg)
-	imgBg:setAnchorPoint(0,0)
-	imgBg:setPosition(111,20)
+	imgBg:setPosition(667,350)--数字盘
 
 	local size = imgBg:getContentSize()
 
-	-- local imgTitle = dir .. "imgTitle.png"
-	-- imgTitle = ccui.ImageView:create(imgTitle,ccui.TextureResType.plistType)
-	-- imgBg:addChild(imgTitle)
-	-- imgTitle:setPosition(size.width * 0.5,size.height -22)
+	local imgTitle = dir .. "imgInputPanelText.png"
+	imgTitle = ccui.ImageView:create(imgTitle,ccui.TextureResType.plistType)
+	imgBg:addChild(imgTitle)
+	imgTitle:setPosition(size.width * 0.5,size.height -58)
 
-	local titleBg = ccui.ImageView:create("res/common/common_title_bg.png")
-    titleBg:setPosition(size.width/2, size.height - 22)
-    imgBg:addChild(titleBg)
+	for i=1,6 do
+		local imgInputOut = dir .. "imgInputOut.png"
+		imgInputOut = ccui.ImageView:create(imgInputOut,ccui.TextureResType.plistType)
+		imgInputOut:setAnchorPoint(0,0)
+		imgBg:addChild(imgInputOut)
+		imgInputOut:setPosition(62+(i-1)*73,420)
 
-    local title = cc.Label:createWithTTF("加入房间",GameUtils.getFontName(), 36)
-    title:setPosition(titleBg:getContentSize().width/2,titleBg:getContentSize().height/2+3)
-    title:setTextColor(cc.c3b(141,62,30))
-    title:enableOutline(cc.c3b(255, 250, 152),2)
-    titleBg:addChild(title)
-
-	local imgInputOut = dir .. "imgInputOut.png"
-	imgInputOut = ccui.ImageView:create(imgInputOut,ccui.TextureResType.plistType)
-	imgBg:addChild(imgInputOut)
-	imgInputOut:setPosition(size.width * 0.5,size.height - 98)
+		self:_addOutputAtlasNode(imgInputOut,i)
+	end
+	
 
 	self:_addBtns(imgBg)
-	self:_addOutputAtlasNode(imgInputOut)
+	-- self:_addOutputAtlasNode(imgInputOut)
 end
 
 function JoinRoomView:_addInputAtlasNode( __targetNode ,__num)
@@ -63,42 +57,42 @@ function JoinRoomView:_addInputAtlasNode( __targetNode ,__num)
 	__targetNode:addChild(atlasNode)
 end
 
-function JoinRoomView:_addOutputAtlasNode( __targetNode )
+function JoinRoomView:_addOutputAtlasNode( __targetNode, index)
 	local atlasFile = self:findImgOutputNum()
 	local dWidth = 88
-	local offset = {x = -52,y = 37}
+	local offset = {x = 28,y = 28}
 	-- local atlasNode = ccui.TextAtlas:create("0",atlasFile,24,35,"0")
 	-- atlasNode:setPosition(offset.x,offset.y)
 	-- __targetNode:addChild(atlasNode)
 	-- __targetNode:setTag(1)
 	-- self._inputLabelArray[#self._inputLabelArray + 1] = atlasNode
-	for i=1,6 do
+	-- for i=1,6 do
 		local atlasNode = ccui.TextAtlas:create("0",atlasFile,32,46,"0")
 		local size = __targetNode:getContentSize()
-		atlasNode:setPosition(offset.x + i * dWidth ,offset.y)
+		atlasNode:setPosition(offset.x + (index-1)*0.1  ,offset.y)
 		__targetNode:addChild(atlasNode)
-		atlasNode:setTag(i+1)
+		atlasNode:setTag(index+1)
 		atlasNode:setVisible(false)
 		self._inputLabelArray[#self._inputLabelArray + 1] = atlasNode
-	end
+	-- end
 
 end
 
 function JoinRoomView:_addBtns( __imgBg )
 	local imgBg = __imgBg
 	local dir = self:findCreateRoomDir()
-    local btnNumNormal =  dir .. "btnNum0.png"
-	local btnNumPD =  dir .. "btnNum1.png"
+    local btnNumNormal =  dir .. "btnNum.png"
+	local btnNumPD =  dir .. "btnNum.png"
 
-	local btnResetNormal =  dir .. "btnReset0.png"
-	local btnResetPD =  dir .. "btnReset1.png"
+	local btnResetNormal =  dir .. "btnReset.png"
+	local btnResetPD =  dir .. "btnReset.png"
 
-	local btnDelNormal =  dir .. "btnInputDelete0.png"
-	local btnDelPD =  dir .. "btnInputDelete1.png"
+	local btnDelNormal =  dir .. "btnInputDelete.png"
+	local btnDelPD =  dir .. "btnInputDelete.png"
 
 	local paddingWidth = 25  local paddingV = 20
 	local rowNum = 4 		 local col = 3
-	local leftTop = {x = 120,y = 385}
+	local leftTop = {x = 120,y = 385-15}
 	for r=1,rowNum do
 		for c=1,col do
 			local id = (r -1 ) * col + c
@@ -137,26 +131,30 @@ function JoinRoomView:_addCreateRoomPanel( ... )
 	local button = ccui.Button:create(btnCreateRoom,btnCreateRoom,btnCreateRoom,ccui.TextureResType.plistType)
 	button:setPressedActionEnabled(true)
 	button:addClickEventListener(handler(self,self._onCreatePanelClick))
-	button:setPosition(display.width - 320, 260)
+	button:setPosition(display.width/2 +270, 200)--创建房间按钮
 	self:addChild(button)
 
-	local arrFile = {
-	[1] = {name = dir .. "imgCreateRoomPork.png",x = 120,y = 260},
-	[2] = {name = dir .. "imgCreateRoomMM.png",x = 208,y = 295},
-	[3] = {name = dir .. "imgCreateRoomText.png",x = 180,y = 80}
-	}
-
-	for i=1,#arrFile do
-		local info = arrFile[i]
-		local node = ccui.ImageView:create(info.name,ccui.TextureResType.plistType)
-		button:addChild(node)
-		node:setPosition(info.x,info.y)
-	end
-
-	local imgTips = dir .. "imgTips.png"
-	local node = ccui.ImageView:create(imgTips,ccui.TextureResType.plistType)
-	self:addChild(node)
-	node:setPosition(1016,545)
+	local txt1 = ccui.Text:create()
+	txt1:setText("欢迎来到私人房：")
+	txt1:setFontSize(26)
+	txt1:setTextColor(cc.c4b(255, 255, 255, 255))
+	txt1:setAnchorPoint(cc.p(0, 0))
+	txt1:setPosition(cc.p(self:getContentSize().width/2+130, self:getContentSize().height*0.7-50))
+	self:addChild(txt1)
+	local txt2 = ccui.Text:create()
+	txt2:setText("1.点击创建私人房，邀请\n好友来对战。")
+	txt2:setFontSize(26)
+	txt2:setTextColor(cc.c4b(255, 255, 255, 255))
+	txt2:setAnchorPoint(cc.p(0, 0))
+	txt2:setPosition(cc.p(self:getContentSize().width/2+130, self:getContentSize().height*0.7-120))
+	self:addChild(txt2)
+	local txt3 = ccui.Text:create()
+	txt3:setText("2.输入房间号码，进入好\n友创建的房间。")
+	txt3:setFontSize(26)
+	txt3:setTextColor(cc.c4b(255, 255, 255, 255))
+	txt3:setAnchorPoint(cc.p(0, 0))
+	txt3:setPosition(cc.p(self:getContentSize().width/2+130, self:getContentSize().height*0.7-220))
+	self:addChild(txt3)
 
 end
 
@@ -175,9 +173,9 @@ function JoinRoomView:_onHandleNum( __num )
 			local gameId = cc.exports.config.GameIDConfig.KPQZ --
 			
 			lobby.CreateRoomManager:getInstance():requestRoomInfo(tableId,function ( __info )
-				if __info.data.server_ip and __info.data.server_port then 
-					local gameIp = __info.data.server_ip
-					local gamePort = __info.data.server_port
+				if __info.data.serverIp and __info.data.serverPort then 
+					local gameIp = __info.data.serverIp
+					local gamePort = __info.data.serverPort
 					
 					logic.LobbyTableManager:getInstance():RequestPrivateJoinTable(gameId,gameIp,gamePort,tableId)
 				else

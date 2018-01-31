@@ -19,21 +19,21 @@ local btnMenuRes = {}
 
 -- 金币按钮图片样式
 btnMenuRes[BTN_MENU_GOLD] = {}
-btnMenuRes[BTN_MENU_GOLD]["NORMAL"] = "TP/Mall/mall_btn_menu_gold_normal.png"
-btnMenuRes[BTN_MENU_GOLD]["SELECTED"] = "TP/Mall/mall_btn_menu_gold_selected.png"
-btnMenuRes[BTN_MENU_GOLD]["POS"] = cc.p(180, 460)
+btnMenuRes[BTN_MENU_GOLD]["NORMAL"] = "mall_btn_menu_gold_normal.png"
+btnMenuRes[BTN_MENU_GOLD]["SELECTED"] = "mall_btn_menu_gold_selected.png"
+btnMenuRes[BTN_MENU_GOLD]["POS"] = cc.p(132, 580)
 
 -- 钻石按钮图片样式
 btnMenuRes[BTN_MENU_DIAMOND] = {}
-btnMenuRes[BTN_MENU_DIAMOND]["NORMAL"] = "TP/Mall/mall_btn_menu_diamond_normal.png"
-btnMenuRes[BTN_MENU_DIAMOND]["SELECTED"] = "TP/Mall/mall_btn_menu_diamond_selected.png"
-btnMenuRes[BTN_MENU_DIAMOND]["POS"] = cc.p(180, 330)
+btnMenuRes[BTN_MENU_DIAMOND]["NORMAL"] = "mall_btn_menu_diamond_normal.png"
+btnMenuRes[BTN_MENU_DIAMOND]["SELECTED"] = "mall_btn_menu_diamond_selected.png"
+btnMenuRes[BTN_MENU_DIAMOND]["POS"] = cc.p(132, 580-121)
 
 -- 房卡按钮图片样式
 btnMenuRes[BTN_MENU_ROOMCARD] = {}
-btnMenuRes[BTN_MENU_ROOMCARD]["NORMAL"] = "TP/Mall/mall_btn_menu_room_card_normal.png"
-btnMenuRes[BTN_MENU_ROOMCARD]["SELECTED"] = "TP/Mall/mall_btn_menu_rooom_card_selected.png"
-btnMenuRes[BTN_MENU_ROOMCARD]["POS"] = cc.p(180, 200)
+btnMenuRes[BTN_MENU_ROOMCARD]["NORMAL"] = "mall_btn_menu_room_card_normal.png"
+btnMenuRes[BTN_MENU_ROOMCARD]["SELECTED"] = "mall_btn_menu_rooom_card_selected.png"
+btnMenuRes[BTN_MENU_ROOMCARD]["POS"] = cc.p(132, 580-121*2)
 
 -- 玩家财富信息
 local TEXT_INFO_DIAMOND = 1010
@@ -43,23 +43,23 @@ local TEXT_INFO_ROOM_CARD = 1012
 local textInfoRes = {}
 
 textInfoRes[TEXT_INFO_DIAMOND] = {}
-textInfoRes[TEXT_INFO_DIAMOND]["INFO_BG"] = "TP/Mall/mall_top_info_item_bg.png"
-textInfoRes[TEXT_INFO_DIAMOND]["INFO_ICON"] = "TP/Mall/mall_info_diamond.png"
-textInfoRes[TEXT_INFO_DIAMOND]["POS"] = cc.p(490, 705)
-textInfoRes[TEXT_INFO_DIAMOND]["ICON_OFFSET_X"] = 3
+textInfoRes[TEXT_INFO_DIAMOND]["INFO_BG"] = "mall_top_info_item_bg.png"
+textInfoRes[TEXT_INFO_DIAMOND]["INFO_ICON"] = "mall_info_diamond.png"
+textInfoRes[TEXT_INFO_DIAMOND]["POS"] = cc.p(450, 710)
+textInfoRes[TEXT_INFO_DIAMOND]["ICON_OFFSET_X"] = 10
 textInfoRes[TEXT_INFO_DIAMOND]["ICON_OFFSET_Y"] = 0
 
 textInfoRes[TEXT_INFO_GOLD] = {}
-textInfoRes[TEXT_INFO_GOLD]["INFO_BG"] = "TP/Mall/mall_top_info_item_bg.png"
-textInfoRes[TEXT_INFO_GOLD]["INFO_ICON"] = "TP/Mall/mall_info_gold.png"
-textInfoRes[TEXT_INFO_GOLD]["POS"] = cc.p(750, 705)
-textInfoRes[TEXT_INFO_GOLD]["ICON_OFFSET_X"] = 0
+textInfoRes[TEXT_INFO_GOLD]["INFO_BG"] = "mall_top_info_item_bg.png"
+textInfoRes[TEXT_INFO_GOLD]["INFO_ICON"] = "mall_info_gold.png"
+textInfoRes[TEXT_INFO_GOLD]["POS"] = cc.p(730, 710)
+textInfoRes[TEXT_INFO_GOLD]["ICON_OFFSET_X"] = 10
 textInfoRes[TEXT_INFO_GOLD]["ICON_OFFSET_Y"] = -1
 
 textInfoRes[TEXT_INFO_ROOM_CARD] = {}
-textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_BG"] = "TP/Mall/mall_top_info_item_bg.png"
-textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_ICON"] = "TP/Mall/mall_info_room_card.png"
-textInfoRes[TEXT_INFO_ROOM_CARD]["POS"] = cc.p(1010, 705)
+textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_BG"] = "mall_top_info_item_bg.png"
+textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_ICON"] = "mall_info_room_card.png"
+textInfoRes[TEXT_INFO_ROOM_CARD]["POS"] = cc.p(1010, 710)
 textInfoRes[TEXT_INFO_ROOM_CARD]["ICON_OFFSET_X"] = 10
 textInfoRes[TEXT_INFO_ROOM_CARD]["ICON_OFFSET_Y"] = 1
 
@@ -104,49 +104,49 @@ end
 function MallLayer:_initView()
 
 	-- 商城背景
-	local mallBg = ccui.ImageView:create("TP/Mall/mall_bg.png", ccui.TextureResType.plistType)
+	local mallBg = ccui.ImageView:create("mall_bg.jpg", ccui.TextureResType.plistType)
 	mallBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height/2))
 	self:addChild(mallBg)
 
 	-- 左上角商城logo
-	local mallLogo = ccui.ImageView:create("TP/Mall/mall_logo.png", ccui.TextureResType.plistType)
-	mallLogo:setPosition(cc.p(mallLogo:getContentSize().width / 2, mallBg:getContentSize().height - mallLogo:getContentSize().height/2 - 20))
+	local mallLogo = ccui.ImageView:create("mall_logo.png", ccui.TextureResType.plistType)
+	mallLogo:setPosition(cc.p(mallLogo:getContentSize().width-30, mallBg:getContentSize().height - mallLogo:getContentSize().height/2 - 20))
 	mallBg:addChild(mallLogo)
 
-	local mallLogoLight1 = ccui.ImageView:create("TP/Mall/mall_logo_light1.png", ccui.TextureResType.plistType)
-	mallLogoLight1:setPosition(cc.p(mallLogo:getContentSize().width / 2, mallLogo:getContentSize().height /2))
-	mallLogo:addChild(mallLogoLight1)
+	-- local mallLogoLight1 = ccui.ImageView:create("mall_logo_light1.png", ccui.TextureResType.plistType)
+	-- mallLogoLight1:setPosition(cc.p(mallLogo:getContentSize().width / 2, mallLogo:getContentSize().height /2))
+	-- mallLogo:addChild(mallLogoLight1)
 
-	local mallLogoLight2 = ccui.ImageView:create("TP/Mall/mall_logo_light2.png", ccui.TextureResType.plistType)
-	mallLogoLight2:setPosition(cc.p(mallLogo:getContentSize().width / 2, mallLogo:getContentSize().height/2))
-	mallLogo:addChild(mallLogoLight2)
+	-- local mallLogoLight2 = ccui.ImageView:create("mall_logo_light2.png", ccui.TextureResType.plistType)
+	-- mallLogoLight2:setPosition(cc.p(mallLogo:getContentSize().width / 2, mallLogo:getContentSize().height/2))
+	-- mallLogo:addChild(mallLogoLight2)
 
-	local lightAc1 = cc.Sequence:create(cc.FadeOut:create(2/60), cc.DelayTime:create(30/60), cc.FadeIn:create(2/60), cc.DelayTime:create(30/60))
-	local lightAc2 = cc.Sequence:create(cc.FadeIn:create(2/60), cc.DelayTime:create(30/60), cc.FadeOut:create(2/60), cc.DelayTime:create(30/60))
+	-- local lightAc1 = cc.Sequence:create(cc.FadeOut:create(2/60), cc.DelayTime:create(30/60), cc.FadeIn:create(2/60), cc.DelayTime:create(30/60))
+	-- local lightAc2 = cc.Sequence:create(cc.FadeIn:create(2/60), cc.DelayTime:create(30/60), cc.FadeOut:create(2/60), cc.DelayTime:create(30/60))
 
-	local lightSqu1 = cc.RepeatForever:create(lightAc1)
-	local lightSqu2 = cc.RepeatForever:create(lightAc2)
+	-- local lightSqu1 = cc.RepeatForever:create(lightAc1)
+	-- local lightSqu2 = cc.RepeatForever:create(lightAc2)
 
-	mallLogoLight1:runAction(lightSqu1)
-	mallLogoLight2:runAction(lightSqu2)
+	-- mallLogoLight1:runAction(lightSqu1)
+	-- mallLogoLight2:runAction(lightSqu2)
 
 	local function callback( sender )
 		sender:removeFromParent()
 	end
 
-	local scheduler = cc.Director:getInstance():getScheduler()
- 	self.schedulerId = scheduler:scheduleScriptFunc(
- 		function()
-	 		local mallLogoFlash = ccui.ImageView:create("TP/Mall/mall_logo_flash.png", ccui.TextureResType.plistType)
-			mallLogoFlash:setPosition(flashPos[math.random(1, #flashPos)])
-			mallLogoFlash:setScale(0.5)
-			mallLogoFlash:setOpacity(0)
-			mallLogo:addChild(mallLogoFlash)
+	-- local scheduler = cc.Director:getInstance():getScheduler()
+ -- 	self.schedulerId = scheduler:scheduleScriptFunc(
+ -- 		function()
+	--  		local mallLogoFlash = ccui.ImageView:create("mall_logo_flash.png", ccui.TextureResType.plistType)
+	-- 		mallLogoFlash:setPosition(flashPos[math.random(1, #flashPos)])
+	-- 		mallLogoFlash:setScale(0.5)
+	-- 		mallLogoFlash:setOpacity(0)
+	-- 		mallLogo:addChild(mallLogoFlash)
 
-			local flashAc = cc.Sequence:create(cc.FadeIn:create(5/60), cc.Spawn:create(cc.ScaleTo:create(30/60, 1.5), cc.RotateBy:create(30/60, 180)), cc.Spawn:create(cc.ScaleTo:create(30/60, 0.5), cc.RotateBy:create(30/60, 180)), cc.FadeOut:create(5/60), cc.CallFunc:create(callback))
-			mallLogoFlash:runAction(flashAc)
+	-- 		local flashAc = cc.Sequence:create(cc.FadeIn:create(5/60), cc.Spawn:create(cc.ScaleTo:create(30/60, 1.5), cc.RotateBy:create(30/60, 180)), cc.Spawn:create(cc.ScaleTo:create(30/60, 0.5), cc.RotateBy:create(30/60, 180)), cc.FadeOut:create(5/60), cc.CallFunc:create(callback))
+	-- 		mallLogoFlash:runAction(flashAc)
 
-		end, 1.5, false)
+	-- 	end, 1.5, false)
 
 	--注册点击事件  
 	local function callback_tag(sender, eventType)
@@ -228,7 +228,7 @@ function MallLayer:_initView()
 	-- 顶部按钮
 
 	-- 顶部背景
-	-- local topInfoBg = ccui.ImageView:create("TP/Mall/mall_top_info_bg.png")
+	-- local topInfoBg = ccui.ImageView:create("mall_top_info_bg.png")
 	-- topInfoBg:setPosition(cc.p(topInfoBg:getContentSize().width/2 + leftMenuBg:getContentSize().width, self:getContentSize().height - topInfoBg:getContentSize().height/2))
 	-- self:addChild(topInfoBg)
 
@@ -279,9 +279,9 @@ function MallLayer:_initView()
 	-- 关闭按钮
 	-- cc.SpriteFrameCache:getInstance():addSpriteFrames("res/GameLayout/Lobby/Lobby.plist")
 	-- self.btnMore:loadTextureNormal("lobby_btn_more_show.png", UI_TEX_TYPE_PLIST)
-	local btnClose = ccui.Button:create()
-	btnClose:loadTextureNormal("lobby_btn_back.png", ccui.TextureResType.plistType)
-	btnClose:setPosition(cc.p(self:getContentSize().width - btnClose:getContentSize().width/2 - 15, self:getContentSize().height - btnClose:getContentSize().height/2 - 2))
+	local btnClose = ccui.Button:create("lobby_btn_back.png","lobby_btn_back1.png","", ccui.TextureResType.plistType)
+	-- btnClose:loadTextureNormal("lobby_btn_back.png","lobby_btn_back1.png","", ccui.TextureResType.plistType)
+	btnClose:setPosition(cc.p(self:getContentSize().width - btnClose:getContentSize().width/2, self:getContentSize().height - btnClose:getContentSize().height/2 - 2))
 	self:addChild(btnClose)
 
 	local function callback_Close(sender, eventType)
@@ -358,7 +358,7 @@ end
 function MallLayer:onExit( ... )
 	MallLayer.super.onExit(self)
 	local scheduler = cc.Director:getInstance():getScheduler()
- 	scheduler:unscheduleScriptEntry(self.schedulerId)
+ 	-- scheduler:unscheduleScriptEntry(self.schedulerId)
 	Mall.MallManager:getInstance():resetData()
 end
 

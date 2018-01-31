@@ -10,9 +10,6 @@ local BTN_SET               = 4             -- 设置
 local BTN_CHOOSE            = 5 			
 local BTN_STAND             = 6 
 
-local BTN_TAG 	                = 10            -- 私人按钮标签
-local GOLDBTN_TAG               = 20            -- 金币按钮标签
-
 local MenuNode = class("MenuNode", cc.Node)
 
 function MenuNode:ctor()
@@ -52,38 +49,36 @@ end
 function MenuNode:init()
 	local moreList = cc.Sprite:create(GameResPath.."most_list.png")
  	self.node:addChild(moreList)
+ 	
+
  	local x = moreList:getContentSize().width/2
-
- 	for i=1,4 do
- 		local bgBtn = ccui.Button:create(GameResPath.."menuBtn_bg_0.png",GameResPath.."menuBtn_bg_1.png")
- 		bgBtn:setPosition(x,x-86+(i-1)*89)
- 		bgBtn:setTag(BTN_TAG+i)
- 		bgBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
- 		moreList:addChild(bgBtn)
- 		if i == 1 then
- 			self.DissolutionBtn = bgBtn
- 		end
- 	end
-
- 	local ExitBtn = display.newSprite(GameResPath.."btn_quit_0.png")
- 	ExitBtn:setPosition(x,x+181)
+ 	local ExitBtn = ccui.Button:create(GameResPath.."btn_quit_0.png",GameResPath.."btn_quit_1.png")
+ 	ExitBtn:setTag(BTN_BACK)
+ 	ExitBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	ExitBtn:setPosition(x,x+170)
  	moreList:addChild(ExitBtn)
  	--牌型
- 	local CardTypeBtn = display.newSprite(GameResPath.."btn_help_0.png")
- 	CardTypeBtn:setPosition(x,x+92)
+ 	local CardTypeBtn = ccui.Button:create(GameResPath.."btn_cardType_0.png",GameResPath.."btn_cardType_1.png")
+ 	CardTypeBtn:setTag(BTN_CARDTYPE)
+ 	CardTypeBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	CardTypeBtn:setPosition(x,x+97.5)
  	moreList:addChild(CardTypeBtn)
  	--设置
- 	local SetBtn = display.newSprite(GameResPath.."btn_set_0.png")
- 	SetBtn:setPosition(x,x+3)
+ 	local SetBtn = ccui.Button:create(GameResPath.."btn_set_0.png",GameResPath.."btn_set_1.png")
+ 	SetBtn:setTag(BTN_SET)
+ 	SetBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	SetBtn:setPosition(x,x+22.5)
  	moreList:addChild(SetBtn)
  	--解散
- 	local DissolutionBtn = display.newSprite(GameResPath.."btn_dissolve_0.png")
- 	DissolutionBtn:setPosition(x,x-86)
+ 	local DissolutionBtn = ccui.Button:create(GameResPath.."btn_dissolve_0.png",GameResPath.."btn_dissolve_1.png")
+ 	DissolutionBtn:setTag(BTN_DISSOLUTION)
+ 	DissolutionBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	DissolutionBtn:setPosition(x,x-50)
  	moreList:addChild(DissolutionBtn)
- 	-- self.DissolutionBtn = DissolutionBtn
+ 	self.DissolutionBtn = DissolutionBtn
 
- 	self.node:setPosition(250,915)
- 	self:setCPPos(cc.p(250,915),cc.p(250,515))
+ 	self.node:setPosition(200,915)
+ 	self:setCPPos(cc.p(200,915),cc.p(200,565))
 
 end
 
@@ -92,32 +87,54 @@ function MenuNode:initGold()
  	self.node:addChild(listBg,101)
  	local x,y = listBg:getContentSize().width/2,listBg:getContentSize().height/2
 
- 	for i=1,5 do
- 		local bgBtn = ccui.Button:create(GameResPath.."menuBtn_bg_0.png",GameResPath.."menuBtn_bg_1.png")
- 		bgBtn:setPosition(x,y-178+(i-1)*90)
- 		bgBtn:setTag(GOLDBTN_TAG+i)
- 		bgBtn:addClickEventListener(function(sender) self:onGoldButtonClickedEvent(sender) end)
- 		listBg:addChild(bgBtn)
- 	end
-
- 	local quit = display.newSprite(GameResPath.."btn_quit_0.png")
- 	quit:setPosition(x,y+178)
+ 	local quit = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	quit:setPosition(x,y+146+30)
+ 	quit:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	quit:setTag(BTN_BACK)
  	listBg:addChild(quit)
- 	local choose = display.newSprite(GameResPath.."btn_choose_0.png")
- 	choose:setPosition(x,y+89)
- 	listBg:addChild(choose)
- 	local stand = display.newSprite(GameResPath.."btn_stand_0.png")
- 	stand:setPosition(x,y)
- 	listBg:addChild(stand)
- 	local card = display.newSprite(GameResPath.."btn_cardType_0.png")
- 	card:setPosition(x,y-89)
- 	listBg:addChild(card)
- 	local set = display.newSprite(GameResPath.."btn_set_0.png")
- 	set:setPosition(x,y-178)
- 	listBg:addChild(set)
+ 	local quitImg = cc.Sprite:create(GameResPath.."niuniu_image_exit.png")
+ 	quitImg:setPosition(quit:getContentSize().width/2,quit:getContentSize().height/2)
+ 	quit:addChild(quitImg)
 
- 	self.node:setPosition(250,965)
- 	self:setCPPos(cc.p(250,965),cc.p(250,500))
+ 	local choose = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	choose:setPosition(x,y+73+15)
+ 	choose:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	choose:setTag(BTN_CHOOSE)
+ 	listBg:addChild(choose)
+ 	local chooseImg = cc.Sprite:create(GameResPath.."niuniu_image_choose.png")
+ 	chooseImg:setPosition(choose:getContentSize().width/2,choose:getContentSize().height/2)
+ 	choose:addChild(chooseImg)
+
+ 	local stand = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	stand:setPosition(x,y)
+ 	stand:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	stand:setTag(BTN_STAND)
+ 	listBg:addChild(stand)
+ 	local standImg = cc.Sprite:create(GameResPath.."niuniu_image_stand.png")
+ 	standImg:setPosition(stand:getContentSize().width/2,stand:getContentSize().height/2)
+ 	stand:addChild(standImg)
+
+ 	local card = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	card:setPosition(x,y-73-15)
+ 	card:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	card:setTag(BTN_CARDTYPE)
+ 	listBg:addChild(card)
+ 	local cardImg = cc.Sprite:create(GameResPath.."niuniu_image_cardType.png")
+ 	cardImg:setPosition(card:getContentSize().width/2,card:getContentSize().height/2)
+ 	card:addChild(cardImg)
+
+ 	local set = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	set:setPosition(x,y-146-30)
+ 	set:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	set:setTag(BTN_SET)
+ 	listBg:addChild(set)
+ 	local setImg = cc.Sprite:create(GameResPath.."niuniu_image_set.png")
+ 	setImg:setPosition(set:getContentSize().width/2,set:getContentSize().height/2)
+ 	set:addChild(setImg)
+
+
+ 	self.node:setPosition(230,2)
+ 	self:setCPPos(cc.p(230,965),cc.p(230,510))
 end
 
 function MenuNode:setDissolutionBtnState(b)
@@ -127,59 +144,27 @@ function MenuNode:setDissolutionBtnState(b)
 	end
 end
 
-function MenuNode:onGoldButtonClickedEvent( sender )
-	local tag = sender:getTag()
-	self:closeLayer()
-	if tag == GOLDBTN_TAG+5 then
-		self._gameRequest:RequestLeaveTable()
-	elseif tag == GOLDBTN_TAG+4 then
-		self._gameRequest:RequestChangeTable()
-	elseif tag == GOLDBTN_TAG+3 then
-		self._gameRequest:RequestPlayerStandUp()
-	elseif tag == GOLDBTN_TAG+2 then
-		if self:getParent().ShowCardTypeLayer then
-    		self:getParent():ShowCardTypeLayer()
-    	end
-	elseif tag == GOLDBTN_TAG+1 then
-		if self:getParent().setAct then
-    		self:getParent():setAct()
-    	end
-	end
-end
 
 function MenuNode:onButtonClickedEvent(sender)
 	local tag = sender:getTag()
 	self:closeLayer()
-	if tag == BTN_TAG+4 then
+	if tag == BTN_BACK then
 		self._gameRequest:RequestLeaveTable()
-	elseif tag == BTN_TAG+3 then
+	elseif tag == BTN_DISSOLUTION then
+		self._gameRequest:RequestDissolutionTabel()
+	elseif tag == BTN_CARDTYPE then
 		if self:getParent().ShowCardTypeLayer then
     		self:getParent():ShowCardTypeLayer()
     	end
-	elseif tag == BTN_TAG+2 then
+	elseif tag == BTN_SET then
 		if self:getParent().setAct then
     		self:getParent():setAct()
     	end
-	elseif tag == BTN_TAG+1 then
-		self._gameRequest:RequestDissolutionTabel()
+    elseif tag == BTN_CHOOSE then
+    	self._gameRequest:RequestChangeTable()
+    elseif tag == BTN_STAND then
+    	self._gameRequest:RequestPlayerStandUp()
 	end
-	-- if tag == BTN_BACK then
-	-- 	self._gameRequest:RequestLeaveTable()
-	-- elseif tag == BTN_DISSOLUTION then
-	-- 	self._gameRequest:RequestDissolutionTabel()
-	-- elseif tag == BTN_CARDTYPE then
-	-- 	if self:getParent().ShowCardTypeLayer then
- --    		self:getParent():ShowCardTypeLayer()
- --    	end
-	-- elseif tag == BTN_SET then
-	-- 	if self:getParent().setAct then
- --    		self:getParent():setAct()
- --    	end
- --    elseif tag == BTN_CHOOSE then
- --    	self._gameRequest:RequestChangeTable()
- --    elseif tag == BTN_STAND then
- --    	self._gameRequest:RequestPlayerStandUp()
-	-- end
 end
 
 function MenuNode:setCPPos(hidePos,showPos)

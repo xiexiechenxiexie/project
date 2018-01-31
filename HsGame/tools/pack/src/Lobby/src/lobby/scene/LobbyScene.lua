@@ -34,28 +34,35 @@ LobbyScene.BTN_FRIENDS 			= 5			    -- 好友
 LobbyScene.BTN_SPREAD 			= 6 			-- 推广
 LobbyScene.BTN_SHOP 			= 7 			-- 商城
 LobbyScene.IMAGE_MORE_OUT_BG	= 8			    -- 更多的触摸背景
+LobbyScene.RANKLIST             = 9             --排行榜列表（出）
+LobbyScene.RANK                 = 10            --排行榜（进）
 
 
 local btnListRes = {}
 btnListRes[LobbyScene.BTN_MORE_SHOW] = {}
 btnListRes[LobbyScene.BTN_MORE_SHOW]["NORMAL"] = "lobby_btn_more_show.png"
-btnListRes[LobbyScene.BTN_MORE_SHOW]["POS"] = cc.p(100, 40)
+btnListRes[LobbyScene.BTN_MORE_SHOW]["SELECTED"] = "lobby_btn_more_show1.png"
+btnListRes[LobbyScene.BTN_MORE_SHOW]["POS"] = cc.p(75, 40)
 
 btnListRes[LobbyScene.BTN_MAIL] = {}
 btnListRes[LobbyScene.BTN_MAIL]["NORMAL"] = "lobby_btn_mail.png"
-btnListRes[LobbyScene.BTN_MAIL]["POS"] = cc.p(200, 40)
+btnListRes[LobbyScene.BTN_MAIL]["SELECTED"] = "lobby_btn_mail1.png"
+btnListRes[LobbyScene.BTN_MAIL]["POS"] = cc.p(205, 40)
 
 btnListRes[LobbyScene.BTN_TASK] = {}
 btnListRes[LobbyScene.BTN_TASK]["NORMAL"] = "lobby_btn_task.png"
-btnListRes[LobbyScene.BTN_TASK]["POS"] = cc.p(300, 40)
+btnListRes[LobbyScene.BTN_TASK]["SELECTED"] = "lobby_btn_task1.png"
+btnListRes[LobbyScene.BTN_TASK]["POS"] = cc.p(340, 40)
 
 btnListRes[LobbyScene.BTN_FRIENDS] = {}
 btnListRes[LobbyScene.BTN_FRIENDS]["NORMAL"] = "lobby_btn_friends.png"
-btnListRes[LobbyScene.BTN_FRIENDS]["POS"] = cc.p(400, 40)
+btnListRes[LobbyScene.BTN_FRIENDS]["SELECTED"] = "lobby_btn_friends1.png"
+btnListRes[LobbyScene.BTN_FRIENDS]["POS"] = cc.p(460, 40)
 
 btnListRes[LobbyScene.BTN_SPREAD] = {}
 btnListRes[LobbyScene.BTN_SPREAD]["NORMAL"] = "lobby_btn_spread.png"
-btnListRes[LobbyScene.BTN_SPREAD]["POS"] = cc.p(500, 40)
+btnListRes[LobbyScene.BTN_SPREAD]["SELECTED"] = "lobby_btn_spread1.png"
+btnListRes[LobbyScene.BTN_SPREAD]["POS"] = cc.p(590, 40)
 
 local LobbyLocalZOrder = {
 	LOBBYSCENE_CSB = 1,
@@ -66,7 +73,7 @@ local LobbyLocalZOrder = {
 	MORE_LAYER = 900,
 }
 
-local LOBBY_MORE_POS = cc.p(245, 125)
+local LOBBY_MORE_POS = cc.p(295, 138)
 
 function LobbyScene:ctor()
     self:enableNodeEvents()  -- 注册 onEnter onExit 时间 by  tangwen
@@ -80,13 +87,43 @@ end
 
 -- 初始化视图控件
 function LobbyScene:initView()
+	-- self.layer = cc.LayerColor:create(cc.c4b(10, 10, 10, 120), display.width, display.height)
+	-- self.layer:hide()
+ --    self:addChild(self.layer,998)
+ --    local function onTouchBegan(touch, event)
+ --    	return true
+ --    end
+ --    local function onTouchMove(touch, event)
+ --    	return true
+ --    end
+ --    local function onTouchEnd(touch, event)
+ --    	self:closeLayer()
+ --    	return true
+ --    end
+ --    local listener = cc.EventListenerTouchOneByOne:create()
+ --    listener:registerScriptHandler(onTouchBegan, cc.Handler.EVENT_TOUCH_BEGAN)
+ --    listener:registerScriptHandler(onTouchMove, cc.Handler.EVENT_TOUCH_MOVED)
+ --    listener:registerScriptHandler(onTouchEnd, cc.Handler.EVENT_TOUCH_ENDED)
+ --    listener:setSwallowTouches(true)
+ --    cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(listener,self.layer)
+ --    self.listener=listener
+
 	local lobbySceneBg = ccui.ImageView:create("GameLayout/Lobby/lobby_bg.png", ccui.TextureResType.localType)
 	lobbySceneBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height/2))
 	self:addChild(lobbySceneBg)
 
-	self.bottomBg = ccui.ImageView:create("lobby_bottom_bg.png", ccui.TextureResType.plistType)
-	self.bottomBg:setPosition(cc.p(lobbySceneBg:getContentSize().width/2, self.bottomBg:getContentSize().height/2))
-	lobbySceneBg:addChild(self.bottomBg)
+	local lobbySceneGirl = ccui.ImageView:create("GameLayout/Lobby/lobby_girl.png", ccui.TextureResType.localType)
+	lobbySceneGirl:setPosition(cc.p(self:getContentSize().width/2-220, lobbySceneGirl:getContentSize().height/2))
+	self:addChild(lobbySceneGirl)
+
+	local lobbySceneDi = ccui.ImageView:create("GameLayout/Lobby/lobby_di.png", ccui.TextureResType.localType)
+	lobbySceneDi:setPosition(cc.p(self:getContentSize().width/2, lobbySceneDi:getContentSize().height/2))
+	self:addChild(lobbySceneDi)
+
+	-- self.bottomBg = ccui.ImageView:create("lobby_bottom_bg.png", ccui.TextureResType.plistType)
+	-- self.bottomBg:setPosition(cc.p(lobbySceneBg:getContentSize().width/2, self.bottomBg:getContentSize().height/2))
+	-- self.bottomBg:hide()
+	-- lobbySceneBg:addChild(self.bottomBg)
 
     -- 为所有可响应点击的控件设置点击事件
 	local function btnCallBack(sender)
@@ -94,10 +131,10 @@ function LobbyScene:initView()
     end
 
 	for index = LobbyScene.BTN_MORE_SHOW, LobbyScene.BTN_SPREAD do
-		local btnMenu = ccui.Button:create(btnListRes[index]["NORMAL"], "", "", ccui.TextureResType.plistType)
+		local btnMenu = ccui.Button:create(btnListRes[index]["NORMAL"], btnListRes[index]["SELECTED"], "", ccui.TextureResType.plistType)
 		btnMenu:setPosition(btnListRes[index]["POS"])
 		btnMenu:setTag(index)
-		self.bottomBg:addChild(btnMenu)
+		self:addChild(btnMenu)
 		btnMenu:addClickEventListener(btnCallBack)
 
 		if LobbyScene.BTN_MORE_SHOW == index then
@@ -106,76 +143,85 @@ function LobbyScene:initView()
 	end
 
 	-- 商城按钮
-	local btnMall = ccui.Button:create("lobby_btn_shop.png", "", "", ccui.TextureResType.plistType)
+	local btnMall = ccui.Button:create("lobby_btn_shop_bg.png", "", "", ccui.TextureResType.plistType)
 	btnMall:setTag(LobbyScene.BTN_SHOP)
 	btnMall:addClickEventListener(btnCallBack)
-	btnMall:setPosition(cc.p(self.bottomBg:getContentSize().width - 250, self.bottomBg:getContentSize().height/2 - 5))
-	self.bottomBg:addChild(btnMall)
+	btnMall:setPosition(cc.p(self:getContentSize().width - 160, 40))
+	self:addChild(btnMall)
 
-	self:_addShopSaoiGuang(btnMall)
+	local dir = "GameLayout/Animation/shop_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."shop_Animation0.png",dir.."shop_Animation0.plist",dir.."shop_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("shop_Animation") 
+    adAnim:setPosition(cc.p(btnMall:getContentSize().width/2, btnMall:getContentSize().height/2)) 
+    btnMall:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+    adAnim:getAnimation():setSpeedScale(0.8)
 
-	-- 商城闪光
-	local btnMallFlashLeft = ccui.ImageView:create("lobby_mall_flash.png", ccui.TextureResType.plistType)
-	btnMallFlashLeft:setScale(0.8)
-	btnMallFlashLeft:setOpacity(0)
-	btnMallFlashLeft:setPosition(cc.p(btnMall:getContentSize().width * 0.15, btnMall:getContentSize().height *0.4))
-	btnMall:addChild(btnMallFlashLeft)
+	-- self:_addShopSaoiGuang(btnMall)
 
-
-	local flashLeft = cc.RepeatForever:create(cc.Sequence:create(cc.FadeIn:create(5/60), cc.Spawn:create(cc.ScaleTo:create(30/60, 1), cc.RotateBy:create(30/60, 180)), cc.Spawn:create(cc.ScaleTo:create(30/60, 0.1), cc.RotateBy:create(30/60, 180)), cc.FadeOut:create(5/60), cc.DelayTime:create(2)))
-	btnMallFlashLeft:runAction(flashLeft)
-
-	local btnMallFlashRigth = ccui.ImageView:create("lobby_mall_flash.png", ccui.TextureResType.plistType)
-	btnMallFlashRigth:setScale(0.1)
-	btnMallFlashRigth:setOpacity(0)
-	btnMallFlashRigth:setPosition(cc.p(btnMall:getContentSize().width * 0.95, btnMall:getContentSize().height *0.8))
-	btnMall:addChild(btnMallFlashRigth)
-
-	local flashRigth = cc.RepeatForever:create(cc.Sequence:create(cc.DelayTime:create(1),cc.FadeIn:create(5/60), cc.Spawn:create(cc.ScaleTo:create(30/60, 1.5), cc.RotateBy:create(30/60, 180)), cc.Spawn:create(cc.ScaleTo:create(30/60, 0.1), cc.RotateBy:create(30/60, 180)), cc.FadeOut:create(5/60), cc.DelayTime:create(1)))
-	btnMallFlashRigth:runAction(flashRigth)
-
-	local imageShopAni1 = ccui.ImageView:create("lobby_btn_shop_ani.png", ccui.TextureResType.plistType)
-	imageShopAni1:setTag(LobbyScene.BTN_SHOP)
-	imageShopAni1:setPosition(cc.p(self.bottomBg:getContentSize().width - 150, self.bottomBg:getContentSize().height/2 - 5))
-	imageShopAni1:setTouchEnabled(true)
-	self.bottomBg:addChild(imageShopAni1)
-	imageShopAni1:addClickEventListener(btnCallBack)
-
-	local imageShopAni2 = ccui.ImageView:create("lobby_btn_shop_ani.png", ccui.TextureResType.plistType)
-	imageShopAni2:setTag(LobbyScene.BTN_SHOP)
-	imageShopAni2:setPosition(cc.p(self.bottomBg:getContentSize().width - 120, self.bottomBg:getContentSize().height/2 - 5))
-	imageShopAni2:setTouchEnabled(true)
-	self.bottomBg:addChild(imageShopAni2)
-	imageShopAni2:addClickEventListener(btnCallBack)
-
-	local imageShopAni3 = ccui.ImageView:create("lobby_btn_shop_ani.png", ccui.TextureResType.plistType)
-	imageShopAni3:setTag(LobbyScene.BTN_SHOP)
-	imageShopAni3:setPosition(cc.p(self.bottomBg:getContentSize().width - 90, self.bottomBg:getContentSize().height/2 - 5))
-	imageShopAni3:setTouchEnabled(true)
-	self.bottomBg:addChild(imageShopAni3)
-	imageShopAni3:addClickEventListener(btnCallBack)
+	-- -- 商城闪光
+	-- local btnMallFlashLeft = ccui.ImageView:create("lobby_mall_flash.png", ccui.TextureResType.plistType)
+	-- btnMallFlashLeft:setScale(0.8)
+	-- btnMallFlashLeft:setOpacity(0)
+	-- btnMallFlashLeft:setPosition(cc.p(btnMall:getContentSize().width * 0.15, btnMall:getContentSize().height *0.4))
+	-- btnMall:addChild(btnMallFlashLeft)
 
 
-	local lightAc1 = cc.Sequence:create(cc.FadeOut:create(20/60), cc.DelayTime:create(20/60), cc.FadeIn:create(20/60), cc.DelayTime:create(20/60))
-	local lightAc2 = cc.Sequence:create(cc.DelayTime:create(10/60), cc.FadeOut:create(20/60), cc.DelayTime:create(20/60), cc.FadeIn:create(20/60), cc.DelayTime:create(10/60))
-	local lightAc3 = cc.Sequence:create(cc.DelayTime:create(20/60),cc.FadeOut:create(20/60), cc.DelayTime:create(20/60), cc.FadeIn:create(20/60))
+	-- local flashLeft = cc.RepeatForever:create(cc.Sequence:create(cc.FadeIn:create(5/60), cc.Spawn:create(cc.ScaleTo:create(30/60, 1), cc.RotateBy:create(30/60, 180)), cc.Spawn:create(cc.ScaleTo:create(30/60, 0.1), cc.RotateBy:create(30/60, 180)), cc.FadeOut:create(5/60), cc.DelayTime:create(2)))
+	-- btnMallFlashLeft:runAction(flashLeft)
 
-	local lightSqu1 = cc.RepeatForever:create(lightAc1)
-	local lightSqu2 = cc.RepeatForever:create(lightAc2)
-	local lightSqu3 = cc.RepeatForever:create(lightAc3)
+	-- local btnMallFlashRigth = ccui.ImageView:create("lobby_mall_flash.png", ccui.TextureResType.plistType)
+	-- btnMallFlashRigth:setScale(0.1)
+	-- btnMallFlashRigth:setOpacity(0)
+	-- btnMallFlashRigth:setPosition(cc.p(btnMall:getContentSize().width * 0.95, btnMall:getContentSize().height *0.8))
+	-- btnMall:addChild(btnMallFlashRigth)
 
-	imageShopAni1:runAction(lightSqu1)
-	imageShopAni2:runAction(lightSqu2)
-	imageShopAni3:runAction(lightSqu3)
+	-- local flashRigth = cc.RepeatForever:create(cc.Sequence:create(cc.DelayTime:create(1),cc.FadeIn:create(5/60), cc.Spawn:create(cc.ScaleTo:create(30/60, 1.5), cc.RotateBy:create(30/60, 180)), cc.Spawn:create(cc.ScaleTo:create(30/60, 0.1), cc.RotateBy:create(30/60, 180)), cc.FadeOut:create(5/60), cc.DelayTime:create(1)))
+	-- btnMallFlashRigth:runAction(flashRigth)
+
+	-- local imageShopAni1 = ccui.ImageView:create("lobby_btn_shop_ani.png", ccui.TextureResType.plistType)
+	-- imageShopAni1:setTag(LobbyScene.BTN_SHOP)
+	-- imageShopAni1:setPosition(cc.p(self:getContentSize().width - 150, 40))
+	-- imageShopAni1:setTouchEnabled(true)
+	-- self:addChild(imageShopAni1)
+	-- imageShopAni1:addClickEventListener(btnCallBack)
+
+	-- local imageShopAni2 = ccui.ImageView:create("lobby_btn_shop_ani.png", ccui.TextureResType.plistType)
+	-- imageShopAni2:setTag(LobbyScene.BTN_SHOP)
+	-- imageShopAni2:setPosition(cc.p(self:getContentSize().width - 120, 40))
+	-- imageShopAni2:setTouchEnabled(true)
+	-- self:addChild(imageShopAni2)
+	-- imageShopAni2:addClickEventListener(btnCallBack)
+
+	-- local imageShopAni3 = ccui.ImageView:create("lobby_btn_shop_ani.png", ccui.TextureResType.plistType)
+	-- imageShopAni3:setTag(LobbyScene.BTN_SHOP)
+	-- imageShopAni3:setPosition(cc.p(self:getContentSize().width - 90, 40))
+	-- imageShopAni3:setTouchEnabled(true)
+	-- self:addChild(imageShopAni3)
+	-- imageShopAni3:addClickEventListener(btnCallBack)
+
+
+	-- local lightAc1 = cc.Sequence:create(cc.FadeOut:create(20/60), cc.DelayTime:create(20/60), cc.FadeIn:create(20/60), cc.DelayTime:create(20/60))
+	-- local lightAc2 = cc.Sequence:create(cc.DelayTime:create(10/60), cc.FadeOut:create(20/60), cc.DelayTime:create(20/60), cc.FadeIn:create(20/60), cc.DelayTime:create(10/60))
+	-- local lightAc3 = cc.Sequence:create(cc.DelayTime:create(20/60),cc.FadeOut:create(20/60), cc.DelayTime:create(20/60), cc.FadeIn:create(20/60))
+
+	-- local lightSqu1 = cc.RepeatForever:create(lightAc1)
+	-- local lightSqu2 = cc.RepeatForever:create(lightAc2)
+	-- local lightSqu3 = cc.RepeatForever:create(lightAc3)
+
+	-- imageShopAni1:runAction(lightSqu1)
+	-- imageShopAni2:runAction(lightSqu2)
+	-- imageShopAni3:runAction(lightSqu3)
+	-- imageShopAni1:setVisible(false)
+	-- imageShopAni2:setVisible(false)
+	-- imageShopAni3:setVisible(false)
 
 	
 	-- 添加顶部信息栏
 	self._LobbyTopInfoView =  require("lobby/view/LobbyTopInfoView")
 	self:addChild(self._LobbyTopInfoView:create(self._LobbyTopInfoView.Lobby), LobbyLocalZOrder.TOP_VIEW)
 
-    -- 排行榜
-	local rankView = require("lobby/view/RankView").new()
-	self:addChild(rankView,LobbyLocalZOrder.RANK_LAYER)
+    
 
     -- 游戏入口
 	local _lobbyEnter = LobbyGameEnter.new()
@@ -185,9 +231,9 @@ function LobbyScene:initView()
 	self._redPointNodeList = {}
 	for i=1,3 do
 		local redPointNode = ccui.ImageView:create("common_redPoint.png", ccui.TextureResType.plistType)
-    	redPointNode:setPosition(230 + (i-1)*100,75)
+    	redPointNode:setPosition(160 + (i-1)*130,75)
     	redPointNode:hide()
-    	self.bottomBg:addChild(redPointNode)
+    	self:addChild(redPointNode)
     	table.insert(self._redPointNodeList,redPointNode)
 	end
 
@@ -221,6 +267,47 @@ function LobbyScene:initView()
 
     -- 商城补单
 	Mall.MallManager:getInstance():reIapVerify()
+
+	-- 排行榜
+	self.rankListView = require("lobby/view/RankListView").new()
+	self:addChild(self.rankListView,LobbyLocalZOrder.RANK_LAYER)
+
+	local RichBtn = "rankingList_btn.png"
+    self._BtnRankList  = ccui.Button:create(RichBtn, RichBtn, RichBtn, ccui.TextureResType.plistType)
+	self._BtnRankList:setPosition(-535,5)
+	self._BtnRankList:setTag(LobbyScene.RANKLIST)
+	self.rankListView:addChild(self._BtnRankList)
+	self._BtnRankList:addClickEventListener(function(sender)
+		self:requestRankView(sender)
+	end)
+	self._BtnRankList:setOpacity(0)
+
+	self.rankView = require("lobby/view/RankView").new()
+	self:addChild(self.rankView,LobbyLocalZOrder.RANK_LAYER+1)
+	self.rankView:setPosition(0,375)
+
+	local RankBtn = "rankingList_btn1.png"
+    self._BtnRank  = ccui.Button:create(RankBtn, RankBtn, RankBtn, ccui.TextureResType.plistType)
+	self._BtnRank:setPosition(-245,5)
+	self.rankView:addChild(self._BtnRank)
+	self._BtnRank:setTag(LobbyScene.RANK)
+	self._BtnRank:addClickEventListener(function(sender)
+		self:requestRankView(sender)
+	end)
+	self._BtnRank:setOpacity(0)
+end
+
+function LobbyScene:requestRankView( sender )
+	local tag = sender:getTag()
+	print("我要找tag",tag)
+	if tag == LobbyScene.RANKLIST then
+		self.rankView:show()
+		self.rankView:runAction(cc.MoveTo:create(0.2,cc.p(667,375)))
+		self.rankListView:hide()
+	elseif tag == LobbyScene.RANK then
+		self.rankView:runAction(cc.MoveTo:create(0.2,cc.p(0,375)))
+		self.rankListView:show()
+	end
 end
 
 -- 商城扫光动画
@@ -285,21 +372,21 @@ function LobbyScene:onButtonClickedEvent(tag, sender)
 		self:setMoreBtnTexture(1)
 
 	elseif LobbyScene.BTN_MAIL == tag or LobbyScene.TEXT_MAIL == tag then
-		request.LobbyRequest:RequestAuthorizeSitList()
+		-- request.LobbyRequest:RequestAuthorizeSitList()
 
 	elseif LobbyScene.BTN_TASK == tag or LobbyScene.TEXT_TASK == tag then
 		self:requestTaskInfo()
 	elseif LobbyScene.BTN_FRIENDS == tag or LobbyScene.TEXT_FRIENDS == tag then
 		self:requestFriendInfo()
 	elseif LobbyScene.BTN_SPREAD == tag or LobbyScene.TEXT_SPREAD == tag then
-		if 0 == UserData.loginType then
-			local scene = cc.Director:getInstance():getRunningScene()
-			if scene then 
-				scene:addChild(require("src/lobby/layer/ChangeLoginTypeDialog"):create(),ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
-			end
-		else
+		-- if 0 == UserData.loginType then
+		-- 	local scene = cc.Director:getInstance():getRunningScene()
+		-- 	if scene then 
+		-- 		scene:addChild(require("src/lobby/layer/ChangeLoginTypeDialog"):create(),ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
+		-- 	end
+		-- else
 			self:requestPromoteInfo()
-		end
+		-- end
 
 		-- 录音
 		-- MultiPlatform:getInstance():startRcecord()
@@ -457,10 +544,26 @@ function LobbyScene:updataTaskRedPointByData( __data )
 		return
     end
 	for k, v in ipairs(__data) do
-		if v.process  >=  v.Count then -- 完成任务
-			self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
-			break
-    	end
+		if v.roundPlayed > 0 then
+			if v.userRoundPlayed  >=  v.roundPlayed then -- 完成任务
+				self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+				break
+	    	end
+		elseif v.roundWin > 0 then
+			if v.userRoundWin  >=  v.roundWin then -- 完成任务
+				self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+				break
+	    	end
+		elseif v.scoreWin > 0 then
+			if v.userScoreWin  >=  v.scoreWin then -- 完成任务
+				self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+				break
+	    	end
+		end
+		-- if v.process  >=  v.Count then -- 完成任务
+		-- 	self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+		-- 	break
+  --   	end
     end
 end
 
@@ -523,10 +626,10 @@ function LobbyScene:onEnter()
     event.userdata = {musicId = manager.MusicManager.MUSICID_LOBBY}
 	lib.EventUtils.dispatch(event)
 
-	if self.bottomBg then
-        local size = self.bottomBg:getContentSize()
-        GameUtils.comeOutEffectSlower(self.bottomBg,manager.ViewManager:getInstance():findLobbyComeOutEffectTime(),size,GameUtils.COMEOUT_BOTTON)
-    end
+	-- if self.bottomBg then
+ --        local size = self.bottomBg:getContentSize()
+ --        GameUtils.comeOutEffectSlower(self.bottomBg,manager.ViewManager:getInstance():findLobbyComeOutEffectTime(),size,GameUtils.COMEOUT_BOTTON)
+ --    end
     self:runAction(cc.Sequence:create(cc.DelayTime:create(0.001),cc.CallFunc:create(function ( ... )
     	print("登录大厅服务器...")
     	GameUtils.startLoadingForever("登录大厅服务器...")

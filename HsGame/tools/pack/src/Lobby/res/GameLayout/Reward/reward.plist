@@ -4,44 +4,83 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Reward_gift_bg.png</key>
+            <key>Reward_btn_ok.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{146,138}}</string>
+                <string>{{2,273},{214,82}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{146,138}}</string>
+                <string>{{0,0},{214,82}}</string>
                 <key>sourceSize</key>
-                <string>{146,138}</string>
+                <string>{214,82}</string>
+            </dict>
+            <key>Reward_btn_start.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,189},{214,82}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{214,82}}</string>
+                <key>sourceSize</key>
+                <string>{214,82}</string>
+            </dict>
+            <key>Reward_gift_bg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{185,230}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{185,230}}</string>
+                <key>sourceSize</key>
+                <string>{185,230}</string>
             </dict>
             <key>Reward_icon_diamond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{142,2},{100,76}}</string>
+                <string>{{86,273},{85,64}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{100,76}}</string>
+                <string>{{0,0},{85,64}}</string>
                 <key>sourceSize</key>
-                <string>{100,76}</string>
+                <string>{85,64}</string>
+            </dict>
+            <key>Reward_icon_gold.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{86,339},{59,50}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{13,7},{59,50}}</string>
+                <key>sourceSize</key>
+                <string>{85,64}</string>
             </dict>
             <key>Reward_icon_roomcard.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{142,80},{90,90}}</string>
+                <string>{{173,273},{83,64}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-1,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{90,90}}</string>
+                <string>{{0,0},{83,64}}</string>
                 <key>sourceSize</key>
-                <string>{90,90}</string>
+                <string>{85,64}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -51,9 +90,9 @@
             <key>realTextureFileName</key>
             <string>reward.png</string>
             <key>size</key>
-            <string>{244,172}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:feb1890119da4e174ce4017284a3dba5:2c53ef61f1ec8610039ed2696fd04c44:743fe12129f05c7c7e320e50b9be0c25$</string>
+            <string>$TexturePacker:SmartUpdate:e7515211a817918548bb4a133d7f1a9b:1/1$</string>
             <key>textureFileName</key>
             <string>reward.png</string>
         </dict>

@@ -17,7 +17,7 @@ end
 function LobbyRankManager:requestFriendRankList( __callback)
     self._requestFriendRankListCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_FRIEND_RANK .. UserData.token
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_FRIEND_RANK .."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onFriendRankListCallback))
 end
 
@@ -26,7 +26,7 @@ function LobbyRankManager:_onRickRankListCallback( __error,__response )
         print("Rick Rank net error")
     else
         if 200 == __response.status then
-            local data = __response.data.rank
+            local data = __response.data
             self._requestRickRankListCallBack(data)
         else
             GameUtils.showMsg("请求排行榜数据出错,code = "..__response.status)
@@ -39,7 +39,7 @@ function LobbyRankManager:_onFriendRankListCallback( __error,__response )
         print("Friend Rank net error")
     else
         if 200 == __response.status then
-            local data = __response.data.rank
+            local data = __response.data
             self._requestFriendRankListCallBack(data)
         else
             GameUtils.showMsg("请求排行榜数据出错,code = "..__response.status)

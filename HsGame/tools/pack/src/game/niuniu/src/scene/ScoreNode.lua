@@ -26,11 +26,12 @@ function ScoreNode:init(id,str)
 		strFile=GameResPath.."score_num_add.png"
 		scoreBg = cc.Sprite:create(GameResPath.."score_num_add_bg.png")
 	end
-	scoreNode = ccui.TextAtlas:create(str,strFile,24,33,"/")
+	scoreNode = ccui.TextAtlas:create(str,strFile,36,43,"/")
 	scoreNode:setPosition(scoreBg:getContentSize().width/2,scoreBg:getContentSize().height/2)
 	scoreBg:addChild(scoreNode)
 	scoreNode:setString("/"..str)
 	scoreBg:setPosition(0,0)
+	scoreBg:setScale(0.7)
 	local node = cc.Node:create()
 	node:setPosition(conf.popPosArray[id])
 	node:addChild(scoreBg)

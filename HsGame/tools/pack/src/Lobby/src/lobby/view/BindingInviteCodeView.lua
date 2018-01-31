@@ -37,19 +37,17 @@ function BindingInviteCodeView:initView()
     self._CodeEditBox:registerScriptEditBoxHandler(function(strEventName,pSender)self:inviteCodeEditBoxTextEventHandle(strEventName,pSender)end)
     self._bg:addChild(self._CodeEditBox)
 
-    local btnOk = cc.exports.lib.uidisplay.createLabelButton({
-            textureType = ccui.TextureResType.plistType,
-            normal = "common_big_blue_btn.png",
-            callback = callback = function() 
-                self:requestBindingInviteCode()
-            end,
-            isActionEnabled = true,
-            pos = cc.p(bgSize.width/2, 96),
-            text = "确定",
-            outlineColor = cc.c4b(112,45,2,255),
-            outlineSize = 2,
-            labPos = cc.p(0,2),
-    })
+    local okImg = "common_btn_sure.png"
+    local btnOk = lib.uidisplay.createUIButton({
+        normal = okImg,
+        textureType = ccui.TextureResType.plistType,
+        isActionEnabled = true,
+        callback = function() 
+            self:requestBindingInviteCode()
+        end
+        })
+
+    btnOk:setPosition(bgSize.width/2, 96)
     bg:addChild(btnOk,2)
 end
 

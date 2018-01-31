@@ -175,7 +175,15 @@ function HttpClient:_onReadyStateChanged( __xhr,__callback )
             local dispatcher = cc.Director:getInstance():getEventDispatcher()
             local event = cc.EventCustom:new(HttpClient.NET_REQUEST_TIME_OUT)
             event.requestUrl = _xhr.requestUrl
-            dispatcher:dispatchEvent(event)  
+            dispatcher:dispatchEvent(event)
+    elseif _xhr.status == 9000  then
+            local function callback(event)
+                if "ok" == event then
+                    LoginManager:enterLogin()
+                end
+            end
+            local parm = {type = ConstantsData.ShowMgsBoxType.NORMAL_TYPE, msg = "token异常，请重新登录", btn = {"ok"}, callback = callback}
+            GameUtils.showMsgBox(parm)
     else
         --print("_xhr.readyState is:", _xhr.readyState, "__xhr.status is: ",_xhr.status)
         if _cb then 
@@ -202,17 +210,28 @@ __urlParam 请求url
 __cbParam 回调函数
 __forceNoInteraction true 弹出网络交互动画 禁止玩家操作  不传或者false 不会播放动画
 ]]
-function HttpClient:get( __urlParam ,__cbParam,__forceNoInteraction)
+function HttpClient:get( __urlParam ,__cbParam,__jsonParam,__forceNoInteraction)
     print("HttpClient:get >>> " .. __urlParam,__cbParam)
-	local executeFunc = function (__url,__cb)
+	local executeFunc = function (__url,__json,__cb)
         local xhr = self:_createXmlRequest(cc.XMLHTTPREQUEST_RESPONSE_STRING)
         xhr.requestUrl = __urlParam
         xhr:open("GET", __url,true)
         xhr:registerScriptHandler(function (  )
             self:_onReadyStateChanged(xhr,__cb)
         end)
+
+        local _strParam = nil
+        if  __json then 
+            _strParam = cc.exports.lib.JsonUtil:encode(__json)
+            --print("_strParam " .. _strParam)
+        end
         self:initExtendHead(xhr)
-        xhr:send()
+        if _strParam then 
+            xhr:send(_strParam)
+        else
+            xhr:send()
+        end
+
     end
 
     if __forceNoInteraction  then
@@ -221,7 +240,7 @@ function HttpClient:get( __urlParam ,__cbParam,__forceNoInteraction)
         event.url = __urlParam
         dispatcher:dispatchEvent(event)  
     end
-    executeFunc( __urlParam,__cbParam)
+    executeFunc( __urlParam,__jsonParam,__cbParam)
 end
 
 --[[--
@@ -277,10 +296,13 @@ Client-VersionId:版本号标石
 ]]
 function HttpClient:initExtendHead(xhr)
     if self._deviceModel == nil then self._deviceModel = MultiPlatform:getInstance():getDeviceName() end
-    xhr:setRequestHeader("Client-Device",self._deviceModel)
-    xhr:setRequestHeader("Client-MachineCode",self.MachineCode)
-    xhr:setRequestHeader("Client-ChannelId",config.channle.CHANNLE_ID)
-    xhr:setRequestHeader("Client-VersionId",config.channle.VERSION)
+    xhr:setRequestHeader("clientDevice",self._deviceModel)
+    xhr:setRequestHeader("clientMachineCode",self.MachineCode)
+    -- xhr:setRequestHeader("Client-ChannelId",config.channle.CHANNLE_ID)
+    xhr:setRequestHeader("clientVersion",config.channle.VERSION)
+    xhr:setRequestHeader("clientOS",config.channle.clientOS)
+    xhr:setRequestHeader("content-type","application/x-www-form-urlencoded")
+    
 end
 
 function HttpClient:urlDecode( __urlString )

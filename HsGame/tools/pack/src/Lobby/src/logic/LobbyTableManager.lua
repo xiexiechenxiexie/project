@@ -1,4 +1,4 @@
--- 大厅桌子消息管理 PHP相关  进入房间接口对象
+-- 大厅桌子消息管理 PHP相关
 -- @date 2017.08.02
 -- @author tangwen
 
@@ -47,7 +47,7 @@ function LobbyTableManager:RequestGoldJoinTable(__GameID, __GameIp, __GamePort, 
 end
 
 --[[
-@brief 大厅请求快速开始 百人牛牛
+@brief 大厅请求快速开始
 @param __GameID            游戏ID
 @param __GameIp            游戏IP
 @param __GamePort          游戏端口号
@@ -55,15 +55,15 @@ end
 
 function LobbyTableManager:RequestQuickJoinTable()
     local quickData = GameListData.findQuickGameData()
-    GameData.GameID = quickData.GameId
-    GameData.GameIP = quickData.ServerIp
-    GameData.GamePort =quickData.ServerPort
+    GameData.GameID = quickData.gameId
+    GameData.GameIP = quickData.serverIp
+    GameData.GamePort =quickData.serverPort
     GameData.IntoGameType = ConstantsData.IntoGameType.LOBBY_QUICK_JOIN_TYPE
     logic.LobbyManager:getInstance():LoginGameServer()
 end
 
 --[[
-@brief 游戏列表请求快速开始  金币场
+@brief 游戏列表请求快速开始金币场
 @param __GameID            游戏ID
 @param __GameIp            游戏IP
 @param __GamePort          游戏端口号
@@ -72,9 +72,9 @@ end
 function LobbyTableManager:RequestGoldQuickJoinTable()
     local gameId = GameListData.findSelectGameId()
     local data = GameListData.getNormalGameData(gameId)
-    GameData.GameID = data.GameId
-    GameData.GameIP = data.ServerIp
-    GameData.GamePort =data.ServerPort
+    GameData.GameID = data.gameId
+    GameData.GameIP = data.serverIp
+    GameData.GamePort =data.serverPort
     GameData.IntoGameType = ConstantsData.IntoGameType.GOLD_QUICK_JOIN_TYPE
     logic.LobbyManager:getInstance():LoginGameServer()
 end

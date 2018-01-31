@@ -25,18 +25,9 @@ function MailView:initView()
     self._MailNodeList = {}
 
     local bgSize = self._bg:getContentSize()
-    -- local title = ccui.ImageView:create("Lobby_mail_title.png", ccui.TextureResType.plistType)
-    -- title:setPosition(bgSize.width/2, bgSize.height - 25)
-    -- self._bg:addChild(title)
-    local titleBg = ccui.ImageView:create("res/common/common_title_bg.png")
-    titleBg:setPosition(bgSize.width/2, bgSize.height - 25)
-    bg:addChild(titleBg)
-
-    local title = cc.Label:createWithTTF("邮件",GameUtils.getFontName(), 36)
-    title:setPosition(titleBg:getContentSize().width/2,titleBg:getContentSize().height/2+3)
-    title:setTextColor(cc.c3b(141,62,30))
-    title:enableOutline(cc.c3b(255, 250, 152),2)
-    titleBg:addChild(title)
+    local title = ccui.ImageView:create("Lobby_mail_title.png", ccui.TextureResType.plistType)
+    title:setPosition(bgSize.width/2, bgSize.height - 55)
+    self._bg:addChild(title)
 
 	self._mailScrollView = self:createScrollView(#self._MailListData)
 	self._mailScrollView:setPosition(25,20)
@@ -136,36 +127,30 @@ function MailView:createMailRecord(data)
 	_richText:setPosition(-size.width/2 + 20, 0)
 	record:addChild(_richText)
 
-    record._okBtn = cc.exports.lib.uidisplay.createLabelButton({
-            textureType = ccui.TextureResType.plistType,
-            normal = "common_small_green_btn.png",
-            callback = function() 
-                request.LobbyRequest:RequestAuthorizeAction(ConstantsData.ActionIndexType.ACTION_INDEX_AGREE,record.ApplyUserID,record.TableID)
-            end,
-            isActionEnabled = true,
-            pos = cc.p(size.width/2 - 60, 0),
-            text = "同意",
-            outlineColor = cc.c4b(24,73,30,255),
-            outlineSize = 2,
-            labPos = cc.p(0,2),
-    })
-    record:addChild(record._okBtn)
+	local okBtnImg = "common_btn_ok.png"
+	local refuseBtnImg = "common_btn_no.png"
+    record._okBtn = lib.uidisplay.createUIButton({
+        normal = okBtnImg,
+        textureType = ccui.TextureResType.plistType,
+        isActionEnabled = true,
+        callback = function() 
+            request.LobbyRequest:RequestAuthorizeAction(ConstantsData.ActionIndexType.ACTION_INDEX_AGREE,record.ApplyUserID,record.TableID)
+        end
+        })
+	record._okBtn:setPosition(size.width/2 - 60, 0)
+	record:addChild(record._okBtn)
 
+    record._refuseBtn = lib.uidisplay.createUIButton({
+        normal = refuseBtnImg,
+        textureType = ccui.TextureResType.plistType,
+        isActionEnabled = true,
+        callback = function() 
+            request.LobbyRequest:RequestAuthorizeAction(ConstantsData.ActionIndexType.ACTION_INDEX_REFUSE,record.ApplyUserID,record.TableID)
+        end
+        })
+	record._refuseBtn:setPosition(size.width/2 - 180, 0)
+	record:addChild(record._refuseBtn)
 
-    record._refuseBtn = cc.exports.lib.uidisplay.createLabelButton({
-            textureType = ccui.TextureResType.plistType,
-            normal = "common_small_yellow_btn.png",
-            callback = function() 
-                request.LobbyRequest:RequestAuthorizeAction(ConstantsData.ActionIndexType.ACTION_INDEX_REFUSE,record.ApplyUserID,record.TableID)
-            end,
-            isActionEnabled = true,
-            pos = cc.p(size.width/2 - 180, 0),
-            text = "拒绝",
-            outlineColor = cc.c4b(112,45,2,255),
-            outlineSize = 2,
-            labPos = cc.p(0,2),
-    })
-    record:addChild(record._refuseBtn)
     return record
 end
 

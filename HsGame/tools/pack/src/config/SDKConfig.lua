@@ -44,12 +44,15 @@ function SDKConfig.getGuestLoginURL()
 	local loginURL = ""
 	local targetPlatform = cc.Application:getInstance():getTargetPlatform()
 	if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) then
-		loginURL = SDKConfig.GuestLoginURL .. "ios/"
+		-- loginURL = SDKConfig.GuestLoginURL .. "ios/"
+		loginURL = SDKConfig.GuestLoginURL
 	elseif  (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-		loginURL = SDKConfig.GuestLoginURL .. "android/"
+		-- loginURL = SDKConfig.GuestLoginURL .. "android/"
+		loginURL = SDKConfig.GuestLoginURL
 	else
 		-- print("xiaxb--------------unknow targetPlatform")
-		loginURL = SDKConfig.GuestLoginURL .. "android"
+		-- loginURL = SDKConfig.GuestLoginURL .. "android"
+		loginURL = SDKConfig.GuestLoginURL
 	end
 	return loginURL
 end

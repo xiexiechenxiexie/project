@@ -6,10 +6,10 @@ local GamePathResConfig = class("GamePathResConfig")
 
 GamePathResConfig.GamePathRes = 
 {
-	{gameID = 1001, name = "niuniu", PrivateSceneRes = "game/niuniu/src/scene/GameScene", 
+	{gameID = 1, name = "niuniu", PrivateSceneRes = "game/niuniu/src/scene/GameScene", 
 	ManagerRes = "game/niuniu/src/logic/GameManager",GoldSceneRes = "game/niuniu/src/scene/goldNiuScene",
 	resPath = "src/game/niuniu/res"},
- 	{gameID = 1002, name = "brnn", GoldSceneRes = "game/brnn/src/scene/GameScene", ManagerRes = "game/brnn/src/logic/GameManager",resPath = "src/game/brnn/res"}
+ 	{gameID = 2, name = "brnn", GoldSceneRes = "game/brnn/src/scene/GameScene", ManagerRes = "game/brnn/src/logic/GameManager",resPath = "src/game/brnn/res"}
 } 
 
 GamePathResConfig.GameCommonResPath = "src/gamecommon"

@@ -38,7 +38,7 @@ end
 function tableAction:timeStart(index,time)
 	self:stopAllUpdate()
 	if index == tag+1 then
-		local toBegin = cc.Label:createWithTTF("游戏即将开始:"..tostring(time),GameUtils.getFontName(),26)
+		local toBegin = cc.Label:createWithSystemFont("游戏即将开始:"..tostring(time),SYSFONT,26)
 		toBegin:setColor(LABEL_COLOL)
 		toBegin:setPosition(667,375)
 		self:addChild(toBegin)
@@ -46,7 +46,7 @@ function tableAction:timeStart(index,time)
 		self.witetime = time
 	    self.timeupdate=scheduler:scheduleScriptFunc(handler(self, self.updatetime), 1, false)
 	elseif index == tag+2 then
-		local gradBanker = cc.Label:createWithTTF("请抢庄:"..tostring(time),GameUtils.getFontName(),26)
+		local gradBanker = cc.Label:createWithSystemFont("请抢庄:"..tostring(time),SYSFONT,26)
 		gradBanker:setColor(LABEL_COLOL)
 		gradBanker:setPosition(667,375)
 		self:addChild(gradBanker)
@@ -54,7 +54,7 @@ function tableAction:timeStart(index,time)
 		self.banktime = time
 		self.banktimeUp=scheduler:scheduleScriptFunc(handler(self, self.updatebank), 1, false)
 	elseif index == tag+3 then
-		local brtting = cc.Label:createWithTTF("请选择下注倍数:"..tostring(time),GameUtils.getFontName(),26)
+		local brtting = cc.Label:createWithSystemFont("请选择下注倍数:"..tostring(time),SYSFONT,26)
 		brtting:setColor(LABEL_COLOL)
 		brtting:setPosition(667,375)
 		self:addChild(brtting)
@@ -331,7 +331,7 @@ function tableAction:chooseGrad(seatid)
 	table.insert(self.zhuangArr,zhuang)
 	self.zhuang = zhuang
 end
-
+--游戏结束的数据清空
 function tableAction:gamgEnd()
 	for i,v in ipairs(self.zhuangGArr) do
 		self.zhuangGArr[i]:removeFromParent()
@@ -356,7 +356,7 @@ function tableAction:iconGold()
 		node:addChild(sp)
 	end
 end
-
+--失败的秋风落叶特效
 function tableAction:LoseAutumnleaves()
 	local spriteFrame  = cc.SpriteFrameCache:getInstance()  
    	spriteFrame:addSpriteFrames("game/niuniu/res/GameLayout/NiuNiu/lose/goldNiu_liewen.plist")
@@ -392,7 +392,7 @@ function tableAction:LoseAutumnleaves()
 	local action1 =(cc.Repeat:create(cc.Animate:create(animation1),1))
 	loseluoye:runAction(action1)
 end
-
+--数据重新设置
 function tableAction:reSetData()
 	self:stopAllUpdate()
 	self.witetime = nil

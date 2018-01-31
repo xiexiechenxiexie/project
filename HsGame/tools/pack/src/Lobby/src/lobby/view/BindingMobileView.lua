@@ -52,20 +52,19 @@ function BindingMobileView:initView()
     self._btnSend:addChild(self._TimeText)
     self._TimeText:hide()
 
-    local btnOk = cc.exports.lib.uidisplay.createLabelButton({
-            textureType = ccui.TextureResType.plistType,
-            normal = "common_big_blue_btn.png",
-            callback = function() 
-                self:requestBindingMobile()
-            end,
-            isActionEnabled = true,
-            pos = cc.p(bgSize.width/2, 96),
-            text = "确定",
-            outlineColor = cc.c4b(24,31,92,255),
-            outlineSize = 2,
-            labPos = cc.p(0,2),
-    })
-    bg:addChild(btnOk,2)
+
+    local okImg = "common_btn_sure.png"
+    local btnOk = lib.uidisplay.createUIButton({
+        normal = okImg,
+        textureType = ccui.TextureResType.plistType,
+        isActionEnabled = true,
+        callback = function() 
+            self:requestBindingMobile()
+        end
+        })
+
+	btnOk:setPosition(bgSize.width/2, 96)
+	bg:addChild(btnOk,2)
 
     self._MobileEditBox = cc.EditBox:create(cc.size(435,71),"Lobby_Promote_view_editBox_bg.png", ccui.TextureResType.plistType)
     self._MobileEditBox:setPosition(bgSize.width/2 + 35, bgSize.height - 161)

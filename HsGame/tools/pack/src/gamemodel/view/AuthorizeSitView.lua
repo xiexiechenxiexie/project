@@ -57,7 +57,7 @@ function AuthorizeSitView:createInformNode(__data)
 
 
 	local string = string.getMaxLen(__data.nickName).."申请加入您创建的斗牛"..__data.tableID.."号桌游戏,是否同意入桌?"
-	local label = cc.Label:createWithTTF(string,GameUtils.getFontName(),28)
+	local label = cc.Label:createWithSystemFont(string,SYSFONT,28)
 	label:setAnchorPoint(0,0.5)
 	label:setPosition(20,y/2)
 	bg:addChild(label)

@@ -20,7 +20,7 @@ function Subsidy:initLayer(goldNum)
 	local bg = container:getChildByName("subsidybg")
 	self.bg = bg
 	self:_onRootPanelInit(bg)
-	local gold = cc.Label:createWithTTF(self:switchNum(goldNum).."金币",GameUtils.getFontName(),33)
+	local gold = cc.Label:createWithSystemFont(self:switchNum(goldNum).."金币",SYSFONT,33)
     gold:setPosition(220,150)
     gold:setColor(cc.c3b(255,210,0))
     bg:addChild(gold)
@@ -32,15 +32,6 @@ function Subsidy:initLayer(goldNum)
 	local shop = bg:getChildByName("subShop")
 	shop:setTag(Subsidy.shop)
 	shop:addClickEventListener(function(sender)  self:onButtonClickedEvent(sender) end)
-
-    local text = bg:getChildByName("Text_2")
-    text:setFontName(GameUtils.getFontName())
-
-    --金币牛牛场次信息
-    local label = cc.Label:createWithTTF("很遗憾您已经破产了！",GameUtils.getFontName(), 33)
-    label:setPosition(349,328)
-    label:setColor(cc.c3b(224,220,242))
-    bg:addChild(label)
 end
 
 function Subsidy:onButtonClickedEvent(sender)

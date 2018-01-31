@@ -128,40 +128,40 @@ end
 ]]
 function LogoScene:checkHotUpdate( ... )
 	local gameId = -1
-	local updateFunc = function ( ... )
-		if lib.download.HotUpdateManager:isGameModelNeedToUpadte(gameId) then 
-			local hot = lib.download.HotUpdateManager.new(-1,nil) 
-			self._hotUpdateNode = hot
-			self:addChild(hot)
-			hot:checkUpdate()
-		else
+	-- local updateFunc = function ( ... )
+	-- 	if lib.download.HotUpdateManager:isGameModelNeedToUpadte(gameId) then 
+	-- 		local hot = lib.download.HotUpdateManager.new(-1,nil) 
+	-- 		self._hotUpdateNode = hot
+	-- 		self:addChild(hot)
+	-- 		hot:checkUpdate()
+	-- 	else
 			print("跳过热更新")
 			self:onUpdateFinish()
-		end
-	end	
+	-- 	end
+	-- end	
 
-	lib.download.HotUpdateManager:queryManifests(function ( ... )
-		--检测大包
-		local downloadInfo = lib.download.HotUpdateManager:findDownloadInfo()
-		if downloadInfo then
-			local version = downloadInfo.version;
-			if version  then
-				print("fly","config.channle.VERSION",config.channle.VERSION)
-				local code = lib.download.HotUpdateManager:findVersionChangedCode(config.channle.VERSION,version)
-				if code then
-					print("强制更新...")
-					local updateBigPackage = require "src/preload/src/UpdateBigPackageView"
-					self:addChild(updateBigPackage.new(downloadInfo))
-				else
-					updateFunc()
-				end
-			else
-				updateFunc()
-			end
-		else
-			updateFunc()
-		end
-	end)
+	-- lib.download.HotUpdateManager:queryManifests(function ( ... )
+	-- 	--检测大包
+	-- 	local downloadInfo = lib.download.HotUpdateManager:findDownloadInfo()
+	-- 	if downloadInfo then
+	-- 		local version = downloadInfo.version;
+	-- 		if version  then
+	-- 			print("fly","config.channle.VERSION",config.channle.VERSION)
+	-- 			local code = lib.download.HotUpdateManager:findVersionChangedCode(config.channle.VERSION,version)
+	-- 			if code then
+	-- 				print("强制更新...")
+	-- 				local updateBigPackage = require "src/preload/src/UpdateBigPackageView"
+	-- 				self:addChild(updateBigPackage.new(downloadInfo))
+	-- 			else
+	-- 				updateFunc()
+	-- 			end
+	-- 		else
+	-- 			updateFunc()
+	-- 		end
+	-- 	else
+			-- updateFunc()
+	-- 	end
+	-- end)
 
 end
 
@@ -173,10 +173,10 @@ function LogoScene:initView(logoScene)
 	self:addChild(bg)
 	bg:setPosition(display.width * 0.5,display.height * 0.5)
 
-	local imgGirl = ccui.ImageView:create("src/preload/res/imgGirl.png")
-	bg:addChild(imgGirl)
+	-- local imgGirl = ccui.ImageView:create("src/preload/res/imgGirl.png")
+	-- bg:addChild(imgGirl)
 
-	imgGirl:setPosition(cc.p(667,345))
+	-- imgGirl:setPosition(cc.p(667,345))
 
 		
  	local loadBarBg = ccui.ImageView:create("src/preload/res/loading_bg.png")
@@ -213,7 +213,7 @@ function LogoScene:initView(logoScene)
 	self.textProgressValue = cc.exports.lib.uidisplay.createLabel(labelConfig)
 	bg:addChild(self.textProgressValue)
 
-    self:playWaitingAnimation()
+    -- self:playWaitingAnimation()
 end
 
 --播放加载时等待动画
