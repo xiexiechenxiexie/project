@@ -4,36 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Lobby_service_bg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,2},{1004,536}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{1004,536}}</string>
-                <key>sourceSize</key>
-                <string>{1004,536}</string>
-            </dict>
-            <key>Lobby_service_btn_down.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{192,671},{40,40}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{40,40}}</string>
-                <key>sourceSize</key>
-                <string>{40,40}</string>
-            </dict>
             <key>Lobby_service_code.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,540},{188,188}}</string>
+                <string>{{2,2},{188,188}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -43,70 +17,44 @@
                 <key>sourceSize</key>
                 <string>{188,188}</string>
             </dict>
-            <key>Lobby_service_tex_1.png</key>
+            <key>Lobby_service_fuzhi.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{384,607},{62,62}}</string>
+                <string>{{2,192},{129,66}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{62,62}}</string>
+                <string>{{0,0},{129,66}}</string>
                 <key>sourceSize</key>
-                <string>{62,62}</string>
+                <string>{129,66}</string>
             </dict>
-            <key>Lobby_service_tex_2.png</key>
+            <key>Lobby_service_lianxi.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{320,607},{62,62}}</string>
+                <string>{{192,147},{141,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{62,62}}</string>
+                <string>{{0,0},{141,34}}</string>
                 <key>sourceSize</key>
-                <string>{62,62}</string>
-            </dict>
-            <key>Lobby_service_tex_3.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{256,607},{62,62}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{62,62}}</string>
-                <key>sourceSize</key>
-                <string>{62,62}</string>
-            </dict>
-            <key>Lobby_service_tex_4.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{192,607},{62,62}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{62,62}}</string>
-                <key>sourceSize</key>
-                <string>{62,62}</string>
+                <string>{141,34}</string>
             </dict>
             <key>Lobby_service_title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{192,540},{354,65}}</string>
+                <string>{{192,2},{143,35}}</string>
                 <key>offset</key>
-                <string>{0,1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{354,65}}</string>
+                <string>{{0,0},{143,35}}</string>
                 <key>sourceSize</key>
-                <string>{354,67}</string>
+                <string>{143,35}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -116,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>service.png</string>
             <key>size</key>
-            <string>{1008,730}</string>
+            <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ca9ec2d1b39c49b5cc4b7190c5cbb9a2$</string>
+            <string>$TexturePacker:SmartUpdate:8bff692aca0c8ca3f1d2b3308ec50fec:1/1$</string>
             <key>textureFileName</key>
             <string>service.png</string>
         </dict>

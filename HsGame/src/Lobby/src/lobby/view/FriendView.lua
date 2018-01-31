@@ -12,10 +12,10 @@ local FriendViewType = {
 	APPLY_FRIEND_VIEW = 3,
 } 
 
-local FRIEND_SCROLLVIEW_SIZE = cc.size(999, 450)  -- 滑动界面大小
-local FRIEND_VIEW_POSITION = cc.p(30, 60)		-- 滑动界面初始化位置
-local RECORD_SIZE = cc.size(999,93)   			--滑动界面节点大小 记录节点大小 
-local FRIEND_INTERVAL_V = 110   --每条记录之间的间距 竖 
+local FRIEND_SCROLLVIEW_SIZE = cc.size(780, 563)  -- 滑动界面大小
+local FRIEND_VIEW_POSITION = cc.p(287.5, 20)		-- 滑动界面初始化位置
+local RECORD_SIZE = cc.size(780,117)   			--滑动界面节点大小 记录节点大小 
+local FRIEND_INTERVAL_V = 117   --每条记录之间的间距 竖 
 local FRIEND_MAX_COL = 1		 -- 列数
 
 function FriendView:ctor()
@@ -51,53 +51,63 @@ function FriendView:initView()
     table.insert(self._FriendBgList,self._AddFriendBg)
     table.insert(self._FriendBgList,self._ApplyFriendBg)
 
-	local btnBgImg = ccui.ImageView:create("Lobby_Friend_btnBg.png", ccui.TextureResType.plistType)
-	btnBgImg:setPosition(bgSize.width/2, bgSize.height - 70)
-	bg:addChild(btnBgImg,3)
-	local btnBgSize = btnBgImg:getContentSize()
+    local title = ccui.ImageView:create("Lobby_Friend_title.png", ccui.TextureResType.plistType)
+	title:setPosition(bgSize.width/2, bgSize.height - 60)
+	bg:addChild(title)
 
-	local selectBtnImg = "common_btn_select.png"
+	-- local btnBgImg = ccui.ImageView:create("Lobby_Friend_btnBg.png", ccui.TextureResType.plistType)
+	-- btnBgImg:setPosition(bgSize.width/2, bgSize.height - 70)
+	-- bg:addChild(btnBgImg,3)
+	local btnBgSize = bg:getContentSize()
+
+	for i=1,3 do
+		local friendbg = ccui.ImageView:create("Lobby_notice_title.png", ccui.TextureResType.plistType)
+		friendbg:setPosition(cc.p(154,523-(i-1)*121))
+		bg:addChild(friendbg)
+	end
+
+	local selectBtnImg = "Lobby_notice_title_bg.png"
     self._btnMyFriend = ccui.Button:create(selectBtnImg, selectBtnImg, selectBtnImg, ccui.TextureResType.plistType)
 	self._btnMyFriend:addClickEventListener(function()
 		self:requestMyFriendView()
 	end)
-	self._btnMyFriend:setPosition(130,btnBgSize.height/2)
-	btnBgImg:addChild(self._btnMyFriend)
+	self._btnMyFriend:setPosition(154,523)
+	bg:addChild(self._btnMyFriend)
 
 	self._btnAddFriend = ccui.Button:create(selectBtnImg, selectBtnImg, selectBtnImg, ccui.TextureResType.plistType)
 	self._btnAddFriend:addClickEventListener(function()
 		self:requestAddFriendView()
 	end)
-	self._btnAddFriend:setPosition(btnBgSize.width/2,btnBgSize.height/2)
-	btnBgImg:addChild(self._btnAddFriend)
+	self._btnAddFriend:setPosition(154,523-121)
+	bg:addChild(self._btnAddFriend)
 
 	self._btnApplyFriend = ccui.Button:create(selectBtnImg, selectBtnImg, selectBtnImg, ccui.TextureResType.plistType)
 	self._btnApplyFriend:addClickEventListener(function()
 		self:requestApplyFriendView()
 	end)
-	self._btnApplyFriend:setPosition(btnBgSize.width - 130,btnBgSize.height/2)
-	btnBgImg:addChild(self._btnApplyFriend)
+	self._btnApplyFriend:setPosition(154,523-121*2)
+	bg:addChild(self._btnApplyFriend)
 
 	table.insert(self._FriendBtnList,self._btnMyFriend)
 	table.insert(self._FriendBtnList,self._btnAddFriend)
 	table.insert(self._FriendBtnList,self._btnApplyFriend)
 
-	self._MyFriendTitle = cc.Label:createWithTTF("我的好友",GameUtils.getFontName(),30)
+	self._MyFriendTitle = cc.Label:createWithTTF("游戏好友",GameUtils.getFontName(),30)
     self._MyFriendTitle:setColor(cc.c3b(255,255,255))
-    self._MyFriendTitle:setPosition(130,btnBgSize.height/2)
-    btnBgImg:addChild(self._MyFriendTitle)
+    self._MyFriendTitle:setPosition(154,523)
+    bg:addChild(self._MyFriendTitle)
     self._MyFriendTitle:show()
 
     self._AddFriendTitle = cc.Label:createWithTTF("添加好友",GameUtils.getFontName(),30)
     self._AddFriendTitle:setColor(cc.c3b(255,255,255))
-    self._AddFriendTitle:setPosition(btnBgSize.width/2,btnBgSize.height/2)
-    btnBgImg:addChild(self._AddFriendTitle)
+    self._AddFriendTitle:setPosition(154,523-121)
+    bg:addChild(self._AddFriendTitle)
     self._AddFriendTitle:show()
 
     self._ApplyFriendTitle = cc.Label:createWithTTF("好友邀请",GameUtils.getFontName(),30)
     self._ApplyFriendTitle:setColor(cc.c3b(255,255,255))
-    self._ApplyFriendTitle:setPosition(btnBgSize.width - 130,btnBgSize.height/2)
-    btnBgImg:addChild(self._ApplyFriendTitle)
+    self._ApplyFriendTitle:setPosition(154,523-121*2)
+    bg:addChild(self._ApplyFriendTitle)
     self._ApplyFriendTitle:show()
 
     table.insert(self._FriendTitleList,self._MyFriendTitle)
@@ -106,13 +116,13 @@ function FriendView:initView()
 
 	local addFriendLabel = cc.Label:createWithTTF("添加好友:",GameUtils.getFontName(),26)
     addFriendLabel:setColor(cc.c3b(255,255,255))
-    addFriendLabel:setPosition(200,bgSize.height/2 + 150)
-    self._AddFriendBg:addChild(addFriendLabel)
+    addFriendLabel:setPosition(375,bgSize.height/2 + 150+45)
+    self._AddFriendBg:addChild(addFriendLabel,10)
 
 	--输入框
-	local editBoxSize = cc.size(536,58)
-	self._EditBox = cc.EditBox:create(editBoxSize,"Lobby_Promote_view_editBox_bg.png", ccui.TextureResType.plistType)
-	self._EditBox:setPosition(bgSize.width/2 + 5,bgSize.height/2 + 150)
+	local editBoxSize = cc.size(427,58)
+	self._EditBox = cc.EditBox:create(editBoxSize,"Lobby_Friend_check_bg.png", ccui.TextureResType.plistType)
+	self._EditBox:setPosition(bgSize.width/2 + 5+100,bgSize.height/2 + 150+45)
 	self._EditBox:setFontName(GameUtils.getFontName())
 	self._EditBox:setFontSize(28)
     self._EditBox:setFontColor(cc.c3b(255,255,255))
@@ -138,7 +148,7 @@ function FriendView:initView()
 		end
 		})
 
-	btnCheckFriend:setPosition(bgSize.width - 205,bgSize.height/2 + 147)
+	btnCheckFriend:setPosition(bgSize.width - 205+90,bgSize.height/2 + 147+45)
 	self._AddFriendBg:addChild(btnCheckFriend)
 
 end
@@ -237,7 +247,7 @@ function FriendView:showFriendViewByIndex(__index)
 			self._FriendBgList[k]:hide()
 			self._FriendBtnList[k]:setOpacity(0)
 			self._FriendBtnList[k]:setEnabled(true)
-			self._FriendTitleList[k]:setColor(cc.c3b(104,96,169))
+			self._FriendTitleList[k]:setColor(cc.c3b(191, 169, 125))
 		end
 	end
 end
@@ -267,21 +277,21 @@ function FriendView:showMyFriendView(__data)
         local record= self:createMyFriendRecord(v)
         local row = k
         local x = offset.x +RECORD_SIZE.width/2 
-        local y =50 + offset.y - row * FRIEND_INTERVAL_V
+        local y =60 + offset.y - row * FRIEND_INTERVAL_V
         record:setPosition(x,y)
         self._MyFriendScrollView:addChild(record)
     end
 
-    local __RichTextList = {{Color3B = cc.c3b(224,221,245), opacity = 255, richText = "好友数量:", fontSize = 24},
-                    		{Color3B = cc.c3b(44,224,0), opacity = 255, richText = row.. "/", fontSize = 24},
-                    		{Color3B = cc.c3b(224,221,245), opacity = 255, richText = "50", fontSize = 24}}
-    if self._richText then
-    	GameUtils.removeNode(self._richText)
-    	self._richText = nil
-    end               		
-	self._richText = GameUtils.createRichText(__RichTextList)
-	self._richText:setPosition(125,30)
-	self._MyFriendBg:addChild(self._richText)
+ --    local __RichTextList = {{Color3B = cc.c3b(224,221,245), opacity = 255, richText = "好友数量:", fontSize = 24},
+ --                    		{Color3B = cc.c3b(44,224,0), opacity = 255, richText = row.. "/", fontSize = 24},
+ --                    		{Color3B = cc.c3b(224,221,245), opacity = 255, richText = "50", fontSize = 24}}
+ --    if self._richText then
+ --    	GameUtils.removeNode(self._richText)
+ --    	self._richText = nil
+ --    end               		
+	-- self._richText = GameUtils.createRichText(__RichTextList)
+	-- self._richText:setPosition(125,30)
+	-- self._MyFriendBg:addChild(self._richText)
 
 end
 
@@ -293,7 +303,7 @@ function FriendView:showAddFriendView(__data)
 
     local bgSize = self._bg:getContentSize()
     self._AddFriendRecord = self:createAddFriendRecord(__data)
-    self._AddFriendRecord:setPosition(bgSize.width/2,bgSize.height/2 + 50)
+    self._AddFriendRecord:setPosition(bgSize.width/2+132,bgSize.height/2 + 50)
     self._AddFriendBg:addChild(self._AddFriendRecord,1)
 
 
@@ -354,7 +364,7 @@ function FriendView:createMyFriendRecord(data)
 		return
 	end
 
-	local size = cc.size(999, 93)
+	local size = cc.size(780, 117)
 	local record = ccui.Layout:create()
 
    	local bg =  ccui.ImageView:create("Lobby_Friend_list_bg.png", ccui.TextureResType.plistType)
@@ -421,7 +431,7 @@ function FriendView:createMyFriendRecord(data)
 	 defalutFile = GenderStr,
 	 frameFile = nil,
 		})
-	awatar:setPosition(-size.width/2 + 10, -size.height/2 + 10)
+	awatar:setPosition(-size.width/2 + 10, -size.height/2 + 20)
 	awatar:setScale(0.8)
 	record:addChild(awatar)
 
@@ -445,27 +455,27 @@ function FriendView:createMyFriendRecord(data)
 	moneyText:setPosition(15, 0)
 	record:addChild(moneyText)
 
-	local chatBtnImg = "Lobby_Friend_btn_chat.png"
-    local chatBtn = lib.uidisplay.createUIButton({
-        normal = chatBtnImg,
-        textureType = ccui.TextureResType.plistType,
-        isActionEnabled = true,
-        callback = function() 
-            print("chat")
-            require "src/manager/ChatManager.lua"
-			local chatManager = manager.ChatManager:getInstance()
-			if UserData.FriendList and UserData.FriendList[1] then 
-				chatManager:sendChat({
-					msg = "中文测试",msgType = CHAT_MESSAGE_SCENE_TYPE.FRIEND_MESSAGE,userId = UserData.userId,
-					toUserId = UserData.FriendList[1].UserId,tableId = 0,contentType = CHAT_MESSAGE_CONTENT_TYPE.TEXT
-					})
-			end
-        end
-        })
+	-- local chatBtnImg = "Lobby_Friend_btn_chat.png"
+ --    local chatBtn = lib.uidisplay.createUIButton({
+ --        normal = chatBtnImg,
+ --        textureType = ccui.TextureResType.plistType,
+ --        isActionEnabled = true,
+ --        callback = function() 
+ --            print("chat")
+ --            require "src/manager/ChatManager.lua"
+	-- 		local chatManager = manager.ChatManager:getInstance()
+	-- 		if UserData.FriendList and UserData.FriendList[1] then 
+	-- 			chatManager:sendChat({
+	-- 				msg = "中文测试",msgType = CHAT_MESSAGE_SCENE_TYPE.FRIEND_MESSAGE,userId = UserData.userId,
+	-- 				toUserId = UserData.FriendList[1].UserId,tableId = 0,contentType = CHAT_MESSAGE_CONTENT_TYPE.TEXT
+	-- 				})
+	-- 		end
+ --        end
+ --        })
 
-	chatBtn:setPosition(size.width/2 - 68, 0)
-	record:addChild(chatBtn)
-	chatBtn:hide()
+	-- chatBtn:setPosition(size.width/2 - 68, 0)
+	-- record:addChild(chatBtn)
+	-- chatBtn:hide()
 	
     return record
 end
@@ -474,7 +484,7 @@ function FriendView:createAddFriendRecord(data)
 	if data == nil then
 		return
 	end
-	local size = cc.size(999, 93)
+	local size = cc.size(780, 117)
 	local record = ccui.Layout:create()
 
    	local bg =  ccui.ImageView:create("Lobby_Friend_list_bg.png", ccui.TextureResType.plistType)
@@ -510,7 +520,7 @@ function FriendView:createAddFriendRecord(data)
 	 defalutFile = GenderStr,
 	 frameFile = nil,
 		})
-	awatar:setPosition(-size.width/2 + 10, -size.height/2 + 10)
+	awatar:setPosition(-size.width/2 + 10, -size.height/2 + 20)
 	awatar:setScale(0.8)
 	record:addChild(awatar)
 
@@ -532,7 +542,7 @@ function FriendView:createAddFriendRecord(data)
             self:requestAddFriend(record,data.userId)
         end
         })
-	record.addBtn:setPosition(size.width/2 - 68, 0)
+	record.addBtn:setPosition(size.width/2 - 110, 0)
 	record:addChild(record.addBtn)
 
     return record
@@ -543,7 +553,7 @@ function FriendView:createApplyFriendRecord(data)
 		return
 	end
 
-	local size = cc.size(999, 93)
+	local size = cc.size(780, 117)
 	local record = ccui.Layout:create()
 
    	local bg =  ccui.ImageView:create("Lobby_Friend_list_bg.png", ccui.TextureResType.plistType)

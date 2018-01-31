@@ -5,15 +5,15 @@
 local TaskView = class("TaskView", lib.layer.Window)
 
 -- 这里初始化所有滑动界面信息，如有特殊的单独处理
-local TASK_SCROLLVIEW_SIZE = cc.size(1060, 520)  -- 滑动界面大小
+local TASK_SCROLLVIEW_SIZE = cc.size(1060, 560)  -- 滑动界面大小
 local TASK_VIEW_POSITION = cc.p(-463, -270)		-- 滑动界面初始化位置
 local RECORD_SIZE = cc.size(925,93)   			--滑动界面节点大小 记录节点大小 
-local TASK_INTERVAL_V = 117   --每条记录之间的间距 竖 
+local TASK_INTERVAL_V = 119   --每条记录之间的间距 竖 
 local TASK_MAX_COL = 1		 -- 列数
 
 function TaskView:ctor(data)
 	self._taskData = data
-    TaskView.super.ctor(self,ConstantsData.WindowType.WINDOW_BIG)
+    TaskView.super.ctor(self,ConstantsData.WindowType.WINDOW_TASK)
 	self:initView()
 end
 
@@ -23,7 +23,7 @@ function TaskView:initView()
 
     local bgSize = bg:getContentSize()
     local title = ccui.ImageView:create("Lobby_task_title.png", ccui.TextureResType.plistType)
-    title:setPosition(bgSize.width/2, bgSize.height - 25)
+    title:setPosition(bgSize.width/2, bgSize.height - 60)
     bg:addChild(title)
 
 	self._taskScrollView = self:createScrollView(#self._taskData)
@@ -89,21 +89,21 @@ function TaskView:createTaskRecord(data)
     print("任务记录任务记录任务记录")
     dump(data)
 
-	local size = cc.size(1000, 93)
+	local size = cc.size(1043, 117)
 	local record = ccui.Layout:create()
 
-   	local bg =  ccui.Scale9Sprite:createWithSpriteFrameName("Lobby_task_record.png",cc.rect(20,20,8,8))
-    bg:setContentSize(size)
-    bg:setPosition(cc.p(0,0))
+   	local bg =  ccui.ImageView:create("Lobby_task_record.png",ccui.TextureResType.plistType)
+    -- bg:setContentSize(size)
+    bg:setPosition(cc.p(20,0))
     record:addChild(bg)
 
     record.GameID = data.gameId
     record.GameType = data.gameType
     record.TaskID = data.id
 
-    local iconBg = ccui.ImageView:create("Lobby_task_record_icon_bg.png", ccui.TextureResType.plistType)
-    iconBg:setPosition(cc.p(-size.width/2 + 50,-1))
-    record:addChild(iconBg)
+    -- local iconBg = ccui.ImageView:create("Lobby_task_record_icon_bg.png", ccui.TextureResType.plistType)
+    -- iconBg:setPosition(cc.p(-size.width/2 + 50,-1))
+    -- record:addChild(iconBg)
 
     local PropsId = 0
     local taskNum = 0
@@ -126,7 +126,7 @@ function TaskView:createTaskRecord(data)
 
     local iconImg = ""
     if PropsId == ConstantsData.PointType.POINT_COINS then  -- 金币 
-    	iconImg = "Lobby_sign_recond_icon_2.png"
+    	iconImg = "Lobby_task_record_icon.png"
     elseif PropsId == ConstantsData.PointType.POINT_DIAMOND then --钻石
     	iconImg = "Reward_icon_diamond.png"
     elseif PropsId == ConstantsData.PointType.POINT_ROOMCARD then --房卡
@@ -158,10 +158,10 @@ function TaskView:createTaskRecord(data)
     local giftIcon = ccui.ImageView:create(iconImg, ccui.TextureResType.plistType)
     giftIcon:setContentSize(86,82)
     giftIcon:setScale(0.7)
-    giftIcon:setPosition(43,41)
-    iconBg:addChild(giftIcon)
+    giftIcon:setPosition(cc.p(-size.width/2 + 65,0))
+    record:addChild(giftIcon)
 
-    local getBtnImg = "Lobby_task_btn_get.png"
+    local getBtnImg = "Lobby_task_btn.png"
     record._getBtn = lib.uidisplay.createUIButton({
         normal = getBtnImg,
         textureType = ccui.TextureResType.plistType,
@@ -195,8 +195,11 @@ function TaskView:createTaskRecord(data)
 	record._getBtn:setPosition(size.width/2 - 60, 0)
 	record:addChild(record._getBtn)
 	record._getBtn:hide()
+    local titleGet = ccui.ImageView:create("Lobby_task_title_get.png", ccui.TextureResType.plistType)
+    titleGet:setPosition(cc.p(record._getBtn:getContentSize().width/2, record._getBtn:getContentSize().height/2))
+    record._getBtn:addChild(titleGet)
 
-    local goBtnImg = "Lobby_task_btn_go.png"
+    local goBtnImg = "Lobby_task_btn.png"
     record._goBtn = lib.uidisplay.createUIButton({
         normal = goBtnImg,
         textureType = ccui.TextureResType.plistType,
@@ -214,6 +217,9 @@ function TaskView:createTaskRecord(data)
 	record._goBtn:setPosition(size.width/2 - 60, 0)
     record:addChild(record._goBtn)
 	record._goBtn:hide()
+    local titleGo = ccui.ImageView:create("Lobby_task_title_go.png", ccui.TextureResType.plistType)
+    titleGo:setPosition(cc.p(record._goBtn:getContentSize().width/2, record._goBtn:getContentSize().height/2))
+    record._goBtn:addChild(titleGo)
 
 	local taskNameText = cc.Label:createWithTTF(data.title,GameUtils.getFontName(),24)
     taskNameText:setAnchorPoint(cc.p(0, 0.5))
@@ -223,8 +229,12 @@ function TaskView:createTaskRecord(data)
 
     print("taskProcessStrtaskProcessStr",taskProcessStr,IsFinish)
     record._processText = cc.Label:createWithTTF(taskProcessStr,GameUtils.getFontName(),24)
-    record._processText:setPosition(0, 0)
+    record._processText:setPosition(0-50, 0)
     record:addChild(record._processText)
+
+    local TextBg = ccui.ImageView:create("renwu_xinxikuang.png", ccui.TextureResType.plistType)
+    TextBg:setPosition(cc.p(220, 0))
+    record:addChild(TextBg)
 
     local __RichTextList = {{Color3B = cc.c3b(255,255,255), opacity = 255, richText = "奖励:", fontSize = 24},
                         {Color3B = cc.c3b(255,255,0), opacity = 255, richText = taskNum, fontSize = 24},
@@ -232,8 +242,9 @@ function TaskView:createTaskRecord(data)
 
 	local _richText = GameUtils.createRichText(__RichTextList)
 	_richText:setAnchorPoint(cc.p(0, 0.5))
-	_richText:setPosition(140, 0)
-	record:addChild(_richText)
+	_richText:setPosition(24,TextBg:getContentSize().height/2)
+	TextBg:addChild(_richText)
+
 
     -- if data.process  >=  data.Count then -- 完成任务
     --     record._getBtn:show()

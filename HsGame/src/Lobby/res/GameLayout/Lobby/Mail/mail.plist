@@ -4,23 +4,10 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>Lobby_mail_btn_name.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{929,86},{1,1}}</string>
-                <key>offset</key>
-                <string>{-83.5,15.5}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{1,1}}</string>
-                <key>sourceSize</key>
-                <string>{168,32}</string>
-            </dict>
             <key>Lobby_mail_hasAgree.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{978,2},{82,47}}</string>
+                <string>{{51,929},{82,47}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +20,7 @@
             <key>Lobby_mail_hasRefuse.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{929,2},{82,47}}</string>
+                <string>{{2,929},{82,47}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -50,7 +37,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{925,93}}</string>
                 <key>sourceSize</key>
@@ -59,15 +46,15 @@
             <key>Lobby_mail_title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1027,2},{354,65}}</string>
+                <string>{{100,2},{69,35}}</string>
                 <key>offset</key>
-                <string>{0,1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{354,65}}</string>
+                <string>{{0,0},{69,35}}</string>
                 <key>sourceSize</key>
-                <string>{354,67}</string>
+                <string>{69,35}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -77,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>mail.png</string>
             <key>size</key>
-            <string>{1383,97}</string>
+            <string>{256,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:c41ce686fdeeec43ae00cf5a84440e95$</string>
+            <string>$TexturePacker:SmartUpdate:e25a6fcdaf9116d77a6fe4b8f281a4a0:1/1$</string>
             <key>textureFileName</key>
             <string>mail.png</string>
         </dict>

@@ -194,7 +194,7 @@ end
 私人房配置
 ]]
 function CreateRoomManager:onTableConfigCallback( __error,__response )
-	print("私人房配置私人房配置私人房配置")
+	print("私人房配置")
 	dump(__response)
 	if __error then
     	print("Table config net error")
@@ -214,6 +214,7 @@ function CreateRoomManager:onTableConfigCallback( __error,__response )
                 	self._configCreate._isAuthorizeSitSelectionShow = true
                 end
                 self._configCreate._isCostSitSelectionShow = __response.data.toll  == 1 -- 收费入座选项，0不现实，1显示
+
             	if self._callback then self._callback() end
             elseif gameId == GameIdConfig.BRNN then
                 print("gameId == 1002")
@@ -228,6 +229,7 @@ end
 是否展示授权入座选项
 ]]
 function CreateRoomManager:isGrantAuthorizationShow( ... )
+	print("是否展示授权入座选项",self._configCreate._isAuthorizeSitSelectionShow)
 	return self._configCreate._isAuthorizeSitSelectionShow
 end
 
@@ -235,6 +237,7 @@ end
 是否展示消耗花费选项
 ]]
 function CreateRoomManager:isCostSitSelectionShow( ... )
+	print("是否展示消耗花费选项",self._configCreate._isCostSitSelectionShow)
 	return self._configCreate._isCostSitSelectionShow
 end
 
@@ -732,12 +735,12 @@ end
 
 function CreateRoomManager:findMinScoreString(__str )
 	__str = __str or ""
-	return string.format("底%s分",__str)
+	return string.format("底%s分:",__str)
 end
 
 function CreateRoomManager:findChessNumString( __str )
 	__str = __str or ""
-	return string.format("局%s数",__str)
+	return string.format("局%s数:",__str)
 end
 
 function CreateRoomManager:findComNiuLabelString( __str )
@@ -769,7 +772,7 @@ function CreateRoomManager:findNoString( ... )
 end
 
 function CreateRoomManager:findSeatDownRightString( ... )
-	return "授权入座:"
+	return "授权入座"
 end
 
 function CreateRoomManager:findCostLabelString( ... )
@@ -777,7 +780,7 @@ function CreateRoomManager:findCostLabelString( ... )
 end
 
 function CreateRoomManager:findCostSeatDownString( ... )
-	return "支付方式:"
+	return "支付方式"
 end
 
 

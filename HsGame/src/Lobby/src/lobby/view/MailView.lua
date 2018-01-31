@@ -26,7 +26,7 @@ function MailView:initView()
 
     local bgSize = self._bg:getContentSize()
     local title = ccui.ImageView:create("Lobby_mail_title.png", ccui.TextureResType.plistType)
-    title:setPosition(bgSize.width/2, bgSize.height - 25)
+    title:setPosition(bgSize.width/2, bgSize.height - 55)
     self._bg:addChild(title)
 
 	self._mailScrollView = self:createScrollView(#self._MailListData)

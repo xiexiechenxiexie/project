@@ -21,7 +21,7 @@ end
 
 function LoadResLayer:initView()
 
-	local bg = ccui.ImageView:create("preload/res/loadRes_bg.png",ccui.TextureResType.localType)
+	local bg = ccui.ImageView:create("preload/res/bg.png",ccui.TextureResType.localType)
 	self:addChild(bg)
 	bg:setPosition(display.width * 0.5,display.height * 0.5)
 

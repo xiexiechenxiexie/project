@@ -38,29 +38,41 @@ function NovicesRewardLayer:initView()
     listener:setSwallowTouches(true)
     cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(listener,mask)
 
-	local bg = display.newNode()
+	local bg = ccui.ImageView:create("res/GameLayout/Reward/Reward_bg.png")
     bg:setPosition(display.cx,display.cy)
     self:addChild(bg)
     self._bg = bg
 
-    local node =cc.CSLoader:createNode("GameLayout/Reward/xinshoujiangli.csb")
-    bg:addChild(node)
-    self._giftLiftBg = node:getChildByName("beijinguang2")
+    local girl = ccui.ImageView:create("res/GameLayout/Reward/Reward_girl.png")
+    girl:setAnchorPoint(0,0)
+    girl:setPosition(10,0)
+    bg:addChild(girl)
 
-    local act = cc.CSLoader:createTimeline("GameLayout/Reward/xinshoujiangli.csb")
-    act:setTimeSpeed(1) --设置执行动画速度
-    node:runAction(act)
-    act:gotoFrameAndPlay(0,false)
-    act:setLastFrameCallFunc(function()
-        local rb1 = cc.RotateBy:create(1, 60)
-        local sb1 = cc.ScaleTo:create(1,0.9)
-        local rb2 = cc.RotateBy:create(1, -60)
-        local sb2 = cc.ScaleTo:create(1,1)
-        local spawn1 = cc.Spawn:create({rb1,sb1})
-        local spawn2 = cc.Spawn:create({rb2,sb2})
-        local RepeaAction = cc.RepeatForever:create(transition.sequence({ spawn1, spawn2 }))
-        self._giftLiftBg:runAction(RepeaAction)
-    end)
+    local dir = "GameLayout/Animation/xinshoujiangli_Animation/"
+    local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."xinshoujiangli_Animation0.png",dir.."xinshoujiangli_Animation0.plist",dir.."xinshoujiangli_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("xinshoujiangli_Animation") 
+    adAnim:setPosition(bg:getContentSize().width/2+180,bg:getContentSize().height/2) 
+    bg:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
+
+    -- local node =cc.CSLoader:createNode("GameLayout/Reward/xinshoujiangli.csb")
+    -- bg:addChild(node)
+    -- self._giftLiftBg = node:getChildByName("beijinguang2")
+
+    -- local act = cc.CSLoader:createTimeline("GameLayout/Reward/xinshoujiangli.csb")
+    -- act:setTimeSpeed(1) --设置执行动画速度
+    -- node:runAction(act)
+    -- act:gotoFrameAndPlay(0,false)
+    -- act:setLastFrameCallFunc(function()
+    --     local rb1 = cc.RotateBy:create(1, 60)
+    --     local sb1 = cc.ScaleTo:create(1,0.9)
+    --     local rb2 = cc.RotateBy:create(1, -60)
+    --     local sb2 = cc.ScaleTo:create(1,1)
+    --     local spawn1 = cc.Spawn:create({rb1,sb1})
+    --     local spawn2 = cc.Spawn:create({rb2,sb2})
+    --     local RepeaAction = cc.RepeatForever:create(transition.sequence({ spawn1, spawn2 }))
+    --     self._giftLiftBg:runAction(RepeaAction)
+    -- end)
 
 
 end
@@ -84,7 +96,7 @@ function NovicesRewardLayer:initGiftByData(data)
     	local iconImg = ""
     	local iconText = ""
     	if v.type == ConstantsData.PointType.POINT_COINS then  -- 金币 
-    		iconImg = "Lobby_sign_recond_icon_2.png"
+    		iconImg = "Reward_icon_gold.png"
     		iconText = v.number.."金币"
     	elseif v.type == ConstantsData.PointType.POINT_DIAMOND then --钻石
     		iconImg = "Reward_icon_diamond.png"
@@ -96,11 +108,12 @@ function NovicesRewardLayer:initGiftByData(data)
     		print("奖励物品格式错误:",v.type)
     	end
     	local giftIcon = ccui.ImageView:create(iconImg, ccui.TextureResType.plistType)
-    	giftIcon:setPosition(73,69)
+    	giftIcon:setPosition(giftBg:getContentSize().width/2,giftBg:getContentSize().height/2+10)
     	giftBg:addChild(giftIcon)
 
     	local giftText = cc.Label:createWithTTF(iconText,GameUtils.getFontName(),30)
-    	giftText:setPosition(73, -30)
+    	giftText:setPosition(giftBg:getContentSize().width/2, 25)
+        giftText:setColor(cc.c3b(255,210,0))
     	giftBg:addChild(giftText)
         self:UpRewardNodeAni(giftBg)
 	end

@@ -19,13 +19,13 @@ end
 function ChangeLoginTypeDialog:_initView()
 
 	-- 弹窗背景
-	local dialogBg = ccui.ImageView:create("common_msgbox_bg.png", ccui.TextureResType.plistType)
+	local dialogBg = ccui.ImageView:create("res/common/denglu_tishi_dikuang.png")
 	dialogBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height/2))
 	self:addChild(dialogBg)
 
 	self:_onRootPanelInit(dialogBg)
 
-	local dialogClose = ccui.Button:create("common_btn_close.png", "common_btn_close.png", "common_btn_close.png", ccui.TextureResType.plistType)
+	local dialogClose = ccui.Button:create("res/common/denglu_tishi_guanbi.png","res/common/denglu_tishi_guanbi1.png","")
 	dialogClose:setPosition(cc.p(dialogBg:getContentSize().width - dialogClose:getContentSize().width/2 - 20, dialogBg:getContentSize().height - dialogClose:getContentSize().height/2 - 20))
 	dialogBg:addChild(dialogClose)
 
@@ -37,8 +37,8 @@ function ChangeLoginTypeDialog:_initView()
 	dialogClose:addClickEventListener(callback_Close)
 
 	local txt1 = ccui.Text:create()
-	txt1:setText("尊敬的玩家，您正在使用[游客模式]进行游戏，\n游客模式下的游戏数据会在删除游戏、更换设备后清空。")
-	txt1:setFontSize(22)
+	txt1:setText("尊敬的玩家，您正在使用【游客模式】进行游戏，\n游客模式下的游戏数据会在删除游戏、更换设备后清空。")
+	txt1:setFontSize(24)
 	txt1:setTextColor(cc.c4b(255, 255, 255, 255))
 	txt1:setAnchorPoint(cc.p(0.5, 0.5))
 	txt1:setPosition(cc.p(dialogBg:getContentSize().width/2, dialogBg:getContentSize().height*0.7))
@@ -47,7 +47,7 @@ function ChangeLoginTypeDialog:_initView()
 
 	local txt2 = ccui.Text:create()
 	txt2:setText("为了保障您的虚拟财产安全以及获得更完善的游戏体验，\n我们强烈建议您使用QQ或微信登录进行游戏！")
-	txt2:setFontSize(22)
+	txt2:setFontSize(24)
 	txt2:setTextColor(cc.c4b(255, 255, 255, 255))
 	txt2:setAnchorPoint(cc.p(0.5, 0.5))
 	txt2:setPosition(cc.p(dialogBg:getContentSize().width/2, dialogBg:getContentSize().height*0.5))
@@ -64,13 +64,13 @@ function ChangeLoginTypeDialog:_initView()
 	end 
 
 	local btnQQLogin = ccui.Button:create("res/common/btn_qq_login.png")
-	btnQQLogin:setPosition(cc.p(dialogBg:getContentSize().width*0.25, dialogBg:getContentSize().height*0.2))
+	btnQQLogin:setPosition(cc.p(dialogBg:getContentSize().width*0.3, dialogBg:getContentSize().height*0.2))
 	dialogBg:addChild(btnQQLogin)
 
 	btnQQLogin:addClickEventListener(callback_Login)
 
 	local btnWechatLogin = ccui.Button:create("res/common/btn_wechat_login.png")
-	btnWechatLogin:setPosition(cc.p(dialogBg:getContentSize().width*0.75, dialogBg:getContentSize().height*0.2))
+	btnWechatLogin:setPosition(cc.p(dialogBg:getContentSize().width*0.7, dialogBg:getContentSize().height*0.2))
 	dialogBg:addChild(btnWechatLogin)
 	btnWechatLogin:addClickEventListener(callback_Login)
 

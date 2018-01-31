@@ -116,28 +116,28 @@ function PromoteLayer:initView()
 		print("xiaxb", "shareUrl------end")
 	end)
 
-	local clip = cc.ClippingNode:create()  --创建裁剪节点
-	local stencileNode = ccui.ImageView:create("Lobby_Promote_btn_share.png", ccui.TextureResType.plistType)		--创建模板
-	clip:setStencil(stencileNode)					--设置模板
-	clip:setAlphaThreshold(0.5)				--设置裁剪阈值
-	clip:setContentSize(cc.size(stencileNode:getContentSize()))			--设置裁剪大小
-	clip:setPosition(151,43)
-	clip:addChild(stencileNode)
+	-- local clip = cc.ClippingNode:create()  --创建裁剪节点
+	-- local stencileNode = ccui.ImageView:create("Lobby_Promote_btn_share.png", ccui.TextureResType.plistType)		--创建模板
+	-- clip:setStencil(stencileNode)					--设置模板
+	-- clip:setAlphaThreshold(0.5)				--设置裁剪阈值
+	-- clip:setContentSize(cc.size(stencileNode:getContentSize()))			--设置裁剪大小
+	-- clip:setPosition(stencileNode:getContentSize().width/2,stencileNode:getContentSize().height/2)
+	-- clip:addChild(stencileNode)
 
-	local spark1 = ccui.ImageView:create("Lobby_Promote_paoguang.png", ccui.TextureResType.plistType)
-	spark1:setPosition(cc.p(-spark1:getContentSize().width- 50, 0))
-	clip:addChild(spark1)
-	self._btnShare:addChild(clip)
+	-- local spark1 = ccui.ImageView:create("Lobby_Promote_paoguang.png", ccui.TextureResType.plistType)
+	-- spark1:setPosition(cc.p(-spark1:getContentSize().width- 50, 0))
+	-- clip:addChild(spark1)
+	-- self._btnShare:addChild(clip)
 
-	local moveAction1 = cc.MoveBy:create(1, cc.p(stencileNode:getContentSize().width + spark1:getContentSize().width + 50, 0))
-	local seq1 = cc.Sequence:create(moveAction1, cc.DelayTime:create(math.random(2, 2)), cc.CallFunc:create( function (sender)
-    	sender:setPosition(cc.p(-sender:getContentSize().width - 50, 0))
-    	end
-	) )
-	local repeatAction1 = cc.RepeatForever:create(seq1)
-	spark1:runAction(repeatAction1)
+	-- local moveAction1 = cc.MoveBy:create(1, cc.p(stencileNode:getContentSize().width + spark1:getContentSize().width + 50, 0))
+	-- local seq1 = cc.Sequence:create(moveAction1, cc.DelayTime:create(math.random(2, 2)), cc.CallFunc:create( function (sender)
+ --    	sender:setPosition(cc.p(-sender:getContentSize().width - 50, 0))
+ --    	end
+	-- ) )
+	-- local repeatAction1 = cc.RepeatForever:create(seq1)
+	-- spark1:runAction(repeatAction1)
 
-	self:bubbleUpAnimation(self._btnShare)
+	-- self:bubbleUpAnimation(self._btnShare)
 
 	local myGetBg = self._panel:getChildByName("img_self_get_bg")
 	local myGetItem1 = myGetBg:getChildByName("gift1")

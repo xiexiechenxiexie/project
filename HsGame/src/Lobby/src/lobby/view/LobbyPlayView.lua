@@ -17,7 +17,7 @@ function LobbyPlayConfig:ctor( ... )
 	local size = self._root:getContentSize()
 
 	local tipLabel = cc.Label:createWithTTF(self:findTipText(),GameUtils.getFontName(),25,cc.size(size.width * 0.8,0),kCCTextAlignmentCenter)
-    tipLabel:setPosition(size.width * 0.5,size.height * 0.65)
+    tipLabel:setPosition(size.width * 0.5,size.height * 0.5+20)
     self._root:addChild(tipLabel)
 
     local btn =  ccui.Button:create(ResPath .. "common_cancel.png" ,ResPath .. "common_cancel.png",ResPath .. "common_cancel.png",ccui.TextureResType.localType)
@@ -241,6 +241,14 @@ function LobbyPlayView:_createItems( ... )
 	self:addChild(button)
 	button:setPosition(display.width * 0.5,display.height * 0.15)
 
+	-- local dir = "GameLayout/Animation/ksks_Animation/"
+	-- local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."ksks_Animation0.png",dir.."ksks_Animation0.plist",dir.."ksks_Animation.ExportJson")  
+ --    local adAnim = ccs.Armature:create("ksks_Animation") 
+ --    adAnim:setPosition(button:getContentSize().width/2,button:getContentSize().height/2) 
+ --    button:addChild(adAnim);
+ --    adAnim:getAnimation():playWithIndex(0)
+ --    adAnim:getAnimation():setSpeedScale(0.5)
+
     --按钮扫光
     local stencilSprite = cc.Sprite:createWithSpriteFrameName(self:findImgKSKSBtn())
     local btnLightEffectParams = {
@@ -308,51 +316,58 @@ function LobbyPlayView:_initPlayButton( __targetNode,__itemData,__textureResType
 end
 
 function LobbyPlayView:_addStarEffect( __targetNode,__itemData,__textureResType )
-	local img = __itemData.res.imgStar
-	for i=1,20 do
-		local star = nil
-		if  __textureResType == ccui.TextureResType.plistType then
-			star = ccui.ImageView:create(img,__textureResType)
-		else
-			local default = self:findImgDefaultStar()
-			star = cc.exports.lib.node.RemoteImageView:create(default.fileName,default.textureResType)
-			star:setDownloadParams({
-				dir = "lobbyplay",
-				url = img
-				})
-		end
-		__targetNode:addChild(star)
+	local dir = "GameLayout/Animation/kpqz_ty_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."kpqz_ty_Animation0.png",dir.."kpqz_ty_Animation0.plist",dir.."kpqz_ty_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("kpqz_ty_Animation") 
+    adAnim:setPosition(__targetNode:getContentSize().width/2,__targetNode:getContentSize().height/2) 
+    __targetNode:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
 
-		star:setOpacity(0)
-		local random = math.random(60,100) * 0.01
-		star:setScale(random)
+	-- local img = __itemData.res.imgStar
+	-- for i=1,20 do
+	-- 	local star = nil
+	-- 	if  __textureResType == ccui.TextureResType.plistType then
+	-- 		star = ccui.ImageView:create(img,__textureResType)
+	-- 	else
+	-- 		local default = self:findImgDefaultStar()
+	-- 		star = cc.exports.lib.node.RemoteImageView:create(default.fileName,default.textureResType)
+	-- 		star:setDownloadParams({
+	-- 			dir = "lobbyplay",
+	-- 			url = img
+	-- 			})
+	-- 	end
+	-- 	__targetNode:addChild(star)
 
-		if i <=  2 then
-			star:setPosition(math.random(20,25),18)
-		elseif i <= 18 then
-		    star:setPosition(math.random(55,210),18)
-		else 	
-			star:setPosition(math.random(211,260),18)
-		end
+	-- 	star:setOpacity(0)
+	-- 	local random = math.random(60,100) * 0.01
+	-- 	star:setScale(random)
+
+	-- 	if i <=  2 then
+	-- 		star:setPosition(math.random(20,25),18)
+	-- 	elseif i <= 18 then
+	-- 	    star:setPosition(math.random(55,210),18)
+	-- 	else 	
+	-- 		star:setPosition(math.random(211,260),18)
+	-- 	end
 		
-		local speedY = 50
-		star.orgPos = {x = star:getPositionX(),y = star:getPositionY()}
-		local height = 200
-		local duration = height / speedY
-		local delayTime = math.random(1,20) * 0.1
-		local delayAct = cc.DelayTime:create(delayTime)
-		local fadeInAct = cc.FadeIn:create(delayTime)
-		local spawnAct = cc.Spawn:create(delayAct,fadeInAct)
-		local moveByAct = cc.MoveBy:create(duration, cc.p( math.random(-20,14) , math.random(50,height) ) )
-		local fadeOutAct = cc.FadeOut:create(duration)
-		local spawnMoveAct = cc.Spawn:create(moveByAct,fadeOutAct)
-		local callbackAct = cc.CallFunc:create(function (__target )
-			__target:setPosition(__target.orgPos.x,__target.orgPos.y)
-			__target:setOpacity(0)
-		end)
-		local repeatAct = cc.RepeatForever:create( cc.Sequence:create(spawnAct,spawnMoveAct,callbackAct) )
-		star:runAction(repeatAct)
-	end
+	-- 	local speedY = 50
+	-- 	star.orgPos = {x = star:getPositionX(),y = star:getPositionY()}
+	-- 	local height = 200
+	-- 	local duration = height / speedY
+	-- 	local delayTime = math.random(1,20) * 0.1
+	-- 	local delayAct = cc.DelayTime:create(delayTime)
+	-- 	local fadeInAct = cc.FadeIn:create(delayTime)
+	-- 	local spawnAct = cc.Spawn:create(delayAct,fadeInAct)
+	-- 	local moveByAct = cc.MoveBy:create(duration, cc.p( math.random(-20,14) , math.random(50,height) ) )
+	-- 	local fadeOutAct = cc.FadeOut:create(duration)
+	-- 	local spawnMoveAct = cc.Spawn:create(moveByAct,fadeOutAct)
+	-- 	local callbackAct = cc.CallFunc:create(function (__target )
+	-- 		__target:setPosition(__target.orgPos.x,__target.orgPos.y)
+	-- 		__target:setOpacity(0)
+	-- 	end)
+	-- 	local repeatAct = cc.RepeatForever:create( cc.Sequence:create(spawnAct,spawnMoveAct,callbackAct) )
+	-- 	star:runAction(repeatAct)
+	-- end
 end
 
 function LobbyPlayView:_onGamePlayButtonClick( __sender )

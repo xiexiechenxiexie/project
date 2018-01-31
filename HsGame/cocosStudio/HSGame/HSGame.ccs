@@ -149,16 +149,16 @@
             <Project Name="PlayerInfo.csd" Type="Layer" />
           </Folder>
           <Folder Name="Promote">
-            <PlistImageFolder Image="promote.png" PListFile="promote.plist" Name=".promote_PList.Dir">
+            <PlistImageFolder Image="Lobby_promote.png" PListFile="Lobby_promote.plist" Name=".Lobby_promote_PList.Dir">
               <PlistImageFile Name="Lobby_Promote_bg.png" Key="Lobby_Promote_bg.png" />
               <PlistImageFile Name="Lobby_Promote_blue_bg.png" Key="Lobby_Promote_blue_bg.png" />
               <PlistImageFile Name="Lobby_Promote_btn_ back.png" Key="Lobby_Promote_btn_ back.png" />
+              <PlistImageFile Name="Lobby_Promote_btn_ back1.png" Key="Lobby_Promote_btn_ back1.png" />
               <PlistImageFile Name="Lobby_Promote_btn_check.png" Key="Lobby_Promote_btn_check.png" />
               <PlistImageFile Name="Lobby_Promote_btn_copy.png" Key="Lobby_Promote_btn_copy.png" />
               <PlistImageFile Name="Lobby_Promote_btn_down.png" Key="Lobby_Promote_btn_down.png" />
               <PlistImageFile Name="Lobby_Promote_btn_getGift.png" Key="Lobby_Promote_btn_getGift.png" />
               <PlistImageFile Name="Lobby_Promote_btn_share.png" Key="Lobby_Promote_btn_share.png" />
-              <PlistImageFile Name="Lobby_Promote_code.png" Key="Lobby_Promote_code.png" />
               <PlistImageFile Name="Lobby_Promote_code_bg.png" Key="Lobby_Promote_code_bg.png" />
               <PlistImageFile Name="Lobby_Promote_friend_get.png" Key="Lobby_Promote_friend_get.png" />
               <PlistImageFile Name="Lobby_Promote_getBg.png" Key="Lobby_Promote_getBg.png" />
@@ -168,12 +168,8 @@
               <PlistImageFile Name="Lobby_Promote_icon_diamond.png" Key="Lobby_Promote_icon_diamond.png" />
               <PlistImageFile Name="Lobby_Promote_icon_roomCard.png" Key="Lobby_Promote_icon_roomCard.png" />
               <PlistImageFile Name="Lobby_Promote_jiantou.png" Key="Lobby_Promote_jiantou.png" />
-              <PlistImageFile Name="Lobby_Promote_paoguang.png" Key="Lobby_Promote_paoguang.png" />
-              <PlistImageFile Name="Lobby_Promote_star.png" Key="Lobby_Promote_star.png" />
               <PlistImageFile Name="Lobby_Promote_title.png" Key="Lobby_Promote_title.png" />
-              <PlistImageFile Name="Lobby_Promote_top_ani.png" Key="Lobby_Promote_top_ani.png" />
-              <PlistImageFile Name="Lobby_Promote_topbg.png" Key="Lobby_Promote_topbg.png" />
-              <PlistImageFile Name="Lobby_Promote_up.png" Key="Lobby_Promote_up.png" />
+              <PlistImageFile Name="Lobby_Promote_code.png" Key="Lobby_Promote_code.png" />
             </PlistImageFolder>
             <Project Name="PromoteLayer.csd" Type="Layer" />
           </Folder>
