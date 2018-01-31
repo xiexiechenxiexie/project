@@ -38,8 +38,8 @@ function CardTypeNode:CreateView()
  	node:addChild(sp)
 
 
- 	node:setPosition(-150,375)
- 	self:setCPPos(cc.p(-150,375),cc.p(150,375))
+ 	node:setPosition(-160,375)
+ 	self:setCPPos(cc.p(-160,375),cc.p(160,375))
 
  	self.node = node
 end

@@ -20,15 +20,15 @@
             <key>PlayInfo_btn_add_friend.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,828},{174,64}}</string>
+                <string>{{54,602},{203,82}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{174,64}}</string>
+                <string>{{0,0},{203,82}}</string>
                 <key>sourceSize</key>
-                <string>{174,64}</string>
+                <string>{203,82}</string>
             </dict>
             <key>PlayInfo_btn_bg.png</key>
             <dict>
@@ -111,7 +111,7 @@
             <key>PlayInfo_btn_face_4.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{269,725},{72,71}}</string>
+                <string>{{243,888},{72,71}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>PlayInfo_btn_face_5.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{255,602},{67,81}}</string>
+                <string>{{316,888},{67,81}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>PlayInfo_btn_face_7.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{174,602},{82,79}}</string>
+                <string>{{243,804},{82,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,11 +163,11 @@
             <key>PlayInfo_btn_face_8.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{188,740},{65,79}}</string>
+                <string>{{324,804},{65,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{65,79}}</string>
                 <key>sourceSize</key>
@@ -202,11 +202,11 @@
             <key>PlayInfo_btn_remove_friend.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{54,602},{203,82}}</string>
+                <string>{{38,828},{203,82}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{203,82}}</string>
                 <key>sourceSize</key>
@@ -228,7 +228,7 @@
             <key>PlayInfo_btn_sex_select.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{259,685},{38,38}}</string>
+                <string>{{123,912},{38,38}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,7 +254,7 @@
             <key>PlayInfo_icon_coisn.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{217,686},{40,40}}</string>
+                <string>{{81,912},{40,40}}</string>
                 <key>offset</key>
                 <string>{-1,1}</string>
                 <key>rotated</key>
@@ -267,11 +267,11 @@
             <key>PlayInfo_icon_diamond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{138,747},{56,48}}</string>
+                <string>{{2,973},{56,48}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{56,48}}</string>
                 <key>sourceSize</key>
@@ -280,7 +280,7 @@
             <key>PlayInfo_icon_roomcard.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{174,686},{52,41}}</string>
+                <string>{{38,912},{52,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -293,11 +293,11 @@
             <key>PlayInfo_img_faceList_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,807},{202,50}}</string>
+                <string>{{60,966},{202,50}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{202,50}}</string>
                 <key>sourceSize</key>
@@ -306,7 +306,7 @@
             <key>PlayInfo_img_face_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{120,807},{200,200}}</string>
+                <string>{{138,602},{200,200}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -394,10 +394,10 @@
                 <key>sourceSize</key>
                 <string>{161,2}</string>
             </dict>
-            <key>PlayInfo_title.png</key>
+            <key>PlayInfo_title_geren.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{138,602},{143,34}}</string>
+                <string>{{2,828},{143,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -407,14 +407,27 @@
                 <key>sourceSize</key>
                 <string>{143,34}</string>
             </dict>
-            <key>PlayInfo_write_name_bg.png</key>
+            <key>PlayInfo_title_ziliao.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{68,807},{202,50}}</string>
+                <string>{{163,912},{71,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{71,34}}</string>
+                <key>sourceSize</key>
+                <string>{71,34}</string>
+            </dict>
+            <key>PlayInfo_write_name_bg.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{60,966},{202,50}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{202,50}}</string>
                 <key>sourceSize</key>
@@ -430,7 +443,7 @@
             <key>size</key>
             <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:aa30f526534d63679f367a97bce688df:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:43788c40768c9f009b5c600bbc061c3a:1/1$</string>
             <key>textureFileName</key>
             <string>PlayerInfo.png</string>
         </dict>

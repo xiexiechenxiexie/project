@@ -57,6 +57,6 @@ end
 
 AUTO_LOGIN = false
 
-VIRTUAL_MACHINECODE = "lizhaodong16"
+VIRTUAL_MACHINECODE = "lizhaodong15"
 
 print("conf load finish")

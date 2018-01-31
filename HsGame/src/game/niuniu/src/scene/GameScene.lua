@@ -367,63 +367,32 @@ function GameScene:CreateView()
         if i == 2 or i == 5 then
             gameCoin:setPosition(conf.PlayerPosArray[i].x+68,conf.PlayerPosArray[i].y+35)
         else
-            gameCoin:setPosition(conf.PlayerPosArray[i].x+180,conf.PlayerPosArray[i].y+40)
+            gameCoin:setPosition(conf.PlayerPosArray[i].x+195,conf.PlayerPosArray[i].y+28)
         end
         self.bg:addChild(gameCoin,30)
         gameCoin:setString(0)
         gameCoin:setVisible(false)
         table.insert(self.playerCoinArr,gameCoin)
     end
-    
- 	--开始动画
- 	local node = cc.CSLoader:createNode(GameResPath.."action/goldniuniu_ani_start.csb")
-	node:setPosition(0,0)
-	self:addChild(node)
-    local act = cc.CSLoader:createTimeline(GameResPath.."action/goldniuniu_ani_start.csb")
-    act:setTimeSpeed(1) --设置执行动画速度
-    node:runAction(act)
-    node:setVisible(false)
-    self.xiazhu_node=node
-    self.xiazhu_action=act
 
-    --粒子
-	local particle = cc.ParticleSystemQuad:create(GameResPath.."action/start_effect_new.plist")
-	particle:setTexture(cc.Director:getInstance():getTextureCache():addImage(GameResPath.."action/effect_start.png"))
-    particle:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
-    particle:setPosition(display.cx,display.cy+20)
-    self:addChild(particle)
-    particle:stop()
-    particle:setDuration(0.5)
-    self.particleparticle=particle
-    --胜利动画
- 	local winNode = cc.CSLoader:createNode(GameResPath.."win/goldniuniu_win.csb")
-	winNode:setPosition(0,0)
-	self:addChild(winNode,2)
-    local winAct = cc.CSLoader:createTimeline(GameResPath.."win/goldniuniu_win.csb")
-    winAct:setTimeSpeed(1) --设置执行动画速度
-    winNode:runAction(winAct)
-    winNode:setVisible(false)
-    self.winNode=winNode
-    self.winAction=winAct
-    --胜利动画粒子
-    local winActPart = cc.ParticleSystemQuad:create(GameResPath.."win/particle_texture(4).plist")
-    winActPart:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
-    winActPart:setPosition(display.cx,display.cy)
-    self:addChild(winActPart)
-    winActPart:stop()
-    winActPart:setDuration(0.5)
-    self.winActPart=winActPart
+    local dir = GameResPath.."Animation/game_start_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."game_start_Animation0.png",dir.."game_start_Animation0.plist",dir.."game_start_Animation.ExportJson")  
+    self._startAni = ccs.Armature:create("game_start_Animation") 
+    self._startAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self:addChild(self._startAni)
 
-    --失败动画
-    local loseNode = cc.CSLoader:createNode(GameResPath.."lose/Scene.csb")
-    loseNode:setPosition(0,0)
-    self:addChild(loseNode)
-    local loseAct = cc.CSLoader:createTimeline(GameResPath.."lose/Scene.csb")
-    loseAct:setTimeSpeed(1) --设置执行动画速度
-    loseNode:runAction(loseAct)
-    loseNode:setVisible(false)
-    self.loseNode=loseNode
-    self.loseAction=loseAct
+    dir = GameResPath.."Animation/niuni_win2_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."niuni_win2_Animation0.png",dir.."niuni_win2_Animation0.plist",dir.."niuni_win2_Animation.ExportJson")  
+    self._winAni = ccs.Armature:create("niuni_win2_Animation") 
+    self._winAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self._winAni:hide()
+    self:addChild(self._winAni)
+
+    dir = GameResPath.."Animation/lose2_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."lose2_Animation0.png",dir.."lose2_Animation0.plist",dir.."lose2_Animation.ExportJson")  
+    self._loseAni = ccs.Armature:create("lose2_Animation") 
+    self._loseAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self:addChild(self._loseAni)
 
     --算牛框
     local suanniukuang = cc.Sprite:create(GameResPath.."suanniukuang.png")
@@ -1056,62 +1025,24 @@ end
 
 --游戏开始动画
 function GameScene:startAct()
-	self.xiazhu_node:setVisible(true)
-	self.xiazhu_action:gotoFrameAndPlay(0,false)
+    self._startAni:getAnimation():playWithIndex(0,-1,0)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamestart"],false)
-
-	local a={}
-	a[#a+1]=cc.DelayTime:create(0.1)
-	a[#a+1]=cc.CallFunc:create(function() self.particleparticle:start() end)
-	a[#a+1]=cc.DelayTime:create(0.7)
-	a[#a+1]=cc.CallFunc:create(function() self.xiazhu_node:setVisible(false) end)
-	self:runAction(cc.Sequence:create(a))
 end
 
 --赢的特效
 function GameScene:victoryAct()
-	self.winNode:setVisible(true)
-	self.winAction:gotoFrameAndPlay(0,false)
+    self._winAni:getAnimation():playWithIndex(0,-1,0)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamewin"],false)
-	local a={}
-	a[#a+1]=cc.CallFunc:create(function() 
-        self.winActPart:start()
-		local tableEffect  = tableAction:new()
-		tableEffect:iconGold()
-		self:addChild(tableEffect,1)
-        self.tableEffect = tableEffect
-	 end)
-	a[#a+1]=cc.DelayTime:create(1)
-	a[#a+1]=cc.CallFunc:create(function() self.winNode:setVisible(false) end)
-	self:runAction(cc.Sequence:create(a))
+    local a={}
+    a[#a+1]=cc.DelayTime:create(1)
+    a[#a+1]=cc.CallFunc:create(function() self._winAni:setVisible(false) end)
+    self:runAction(cc.Sequence:create(a))
 end
 
 --输的特效
 function GameScene:loseAct()
-    self.loseNode:setVisible(true)
-    self.loseAction:gotoFrameAndPlay(0,false)
+    self._loseAni:getAnimation():playWithIndex(0,-1,0)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamelose"],false)
-    local a={}
-    a[#a+1]=cc.DelayTime:create(0.5)
-    a[#a+1]=cc.CallFunc:create(function ()
-        local lose = tableAction:new()
-        lose:LoseAutumnleaves()
-        self:addChild(lose)
-        self.lose = lose 
-    end)
-    a[#a+1]=cc.DelayTime:create(2)
-    a[#a+1]=cc.CallFunc:create(function() 
-            self.loseNode:setVisible(false)
-            self.lose:removeFromParent()
-            self.lose = nil
-        end)
-    self:runAction(cc.Sequence:create(a))
-
-	-- local lose = tableAction:new()
- --    lose:loseEffect()
- --    self:addChild(lose)
- --    self.lose = lose
- --    MusicManager:getInstance():playAudioEffect(conf.Music["Gamelose"],false)
 end
 
 --开始发牌
@@ -1677,30 +1608,30 @@ function GameScene:showNiu(seatId,cardtype)
 	-- txtTip:setPosition(txtBg:getContentSize().width/2,txtBg:getContentSize().height/2)
 	-- txtBg:addChild(txtTip)
 
-    if cardtype == 0 or cardtype >= 10 then
+    -- if cardtype == 0 or cardtype >= 10 then
         local txtTip = cc.Sprite:create(GameResPath.."txtNiu/goldtxt_niu"..cardtype..".png")
         txtTip:setPosition(txtBg:getContentSize().width/2,txtBg:getContentSize().height/2)
         txtBg:addChild(txtTip)
-        if cardtype >= 10 then
+        if cardtype > 6 then
             txtTip:setScale(2)
             txtTip:runAction(cc.ScaleTo:create(0.1,1))
         end
-    else
-        local pTexture = display.loadImage(GameResPath.."txtNiu/goldtxt_niu1-9.png")
-        local txtTip1 = cc.Sprite:createWithTexture(pTexture,cc.rect(0,0,43,40))
-        local txtTip2 = cc.Sprite:createWithTexture(pTexture,cc.rect(tonumber(cardtype)*43,0,43,40))
-        txtTip1:setPosition(txtBg:getContentSize().width/2-22,txtBg:getContentSize().height/2)
-        txtTip2:setPosition(txtBg:getContentSize().width/2+22,txtBg:getContentSize().height/2)
-        txtBg:addChild(txtTip1)
-        txtBg:addChild(txtTip2)
+    -- else
+    --     local pTexture = display.loadImage(GameResPath.."txtNiu/goldtxt_niu1-9.png")
+    --     local txtTip1 = cc.Sprite:createWithTexture(pTexture,cc.rect(0,0,43,40))
+    --     local txtTip2 = cc.Sprite:createWithTexture(pTexture,cc.rect(tonumber(cardtype)*43,0,43,40))
+    --     txtTip1:setPosition(txtBg:getContentSize().width/2-22,txtBg:getContentSize().height/2)
+    --     txtTip2:setPosition(txtBg:getContentSize().width/2+22,txtBg:getContentSize().height/2)
+    --     txtBg:addChild(txtTip1)
+    --     txtBg:addChild(txtTip2)
 
-        if cardtype > 6 then
-            txtTip1:setScale(2)
-            txtTip1:runAction(cc.ScaleTo:create(0.1,1))
-            txtTip2:setScale(2)
-            txtTip2:runAction(cc.ScaleTo:create(0.1,1))
-        end
-    end
+    --     if cardtype > 6 then
+    --         txtTip1:setScale(2)
+    --         txtTip1:runAction(cc.ScaleTo:create(0.1,1))
+    --         txtTip2:setScale(2)
+    --         txtTip2:runAction(cc.ScaleTo:create(0.1,1))
+    --     end
+    -- end
 
 
 	-- if cardtype == 0 then
@@ -1863,7 +1794,7 @@ function GameScene:resetTable()
     self:hideNiuBtn()
 
     --隐藏游戏开始动画
-    self.xiazhu_node:setVisible(false)
+    -- self.xiazhu_node:setVisible(false)
 
     --隐藏抢庄按钮
     self:GradbankerHide()
@@ -1878,8 +1809,8 @@ function GameScene:resetTable()
     self:removeClock()
 
     --隐藏赢的动画
-    self.winNode:setVisible(false)
-    self.loseNode:setVisible(false)
+    -- self.winNode:setVisible(false)
+    -- self.loseNode:setVisible(false)
 
     --隐藏牌
     self:hideWancheng()
@@ -2124,7 +2055,7 @@ function GameScene:onGameStart(data)
         self.TableInfoArray.isJoin = true
     end
 
-    self.xiazhu_node:setVisible(false)
+    -- self.xiazhu_node:setVisible(false)
     self:setReadyBtnHide()
     local bankTime = data.bankTime
     local playerNum = data.playerNum
