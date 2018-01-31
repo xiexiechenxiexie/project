@@ -75,6 +75,7 @@ end
 
 function SignView:requestSignCheckIn()
 	logic.LobbyManager:getInstance():requestSignCheckIn(function( result )
+		dump(result)
     	if result then
         	self._btnSign:hide()
         	self._imgGotSign:show()

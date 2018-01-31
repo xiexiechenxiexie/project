@@ -321,14 +321,14 @@ function GamePlayerInfoView:setSystemZhuangInfo()
 end
 
 function GamePlayerInfoView:showGamePlayerInfoView(data)
-    if data.UserId == nil and self.InfoData == nil then
+    if data.userId == nil and self.InfoData == nil then
         return
     end
 
-    local Gender = data.Gender or 0
-    local GenderStr = GameUtils.getInfoBigHeadFileByGender(Gender)
+    local gender = data.gender or 0
+    local GenderStr = GameUtils.getInfoBigHeadFileByGender(gender)
 
-    local AvatarUrl = data.AvatarUrl or ""
+    local AvatarUrl = data.awatar or ""
     local awatar = lib.node.Avatar:create({
      avatarUrl = AvatarUrl,
      stencilFile = "res/Avatar/head_rect_round_stencil_225_225.png",
@@ -338,16 +338,16 @@ function GamePlayerInfoView:showGamePlayerInfoView(data)
     awatar:setPosition(80,270)
     self._bg:addChild(awatar)
 
-    self._IDLabel:setString(data.UserId or "")
+    self._IDLabel:setString(data.userId or "")
     self._IDLabel:show()
 
-    local Gender = data.Gender or 0
-    self:showSexSelect(Gender)
+    local gender = data.gender or 0
+    self:showSexSelect(gender)
 
-    self._NickName:setString(data.NickName or "")
+    self._NickName:setString(data.nickName or "")
     self._NickName:show()
 
-    GameUtils.updateSwitchNumNode(self._CoinsLabel,data.Score or 0)
+    GameUtils.updateSwitchNumNode(self._CoinsLabel,data.score or 0)
     self._CoinsLabel:show()
 
     local winNum = data.winroundsum or 0
@@ -362,7 +362,7 @@ function GamePlayerInfoView:showGamePlayerInfoView(data)
     self._WinRateNumText:setString(winRateNum*100 .. "%")
     self._WinRateNumText:show()
 
-    local friendInfo = UserData.findFriendByIndex(data.UserId)
+    local friendInfo = UserData.findFriendByIndex(data.userId)
     if friendInfo ~= nil then
         self._btnAddFriend:hide()
         self._btnRemoveFriend:show()
@@ -376,7 +376,7 @@ function GamePlayerInfoView:showGamePlayerInfoView(data)
         self._btnRemoveFriend:hide()
     end
 
-    if data.UserId == 0 then
+    if data.userId == 0 then
         self:setSystemZhuangInfo()
     end
 end

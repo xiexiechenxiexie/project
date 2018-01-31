@@ -234,7 +234,8 @@ function MyRoomInfoLayer:_createProgressItem(__data,__index )
 end
 
 function MyRoomInfoLayer:_refreshProgressLayer( ... )
-	print("MyRoomInfoLayer:_refreshProgressLayer")
+	print("MyRoomInfoLayer:_refreshProgressLayer",self._roomInfoLayer)
+
 	if self._roomInfoLayer == nil then
 		self._roomInfoLayer = cc.Layer:create()
 		self:addChild(self._roomInfoLayer)

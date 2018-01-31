@@ -28,9 +28,9 @@ function NoticeView:initData(data)
 	self._SyStemEventData = {}
 	self._HotEventData = {}
 	for k,v in pairs(self._data) do
-		if v.Type == ConstantsData.NoticeType.NOTICE_HOTEVENT then 
+		if v.type == ConstantsData.NoticeType.NOTICE_HOTEVENT then 
 			table.insert(self._HotEventData,v)
-		elseif v.Type == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT then
+		elseif v.type == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT then
 			table.insert(self._SyStemEventData,v)
 		else
 			print("系统公告数据格式不对")
@@ -123,11 +123,7 @@ function NoticeView:showHotEventView()
 	self._HotEventBg:show()
 	self._SystemEventBg:hide()
 
-	if #self._HotEventList > 0 then
-		return
-	end
-
-	if self._HotEventData == nil then
+	if #self._HotEventList > 0 or next(self._HotEventData) == nil then
 		return
 	end
 
@@ -154,8 +150,8 @@ function NoticeView:showHotEventView()
         self._NoticeTitleScrollView:addChild(titleNode)
 
         local noticeNode = nil
-        if v.Description ~= nil then
-			local textLabel = cc.Label:createWithTTF(v.Description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
+        if v.description ~= nil then
+			local textLabel = cc.Label:createWithTTF(v.description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
 		    textLabel:setAnchorPoint(cc.p(0.5, 0.5))
 		    --textLabel:setPosition(412,440)
 		    textLabel:setLineHeight(50)
@@ -188,7 +184,7 @@ function NoticeView:showHotEventView()
 			print("createnoticeNode type error")
 		end
 
-		local params = { title = titleNode, notice = noticeNode, id = v.Id }
+		local params = { title = titleNode, notice = noticeNode, id = v.id }
 		table.insert(self._HotEventList,params)
 
     end
@@ -199,12 +195,7 @@ function NoticeView:showSystemEventView()
 	self._HotEventBg:hide()
 	self._SystemEventBg:show()
 
-	if #self._SystemEventList > 0 then
-		return
-	end
-
-
-	if self._SyStemEventData == nil then
+	if #self._SystemEventList > 0 or next(self._SyStemEventData) == nil then
 		return
 	end
 
@@ -231,8 +222,8 @@ function NoticeView:showSystemEventView()
 
 		local noticeNode = nil
 
-        if v.Description ~= nil then --显示文字
-			local textLabel = cc.Label:createWithTTF(v.Description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
+        if v.description ~= nil then --显示文字
+			local textLabel = cc.Label:createWithTTF(v.description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
 		    textLabel:setAnchorPoint(cc.p(0.5, 0.5))
 		    --textLabel:setPosition(412,440)
 		    textLabel:setLineHeight(50)
@@ -265,7 +256,7 @@ function NoticeView:showSystemEventView()
 			print("createnoticeNode type error")
 		end
 
-		local params = { title = titleNode, notice = noticeNode, id = v.Id}
+		local params = { title = titleNode, notice = noticeNode, id = v.id}
 		table.insert(self._SystemEventList,params)
     end
 end
@@ -274,7 +265,7 @@ end
 -- 显示 公告内容
 function NoticeView:showNoticeContentByData(index, num)
 	self:showNoticeTitle(index,num)
-	if index == ConstantsData.NoticeType.NOTICE_HOTEVENT then --活动公告
+	if index == ConstantsData.NoticeType.NOTICE_HOTEVENT and next(self._HotEventList) ~= nil then --活动公告
 		for k,v in pairs(self._HotEventList) do
 			if k == num then
 				v.notice:show()
@@ -282,7 +273,7 @@ function NoticeView:showNoticeContentByData(index, num)
 				v.notice:hide()
 			end
 		end
-	elseif index == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT then -- 系统
+	elseif index == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT and next(self._SystemEventList) ~= nil then -- 系统
 		for k,v in pairs(self._SystemEventList) do
 			if k == num then
 				v.notice:show()
@@ -326,7 +317,7 @@ function NoticeView:createNoticeTitleNode(index,data,showType)
 		return
 	end
 
-	local NoticeIndex ="NOTICE_ID_"..data.Id
+	local NoticeIndex ="NOTICE_ID_"..data.id
 	if index == 1 then
 	    cc.UserDefault:getInstance():setFloatForKey(NoticeIndex,1)
 	end
@@ -373,7 +364,7 @@ function NoticeView:createNoticeTitleNode(index,data,showType)
    		record.RedImg:hide()
    	end
 
-	local nameText = cc.Label:createWithTTF(data.Title,GameUtils.getFontName(),30)
+	local nameText = cc.Label:createWithTTF(data.title,GameUtils.getFontName(),30)
     nameText:setAnchorPoint(cc.p(0.5, 0.5))
     nameText:setPosition(0,0)
     record:addChild(nameText,5)

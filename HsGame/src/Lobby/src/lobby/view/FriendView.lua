@@ -179,14 +179,11 @@ end
 function FriendView:requestCheckFriend(__input)
 	logic.FriendManager:getInstance():requestCheckFriendData(__input, function( result )
 		if result then
-			if result.UserId == nil then
-				GameUtils.showMsg("玩家不存在!")
-				return
-			end
 			self:showAddFriendView(result)
+		else
+			GameUtils.showMsg("玩家不存在!")
 		end
 	end)
-	
 end
 
 -- 请求添加好友
@@ -351,6 +348,8 @@ function FriendView:createScrollView(rowNum)
 end
 
 function FriendView:createMyFriendRecord(data)
+	print("短时间看的哈市加快了")
+	dump(data)
 	if data == nil then
 		return
 	end
@@ -363,7 +362,7 @@ function FriendView:createMyFriendRecord(data)
     bg:setPosition(cc.p(0,0))
     record:addChild(bg)
 
-    local NickName = data.NickName or ""
+    local NickName = data.nickName or ""
 	local nameText = cc.Label:createWithTTF(NickName,GameUtils.getFontName(),24)
 	nameText:setColor(cc.c3b(224,221,245))
     nameText:setAnchorPoint(cc.p(0, 0.5))
@@ -396,7 +395,7 @@ function FriendView:createMyFriendRecord(data)
     	stateText:setPosition(-size.width/2 + 100, -20)
     	record:addChild(stateText)
 
-	elseif data.IsOnline ~= 0 then
+	elseif data.isOnline ~= 0 then
 		stateStr = "正在大厅中闲逛"
 		local stateText = cc.Label:createWithTTF(stateStr,GameUtils.getFontName(),18)
 		stateText:setColor(cc.c3b(255,174,0))
@@ -412,10 +411,10 @@ function FriendView:createMyFriendRecord(data)
 		record:addChild(stateText)
 	end
 
-	local Gender = data.Gender or 0
+	local Gender = data.gender or 0
     local GenderStr = GameUtils.getDefalutHeadFileByGender(Gender)
 
-    local AvatarUrl = data.AvatarUrl or ""
+    local AvatarUrl = data.avatarUrl or ""
     local awatar = lib.node.Avatar:create({
 	 avatarUrl = AvatarUrl,
 	 stencilFile = "res/Avatar/head_rect_round_stencil_94_94.png",
@@ -433,7 +432,7 @@ function FriendView:createMyFriendRecord(data)
 	headBtn:setPosition(-size.width/2 + 50,0)
 	record:addChild(headBtn)
 	headBtn:addClickEventListener(function()
-		local playerInfoView = PlayerInfo.new(data.UserId)
+		local playerInfoView = PlayerInfo.new(data.userId)
 		self:addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
 	end)
 
@@ -441,7 +440,7 @@ function FriendView:createMyFriendRecord(data)
 	moneyIconImg:setPosition(-23,0)
 	record:addChild(moneyIconImg)
 
- 	local moneyText = GameUtils.createSwitchNumNode(data.Score or 99990)
+ 	local moneyText = GameUtils.createSwitchNumNode(data.score or 99990)
  	moneyText:setAnchorPoint(cc.p(0, 0.5))
 	moneyText:setPosition(15, 0)
 	record:addChild(moneyText)
@@ -483,7 +482,7 @@ function FriendView:createAddFriendRecord(data)
     bg:setPosition(cc.p(0,0))
     record:addChild(bg)
 
-    local NickName = data.NickName or ""
+    local NickName = data.nickName or ""
 	local nameText = cc.Label:createWithTTF(NickName,GameUtils.getFontName(),24)
 	nameText:setColor(cc.c3b(224,221,245))
     nameText:setAnchorPoint(cc.p(0, 0.5))
@@ -501,10 +500,10 @@ function FriendView:createAddFriendRecord(data)
     stateText:setPosition(-size.width/2 + 100, -20)
     record:addChild(stateText)
 
-    local Gender = data.Gender or 0
+    local Gender = data.gender or 0
     local GenderStr = GameUtils.getDefalutHeadFileByGender(Gender)
 
-    local AvatarUrl = data.AvatarUrl or ""
+    local AvatarUrl = data.avatarUrl or ""
     local awatar = lib.node.Avatar:create({
 	 avatarUrl = AvatarUrl,
 	 stencilFile = "res/Avatar/head_rect_round_stencil_94_94.png",
@@ -519,7 +518,7 @@ function FriendView:createAddFriendRecord(data)
 	moneyIconImg:setPosition(-23,0)
 	record:addChild(moneyIconImg)
 
- 	local moneyText = GameUtils.createSwitchNumNode(data.Score or 0)
+ 	local moneyText = GameUtils.createSwitchNumNode(data.score or 0)
  	moneyText:setAnchorPoint(cc.p(0, 0.5))
 	moneyText:setPosition(15, 0)
 	record:addChild(moneyText)
@@ -530,7 +529,7 @@ function FriendView:createAddFriendRecord(data)
         textureType = ccui.TextureResType.plistType,
         isActionEnabled = true,
         callback = function() 
-            self:requestAddFriend(record,data.UserId)
+            self:requestAddFriend(record,data.userId)
         end
         })
 	record.addBtn:setPosition(size.width/2 - 68, 0)
@@ -552,17 +551,17 @@ function FriendView:createApplyFriendRecord(data)
     bg:setPosition(cc.p(0,0))
     record:addChild(bg)
 
-    local NickName = data.NickName or ""
+    local NickName = data.nickName or ""
 	local nameText = cc.Label:createWithTTF(NickName,GameUtils.getFontName(),24)
 	nameText:setColor(cc.c3b(224,221,245))
     nameText:setAnchorPoint(cc.p(0, 0.5))
     nameText:setPosition(-size.width/2 + 100, 20)
     record:addChild(nameText)
 
-    local Gender = data.Gender or 0
+    local Gender = data.gender or 0
     local GenderStr = GameUtils.getDefalutHeadFileByGender(Gender)
 
-    local AvatarUrl = data.AvatarUrl or ""
+    local AvatarUrl = data.avatarUrl or ""
     local awatar = lib.node.Avatar:create({
 	 avatarUrl = AvatarUrl,
 	 stencilFile = "res/Avatar/head_rect_round_stencil_94_94.png",
@@ -602,7 +601,7 @@ function FriendView:createApplyFriendRecord(data)
         textureType = ccui.TextureResType.plistType,
         isActionEnabled = true,
         callback = function() 
-            self:requestReplyApplyFriend(record, data.UserId, 1)
+            self:requestReplyApplyFriend(record, data.userId, 1)
         end
         })
 	record._okBtn:setPosition(size.width/2 - 60, 0)
@@ -613,7 +612,7 @@ function FriendView:createApplyFriendRecord(data)
         textureType = ccui.TextureResType.plistType,
         isActionEnabled = true,
         callback = function() 
-            self:requestReplyApplyFriend(record, data.UserId, 0)
+            self:requestReplyApplyFriend(record, data.userId, 0)
         end
         })
 	record._refuseBtn:setPosition(size.width/2 - 172, 0)

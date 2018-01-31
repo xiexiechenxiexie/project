@@ -167,8 +167,8 @@ end
 function LobbyGameEnter:initScrollViewData( ... )
 	local gameListData = lobby.LobbyGameEnterManager:getInstance():findShowGameList()
 	for i=1,#gameListData do
-		print("initScrollViewData",i,gameListData[i].GameId)
-		local item = GameIconFactory:createIconBtn(gameListData[i].GameId,handler(self,self.onItemClick))
+		print("initScrollViewData",i,gameListData[i].gameId)
+		local item = GameIconFactory:createIconBtn(gameListData[i].gameId,handler(self,self.onItemClick))
 		self._scrollView:addItem(item)
 	end
 end
@@ -528,7 +528,8 @@ end
 游戏列表按钮回调
 ]]
 function LobbyGameEnter:onItemClick( sender )
-	local gameId = sender:getTag() 
+	local gameId = sender:getTag()
+	print("游戏列表按钮回调",gameId) 
 	if self:onGamePreEnter(gameId) then self:_enterGame(gameId) end
 end
 
@@ -554,9 +555,7 @@ function LobbyGameEnter:_enterGame( __gameId )
 		print("看牌强庄")
 	elseif __gameId == managerClazz.PSZ then
 		print("拼三张")
-		-- local hot = lib.download.HotUpdateManager.new(1001, nil) 
-		-- self:addChild(hot)
-		-- hot:checkUpdate()
+		logic.LobbyManager:getInstance():LoginGameServer()
 	elseif __gameId == managerClazz.HHDZ then
 		print("红黑大战")
 	else 

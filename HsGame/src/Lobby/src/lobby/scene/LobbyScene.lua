@@ -292,14 +292,14 @@ function LobbyScene:onButtonClickedEvent(tag, sender)
 	elseif LobbyScene.BTN_FRIENDS == tag or LobbyScene.TEXT_FRIENDS == tag then
 		self:requestFriendInfo()
 	elseif LobbyScene.BTN_SPREAD == tag or LobbyScene.TEXT_SPREAD == tag then
-		if 0 == UserData.loginType then
-			local scene = cc.Director:getInstance():getRunningScene()
-			if scene then 
-				scene:addChild(require("src/lobby/layer/ChangeLoginTypeDialog"):create(),ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
-			end
-		else
+		-- if 0 == UserData.loginType then
+		-- 	local scene = cc.Director:getInstance():getRunningScene()
+		-- 	if scene then 
+		-- 		scene:addChild(require("src/lobby/layer/ChangeLoginTypeDialog"):create(),ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
+		-- 	end
+		-- else
 			self:requestPromoteInfo()
-		end
+		-- end
 
 		-- 录音
 		-- MultiPlatform:getInstance():startRcecord()
@@ -457,10 +457,26 @@ function LobbyScene:updataTaskRedPointByData( __data )
 		return
     end
 	for k, v in ipairs(__data) do
-		if v.process  >=  v.Count then -- 完成任务
-			self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
-			break
-    	end
+		if v.roundPlayed > 0 then
+			if v.userRoundPlayed  >=  v.roundPlayed then -- 完成任务
+				self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+				break
+	    	end
+		elseif v.roundWin > 0 then
+			if v.userRoundWin  >=  v.roundWin then -- 完成任务
+				self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+				break
+	    	end
+		elseif v.scoreWin > 0 then
+			if v.userScoreWin  >=  v.scoreWin then -- 完成任务
+				self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+				break
+	    	end
+		end
+		-- if v.process  >=  v.Count then -- 完成任务
+		-- 	self:showRedPointByIndex(ConstantsData.LobbyRedPointType.REDPOINT_TASK)
+		-- 	break
+  --   	end
     end
 end
 

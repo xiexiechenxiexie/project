@@ -201,16 +201,16 @@ function PlayerInfoView:requestPlayerInfoData()
 end
 
 function PlayerInfoView:showPlayerInfoView(data)
-    if data.UserId == nil and self.InfoData ==nil then
+    if data.userId == nil and self.InfoData ==nil then
         return
     elseif self.InfoData~=nil then
         data = self.InfoData
     end
 
-    local Gender = data.Gender or 0
+    local Gender = data.gender or 0
     local GenderStr = GameUtils.getInfoBigHeadFileByGender(Gender)
 
-    local AvatarUrl = data.AvatarUrl or ""
+    local AvatarUrl = data.avatar or ""
     local awatar = lib.node.Avatar:create({
      avatarUrl = AvatarUrl,
      stencilFile = "res/Avatar/head_rect_round_stencil_225_225.png",
@@ -220,16 +220,16 @@ function PlayerInfoView:showPlayerInfoView(data)
     awatar:setPosition(80,270)
     self._bg:addChild(awatar)
 
-    self._IDLabel:setString(data.UserId or "")
+    self._IDLabel:setString(data.userId or "")
     self._IDLabel:show()
 
-    local Gender = data.Gender or 0
+    local Gender = data.gender or 0
     self:showSexSelect(Gender)
 
-    self._NickName:setString(data.NickName or "")
+    self._NickName:setString(data.nickName or "")
     self._NickName:show()
 
-    GameUtils.updateSwitchNumNode(self._CoinsLabel,data.Score or 0)
+    GameUtils.updateSwitchNumNode(self._CoinsLabel,data.score or 0)
     self._CoinsLabel:show()
 
     local winNum = data.winroundsum or 0
@@ -244,7 +244,7 @@ function PlayerInfoView:showPlayerInfoView(data)
     self._WinRateNumText:setString(winRateNum*100 .. "%")
     self._WinRateNumText:show()
 
-    local friendInfo = UserData.findFriendByIndex(data.UserId or 0)
+    local friendInfo = UserData.findFriendByIndex(data.userId or 0)
     if friendInfo ~= nil then
         self._btnAddFriend:hide()
         self._btnRemoveFriend:show()

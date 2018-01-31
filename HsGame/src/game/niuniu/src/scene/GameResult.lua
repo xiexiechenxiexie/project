@@ -108,9 +108,9 @@ function GameResult:createAllItem(index,playerArr,playerData)
 	local info = playerData[playerArr[index].uid]
 
 	local paramTab = {}
-	paramTab.avatarUrl = info.AvatarUrl or ""
+	paramTab.avatarUrl = info.avatar or ""
 	paramTab.stencilFile = GameResultResPath.."head_clip_allBg.png"
-	paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(info.Gender)
+	paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(info.gender)
 	paramTab.frameFile = GameResultResPath.."head_allBg.png"
 
 	local headnode = lib.node.Avatar:create(paramTab)
@@ -125,7 +125,7 @@ function GameResult:createAllItem(index,playerArr,playerData)
 	winner:setPosition(43,y-45)
 	playerAllBg:addChild(winner)
 
-	local palyerName = cc.Label:createWithSystemFont(string.getMaxLen(info.NickName),SYSFONT,28)
+	local palyerName = cc.Label:createWithSystemFont(string.getMaxLen(info.nickName),SYSFONT,28)
 	palyerName:setPosition(x/2,y/2+45)
 	playerAllBg:addChild(palyerName)
 

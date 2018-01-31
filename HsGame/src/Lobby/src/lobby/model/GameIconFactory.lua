@@ -17,6 +17,7 @@ GameIconFactory.imgSmallStar = STAR_DIR ..  "imgSmallStar.png"
 function GameIconFactory:createIconBtn( __gameId ,__callback)
 	assert(__gameId and __callback,"invalid __gameId or __callback")
 	self:_init()
+	dump(self.funcDict)
 	local func = self.funcDict[__gameId]
 	return func(__gameId ,__callback)
 end

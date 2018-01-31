@@ -85,7 +85,9 @@ function TaskView:createTaskRecord(data)
 		return
 	end
 
-	local taskData = cc.exports.lib.JsonUtil:decode(data.Award)
+	-- local taskData = cc.exports.lib.JsonUtil:decode(data.Award)
+    print("任务记录任务记录任务记录")
+    dump(data)
 
 	local size = cc.size(1000, 93)
 	local record = ccui.Layout:create()
@@ -95,24 +97,64 @@ function TaskView:createTaskRecord(data)
     bg:setPosition(cc.p(0,0))
     record:addChild(bg)
 
-    record.GameID = data.kind_id
-    record.GameType = data.GameType
-    record.TaskID = data.TaskId
+    record.GameID = data.gameId
+    record.GameType = data.gameType
+    record.TaskID = data.id
 
     local iconBg = ccui.ImageView:create("Lobby_task_record_icon_bg.png", ccui.TextureResType.plistType)
     iconBg:setPosition(cc.p(-size.width/2 + 50,-1))
     record:addChild(iconBg)
 
+    local PropsId = 0
+    local taskNum = 0
+    local taskName = ""
+    if data.bonusScore > 0 then  -- 金币 
+        PropsId = ConstantsData.PointType.POINT_COINS
+        taskNum = data.bonusScore
+        taskName = "金币"
+    elseif data.bonusDiamond > 0 then --钻石
+        PropsId = ConstantsData.PointType.POINT_DIAMOND
+        taskNum = data.bonusScore
+        taskName = "钻石"
+    elseif data.bonusRoomCard > 0 then --房卡
+        PropsId = ConstantsData.PointType.POINT_ROOMCARD
+        taskNum = data.bonusScore
+        taskName = "房卡"
+    else
+        print("任务奖励物品格式错误:")
+    end
+
     local iconImg = ""
-    if taskData[1].PropsId == ConstantsData.PointType.POINT_COINS then  -- 金币 
+    if PropsId == ConstantsData.PointType.POINT_COINS then  -- 金币 
     	iconImg = "Lobby_sign_recond_icon_2.png"
-    elseif taskData[1].PropsId == ConstantsData.PointType.POINT_DIAMOND then --钻石
+    elseif PropsId == ConstantsData.PointType.POINT_DIAMOND then --钻石
     	iconImg = "Reward_icon_diamond.png"
-    elseif taskData[1].PropsId == ConstantsData.PointType.POINT_ROOMCARD then --房卡
+    elseif PropsId == ConstantsData.PointType.POINT_ROOMCARD then --房卡
     	iconImg = "Reward_icon_roomcard.png"
     else
-    	print("奖励物品格式错误:",taskData[1].PropsId)
+    	print("奖励物品格式错误:",PropsId)
     end
+
+    local IsFinish = false
+    local taskProcessStr = ""
+    if data.roundPlayed > 0 then
+        taskProcessStr = data.userRoundPlayed .."/".. data.roundPlayed
+        print("11111",data.userRoundPlayed,data.roundPlayed)
+        if data.userRoundPlayed  >=  data.roundPlayed then -- 完成任务
+            IsFinish = true
+        end
+    elseif data.roundWin > 0 then
+        taskProcessStr = data.userRoundWin .."/".. data.roundWin
+        if data.userRoundWin  >=  data.roundWin then -- 完成任务
+            IsFinish = true
+        end
+    elseif data.scoreWin > 0 then
+        taskProcessStr = data.userScoreWin .."/".. data.scoreWin
+        if data.userScoreWin  >=  data.scoreWin then -- 完成任务
+            IsFinish = true
+        end
+    end
+    
     local giftIcon = ccui.ImageView:create(iconImg, ccui.TextureResType.plistType)
     giftIcon:setContentSize(86,82)
     giftIcon:setScale(0.7)
@@ -127,7 +169,21 @@ function TaskView:createTaskRecord(data)
         callback = function() 
             logic.LobbyManager:getInstance():requestTaskGetAwardData(record.TaskID,function( result )
                 if result then
-                    local __params = {{type = taskData[1].PropsId, score = taskData[1].number}}
+                    local data = result.data
+                    local taskType = 0
+                    local taskNum = 0
+                    if data.bonusScore > 0 then  -- 金币 
+                        taskType = ConstantsData.PointType.POINT_COINS
+                        taskNum = data.bonusScore
+                    elseif data.bonusDiamond > 0 then --钻石
+                        taskType = ConstantsData.PointType.POINT_COINS
+                        taskNum = data.bonusScore
+                    elseif data.bonusRoomCard > 0 then --房卡
+                        taskType = ConstantsData.PointType.POINT_COINS
+                        taskNum = data.bonusScore
+                    end
+
+                    local __params = {{type = taskType, score = taskNum}}
                     GameUtils.showGiftAccount(__params)
                     self:updateScrollView(record)
                     local event = cc.EventCustom:new(config.EventConfig.EVENT_REFRESH_USER_INFO)
@@ -149,8 +205,8 @@ function TaskView:createTaskRecord(data)
             self:onCloseCallback()           
             local event = cc.EventCustom:new(config.EventConfig.EVENT_TASK_GOTO_GAME_SCENE)
             event.userdata = {
-                gameId = data.kind_id,
-                gameType = data.GameType
+                gameId = data.gameId,
+                gameType = data.gameType
             }
             lib.EventUtils.dispatch(event)
         end
@@ -159,33 +215,46 @@ function TaskView:createTaskRecord(data)
     record:addChild(record._goBtn)
 	record._goBtn:hide()
 
-	local taskNameText = cc.Label:createWithTTF(data.TaskName,GameUtils.getFontName(),24)
+	local taskNameText = cc.Label:createWithTTF(data.title,GameUtils.getFontName(),24)
     taskNameText:setAnchorPoint(cc.p(0, 0.5))
     taskNameText:setPosition(-size.width/2 + 130, 0)
     record:addChild(taskNameText)
 
-    local taskProcessStr = data.process .."/".. data.Count
+
+    print("taskProcessStrtaskProcessStr",taskProcessStr,IsFinish)
     record._processText = cc.Label:createWithTTF(taskProcessStr,GameUtils.getFontName(),24)
     record._processText:setPosition(0, 0)
     record:addChild(record._processText)
 
     local __RichTextList = {{Color3B = cc.c3b(255,255,255), opacity = 255, richText = "奖励:", fontSize = 24},
-                        {Color3B = cc.c3b(255,255,0), opacity = 255, richText = taskData[1].number, fontSize = 24},
-                    	{Color3B = cc.c3b(255,255,255), opacity = 255, richText = taskData[1].name, fontSize = 22}}
+                        {Color3B = cc.c3b(255,255,0), opacity = 255, richText = taskNum, fontSize = 24},
+                    	{Color3B = cc.c3b(255,255,255), opacity = 255, richText = taskName, fontSize = 22}}
 
 	local _richText = GameUtils.createRichText(__RichTextList)
 	_richText:setAnchorPoint(cc.p(0, 0.5))
 	_richText:setPosition(140, 0)
 	record:addChild(_richText)
 
-    if data.process  >=  data.Count then -- 完成任务
+    -- if data.process  >=  data.Count then -- 完成任务
+    --     record._getBtn:show()
+    --     record._goBtn:hide()
+    --     record._processText:hide()
+    -- else
+    --     record._getBtn:hide()
+    --     record._goBtn:show() 
+    --     record._processText:show()     
+    -- end
+
+    
+
+    if IsFinish then
         record._getBtn:show()
         record._goBtn:hide()
         record._processText:hide()
     else
         record._getBtn:hide()
         record._goBtn:show() 
-        record._processText:show()     
+        record._processText:show()
     end
  
     return record
@@ -195,7 +264,7 @@ end
 function TaskView:updateScrollView(record)
 	local index = 0
 	for k, v in ipairs(self._taskData) do
-		if v.TaskId == record.TaskID then
+		if v.id == record.id then
 			index = k
 			table.remove(self._taskData,k) 
 			table.remove(self._TaskList,k) 

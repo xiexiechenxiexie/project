@@ -165,9 +165,9 @@ function JoinRoomView:_onHandleNum( __num )
 			local gameId = cc.exports.config.GameIDConfig.KPQZ --
 			
 			lobby.CreateRoomManager:getInstance():requestRoomInfo(tableId,function ( __info )
-				if __info.data.server_ip and __info.data.server_port then 
-					local gameIp = __info.data.server_ip
-					local gamePort = __info.data.server_port
+				if __info.data.serverIp and __info.data.serverPort then 
+					local gameIp = __info.data.serverIp
+					local gamePort = __info.data.serverPort
 					
 					logic.LobbyTableManager:getInstance():RequestPrivateJoinTable(gameId,gameIp,gamePort,tableId)
 				else

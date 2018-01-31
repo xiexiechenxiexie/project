@@ -21,21 +21,22 @@ function RoomProgressData:ctor( __param )
 	if Test then
 		return
 	end
-	self.roomId = __param.TableID --房间id
-	self.totalGameRound = __param.GameRound
-	self.leftGameRound = __param.GameRound - __param.CurrentRound --剩余局数
-	self.gameId = __param.KindID
-	if __param.KindID == config.GameIDConfig.KPQZ then
-		local data = NiuNiuData.parseRule(__param.CurrentRule)
-		self.isCostSeat = NiuNiuData.isOpen(data.ChargeSit)  --是否收费入座
+	dump(__param)
+	self.roomId = __param.id --房间id
+	self.totalGameRound = __param.gameRound
+	self.leftGameRound = __param.gameRound - __param.currentRound --剩余局数
+	self.gameId = __param.gameId
+	if __param.id == config.GameIDConfig.KPQZ then
+		local data = NiuNiuData.parseRule(__param.rule)
+		self.isCostSeat = NiuNiuData.isOpen(data.charges)  --是否收费入座
 		self.gameBet = data.GameBet
 	end
 	
-	self.peopleNumOfRoom = __param.CurrentPeople--房间人数
-	self.capityPeopleNumOfRoom = __param.PeopleNum
-	self.timeOfCreateRoom = __param.CreateDate
-	self.serverIp = __param.ServerIp or ""
-	self.serverPort = __param.ServerPort or 0
+	self.peopleNumOfRoom = __param.players--房间人数
+	self.capityPeopleNumOfRoom = __param.playerLimit
+	self.timeOfCreateRoom = __param.createdTime
+	self.serverIp = __param.serverIp or ""
+	self.serverPort = __param.serverPort or 0
 end
 
 
@@ -122,7 +123,7 @@ function ChessDetailData:ctor ( __roomList )
 		data.gamerName = param.NickName
 		data.avatarUrl = param.AvatarUrl
 		data.score = param.Score
-		data.flag = param.Flag
+		data.flag = param.Flag or 1
 		data.userId = param.UserId
 		data.gender = param.Gender
 		self.listGamers[#self.listGamers + 1] = data
@@ -184,8 +185,8 @@ function CreateRoomManager:RequestPrivateTableConfig(__callback)
 	self._callback = __callback
 	local gameId  = self:findActGameId()
     local config = cc.exports.config
-	local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_TABLE_CONFIG..gameId.."/"..UserData.token
-    print("url:",url)
+	local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_TABLE_CONFIG..gameId.."?token="..UserData.token
+    print("私人房配置url:",url)
 	cc.exports.HttpClient:getInstance():get(url,handler(self,self.onTableConfigCallback))
 end
 
@@ -193,6 +194,8 @@ end
 私人房配置
 ]]
 function CreateRoomManager:onTableConfigCallback( __error,__response )
+	print("私人房配置私人房配置私人房配置")
+	dump(__response)
 	if __error then
     	print("Table config net error")
     	GameUtils.showMsg(self:findrequestRoomConfigAndInfoErrorString() .. __error)
@@ -204,9 +207,13 @@ function CreateRoomManager:onTableConfigCallback( __error,__response )
     		if gameId == GameIdConfig.KPQZ then -- 牛牛  看牌抢庄
     			self._configCreate = {}
                 self._configCreate._costOfOneRoomCard =  __response.data.round --局数
-                self._configCreate._cardCostUnit = __response.data.spend  --每round 消耗spend房卡        
-                self._configCreate._isAuthorizeSitSelectionShow = __response.data.options.permission == 1   -- 授权入座选项，0不显示，1显示
-                self._configCreate._isCostSitSelectionShow = __response.data.options.toll  == 1 -- 收费入座选项，0不现实，1显示
+                self._configCreate._cardCostUnit = __response.data.spend  --每round 消耗spend房卡
+                if __response.options then
+                    self._configCreate._isAuthorizeSitSelectionShow = __response.data.permission == 1   -- 授权入座选项，0不显示，1显示
+                else
+                	self._configCreate._isAuthorizeSitSelectionShow = true
+                end
+                self._configCreate._isCostSitSelectionShow = __response.data.toll  == 1 -- 收费入座选项，0不现实，1显示
             	if self._callback then self._callback() end
             elseif gameId == GameIdConfig.BRNN then
                 print("gameId == 1002")
@@ -250,7 +257,7 @@ function CreateRoomManager:findChessUnit( ... )
 end
 
 function CreateRoomManager:findProgressRooms( ... )
-	return self._listProgress;
+	return self._listProgress
 end
 
 function CreateRoomManager:findEndedRooms( ... )
@@ -294,7 +301,8 @@ end
 --正在进行的牌局
 function CreateRoomManager:requestGameProgress(__callback )
 	local url = self:findRequestUrl(config.ApiConfig.REQUEST_GET_ROOM_PLAYING)
-	url = url .. UserData.token .. "/" .. lobby.LobbyGameEnterManager:getInstance():findSelectedGameId()
+	-- url = url .. UserData.token .. "/" .. lobby.LobbyGameEnterManager:getInstance():findSelectedGameId()
+	url = url .. "?token="..UserData.token
 	
 	if Test then
 		local event = cc.EventCustom:new(config.EventConfig.EVENT_ROOM_PROGRESS_TO_VIEW)
@@ -307,10 +315,11 @@ function CreateRoomManager:requestGameProgress(__callback )
 			print("网络错误",__errorMsg)
 			return
 		end
-		if __rsp.status == 200 then
+		dump(__rsp)
+		if __rsp.status == 200 and __rsp.data~=nil then
 			self._listProgress = {}
-			print("__rsp.data.roomlist",__rsp.data.roomlist)
-			for i,info in ipairs(__rsp.data.roomlist) do
+			print("__rsp.data.roomlist",__rsp.data)
+			for i,info in ipairs(__rsp.data) do
 				local progress = RoomProgressData.new(info)
 				self._listProgress[i] = progress
 
@@ -341,7 +350,9 @@ function CreateRoomManager:requestGameMyChess( __callback )
 			print("网络错误",__errorMsg)
 			return
 		end
+		dump(__rsp)
 		if __rsp.status == 200 then
+			dump(__rsp.data.roomlist)
 			self._listJoinChess = {}
 			for i,info in ipairs(__rsp.data.roomlist) do
 				local joinProcess = JoinChessData:create(info)
@@ -408,6 +419,7 @@ function CreateRoomManager:requestChessDetail(__historyRoomId, __callback )
 			print("网络错误",__errorMsg)
 			return
 		end
+		dump(__rsp)
 		if __rsp.status == 200 then
 			self._chessDetail = {}
 			self._chessDetail = ChessDetailData:create(__rsp.data.roomlist) 
@@ -460,8 +472,13 @@ function CreateRoomManager:RequestCreatePrivateTable(__params)
         
         NiuNiuData.AuthorizeSit  = __params.authorizeSit
         NiuNiuData.ChargeSit  = __params.chargeSit
-        param = { token= UserData.token, round = GameData.GameRoundNum, gameId = GameData.GameID, capacity = GameData.GamePlayerNum, rule = NiuNiuData.createRule(),charges = __params.chargeSit + 1 }
     end
+    param.token= UserData.token
+    param.round = GameData.GameRoundNum
+    param.gameId = GameData.GameID
+    param.playerLimit = GameData.GamePlayerNum
+    param.rule = NiuNiuData.createRule()
+    param.charges = __params.chargeSit + 1
     logic.LobbyTableManager:getInstance():setGameId(__params.gameID )
     dump(param)
     HttpClient:getInstance():post(url,param,handler(self,self.onCreatePrivateTableCallback))
@@ -469,6 +486,7 @@ end
 
 function CreateRoomManager:onCreatePrivateTableCallback( __errorMsg,__response )
 	print("CreateRoomManager:onCreatePrivateTableCallback")
+	dump(__response)
 	GameUtils.startLoadingForever()
 	--todo:展示确认框
     if __errorMsg then
@@ -477,8 +495,8 @@ function CreateRoomManager:onCreatePrivateTableCallback( __errorMsg,__response )
 
         if 200 == __response.status then
             GameData.GameIP =  __response.data.serverIp
-            GameData.GamePort = __response.data.port 
-            GameData.TableID = __response.data.tableId
+            GameData.GamePort = __response.data.serverPort 
+            GameData.TableID = __response.data.roomId
             print("GameData.GameIP:",GameData.GameIP)
             print("GameData.Port:",GameData.GamePort)
             print("GameData.TableID:",GameData.TableID)
@@ -502,12 +520,15 @@ function CreateRoomManager:requestRoomConfigAndInfo( __tableId,__callback )
 end
 
 function CreateRoomManager:requestRoomInfo( __tableId,__callback )
-	local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_JOIN_ROOM_INFO_WITH_ROOMID .. UserData.token .. "/" ..  __tableId
-	HttpClient:getInstance():get(url,function ( __errorMsg,__response )
+	local param = {}
+	param.token = UserData.token
+	param.roomId = __tableId
+	local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_JOIN_ROOM_INFO_WITH_ROOMID
+	HttpClient:getInstance():post(url,param,function ( __errorMsg,__response )
 		GameUtils.stopLoading()
 		if not __errorMsg then 
 			if __callback  then 
-				if __response.data and __response.data.server_ip and __response.data.server_port then 
+				if __response.data and __response.data.serverIp and __response.data.serverPort then 
 					__callback(__response)
 				else
 					GameUtils.showMsg(self:findingRoomNotExist())
@@ -564,8 +585,8 @@ function CreateRoomManager:onVisiteCallback( __index )
 		GameData.TableID = selectData.roomId
 		GameData.GameID = selectData.gameId
 		self:requestRoomInfo(GameData.TableID,function ( __info )
-			GameData.GameIP = __info.data.server_ip
-			GameData.GamePort = __info.data.server_port
+			GameData.GameIP = __info.data.serverIp
+			GameData.GamePort = __info.data.serverPort
 			GameData.IntoGameType = ConstantsData.IntoGameType.PRIVATE_JOIN_TABLE_TYPE
 	    	logic.LobbyManager:getInstance():LoginGameServer()
 		end)
@@ -613,19 +634,19 @@ end
 function CreateRoomManager:checkSitDown( __roomId,__callback)
 	local enterTipFunc = function ( __info )
 		local roomInfo = {}
-		local data = NiuNiuData.parseRule(__info.data.CurrentRule)
+		local data = NiuNiuData.parseRule(__info.data.rule)
 		dump(data)
 		roomInfo.AuthorizeSit = data.AuthorizeSit 
 		roomInfo.ChargeSit = data.ChargeSit 
-		roomInfo.cost = self:findRoomCardCost(__info.data.GameRound) 
+		roomInfo.cost = self:findRoomCardCost(__info.data.gameRound) 
 		if data.ChargeSit then 
 			roomInfo.cost = roomInfo.cost / 3
 		end
-		roomInfo.serverIp = __info.data.server_ip
-		roomInfo.serverPort = __info.data.server_port
-		roomInfo.gameId = __info.data.CurrentRule
-		roomInfo.currentPeople = __info.data.CurrentPeople
-		roomInfo.peopleNum = __info.data.PeopleNum
+		roomInfo.serverIp = __info.data.serverIp
+		roomInfo.serverPort = __info.data.serverPort
+		roomInfo.gameId = __info.data.gameId
+		roomInfo.currentPeople = __info.data.CurrentPeople or 0
+		roomInfo.peopleNum = __info.data.PeopleNum or 0
 		if roomInfo.cost > UserData.roomCards and data.ChargeSit > 1 then -- 
 			local content = string.format("需要消耗%d张房卡,你只有%d房卡不足",roomInfo.cost,UserData.roomCards)
 			local param = {type = ConstantsData.ShowMgsBoxType.NORMAL_TYPE, msg = content, btn = {"ok"}, callback = callback}		

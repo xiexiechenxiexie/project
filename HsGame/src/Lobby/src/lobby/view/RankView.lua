@@ -192,11 +192,11 @@ function RankView:createRankRecord(ranking,data,__type)
 
 	local listBtn = record:getChildByTag(RankTag.LIST_BTN_TAG)
 	listBtn:addClickEventListener(function()
-		local playerInfoView = PlayerInfo.new(data.UserId)
+		local playerInfoView = PlayerInfo.new(data.userId)
 		self:getParent():addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
 	end)
 
-	local NickName = data.NickName or ""
+	local NickName = data.nickName or ""
 	NickName = GameUtils.FormotGameNickName(NickName,6)
 
     local nameText = cc.Label:createWithTTF(NickName,GameUtils.getFontName(),24)
@@ -205,10 +205,10 @@ function RankView:createRankRecord(ranking,data,__type)
     nameText:setPosition(0, 20)
     record:addChild(nameText)
 
-    local Gender = data.Gender or 0
+    local Gender = data.gender or 0
     local GenderStr = GameUtils.getDefalutHeadFileByGender(Gender)
 
-    local AvatarUrl = data.AvatarUrl or ""
+    local AvatarUrl = data.avatar or ""
     local awatar = lib.node.Avatar:create({
 	 avatarUrl = AvatarUrl,
 	 stencilFile = "res/Avatar/head_rect_round_stencil_94_94.png",
@@ -218,15 +218,8 @@ function RankView:createRankRecord(ranking,data,__type)
 	awatar:setPosition(-105, -size.height/2)
 	record:addChild(awatar)
 
-	
-	local score = 0
-	if __type == ConstantsData.RankType.RANK_RICK then
-		score = data.Score
-	elseif __type == ConstantsData.RankType.RANK_FRIEND then
-		score = data.WinScore
-	end
 	local moneyText = record:getChildByTag(RankTag.MONEY_TEXT_TAG)
-	GameUtils.updateSwitchNumNode(moneyText,score or 0)
+	GameUtils.updateSwitchNumNode(moneyText,data.score or 0)
 
     return record
 end
@@ -253,6 +246,8 @@ function RankView:requestRichRankView()
 end
 
 function RankView:showRichRankView(__rankListData,__isNotLoadAll)
+	print("财富排行榜数据")
+	dump(__rankListData)
 	if __rankListData == nil then
         return
     end
@@ -309,6 +304,7 @@ function RankView:requestFriendRankView()
 end
 
 function RankView:showFriendRankView(__rankListData)
+	dump(__rankListData)
 	if __rankListData == nil then
         return
     end

@@ -153,8 +153,20 @@ function LoginManager:login(loginURL, loginScene)
     --     print("xiaxb", "playLoginAnimation")
     --     -- loginScene:playLoginAnimation()
     -- end
+
+    --测试代码
+    -- local layer = require("game/zjh/src/scene/GameScene"):create()
+    -- local scene = cc.Scene:create()
+    -- scene:addChild(layer)
+    -- if cc.Director:getInstance():getRunningScene() then
+    --     cc.Director:getInstance():replaceScene(scene)
+    -- else
+    --     cc.Director:getInstance():runWithScene(scene)
+    -- end
+    --把下面取消注释
+
+    
     local function onGet (__error, __response)
-        print("__error__error__error",__error)
         dump(__response)
         if loginScene then
             print("xiaxb", "showLoginBtns")
@@ -214,8 +226,16 @@ function LoginManager:login(loginURL, loginScene)
     end
     print("xiaxb", "loging-------start")
     -- GameUtils.startLoading("正在登陆服务器...", 10)
-	HttpClient:getInstance():get(loginURL, onGet)
+	-- HttpClient:getInstance():get(loginURL, onGet)
     print("xiaxb", "loging-------end")
+
+    local param = {}
+    param.clientOS = config.channle.clientOS
+    param.clientMachineCode = VIRTUAL_MACHINECODE
+    param.clientDevice = MultiPlatform:getInstance():getDeviceName()
+    param.clientVersion = config.channle.VERSION
+
+    HttpClient:getInstance():post(loginURL,param,onGet)
 end
 
 function LoginManager:onLogin(__response)
@@ -224,31 +244,30 @@ function LoginManager:onLogin(__response)
     print("fly","LoginManager:onLogin __response.data.token",__response.data.token)
     UserData.token = __response.data.token
 
-    if "table" ~= type(__response.data.user) then
+    if "table" ~= type(__response.data) then
         -- local msg = "登录异常！"
         -- self:enterLogin()
         return
     end
 
-    UserData.userId = __response.data.user.UserId
-    UserData.nickName = __response.data.user.NickName or ""
-    UserData.gender = __response.data.user.Gender or 1
-    UserData.avatarUrl = __response.data.user.AvatarUrl  or ""
-    UserData.loginType = __response.data.user.LoginType
-    UserData.mobilePlatform = __response.data.user.MobilePlatform
-    UserData.LastTableID = __response.data.user.TableID
-    UserData.LastGameID = __response.data.user.GameId
-    UserData.LastGameIP = __response.data.user.ServerIp
-    UserData.LastGamePort = __response.data.user.ServerPort
-    UserData.coins = __response.data.user.Score or 0
+    UserData.userId = __response.data.userId or 0
+    UserData.nickName = __response.data.nickName or ""
+    UserData.gender = __response.data.gender or 1
+    UserData.avatarUrl = __response.data.avatar  or ""
+    UserData.loginType = __response.data.loginType or 0
+    UserData.LastTableID = __response.data.roomId or 0
+    UserData.LastGameID = __response.data.gameId or 0
+    UserData.LastGameIP = __response.data.serverIp 
+    UserData.LastGamePort = __response.data.serverPort
+    UserData.coins = __response.data.score or 0
     UserData.roomCards = 0
-    if  __response.data.user.RoomCardNum then 
-        UserData.roomCards = tonumber(__response.data.user.RoomCardNum)
+    if  __response.data.roomCard then 
+        UserData.roomCards = tonumber(__response.data.roomCard)
     end
-    UserData.diamond = __response.data.user.diamond or 0
-    UserData.HasNewbiePack = __response.data.user.HasNewbiePack -- 是否有新手大礼包
-    UserData.LastGameRoomType = __response.data.user.GameType
-    UserData.MobilePhone =  __response.data.user.Mobile or ""
+    UserData.diamond = __response.data.diamond or 0
+    UserData.HasNewbiePack = __response.data.hasNewbiePack -- 是否有新手大礼包
+    UserData.LastGameRoomType = __response.data.gameType or 1
+    UserData.MobilePhone =  __response.data.mobile or ""
 
     self:enterLobby()
 
