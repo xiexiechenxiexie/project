@@ -87,11 +87,8 @@ function SignView:initView()
 end
 
 function SignView:requestSignCheckIn()
-	logic.LobbyManager:getInstance():requestSignCheckIn(function( result )
-    	if result then
-    		print("签到完成")
-    		dump(result)
-    		local data = result.data
+	logic.LobbyManager:getInstance():requestSignCheckIn(function( data )
+    	if data then
         	-- self._btnSign:hide()
         	-- self._imgGotSign:show()
 

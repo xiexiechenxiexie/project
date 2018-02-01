@@ -495,10 +495,12 @@ function CreateRoomManager:onCreatePrivateTableCallback( __errorMsg,__response )
     if __errorMsg then
     	GameUtils.showMsg(self:findCreateRoomRequestFailedString(),3)
     else
-
         if 200 == __response.status then
-            GameData.GameIP =  __response.data.serverIp
-            GameData.GamePort = __response.data.serverPort 
+        	print("大家啊说了看得见爱上了看得见阿斯利康")
+        	local srfGameData = cc.exports.lobby.LobbyGameEnterManager:getInstance():findSRFGameData(GameData.GameID)
+        	dump(srfGameData)
+            GameData.GameIP =  srfGameData.serverIp
+            GameData.GamePort = srfGameData.serverPort 
             GameData.TableID = __response.data.roomId
             print("GameData.GameIP:",GameData.GameIP)
             print("GameData.Port:",GameData.GamePort)

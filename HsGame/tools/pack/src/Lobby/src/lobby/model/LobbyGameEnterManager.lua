@@ -97,8 +97,8 @@ function LobbyGameEnterManager:_onGameListCallback( __error,__respObj )
 			--    Type_KSKS = 1,
 			--    Type_Game = 0
 			-- }
-			local typeValue = tonumber(v.typeId)
-			if typeValue == GameColllectType.Type_Game then 
+			local typeValue = tonumber(v.gameType)
+			if typeValue ~= GameColllectType.Type_KSKS and typeValue ~= GameColllectType.Type_SRF then 
 				self._showGameList[#self._showGameList+ 1] = v
 				-- local hotUpdateManager = lib.download.HotUpdateManager
 				if not self._gameListCache then 

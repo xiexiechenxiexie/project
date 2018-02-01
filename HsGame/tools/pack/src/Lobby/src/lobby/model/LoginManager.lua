@@ -84,25 +84,32 @@ function LoginManager:thirdPartyLogin(plat, loginScene)
                         local msg = _result["msg"]
                         print("xiaxb-------------游客成功获取code：" .. msg)
                         -- local loginURL = config.SDKConfig.getGuestLoginURL() .. msg
-                        if  msg then HttpClient:getInstance().MachineCode =  msg end
-                        local loginURL = config.SDKConfig.getGuestLoginURL()
+                        if  msg then 
+                            HttpClient:getInstance().MachineCode =  msg
+                            local loginURL = config.SDKConfig.getGuestLoginURL()
+                            -- print("xiaxb-----------loginURL:" .. loginURL) 
+                            self:login(loginURL, loginScene) 
+                        end
+                        -- local loginURL = config.SDKConfig.getGuestLoginURL()
                         -- print("xiaxb-----------loginURL:" .. loginURL) 
-                        self:login(loginURL, loginScene)
+                        -- self:login(loginURL, loginScene)
 
                     elseif LoginManager.LoginType_Wechat == _result["plat"] then
-                        -- 微信成功获取code
-                        local msg = _result["msg"]
-                        print("xiaxb-------------微信成功获取code：" .. msg)
-                        local loginURL = config.SDKConfig.getWeChatLoginURL() .. msg
-                        -- print("xiaxb-----------loginURL:" .. loginURL)
-                        self:login(loginURL, loginScene)
+                        GameUtils.showMsg("拼命开发中,请使用游客登录")
+                        -- -- 微信成功获取code
+                        -- local msg = _result["msg"]
+                        -- print("xiaxb-------------微信成功获取code：" .. msg)
+                        -- local loginURL = config.SDKConfig.getWeChatLoginURL() .. msg
+                        -- -- print("xiaxb-----------loginURL:" .. loginURL)
+                        -- self:login(loginURL, loginScene)
 
                     elseif LoginManager.LoginType_QQ == _result["plat"] then
-                        -- QQ成功获取opneid
-                        print("xiaxb-------------QQ成功获取openid：" .. _result["openid"])
-                        local loginURL = config.SDKConfig.getQQLoginURL() .. _result["access_token"] .. "/" .. _result["openid"]
-                        -- print("xiaxb-----------loginURL:" .. loginURL)
-                        self:login(loginURL, loginScene)
+                        GameUtils.showMsg("拼命开发中,请使用游客登录")
+                        -- -- QQ成功获取opneid
+                        -- print("xiaxb-------------QQ成功获取openid：" .. _result["openid"])
+                        -- local loginURL = config.SDKConfig.getQQLoginURL() .. _result["access_token"] .. "/" .. _result["openid"]
+                        -- -- print("xiaxb-----------loginURL:" .. loginURL)
+                        -- self:login(loginURL, loginScene)
                     else
                         -- print("xiaxb-------------unknow data：" .. _result)
                         GameUtils.showMsg(LoginManager.LoginResultErr)
@@ -231,7 +238,7 @@ function LoginManager:login(loginURL, loginScene)
 
     local param = {}
     param.clientOS = config.channle.clientOS
-    param.clientMachineCode = VIRTUAL_MACHINECODE
+    param.clientMachineCode = HttpClient:getInstance().MachineCode
     param.clientDevice = MultiPlatform:getInstance():getDeviceName()
     param.clientVersion = config.channle.VERSION
 

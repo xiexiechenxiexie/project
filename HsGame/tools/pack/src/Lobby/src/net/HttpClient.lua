@@ -297,7 +297,7 @@ Client-VersionId:版本号标石
 function HttpClient:initExtendHead(xhr)
     if self._deviceModel == nil then self._deviceModel = MultiPlatform:getInstance():getDeviceName() end
     xhr:setRequestHeader("clientDevice",self._deviceModel)
-    xhr:setRequestHeader("clientMachineCode",self.MachineCode)
+    xhr:setRequestHeader("clientMachineCode",HttpClient.MachineCode)
     -- xhr:setRequestHeader("Client-ChannelId",config.channle.CHANNLE_ID)
     xhr:setRequestHeader("clientVersion",config.channle.VERSION)
     xhr:setRequestHeader("clientOS",config.channle.clientOS)

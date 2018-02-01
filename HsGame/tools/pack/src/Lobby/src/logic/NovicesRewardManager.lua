@@ -49,9 +49,9 @@ function NovicesRewardManager:_onSignNovicesRewardReceiveCallback( __error,__res
     else
         if 200 == __response.status then
             local data = __response.data
-            UserData.coins = __response.data.score
-            UserData.roomCards = __response.data.roomCard
-            UserData.diamond = __response.data.diamond
+            UserData.coins = data.userScore
+            UserData.roomCards = data.userRoomCard
+            UserData.diamond = data.userDiamond
             self._requestNovicesRewardReceiveCallBack(data)
         else
             GameUtils.showMsg("领取新手奖励数据出错,code = "..__response.status)

@@ -156,8 +156,12 @@ function SetView:initGameSet()
 
     local bgSize = bg:getContentSize()
 
+    local setBg = ccui.ImageView:create("game_set_bg.png", ccui.TextureResType.plistType)
+    setBg:setPosition(bgSize.width/2, bgSize.height/2)
+    bg:addChild(setBg)
+
     local title = ccui.ImageView:create("set_title.png", ccui.TextureResType.plistType)
-    title:setPosition(bgSize.width/2, bgSize.height - 25)
+    title:setPosition(bgSize.width/2, bgSize.height - 50)
     bg:addChild(title)
 
     local yinyueSp = cc.Label:createWithTTF("音效:",GameUtils.getFontName(),30)

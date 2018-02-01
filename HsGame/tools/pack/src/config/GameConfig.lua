@@ -29,15 +29,15 @@ local GamePlayConfig = {
 }
 
 local GameType = {
-	COIN = 1, --金币场
-	SRF = 2,--私人房
+	COIN = 2, --金币场
+	SRF = 3,--私人房
 }
 
---游戏集合列表  2 私人房  1 快速开始  0 NONE
+--游戏集合列表  2 私人房  1 快速开始  2 金币
 local GameColllectType = {
-   Type_SRF = 2,
-   Type_KSKS = 1,
-   Type_Game = 0
+   Type_SRF = 3,
+   Type_KSKS = 4,
+   Type_COIN = 2,
 }
 
 local RobotRange = {

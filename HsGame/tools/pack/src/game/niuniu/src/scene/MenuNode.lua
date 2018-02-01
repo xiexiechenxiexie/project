@@ -48,37 +48,73 @@ end
 
 function MenuNode:init()
 	local moreList = cc.Sprite:create(GameResPath.."most_list.png")
- 	self.node:addChild(moreList)
- 	
+ 	self.node:addChild(moreList) 	
 
  	local x = moreList:getContentSize().width/2
- 	local ExitBtn = ccui.Button:create(GameResPath.."btn_quit_0.png",GameResPath.."btn_quit_1.png")
- 	ExitBtn:setTag(BTN_BACK)
- 	ExitBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
- 	ExitBtn:setPosition(x,x+170)
- 	moreList:addChild(ExitBtn)
- 	--牌型
- 	local CardTypeBtn = ccui.Button:create(GameResPath.."btn_cardType_0.png",GameResPath.."btn_cardType_1.png")
- 	CardTypeBtn:setTag(BTN_CARDTYPE)
+ 	local quit = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	quit:setPosition(x,x+180)
+ 	quit:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	quit:setTag(BTN_BACK)
+ 	moreList:addChild(quit)
+ 	local quitImg = cc.Sprite:create(GameResPath.."niuniu_image_exit.png")
+ 	quitImg:setPosition(quit:getContentSize().width/2,quit:getContentSize().height/2)
+ 	quit:addChild(quitImg)
+
+ 	local CardTypeBtn = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	CardTypeBtn:setPosition(x,x+92.5)
  	CardTypeBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
- 	CardTypeBtn:setPosition(x,x+97.5)
+ 	CardTypeBtn:setTag(BTN_CARDTYPE)
  	moreList:addChild(CardTypeBtn)
- 	--设置
- 	local SetBtn = ccui.Button:create(GameResPath.."btn_set_0.png",GameResPath.."btn_set_1.png")
- 	SetBtn:setTag(BTN_SET)
+ 	local CardTypeImg = cc.Sprite:create(GameResPath.."niuniu_image_cardType.png")
+ 	CardTypeImg:setPosition(CardTypeBtn:getContentSize().width/2,CardTypeBtn:getContentSize().height/2)
+ 	CardTypeBtn:addChild(CardTypeImg)
+
+ 	local SetBtn = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	SetBtn:setPosition(x,x+5)
  	SetBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
- 	SetBtn:setPosition(x,x+22.5)
+ 	SetBtn:setTag(BTN_SET)
  	moreList:addChild(SetBtn)
- 	--解散
- 	local DissolutionBtn = ccui.Button:create(GameResPath.."btn_dissolve_0.png",GameResPath.."btn_dissolve_1.png")
- 	DissolutionBtn:setTag(BTN_DISSOLUTION)
+ 	local SetImg = cc.Sprite:create(GameResPath.."niuniu_image_set.png")
+ 	SetImg:setPosition(SetBtn:getContentSize().width/2,SetBtn:getContentSize().height/2)
+ 	SetBtn:addChild(SetImg)
+
+ 	local DissolutionBtn = ccui.Button:create(GameResPath.."niuniu_more_btnbg0.png",GameResPath.."niuniu_more_btnbg1.png")
+ 	DissolutionBtn:setPosition(x,x-85)
  	DissolutionBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
- 	DissolutionBtn:setPosition(x,x-50)
+ 	DissolutionBtn:setTag(BTN_DISSOLUTION)
  	moreList:addChild(DissolutionBtn)
+ 	local DissolutionImg = cc.Sprite:create(GameResPath.."niuniu_image_diss.png")
+ 	DissolutionImg:setPosition(DissolutionBtn:getContentSize().width/2,DissolutionBtn:getContentSize().height/2)
+ 	DissolutionBtn:addChild(DissolutionImg)
  	self.DissolutionBtn = DissolutionBtn
 
- 	self.node:setPosition(200,915)
- 	self:setCPPos(cc.p(200,915),cc.p(200,565))
+ 	-- local ExitBtn = ccui.Button:create(GameResPath.."btn_quit_0.png",GameResPath.."btn_quit_1.png")
+ 	-- ExitBtn:setTag(BTN_BACK)
+ 	-- ExitBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	-- ExitBtn:setPosition(x,x+170)
+ 	-- moreList:addChild(ExitBtn)
+ 	-- --牌型
+ 	-- local CardTypeBtn = ccui.Button:create(GameResPath.."btn_cardType_0.png",GameResPath.."btn_cardType_1.png")
+ 	-- CardTypeBtn:setTag(BTN_CARDTYPE)
+ 	-- CardTypeBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	-- CardTypeBtn:setPosition(x,x+97.5)
+ 	-- moreList:addChild(CardTypeBtn)
+ 	-- --设置
+ 	-- local SetBtn = ccui.Button:create(GameResPath.."btn_set_0.png",GameResPath.."btn_set_1.png")
+ 	-- SetBtn:setTag(BTN_SET)
+ 	-- SetBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	-- SetBtn:setPosition(x,x+22.5)
+ 	-- moreList:addChild(SetBtn)
+ 	-- --解散
+ 	-- local DissolutionBtn = ccui.Button:create(GameResPath.."btn_dissolve_0.png",GameResPath.."btn_dissolve_1.png")
+ 	-- DissolutionBtn:setTag(BTN_DISSOLUTION)
+ 	-- DissolutionBtn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+ 	-- DissolutionBtn:setPosition(x,x-50)
+ 	-- moreList:addChild(DissolutionBtn)
+ 	-- self.DissolutionBtn = DissolutionBtn
+
+ 	self.node:setPosition(230,915)
+ 	self:setCPPos(cc.p(230,915),cc.p(230,530))
 
 end
 
@@ -133,7 +169,7 @@ function MenuNode:initGold()
  	set:addChild(setImg)
 
 
- 	self.node:setPosition(230,2)
+ 	self.node:setPosition(230,965)
  	self:setCPPos(cc.p(230,965),cc.p(230,510))
 end
 

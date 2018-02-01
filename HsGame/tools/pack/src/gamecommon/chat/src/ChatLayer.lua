@@ -61,11 +61,11 @@ end
 function ChatLayer:init()
 	local bg = cc.Sprite:createWithSpriteFrameName("chat_bg1.png")
 	self.node:addChild(bg)
-	local bg2 = cc.Scale9Sprite:createWithSpriteFrameName("chat_bg2.png")
-	bg2:setPosition(0,59)
-	bg2:setOpacity(140)
-	bg2:setContentSize(cc.size(530,550))
-	self.node:addChild(bg2)
+	-- local bg2 = cc.Scale9Sprite:createWithSpriteFrameName("chat_bg2.png")
+	-- bg2:setPosition(0,59)
+	-- bg2:setOpacity(140)
+	-- bg2:setContentSize(cc.size(530,550))
+	-- self.node:addChild(bg2)
 
 	--短语按钮
 	local BtnArray={}
@@ -76,7 +76,7 @@ function ChatLayer:init()
 											"chat_btn_chat_.png",
 											ccui.TextureResType.plistType
 											)
-	duanyuBtn:setPosition(-221.54,239.04)
+	duanyuBtn:setPosition(-221.54-15,239.04-3)
 	self.node:addChild(duanyuBtn)
 
 	local browBtn = ccui.CheckBox:create("chat_btn_emoticons_0.png",
@@ -86,7 +86,7 @@ function ChatLayer:init()
 											"chat_btn_emoticons_0.png",
 											ccui.TextureResType.plistType
 											)
-	browBtn:setPosition(-221.54,60)
+	browBtn:setPosition(-221.54-15,60-3)
 	self.node:addChild(browBtn)
 
 	local jiluBtn = ccui.CheckBox:create("chat_btn_jilu_0.png",
@@ -96,7 +96,7 @@ function ChatLayer:init()
 											"chat_btn_jilu_0.png",
 											ccui.TextureResType.plistType
 											)
-	jiluBtn:setPosition(-221.54,-119.04)
+	jiluBtn:setPosition(-221.54-15,-119.04-3)
 	self.node:addChild(jiluBtn)
 
 	duanyuBtn:setTag(1)
@@ -119,8 +119,8 @@ function ChatLayer:init()
 	sendBtn:addClickEventListener(function(sender)self:onButtonClickedEvent(sender)end)
 
 	--输入框
-	local editBoxSize=cc.size(350,70)
-	local editbox = cc.EditBox:create(editBoxSize,"chat_bg2.png",ccui.TextureResType.plistType)
+	local editBoxSize=cc.size(378,58)
+	local editbox = cc.EditBox:create(editBoxSize,"chat_boxBg.png",ccui.TextureResType.plistType)
 	editbox:setPosition(-84.78,-278.38)
 	editbox:setFontName(GameUtils.getFontName())
 	editbox:setFontSize(24)
@@ -146,7 +146,7 @@ function ChatLayer:init()
     pageview:setDirection(ccui.ScrollViewDir.horizontal)
     pageview:setContentSize(pageviewSize)
     pageview:setInnerContainerSize(cc.size(CHAT_SIZE.width*3,CHAT_SIZE.height))
-    pageview:setPosition(-174.97,-203.93)
+    pageview:setPosition(-174.97-10,-203.93-5)
     self.node:addChild(pageview)
     self.pageview=pageview
 

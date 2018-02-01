@@ -11,7 +11,7 @@
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{1334,750}}</string>
                 <key>sourceSize</key>
@@ -20,46 +20,20 @@
             <key>mall_btn_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1839,77},{185,230}}</string>
+                <string>{{754,1108},{185,230}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{185,230}}</string>
                 <key>sourceSize</key>
                 <string>{185,230}</string>
             </dict>
-            <key>mall_btn_bg_normall.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{117,882},{365,113}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{365,113}}</string>
-                <key>sourceSize</key>
-                <string>{365,113}</string>
-            </dict>
-            <key>mall_btn_bg_select.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,882},{365,113}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{365,113}}</string>
-                <key>sourceSize</key>
-                <string>{365,113}</string>
-            </dict>
             <key>mall_btn_iap.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{358,1545},{88,88}}</string>
+                <string>{{74,1767},{88,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +46,7 @@
             <key>mall_btn_menu_diamond_normal.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1617,1128},{263,121}}</string>
+                <string>{{754,617},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +59,7 @@
             <key>mall_btn_menu_diamond_selected.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1617,1005},{263,121}}</string>
+                <string>{{754,494},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +72,7 @@
             <key>mall_btn_menu_gold_normal.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1617,882},{263,121}}</string>
+                <string>{{754,371},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +85,7 @@
             <key>mall_btn_menu_gold_selected.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{232,1067},{263,121}}</string>
+                <string>{{754,248},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +98,7 @@
             <key>mall_btn_menu_room_card_normal.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,754},{263,121}}</string>
+                <string>{{754,125},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,11 +111,11 @@
             <key>mall_btn_menu_rooom_card_selected.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1839,617},{263,121}}</string>
+                <string>{{754,2},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{263,121}}</string>
                 <key>sourceSize</key>
@@ -150,7 +124,7 @@
             <key>mall_btn_un.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{599,1067},{88,88}}</string>
+                <string>{{231,1370},{88,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +137,7 @@
             <key>mall_btn_wx.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{541,1170},{88,88}}</string>
+                <string>{{151,1575},{88,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +150,7 @@
             <key>mall_btn_zfb.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{451,1190},{88,88}}</string>
+                <string>{{151,1485},{88,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -186,36 +160,36 @@
                 <key>sourceSize</key>
                 <string>{88,88}</string>
             </dict>
-            <key>mall_dialog_bg.png</key>
+            <key>mall_dialog_title.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1338,2},{875,499}}</string>
+                <string>{{986,1253},{70,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{875,499}}</string>
+                <string>{{0,0},{70,35}}</string>
                 <key>sourceSize</key>
-                <string>{875,499}</string>
+                <string>{70,35}</string>
             </dict>
             <key>mall_dialog_title_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1962,798},{488,76}}</string>
+                <string>{{2,1485},{469,70}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{488,76}}</string>
+                <string>{{0,0},{469,70}}</string>
                 <key>sourceSize</key>
-                <string>{488,76}</string>
+                <string>{469,70}</string>
             </dict>
             <key>mall_dialog_title_btn_normal.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2034,2},{1,1}}</string>
+                <string>{{1019,6},{1,1}}</string>
                 <key>offset</key>
                 <string>{-77,32}</string>
                 <key>rotated</key>
@@ -228,20 +202,20 @@
             <key>mall_dialog_title_btn_selected.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1839,388},{155,65}}</string>
+                <string>{{74,1485},{179,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{155,65}}</string>
+                <string>{{0,0},{179,75}}</string>
                 <key>sourceSize</key>
-                <string>{155,65}</string>
+                <string>{179,75}</string>
             </dict>
             <key>mall_info_diamond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1999,309},{52,45}}</string>
+                <string>{{74,1857},{52,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -254,11 +228,11 @@
             <key>mall_info_gold.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1999,363},{44,45}}</string>
+                <string>{{121,1857},{44,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{4,0},{44,45}}</string>
                 <key>sourceSize</key>
@@ -267,33 +241,20 @@
             <key>mall_info_room_card.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1996,450},{52,41}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,2},{52,41}}</string>
-                <key>sourceSize</key>
-                <string>{52,45}</string>
-            </dict>
-            <key>mall_item_bg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{267,754},{980,311}}</string>
+                <string>{{74,1911},{52,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{980,311}}</string>
+                <string>{{0,2},{52,41}}</string>
                 <key>sourceSize</key>
-                <string>{980,311}</string>
+                <string>{52,45}</string>
             </dict>
             <key>mall_item_diamond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{497,1067},{101,100}}</string>
+                <string>{{2,1370},{101,100}}</string>
                 <key>offset</key>
                 <string>{-3,-6}</string>
                 <key>rotated</key>
@@ -306,7 +267,7 @@
             <key>mall_item_gold.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1839,492},{125,123}}</string>
+                <string>{{104,1359},{125,123}}</string>
                 <key>offset</key>
                 <string>{-3,0}</string>
                 <key>rotated</key>
@@ -319,37 +280,24 @@
             <key>mall_item_gold_btn_buy_icon.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1996,409},{45,39}}</string>
+                <string>{{164,1767},{45,39}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{45,39}}</string>
                 <key>sourceSize</key>
                 <string>{45,39}</string>
             </dict>
-            <key>mall_item_gold_send_num.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{1966,492},{304,28}}</string>
-                <key>offset</key>
-                <string>{2,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{4,0},{304,28}}</string>
-                <key>sourceSize</key>
-                <string>{308,28}</string>
-            </dict>
             <key>mall_item_gold_title_send.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2026,97},{59,19}}</string>
+                <string>{{2,1338},{59,19}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{59,19}}</string>
                 <key>sourceSize</key>
@@ -358,11 +306,11 @@
             <key>mall_item_goods_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1302,879},{253,313}}</string>
+                <string>{{754,793},{253,313}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{253,313}}</string>
                 <key>sourceSize</key>
@@ -371,7 +319,7 @@
             <key>mall_item_goods_btn_buy.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1839,2},{189,73}}</string>
+                <string>{{754,1295},{189,73}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -381,23 +329,10 @@
                 <key>sourceSize</key>
                 <string>{189,73}</string>
             </dict>
-            <key>mall_item_light.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{358,1288},{242,255}}</string>
-                <key>offset</key>
-                <string>{0,19}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{37,0},{242,255}}</string>
-                <key>sourceSize</key>
-                <string>{316,293}</string>
-            </dict>
             <key>mall_item_room_card.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{333,1190},{90,116}}</string>
+                <string>{{2,1956},{90,116}}</string>
                 <key>offset</key>
                 <string>{1,-9}</string>
                 <key>rotated</key>
@@ -410,11 +345,11 @@
             <key>mall_item_room_card_title_date.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2026,158},{57,19}}</string>
+                <string>{{63,1338},{57,19}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{57,19}}</string>
                 <key>sourceSize</key>
@@ -423,37 +358,24 @@
             <key>mall_item_room_card_title_days.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2026,77},{20,18}}</string>
+                <string>{{945,1295},{20,18}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{20,18}}</string>
                 <key>sourceSize</key>
                 <string>{20,18}</string>
             </dict>
-            <key>mall_left_menu_bg.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,1288},{354,750}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{354,750}}</string>
-                <key>sourceSize</key>
-                <string>{354,750}</string>
-            </dict>
             <key>mall_logo.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1839,309},{158,77}}</string>
+                <string>{{945,1325},{158,77}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{158,77}}</string>
                 <key>sourceSize</key>
@@ -462,11 +384,11 @@
             <key>mall_sale_flag.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{232,1190},{99,95}}</string>
+                <string>{{74,1666},{99,95}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{99,95}}</string>
                 <key>sourceSize</key>
@@ -475,11 +397,11 @@
             <key>mall_title_pay_type.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1839,455},{143,35}}</string>
+                <string>{{986,1108},{143,35}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{143,35}}</string>
                 <key>sourceSize</key>
@@ -488,11 +410,11 @@
             <key>mall_top_info_item_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1249,754},{259,51}}</string>
+                <string>{{754,740},{259,51}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{259,51}}</string>
                 <key>sourceSize</key>
@@ -501,7 +423,7 @@
             <key>mall_txt_line.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2030,2},{2,2}}</string>
+                <string>{{1019,2},{2,2}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -519,9 +441,9 @@
             <key>realTextureFileName</key>
             <string>Mall.png</string>
             <key>size</key>
-            <string>{2048,2048}</string>
+            <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:cfd7ecdd2ca4f502d614c4d1c59094e9:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:aa71dbd1c2f16f51ebcaaf81484ccd79:1/1$</string>
             <key>textureFileName</key>
             <string>Mall.png</string>
         </dict>

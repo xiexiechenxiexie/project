@@ -49,6 +49,10 @@ function LoginScene:initView()
     loginScene:addChild(adAnim);
     adAnim:getAnimation():playWithIndex(0)
 
+    local logo = display.newSprite("GameLayout/Login/login_logo.png")
+    logo:setPosition(logo:getContentSize().width/2,loginScene:getContentSize().height-logo:getContentSize().height/2-20)
+	loginScene:addChild(logo)
+
 	local info = display.newSprite("GameLayout/Login/info.png")
     info:setPosition(667,50)
 	loginScene:addChild(info)
@@ -91,21 +95,37 @@ function LoginScene:initView()
     	self.btnGuest:setPosition(display.width * 0.3,165)
 	end
 
+	-- local function btnCallBack(sender)
+	-- 	if sender:getTag() == LoginManager.LoginType_Guest then
+	-- 		local loginURL = config.SDKConfig.getGuestLoginURL()
+	-- 		LoginManager:login(loginURL)
+	-- 	else
+	-- 		GameUtils.showMsg("拼命开发中,请使用游客登录")
+	-- 	end
+	-- 	-- local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+	-- 	-- if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) or (cc.PLATFORM_OS_ANDROID == targetPlatform) then
+	-- 	-- 	LoginManager:thirdPartyLogin(sender:getTag(), self)
+	-- 	-- else
+	-- 	-- 	local loginURL = config.SDKConfig.getGuestLoginURL()
+	-- 	-- 	LoginManager:login(loginURL)
+	-- 	-- 	-- GameUtils.showMsg("不支持的登录平台")
+	-- 	-- end
+	-- end
+
 	local function btnCallBack(sender)
-		if sender:getTag() == LoginManager.LoginType_Guest then
+		-- local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+		if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) or (cc.PLATFORM_OS_ANDROID == targetPlatform) then
+			if sender:getTag() == LoginManager.LoginType_Guest then
+				LoginManager:thirdPartyLogin(sender:getTag(), self)
+			else
+				GameUtils.showMsg("拼命开发中,请使用游客登录")
+			end
+			
+		else
 			local loginURL = config.SDKConfig.getGuestLoginURL()
 			LoginManager:login(loginURL)
-		else
-			GameUtils.showMsg("拼命开发中,请使用游客登录")
+			-- GameUtils.showMsg("不支持的登录平台")
 		end
-		-- local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-		-- if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) or (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-		-- 	LoginManager:thirdPartyLogin(sender:getTag(), self)
-		-- else
-		-- 	local loginURL = config.SDKConfig.getGuestLoginURL()
-		-- 	LoginManager:login(loginURL)
-		-- 	-- GameUtils.showMsg("不支持的登录平台")
-		-- end
 	end
 
     self.loadingUI = require("lib/view/LoadingUI").new()

@@ -26,7 +26,7 @@ btnMenuRes[BTN_MENU_GOLD] = {}
 btnMenuRes[BTN_MENU_GOLD]["NORMAL"] = "mall_dialog_title_btn_normal.png"
 btnMenuRes[BTN_MENU_GOLD]["SELECTED"] = "mall_dialog_title_btn_selected.png"
 btnMenuRes[BTN_MENU_GOLD]["TEXT"] = "金币"
-btnMenuRes[BTN_MENU_GOLD]["POS"] = cc.p(83, 37)
+btnMenuRes[BTN_MENU_GOLD]["POS"] = cc.p(83, 33)
 
 -- 钻石按钮图片样式
 btnMenuRes[BTN_MENU_DIAMOND] = {}
@@ -35,7 +35,7 @@ btnMenuRes[BTN_MENU_DIAMOND] = {}
 btnMenuRes[BTN_MENU_DIAMOND]["NORMAL"] = "mall_dialog_title_btn_normal.png"
 btnMenuRes[BTN_MENU_DIAMOND]["SELECTED"] = "mall_dialog_title_btn_selected.png"
 btnMenuRes[BTN_MENU_DIAMOND]["TEXT"] = "钻石"
-btnMenuRes[BTN_MENU_DIAMOND]["POS"] = cc.p(244, 37)
+btnMenuRes[BTN_MENU_DIAMOND]["POS"] = cc.p(244, 33)
 
 -- 房卡按钮图片样式
 btnMenuRes[BTN_MENU_ROOMCARD] = {}
@@ -44,7 +44,7 @@ btnMenuRes[BTN_MENU_ROOMCARD] = {}
 btnMenuRes[BTN_MENU_ROOMCARD]["NORMAL"] = "mall_dialog_title_btn_normal.png"
 btnMenuRes[BTN_MENU_ROOMCARD]["SELECTED"] = "mall_dialog_title_btn_selected.png"
 btnMenuRes[BTN_MENU_ROOMCARD]["TEXT"] = "房卡"
-btnMenuRes[BTN_MENU_ROOMCARD]["POS"] = cc.p(405, 37)
+btnMenuRes[BTN_MENU_ROOMCARD]["POS"] = cc.p(405, 33)
 
 -- -- 玩家财富信息
 -- local TEXT_INFO_DIAMOND = 1010
@@ -77,7 +77,7 @@ btnMenuRes[BTN_MENU_ROOMCARD]["POS"] = cc.p(405, 37)
 
 function MallDialg:ctor(menuType)
 	print("MallDialg:ctor")
-	MallDialg.super.ctor(self, lib.layer.Window.MIDDLE)
+	MallDialg.super.ctor(self, lib.layer.Window.PAY)
 	_curMenuType = menuType and menuType or config.MallLayerConfig.Type_Gold
 	self:_initView()
 end
@@ -93,9 +93,15 @@ function MallDialg:_initView()
 	-- self:addChild(self.mallDialogBg)
 	-- self:_onRootPanelInit(self.mallDialogBg)
 
+	self.storeTitle = ccui.ImageView:create("mall_dialog_title.png", ccui.TextureResType.plistType)
+	self.storeTitle:setPosition(cc.p(self.mallDialogBg:getContentSize().width/2, 510))
+	self.mallDialogBg:addChild(self.storeTitle)
+
 	-- 抬头背景
-	self.dialogTitle = ccui.ImageView:create("mall_dialog_title_bg.png", ccui.TextureResType.plistType)
-	self.dialogTitle:setPosition(cc.p(self.mallDialogBg:getContentSize().width/2, 480))
+	-- self.dialogTitle = ccui.ImageView:create("mall_dialog_title_bg.png", ccui.TextureResType.plistType)
+	self.dialogTitle = cc.Scale9Sprite:createWithSpriteFrameName("mall_dialog_title_bg.png", cc.rect(200,25,10,10))
+	self.dialogTitle:setContentSize(cc.size(490,70))
+	self.dialogTitle:setPosition(cc.p(self.mallDialogBg:getContentSize().width/2, 430))
 	self.mallDialogBg:addChild(self.dialogTitle)
 
 	--注册点击事件  
@@ -109,7 +115,7 @@ function MallDialg:_initView()
 		local btnMenu = ccui.Button:create(btnMenuRes[index]["NORMAL"], btnMenuRes[index]["SELECTED"], "", ccui.TextureResType.plistType)
 		btnMenu:setTitleText(btnMenuRes[index]["TEXT"])
 		btnMenu:setTitleFontSize(30)
-		btnMenu:setTitleColor(cc.c3b(104, 96, 169))
+		btnMenu:setTitleColor(cc.c3b(185, 183, 181))
 		btnMenu:setTouchEnabled(true)
 		btnMenu:setContentSize(cc.size(155, 65))
 		btnMenu:setPosition(btnMenuRes[index]["POS"])
@@ -121,7 +127,7 @@ function MallDialg:_initView()
 
 		if index == (_curMenuType + 1000) then
 			btnMenu:loadTextures(btnMenuRes[index]["SELECTED"], btnMenuRes[index]["SELECTED"], "", ccui.TextureResType.plistType)
-			btnMenu:setTitleColor(cc.c3b(255, 255, 255))
+			btnMenu:setTitleColor(cc.c3b(236, 224, 184))
 		end
 	end
 	-- 关闭按钮
@@ -163,10 +169,10 @@ function MallDialg:_btnMenuTouchListener(tag)
 		print("xiaxb", "index", index)
 		if index == tag then
 			self.dialogTitle:getChildByTag(index):loadTextures(btnMenuRes[index]["SELECTED"], btnMenuRes[index]["SELECTED"], "", ccui.TextureResType.plistType)
-			self.dialogTitle:getChildByTag(index):setTitleColor(cc.c3b(255, 255, 255))
+			self.dialogTitle:getChildByTag(index):setTitleColor(cc.c3b(236, 224, 184))
 		else
 			self.dialogTitle:getChildByTag(index):loadTextures(btnMenuRes[index]["NORMAL"], btnMenuRes[index]["SELECTED"], "", ccui.TextureResType.plistType)
-			self.dialogTitle:getChildByTag(index):setTitleColor(cc.c3b(104, 96, 169))
+			self.dialogTitle:getChildByTag(index):setTitleColor(cc.c3b(185, 183, 181))
 		end
 	end 
 	_curMenuType = tag - 1000
