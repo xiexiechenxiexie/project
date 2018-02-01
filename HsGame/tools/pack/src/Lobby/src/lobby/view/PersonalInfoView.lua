@@ -352,7 +352,6 @@ function PersonalInfoView:showPersonalView(data)
     if data == nil then
         return
     end
-
     local Gender = data.gender or 0
     local GenderStr = GameUtils.getInfoBigHeadFileByGender(Gender)
 

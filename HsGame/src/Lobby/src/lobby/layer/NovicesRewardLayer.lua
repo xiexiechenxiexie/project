@@ -84,10 +84,35 @@ function NovicesRewardLayer:initGiftByData(data)
     end
 
 	local bgSize = cc.size(1334,750)
-	local good_posX = bgSize.width/2 + 170 - 200 * (#data / 2 - 0.5)
 	local good_posY = bgSize.height/2
 
-	for k,v in pairs(data) do
+    local dataArray = {}
+    if data.score > 0 then
+        local tab={}
+        tab.type = ConstantsData.PointType.POINT_COINS
+        tab.number = data.score
+        table.insert(dataArray,tab)
+    end
+    if data.roomCard > 0 then
+        local tab={}
+        tab.type = ConstantsData.PointType.POINT_ROOMCARD
+        tab.number = data.roomCard
+        table.insert(dataArray,tab)
+    end
+    if data.diamond > 0 then
+        local tab={}
+        tab.type = ConstantsData.PointType.POINT_DIAMOND
+        tab.number = data.diamond
+        table.insert(dataArray,tab)
+    end
+    
+    if next(dataArray) == nil then
+        return
+    end
+
+    local good_posX = bgSize.width/2 + 170 - 200 * (#dataArray / 2 - 0.5)
+
+	for k,v in pairs(dataArray) do
 		local giftBg = ccui.ImageView:create("Reward_gift_bg.png", ccui.TextureResType.plistType)
     	giftBg:setPosition(good_posX,good_posY)
     	self:addChild(giftBg)

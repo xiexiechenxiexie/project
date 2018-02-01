@@ -57,6 +57,6 @@ end
 
 AUTO_LOGIN = false
 
-VIRTUAL_MACHINECODE = "111"
+VIRTUAL_MACHINECODE = "333"
 
 print("conf load finish")

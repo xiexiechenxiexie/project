@@ -52,7 +52,7 @@ function SignView:initView()
 	self._SignList = {}
 
 	for i=1,SIGN_MAX_RECORD do
-		local record = self:createSignNode(i,self._signData.CheckinSetting[i])
+		local record = self:createSignNode(i,self._signData.checkInSetting[i])
 		if i <= 4 then
 			record:setPosition(180 + (i-1)*188+230, bgSize.height/2 + 122)
 		else
@@ -88,15 +88,17 @@ end
 
 function SignView:requestSignCheckIn()
 	logic.LobbyManager:getInstance():requestSignCheckIn(function( result )
-		dump(result)
     	if result then
+    		print("签到完成")
+    		dump(result)
+    		local data = result.data
         	-- self._btnSign:hide()
         	-- self._imgGotSign:show()
 
         	self._btnSign:setBright(false)
         	self._btnSign:setTouchEnabled(false)
 
-			local curSignNum = self._signData.ContinuousTimes + 1
+			local curSignNum = self._signData.checkedDays+1
 			if curSignNum > 8 then
 				curSignNum = 8
 			end
@@ -107,7 +109,20 @@ function SignView:requestSignCheckIn()
 			self._curSignAni:stopAllActions()
 			self._curSignAni:hide()
 
-			local __params = {{type = self._signData.CheckinSetting[curSignNum].type, score = self._signData.CheckinSetting[curSignNum].num}}
+			local d_type = 0
+		    local d_num = 0
+		    if data.bonusScore > 0 then
+		    	d_type = ConstantsData.PointType.POINT_COINS
+		    	d_num = data.bonusScore
+		    elseif data.bonusDiamond > 0 then
+		    	d_type = ConstantsData.PointType.POINT_COINS
+		    	d_num = data.bonusDiamond
+		    elseif data.bonusRoomCard > 0 then
+		    	d_type = ConstantsData.PointType.POINT_COINS
+		    	d_num = data.bonusRoomCard
+		    end
+
+			local __params = {{type = d_type, score = d_num}}
 			GameUtils.showGiftAccount(__params)
 			
 			local event = cc.EventCustom:new(config.EventConfig.EVENT_REFRESH_USER_INFO)
@@ -148,8 +163,21 @@ function SignView:createSignNode(__index, __data)
     dayText:setPosition(size.width/2, size.height - 25)
     bg:addChild(dayText)
 
+    local d_type = 0
+    local d_num = 0
+    if __data.bonusScore > 0 then
+    	d_type = ConstantsData.PointType.POINT_COINS
+    	d_num = __data.bonusScore
+    elseif __data.bonusDiamond > 0 then
+    	d_type = ConstantsData.PointType.POINT_COINS
+    	d_num = __data.bonusDiamond
+    elseif __data.bonusRoomCard > 0 then
+    	d_type = ConstantsData.PointType.POINT_COINS
+    	d_num = __data.bonusRoomCard
+    end
+
  	local iconStr = ""
- 	if __data.type == ConstantsData.PointType.POINT_COINS then --金币
+ 	if d_type == ConstantsData.PointType.POINT_COINS then --金币
  		iconStr = string.format("Lobby_sign_recond_icon_%d.png",__index)
  	end
 
@@ -157,7 +185,7 @@ function SignView:createSignNode(__index, __data)
     imgIcon:setPosition(size.width/2,size.height/2)
 	bg:addChild(imgIcon)
 
-	record.coinsText = cc.Label:createWithTTF(__data.num,GameUtils.getFontName(),24)
+	record.coinsText = cc.Label:createWithTTF(d_num,GameUtils.getFontName(),24)
     record.coinsText:setAnchorPoint(cc.p(0.5, 0.5))
     record.coinsText:setColor(cc.c3b(255,210,0))
     record.coinsText:setPosition(size.width/2, 25)
@@ -180,20 +208,20 @@ function SignView:showCurSignView()
 	if self._SignList == nil then
 		return
 	end
-	local curSignNum = self._signData.ContinuousTimes + 1
+	local curSignNum = self._signData.checkedDays+1
 	if curSignNum > 8 then
 		curSignNum = 8
 	end
 
-	if self._signData.ContinuousTimes >8 then
-		self._signData.ContinuousTimes = 8
+	if self._signData.checkedDays >8 then
+		self._signData.checkedDays = 8
 	end
-	for i=1,self._signData.ContinuousTimes do
+	for i=1,self._signData.checkedDays do
 		self._SignList[i].maskBg:show()
 		-- self._SignList[i].imgGot:show()
 	end
 
-	if self._signData.CanCheckin == 1 then  -- 表示当天没有领取奖励
+	if self._signData.canCheckIn then  -- 表示当天没有领取奖励
 		self._curSignAni = self._SignList[curSignNum].imgLightAni
 		self._curSignAni:show()
 		local ft1 = cc.FadeTo:create(0.6,175)  

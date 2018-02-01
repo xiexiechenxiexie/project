@@ -91,16 +91,37 @@ function LoginScene:initView()
     	self.btnGuest:setPosition(display.width * 0.3,165)
 	end
 
+	-- local function btnCallBack(sender)
+	-- 	if sender:getTag() == LoginManager.LoginType_Guest then
+	-- 		local loginURL = config.SDKConfig.getGuestLoginURL()
+	-- 		LoginManager:login(loginURL)
+	-- 	else
+	-- 		GameUtils.showMsg("拼命开发中,请使用游客登录")
+	-- 	end
+	-- 	-- local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+	-- 	-- if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) or (cc.PLATFORM_OS_ANDROID == targetPlatform) then
+	-- 	-- 	LoginManager:thirdPartyLogin(sender:getTag(), self)
+	-- 	-- else
+	-- 	-- 	local loginURL = config.SDKConfig.getGuestLoginURL()
+	-- 	-- 	LoginManager:login(loginURL)
+	-- 	-- 	-- GameUtils.showMsg("不支持的登录平台")
+	-- 	-- end
+	-- end
+
 	local function btnCallBack(sender)
-		local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+		-- local targetPlatform = cc.Application:getInstance():getTargetPlatform()
 		if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) or (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-			LoginManager:thirdPartyLogin(sender:getTag(), self)
+			if sender:getTag() == LoginManager.LoginType_Guest then
+				LoginManager:thirdPartyLogin(sender:getTag(), self)
+			else
+				GameUtils.showMsg("拼命开发中,请使用游客登录")
+			end
+			
 		else
 			local loginURL = config.SDKConfig.getGuestLoginURL()
 			LoginManager:login(loginURL)
 			-- GameUtils.showMsg("不支持的登录平台")
 		end
-		return
 	end
 
     self.loadingUI = require("lib/view/LoadingUI").new()

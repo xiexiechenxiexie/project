@@ -76,12 +76,8 @@ function FriendManager:_onAddFriendCallback( __error,__response )
         if 200 == __response.status then
             local data = __response
             self._requestAddFriendCallBack(data)
-        elseif 503 == __response.status then
-            GameUtils.showMsg("不能添加自己为好友")
-        elseif 504 == __response.status then
-            GameUtils.showMsg("不能重复添加好友")
         else
-            GameUtils.showMsg("添加好友失败："..__response.status)
+            GameUtils.showMsg(__response.msg)
         end
     end
 end

@@ -288,6 +288,7 @@ function LobbyPlayView:_initPlayButton( __targetNode,__itemData,__textureResType
 	local atlasNode = ccui.TextAtlas:create(tostring(__itemData.floorScore),atlasFile,27,36,"0")
 	local size = __targetNode:getContentSize()
 	-- atlasNode:setPosition(120,33)
+	atlasNode:setPosition(0,25)
 	atlasNode:setAnchorPoint(cc.p(0.5,0.5))
 	imgFloorScore:addChild(atlasNode)
 

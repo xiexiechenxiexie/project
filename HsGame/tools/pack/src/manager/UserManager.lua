@@ -8,7 +8,7 @@ end
 function UserManager:refreshUserInfo( ... )
     if UserData.userId then 
         local config = cc.exports.config
-        local url = config.ServerConfig:findLoginDomain() .. config.ApiConfig.REQUEST_REFRESH_USERDATA .. UserData.token
+        local url = config.ServerConfig:findLoginDomain() .. config.ApiConfig.REQUEST_SELF_INFO .. UserData.token
         cc.exports.HttpClient:getInstance():get(url,handler(self,self._onInfoCallback))
     end
 end
@@ -21,13 +21,13 @@ function UserManager:_onInfoCallback( __error,__response )
     else
         if 200 == __response.status then
         	print(tostring(__response))
-        	local data = __response.data.user
-			if data.NickName then UserData.nickName = data.NickName end
-			if data.Score then UserData.coins = data.Score end
-			if data.RoomCardNum  then  UserData.roomCards = data.RoomCardNum end
+        	local data = __response.data
+			if data.NickName then UserData.nickName = data.nickName end
+			if data.Score then UserData.coins = data.score end
+			if data.RoomCardNum  then  UserData.roomCards = data.roomCard end
 			if data.diamond then UserData.diamond = data.diamond end
-			if data.AvatarUrl then UserData.avatarUrl = data.AvatarUrl end
-			if data.Gender then UserData.gender = data.Gender end
+			if data.AvatarUrl then UserData.avatarUrl = data.avatar end
+			if data.Gender then UserData.gender = data.gender end
 			local event = cc.EventCustom:new(config.EventConfig.EVENT_REFRESH_USER_INFO)
 			lib.EventUtils.dispatch(event)	
         end

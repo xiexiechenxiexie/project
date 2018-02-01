@@ -471,7 +471,7 @@ function LobbyScene:updateSignState()
 	print("LobbyScene:updateSignState")
 	if GameStateData.SignState == 1 then
 		logic.LobbyManager:getInstance():requestSignSetData(function( result )
-	       	if result.isShow == 1 then
+	       	if result == 1 then
 	       		print("显示签到界面")
 	        	logic.LobbyManager:getInstance():requestSignInfoData(function(signResult) 
 	        		if signResult then

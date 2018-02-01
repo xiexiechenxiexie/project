@@ -30,15 +30,15 @@ function ServiceView:initView()
     -- codeImg:setPosition(bgSize.width/2 + 240, 165)
     -- bg:addChild(codeImg)
 
-    local qqServiceStr = self._ServiceData.QQService or ""
-    local qqProxyStr = self._ServiceData.QQProxy or ""
-    local weChatProxyStr = self._ServiceData.WechatProxy or ""
+    local qqServiceStr = self._ServiceData.qqProxy or ""
+    local qqProxyStr = self._ServiceData.qqService or ""
+    local weChatProxyStr = self._ServiceData.qqServiceStr or ""
 
     local textStrList = {}
 
-    local textStr1 = "招房卡代理商QQ:" .. qqProxyStr
-    local textStr2 = "招代理商微信:" .. weChatProxyStr
-    local textStr3 = "游戏客服QQ:" .. qqServiceStr
+    local textStr1 = "招房卡代理商QQ:" .. qqServiceStr
+    local textStr2 = "招代理商微信:" .. qqProxyStr
+    local textStr3 = "游戏客服QQ:" .. weChatProxyStr
     -- local textStr4 = "官方公众号"
     table.insert(textStrList,textStr1)
     table.insert(textStrList,textStr2)

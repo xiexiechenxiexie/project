@@ -30,11 +30,11 @@ local ApiConfig = {
 	REQUEST_REVISE_SELF_INFO = "/api/v1/profile/update",   	-- 修改用户信息ok
 	REQUEST_NOTICE = "/api/v1/announcement/list", -- 公告活动ok
 	REQUEST_NOTICE_SET = "/api/v1/app/announcement/switch", -- 公告开关
-	REQUEST_SIGN_CHECK_IN = "/api/v1/app/checkin/", --签到
+	REQUEST_SIGN_CHECK_IN = "/api/v1/checkIn/", --签到
 	REQUEST_SIGN_SET = "/api/v1/checkIn/isShow", -- 签到开关
-	REQUEST_SIGN_INFO = "/api/v1/app/checkinsetting/", -- 签到具体信息
-	REQUEST_NOVICES_REWARD_INFO = "/api/v1/app/newbie/setting", -- 新手礼包信息
-	REQUEST_NOVICES_REWARD_RECEIVE = "/api/v1/app/newbie/receive/", -- 新手礼包领取
+	REQUEST_SIGN_INFO = "/api/v1/checkIn/user", -- 签到具体信息
+	REQUEST_NOVICES_REWARD_INFO = "/api/v1/newbie/show", -- 新手礼包信息ok
+	REQUEST_NOVICES_REWARD_RECEIVE = "/api/v1/newbie/receive", -- 新手礼包领取 ok
 	REQUEST_TASK_INFO = "/api/v1/task/progress", -- 任务信息
 	REQUEST_TASK_GET_AWARD = "/api/v1/task/receive/", -- 领取任务奖励
 
@@ -57,7 +57,6 @@ local ApiConfig = {
 	REQUEST_LOBBY_SERVER_INFO = "/api/v1/room/lobby", --大厅游戏服信息
 	REQUEST_INVITE_INFO = "/api/v1/app/share/invite/",
 	REQUEST_JOIN_ROOM_INFO_WITH_ROOMID = "/api/v1/room/join/",
-	REQUEST_REFRESH_USERDATA = "/api/v1/refresh/", -- 更新用户数据
 	REQUEST_SHARE_URL = "/api/v1/app/share/config/",-- 没用到
 	REQUEST_STORESWITCH = "/api/v1/app/system/storeswitch",--审核开关
 	REQUEST_SYSTEM_ZHUANG_HEAD_URL = "/api/v1/app/system/dealer",
@@ -72,7 +71,7 @@ local MallApiConfig = {
 	REQUEST_MALL_GOODS_ORDER = "/api/v1/store/buy",				--商品订单请求
 	REQUEST_MALL_IAP_VERIFY = "/api/v1/store/iapverify",		--苹果支付校验请求
 	REQUEST_MALL_PAY_RESULT_VERIFY = "/api/v1/store/checkorder/",		--支付校验请求
-	REQUEST_MALL_SERVER_INFO = "/api/v1/app/customerservice/setting" 	--商城客服联系方式
+	REQUEST_MALL_SERVER_INFO = "/api/v1/game/contacts" 	--商城客服联系方式ok
 				
 }
 

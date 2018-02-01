@@ -7,8 +7,8 @@ local environment = {
 	ENVIRONMENT_INNER_NET = 2, --内网测试地址  http://192.168.1.213:9085、
 	ENVIRONMENT_OUTER_NET = 3, --外网测试地址
 	ENVIRONMENT_RELEASE_NET = 4, --发布地址
-	-- ENVIRONMENT_TEST = 5, --测试地址
-	ENVIRONMENT_TEST_NET = 6, --发布地址
+	ENVIRONMENT_TEST = 5, --测试地址
+	ENVIRONMENT_TEST_NET = 6, --hahaha
 }
 
 environment.ENVIRONMENT  = environment.ENVIRONMENT_TEST_NET
@@ -35,12 +35,11 @@ ServerConfig.config = {
 			modelDomain  = "https://api.service.suit.wang",
 			loginDomain = "https://uc.service.suit.wang"
 		},
-		-- [environment.ENVIRONMENT_TEST] = {
-		-- 	resDomain = "http://resource.suit.wang/",
-		-- 	modelDomain  = "https://test3.service.suit.wang",
-		-- 	loginDomain = "https://test1.service.suit.wang"
-		-- }
-
+		[environment.ENVIRONMENT_TEST] = {
+			resDomain = "http://resource.suit.wang/",
+			modelDomain  = "https://test3.service.suit.wang",
+			loginDomain = "https://test1.service.suit.wang"
+		},
 		[environment.ENVIRONMENT_TEST_NET] = {
 			resDomain = "http://resource.suit.wang/",
 			modelDomain  = "http://111.231.137.148:8080/nn",

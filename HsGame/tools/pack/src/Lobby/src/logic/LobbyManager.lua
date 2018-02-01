@@ -383,15 +383,12 @@ function LobbyManager:requestSignSetData(__callback)
 	print("requestSignSetData")
 	self._requestSignSetCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_SET .."?token".. UserData.token
-    print("签到开关url",url)
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_SET .."?token=".. UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onSignSetCallback))
 end
 
 
 function LobbyManager:_onSignSetCallback( __error,__response )
-	print("签到开关")
-	dump(__response)
     if __error then
         print("requestSignSetData net error")
     else
@@ -409,11 +406,13 @@ function LobbyManager:requestSignInfoData(__callback)
 	print("requestSignInfoData")
 	self._requestSignInfoCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_INFO .. UserData.token
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_INFO .. "?token=".. UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onSignInfoCallback))
 end
 
 function LobbyManager:_onSignInfoCallback( __error,__response )
+	print("签到具体信息")
+	dump(__response)
     if __error then
         print("requestSignInfoData net error")
     else
@@ -430,9 +429,11 @@ end
 function LobbyManager:requestSignCheckIn(__callback)
 	print("requestSignCheckIn")
 	self._requestSignCheckInCallBack = __callback
+	local param = {}
+	param.token = UserData.token
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_CHECK_IN .. UserData.token
-    cc.exports.HttpClient:getInstance():get(url,handler(self,self._onSignCheckInCallback))
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_CHECK_IN
+    cc.exports.HttpClient:getInstance():post(url,param,handler(self,self._onSignCheckInCallback))
 end
 
 function LobbyManager:_onSignCheckInCallback( __error,__response )
@@ -440,9 +441,7 @@ function LobbyManager:_onSignCheckInCallback( __error,__response )
         print("requestSignCheckIn net error")
     else
         if 200 == __response.status then
-        	UserData.coins = __response.data.user.Score
-            UserData.roomCards = __response.data.user.RoomCardNum
-            UserData.diamond = __response.data.user.diamond
+        	manager.UserManager:getInstance():refreshUserInfo()
             self._requestSignCheckInCallBack(__response)
         end
     end
@@ -505,11 +504,13 @@ end
 function LobbyManager:requestServiceData( __callback )
 	print("requestServiceData")
 	self._requestServiceCallBack = __callback
-    local url = config.ServerConfig:findModelDomain() .. config.MallApiConfig.REQUEST_MALL_SERVER_INFO
+    local url = config.ServerConfig:findModelDomain() .. config.MallApiConfig.REQUEST_MALL_SERVER_INFO.."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onServiceCallback))
 end
 
 function LobbyManager:_onServiceCallback( __error,__response )
+	print("请求客服数据请求客服数据")
+	dump(__response)
     if __error then
         print("requestServiceData net error")
     else
