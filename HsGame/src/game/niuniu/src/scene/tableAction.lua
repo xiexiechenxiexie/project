@@ -209,11 +209,11 @@ function tableAction:roundZhuang(bankidArr)
 	for i,v in ipairs(bankidArr) do
 		if v == 2 or v == 5 then
 			local rozhuang = cc.Sprite:createWithSpriteFrameName("gold_effect_shu.png")
-			rozhuang:setPosition(cc.p(conf.PlayerPosArray[v].x-5,conf.PlayerPosArray[v].y-5))
+			rozhuang:setPosition(cc.p(conf.PlayerPosArray[v].x-17,conf.PlayerPosArray[v].y-15))
 			table.insert(self.roZhuangArr,rozhuang)
 		else
 			local rozhuang = cc.Sprite:createWithSpriteFrameName("gold_effect_heng.png")
-			rozhuang:setPosition(cc.p(conf.PlayerPosArray[v].x-5,conf.PlayerPosArray[v].y-5))
+			rozhuang:setPosition(cc.p(conf.PlayerPosArray[v].x-10,conf.PlayerPosArray[v].y-15))
 			table.insert(self.roZhuangArr,rozhuang)
 		end
 	end
@@ -236,11 +236,13 @@ function tableAction:zhuangEffect(seatid)
    	local sprite = nil
    	if seatid == 2 or seatid == 5 then
    		sprite = cc.Sprite:createWithSpriteFrameName("gold_effectS1.png")
+   		sprite:setPosition(cc.p(conf.PlayerPosArray[seatid].x-15,conf.PlayerPosArray[seatid].y-12))
    	else
    		sprite = cc.Sprite:createWithSpriteFrameName("gold_effect1.png")
+   		sprite:setPosition(cc.p(conf.PlayerPosArray[seatid].x-10,conf.PlayerPosArray[seatid].y-12))
    	end
    	sprite:setAnchorPoint(0,0)
-   	sprite:setPosition(cc.p(conf.PlayerPosArray[seatid].x-30,conf.PlayerPosArray[seatid].y-30))
+   	
    	self:addChild(sprite)
 
    	local animation =cc.Animation:create()
@@ -286,19 +288,19 @@ function tableAction:ziEffect(seatid)
 		zhuang:setPosition(conf.PlayerPosArray[seatid].x+282-10,conf.PlayerPosArray[seatid].y+131-15)
 	end
 	self:addChild(zhuang)
-	local zhuangZi = cc.Sprite:createWithSpriteFrameName("gold_zhuang_effect.png")
-	zhuangZi:setPosition(zhuang:getContentSize().width/2,zhuang:getContentSize().height/2)
-	zhuang:addChild(zhuangZi)
+	-- local zhuangZi = cc.Sprite:createWithSpriteFrameName("gold_zhuang_effect.png")
+	-- zhuangZi:setPosition(zhuang:getContentSize().width/2,zhuang:getContentSize().height/2)
+	-- zhuang:addChild(zhuangZi)
 
-	local fade = cc.FadeOut:create(0.5)
-	local scale = cc.ScaleTo:create(0.5,1.2)
-	local call = cc.CallFunc:create(function ()
-		zhuangZi:hide()
-		zhuang:hide()
-	end)
-	local spawn = cc.Spawn:create(fade,scale)
-	local seque = cc.Sequence:create(spawn,call)
-	zhuangZi:runAction(seque)
+	-- local fade = cc.FadeOut:create(0.5)
+	-- local scale = cc.ScaleTo:create(0.5,1.2)
+	-- local call = cc.CallFunc:create(function ()
+	-- 	zhuangZi:hide()
+	-- 	zhuang:hide()
+	-- end)
+	-- local spawn = cc.Spawn:create(fade,scale)
+	-- local seque = cc.Sequence:create(spawn,call)
+	-- zhuangZi:runAction(seque)
 end
 --庄家
 function tableAction:chooseGrad(seatid)
@@ -312,7 +314,7 @@ function tableAction:chooseGrad(seatid)
 		self.zhuang_guang = zhuang_guang
 	end
 	self.zhuang_guang:setAnchorPoint(0,0)
-	self.zhuang_guang:setPosition(cc.p(conf.PlayerPosArray[seatid].x-5,conf.PlayerPosArray[seatid].y-5))
+	self.zhuang_guang:setPosition(cc.p(conf.PlayerPosArray[seatid].x-15,conf.PlayerPosArray[seatid].y-10))
 	self:addChild(self.zhuang_guang)
 	table.insert(self.zhuangGArr,self.zhuang_guang)
 

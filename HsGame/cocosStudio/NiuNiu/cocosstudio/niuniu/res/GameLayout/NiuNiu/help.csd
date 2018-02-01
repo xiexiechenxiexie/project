@@ -6,214 +6,193 @@
       <ObjectData Name="Layer" Tag="72" ctype="GameLayerObjectData">
         <Size X="1334.0000" Y="750.0000" />
         <Children>
-          <AbstractNodeData Name="bg" ActionTag="145903284" Tag="73" IconVisible="False" LeftMargin="233.0001" RightMargin="232.9999" TopMargin="118.9454" BottomMargin="118.0546" ctype="SpriteObjectData">
-            <Size X="868.0000" Y="513.0000" />
+          <AbstractNodeData Name="bg" ActionTag="145903284" Tag="73" IconVisible="False" LeftMargin="121.5001" RightMargin="121.4999" TopMargin="33.5000" BottomMargin="33.5000" ctype="SpriteObjectData">
+            <Size X="1091.0000" Y="683.0000" />
             <Children>
-              <AbstractNodeData Name="title" ActionTag="1563778489" Tag="74" IconVisible="False" LeftMargin="44.0506" RightMargin="652.9494" TopMargin="24.6681" BottomMargin="439.3319" ctype="SpriteObjectData">
-                <Size X="171.0000" Y="49.0000" />
+              <AbstractNodeData Name="title" ActionTag="1563778489" Tag="74" IconVisible="False" LeftMargin="504.3627" RightMargin="518.6373" TopMargin="43.0649" BottomMargin="605.9351" ctype="SpriteObjectData">
+                <Size X="68.0000" Y="34.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="129.5506" Y="463.8319" />
+                <Position X="538.3627" Y="622.9351" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1493" Y="0.9042" />
-                <PreSize X="0.1970" Y="0.0955" />
-                <FileData Type="PlistSubImage" Path="title_help.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
+                <PrePosition X="0.4935" Y="0.9121" />
+                <PreSize X="0.0623" Y="0.0498" />
+                <FileData Type="PlistSubImage" Path="niuniu_title_help.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="close" ActionTag="1944104396" Tag="75" IconVisible="False" LeftMargin="802.9340" RightMargin="26.0660" TopMargin="29.6680" BottomMargin="444.3320" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="9" Scale9Height="17" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="39.0000" Y="39.0000" />
+              <AbstractNodeData Name="close" ActionTag="1944104396" Tag="75" IconVisible="False" LeftMargin="888.4333" RightMargin="20.5667" TopMargin="19.7817" BottomMargin="588.2183" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="152" Scale9Height="53" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="182.0000" Y="75.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="822.4340" Y="463.8320" />
+                <Position X="979.4333" Y="625.7183" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.9475" Y="0.9042" />
-                <PreSize X="0.0449" Y="0.0760" />
+                <PrePosition X="0.8977" Y="0.9161" />
+                <PreSize X="0.1668" Y="0.1098" />
                 <TextColor A="255" R="65" G="65" B="70" />
-                <PressedFileData Type="PlistSubImage" Path="help_btn_close.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <NormalFileData Type="PlistSubImage" Path="help_btn_close.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
+                <PressedFileData Type="PlistSubImage" Path="niuniu_help_btn_close1.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
+                <NormalFileData Type="PlistSubImage" Path="niuniu_help_btn_close.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="txtBg" ActionTag="-2146849450" Tag="86" IconVisible="False" HorizontalEdge="BothEdge" VerticalEdge="BothEdge" LeftMargin="212.9695" RightMargin="25.0305" TopMargin="89.3293" BottomMargin="38.6707" StretchWidthEnable="True" StretchHeightEnable="True" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="15" BottomEage="15" Scale9OriginX="15" Scale9OriginY="15" Scale9Width="25" Scale9Height="25" ctype="ImageViewObjectData">
-                <Size X="630.0000" Y="385.0000" />
+              <AbstractNodeData Name="cardType" ActionTag="2124373947" Tag="76" IconVisible="False" LeftMargin="20.2428" RightMargin="807.7572" TopMargin="99.4253" BottomMargin="462.5747" TouchEnable="True" FontSize="36" ButtonText="牌型说明" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="233" Scale9Height="99" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="263.0000" Y="121.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="527.9695" Y="231.1707" />
+                <Position X="151.7428" Y="523.0747" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6083" Y="0.4506" />
-                <PreSize X="0.7258" Y="0.7505" />
-                <FileData Type="PlistSubImage" Path="helptxt_bg.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
+                <PrePosition X="0.1391" Y="0.7658" />
+                <PreSize X="0.2411" Y="0.1772" />
+                <TextColor A="255" R="191" G="169" B="125" />
+                <PressedFileData Type="PlistSubImage" Path="niuniu_help_btn_selected.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
+                <NormalFileData Type="PlistSubImage" Path="niuniu_help_btn_norml.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
-              <AbstractNodeData Name="point" ActionTag="1634066475" Tag="88" IconVisible="False" LeftMargin="200.0000" RightMargin="654.0000" TopMargin="123.0000" BottomMargin="364.0000" ctype="SpriteObjectData">
-                <Size X="14.0000" Y="26.0000" />
+              <AbstractNodeData Name="rule" ActionTag="1090288667" Tag="78" IconVisible="False" LeftMargin="19.7975" RightMargin="808.2025" TopMargin="220.1430" BottomMargin="341.8570" TouchEnable="True" FontSize="36" ButtonText="基本规则" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="233" Scale9Height="99" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="263.0000" Y="121.0000" />
                 <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="207.0000" Y="377.0000" />
+                <Position X="151.2975" Y="402.3570" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2385" Y="0.7349" />
-                <PreSize X="0.0161" Y="0.0507" />
-                <FileData Type="PlistSubImage" Path="point.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
+                <PrePosition X="0.1387" Y="0.5891" />
+                <PreSize X="0.2411" Y="0.1772" />
+                <TextColor A="255" R="191" G="169" B="125" />
+                <PressedFileData Type="PlistSubImage" Path="niuniu_help_btn_selected.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
+                <NormalFileData Type="PlistSubImage" Path="niuniu_help_btn_norml.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="wanfa" ActionTag="-524187579" Tag="79" IconVisible="False" LeftMargin="19.8844" RightMargin="808.1156" TopMargin="341.8591" BottomMargin="220.1409" TouchEnable="True" FontSize="36" ButtonText="玩法介绍" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="233" Scale9Height="99" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="263.0000" Y="121.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="151.3844" Y="280.6409" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.1388" Y="0.4109" />
+                <PreSize X="0.2411" Y="0.1772" />
+                <TextColor A="255" R="191" G="169" B="125" />
+                <PressedFileData Type="PlistSubImage" Path="niuniu_help_btn_selected.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
+                <NormalFileData Type="PlistSubImage" Path="niuniu_help_btn_norml.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="shuoming" Visible="False" ActionTag="1271634187" Tag="89" IconVisible="False" LeftMargin="333.9628" RightMargin="66.0372" TopMargin="149.2706" BottomMargin="80.7294" ctype="SpriteObjectData">
+                <Size X="691.0000" Y="453.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="679.4628" Y="307.2294" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="0.6228" Y="0.4498" />
+                <PreSize X="0.6334" Y="0.6633" />
+                <FileData Type="PlistSubImage" Path="niuniu_cardTypeShuoming.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
                 <BlendFunc Src="1" Dst="771" />
               </AbstractNodeData>
-              <AbstractNodeData Name="cardType" ActionTag="2124373947" Tag="76" IconVisible="False" LeftMargin="19.8774" RightMargin="669.1226" TopMargin="102.3558" BottomMargin="340.6442" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="149" Scale9Height="48" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="179.0000" Y="70.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="109.3774" Y="375.6442" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1260" Y="0.7322" />
-                <PreSize X="0.2062" Y="0.1365" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <PressedFileData Type="PlistSubImage" Path="btn_cardType_1.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <NormalFileData Type="PlistSubImage" Path="btn_cardType_0.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="rule" ActionTag="1090288667" Tag="78" IconVisible="False" LeftMargin="19.8774" RightMargin="669.1226" TopMargin="198.6113" BottomMargin="244.3887" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="149" Scale9Height="48" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="179.0000" Y="70.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="109.3774" Y="279.3887" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1260" Y="0.5446" />
-                <PreSize X="0.2062" Y="0.1365" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <PressedFileData Type="PlistSubImage" Path="btn_rule_1.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <NormalFileData Type="PlistSubImage" Path="btn_rule_0.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="wanfa" ActionTag="-524187579" Tag="79" IconVisible="False" LeftMargin="19.8774" RightMargin="669.1226" TopMargin="290.3608" BottomMargin="152.6392" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="149" Scale9Height="48" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-                <Size X="179.0000" Y="70.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="109.3774" Y="187.6392" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.1260" Y="0.3658" />
-                <PreSize X="0.2062" Y="0.1365" />
-                <TextColor A="255" R="65" G="65" B="70" />
-                <PressedFileData Type="PlistSubImage" Path="btn_wanfa_1.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <NormalFileData Type="PlistSubImage" Path="btn_wanfa_0.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <OutlineColor A="255" R="255" G="0" B="0" />
-                <ShadowColor A="255" R="110" G="110" B="110" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="shuoming" Visible="False" ActionTag="1271634187" Tag="89" IconVisible="False" LeftMargin="220.6860" RightMargin="33.3140" TopMargin="116.1589" BottomMargin="52.8411" ctype="SpriteObjectData">
-                <Size X="614.0000" Y="344.0000" />
-                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                <Position X="527.6860" Y="224.8411" />
-                <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.6079" Y="0.4383" />
-                <PreSize X="0.7074" Y="0.6706" />
-                <FileData Type="PlistSubImage" Path="cardTypeShuoming.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
-                <BlendFunc Src="1" Dst="771" />
-              </AbstractNodeData>
-              <AbstractNodeData Name="wanfaView" Visible="False" ActionTag="-781124805" Tag="99" IconVisible="False" LeftMargin="228.1177" RightMargin="39.8823" TopMargin="89.9962" BottomMargin="38.0038" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-                <Size X="600.0000" Y="385.0000" />
+              <AbstractNodeData Name="wanfaView" Visible="False" ActionTag="-781124805" Tag="99" IconVisible="False" LeftMargin="324.9662" RightMargin="66.0338" TopMargin="120.4229" BottomMargin="62.5771" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="700.0000" Y="500.0000" />
                 <Children>
-                  <AbstractNodeData Name="Text1" ActionTag="362271973" Tag="95" IconVisible="False" LeftMargin="16.5037" RightMargin="46.4963" TopMargin="34.4777" BottomMargin="31.5223" FontSize="29" LabelText="&#xA;看牌抢庄：每人随机发4张牌后，各自决定&#xA;是否抢庄。&#xA;&#xA;&#xA;玩家加入房间点击座位坐下时需要房主的&#xA;同意才能入座&#xA;&#xA;&#xA;即每个加入房间的玩家都需要支付相同的&#xA;费用。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="537.0000" Y="319.0000" />
+                  <AbstractNodeData Name="Text1" ActionTag="362271973" Tag="95" IconVisible="False" LeftMargin="3.3393" RightMargin="-8.3393" TopMargin="24.9063" BottomMargin="115.0938" FontSize="30" LabelText="&#xA;看牌抢庄：每人随机发4张牌后，各自决定是否抢庄。&#xA;&#xA;&#xA;&#xA;&#xA;玩家加入房间点击座位坐下时需要房主的同意才能入&#xA;座。&#xA;&#xA;&#xA;&#xA;即每个加入房间的玩家都需要支付相同的费用。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="705.0000" Y="360.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="285.0037" Y="191.0223" />
+                    <Position X="355.8393" Y="295.0938" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="228" B="209" />
-                    <PrePosition X="0.4750" Y="0.4962" />
-                    <PreSize X="0.8950" Y="0.8286" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5083" Y="0.5902" />
+                    <PreSize X="1.0071" Y="0.7200" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="Text2" ActionTag="-1647364474" Tag="96" IconVisible="False" LeftMargin="16.5037" RightMargin="437.4963" TopMargin="15.9097" BottomMargin="108.0903" FontSize="29" LabelText="[玩法]&#xA;&#xA;&#xA;&#xA;[授权入座]&#xA;&#xA;&#xA;&#xA;[AA支付]" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="146.0000" Y="261.0000" />
+                  <AbstractNodeData Name="Text2" ActionTag="-1647364474" Tag="96" IconVisible="False" LeftMargin="-3.3854" RightMargin="523.3854" TopMargin="12.6849" BottomMargin="163.3151" FontSize="36" LabelText="[玩法]&#xA;&#xA;&#xA;&#xA;[授权入座]&#xA;&#xA;&#xA;&#xA;[AA支付]" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="180.0000" Y="324.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="89.5037" Y="238.5903" />
+                    <Position X="86.6146" Y="325.3151" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="151" B="118" />
-                    <PrePosition X="0.1492" Y="0.6197" />
-                    <PreSize X="0.2433" Y="0.6779" />
+                    <CColor A="255" R="235" G="201" B="126" />
+                    <PrePosition X="0.1237" Y="0.6506" />
+                    <PreSize X="0.2571" Y="0.6480" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint />
-                <Position X="228.1177" Y="38.0038" />
+                <Position X="324.9662" Y="62.5771" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2628" Y="0.0741" />
-                <PreSize X="0.6912" Y="0.7505" />
+                <PrePosition X="0.2979" Y="0.0916" />
+                <PreSize X="0.6416" Y="0.7321" />
                 <SingleColor A="255" R="255" G="150" B="100" />
                 <FirstColor A="255" R="255" G="150" B="100" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
-                <InnerNodeSize Width="600" Height="385" />
+                <InnerNodeSize Width="700" Height="500" />
               </AbstractNodeData>
-              <AbstractNodeData Name="ScrollView_3" ActionTag="1466397612" Tag="100" IconVisible="False" LeftMargin="223.7625" RightMargin="44.2375" TopMargin="88.1682" BottomMargin="39.8318" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
-                <Size X="600.0000" Y="385.0000" />
+              <AbstractNodeData Name="ScrollView_3" ActionTag="1466397612" Tag="100" IconVisible="False" LeftMargin="323.5004" RightMargin="57.4995" TopMargin="121.3048" BottomMargin="61.6952" TouchEnable="True" ClipAble="True" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" IsBounceEnabled="True" ScrollDirectionType="Vertical" ctype="ScrollViewObjectData">
+                <Size X="710.0000" Y="500.0000" />
                 <Children>
-                  <AbstractNodeData Name="Text3" ActionTag="-63817454" Tag="98" IconVisible="False" LeftMargin="15.9591" RightMargin="17.0409" TopMargin="53.9467" BottomMargin="1189.0533" FontSize="29" LabelText="游戏用牌为一副牌除大小王以外，共计52张&#xA;。玩家人数为2人至5人，每人随机发4张牌，&#xA;抢庄后再发一张牌。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="567.0000" Y="87.0000" />
+                  <AbstractNodeData Name="Text3" ActionTag="-63817454" Tag="98" IconVisible="False" LeftMargin="1.7943" RightMargin="18.2057" TopMargin="65.3228" BottomMargin="1144.6772" FontSize="30" LabelText="游戏用牌为一副牌除大小王以外，共计52张。玩家人&#xA;数为2人至5人，每人随机发4张牌，抢庄后再发一张&#xA;牌。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="690.0000" Y="90.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="299.4591" Y="1232.5533" />
+                    <Position X="346.7943" Y="1189.6772" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="228" B="209" />
-                    <PrePosition X="0.4991" Y="0.9267" />
-                    <PreSize X="0.9450" Y="0.0654" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.4884" Y="0.9151" />
+                    <PreSize X="0.9718" Y="0.0750" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="Text_4" ActionTag="1377299854" Tag="101" IconVisible="False" LeftMargin="15.9592" RightMargin="438.0408" TopMargin="13.8960" BottomMargin="1287.1040" FontSize="29" LabelText="[基本规则]" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="146.0000" Y="29.0000" />
+                  <AbstractNodeData Name="Text_4" ActionTag="1377299854" Tag="101" IconVisible="False" LeftMargin="-4.2940" RightMargin="534.2940" TopMargin="27.5746" BottomMargin="1236.4254" FontSize="36" LabelText="[基本规则]" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="180.0000" Y="36.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="88.9592" Y="1301.6040" />
+                    <Position X="85.7060" Y="1254.4254" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="151" B="118" />
-                    <PrePosition X="0.1483" Y="0.9786" />
-                    <PreSize X="0.2433" Y="0.0218" />
+                    <CColor A="255" R="235" G="201" B="126" />
+                    <PrePosition X="0.1207" Y="0.9649" />
+                    <PreSize X="0.2535" Y="0.0300" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="Text_4_0" ActionTag="-871186763" Tag="17" IconVisible="False" LeftMargin="15.9592" RightMargin="438.0408" TopMargin="156.4900" BottomMargin="1144.5100" FontSize="29" LabelText="[牌型判断]" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="146.0000" Y="29.0000" />
+                  <AbstractNodeData Name="Text_4_0" ActionTag="-871186763" Tag="17" IconVisible="False" LeftMargin="-4.2940" RightMargin="534.2940" TopMargin="170.1685" BottomMargin="1093.8315" FontSize="36" LabelText="[牌型判断]" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="180.0000" Y="36.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="88.9592" Y="1159.0100" />
+                    <Position X="85.7060" Y="1111.8315" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="151" B="118" />
-                    <PrePosition X="0.1483" Y="0.8714" />
-                    <PreSize X="0.2433" Y="0.0218" />
+                    <CColor A="255" R="235" G="201" B="126" />
+                    <PrePosition X="0.1207" Y="0.8553" />
+                    <PreSize X="0.2535" Y="0.0300" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
-                  <AbstractNodeData Name="Text3_0" ActionTag="-2029364008" Tag="18" IconVisible="False" LeftMargin="15.9591" RightMargin="3.0409" TopMargin="295.9495" BottomMargin="19.0505" FontSize="29" LabelText="把5张牌分为3+2两组后，各自和庄家进行大&#xA;小比较。&#xA;&#xA;第一组牌&#xA;第一组的三张牌必须满足10、20、30的整数&#xA;（加法运算后），其中A至10的扑克牌牌数&#xA;代表原来的数字，J、Q、K则统一按照10来&#xA;计算。若手中的五张牌内任意三张牌组成10、&#xA;20或者30的整数，我们称之为有牛。&#xA;&#xA;第二组牌&#xA;第二组牌的比较则把剩下的两张牌按照加法&#xA;计算，10的整数倍数最大，1最小，若大于10&#xA;小于20则取个位数计算。数字越大则牌型越&#xA;大，数字越小则牌型越小。若第2组牌数字为&#xA;1我们称之为牛一，数字为2，我们称之为牛&#xA;二，然后依次类推；若第二组的两张牌组成&#xA;10或者20的整数，我们称之为牛牛。&#xA;&#xA;都无牛或者牌型大小一样时的判断&#xA;取5张牌中最大的一张进行比较，大小顺序&#xA;依次为：K&gt;Q&gt;J&gt;...&gt;A；若最大一张牌也相&#xA;同者比较花色，大小顺序依次为：黑桃&gt;红&#xA;桃&gt;梅花&gt;方片。&#xA;&#xA;特殊牌型&#xA;四炸：5张牌中有4张一样的牌，此时无需有&#xA;牛。若庄家闲家同为四炸牌型，则比较4张&#xA;一样牌的大小。&#xA;五花牛：手上5张牌全为JQK的牌型。若庄家&#xA;闲家同为五花牛牌型，则比较最大一张牌的&#xA;大小，若最大一张牌大小相同则比较花色。&#xA;五小牛：即5张牌大小都小于5且总点数小于&#xA;等于10。若5张牌即符合四炸又符合五小牛则&#xA;按最大牌型计算。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-                    <Size X="581.0000" Y="1015.0000" />
+                  <AbstractNodeData Name="Text3_0" ActionTag="-2029364008" Tag="18" IconVisible="False" LeftMargin="0.9193" RightMargin="-10.9193" TopMargin="322.0223" BottomMargin="77.9777" FontSize="30" LabelText="把5张牌分为3+2两组后，各自和庄家进行大小比较。&#xA;&#xA;第一组牌&#xA;第一组的三张牌必须满足10、20、30的整数（加法&#xA;运算后），其中A至10的扑克牌牌数代表原来的数字，&#xA;J、Q、K则统一按照10来计算。若手中的五张牌内任&#xA;意三张牌组成10、20或者30的整数，我们称之为有&#xA;牛。&#xA;&#xA;第二组牌&#xA;第二组牌的比较则把剩下的两张牌按照加法计算，10&#xA;的整数倍数最大，1最小，若大于10小于20则取个位&#xA;数计算。数字越大则牌型越大，数字越小则牌型越小。&#xA;若第2组牌数字为1我们称之为牛一，数字为2，我们称&#xA;之为牛二，然后依次类推；若第二组的两张牌组成10&#xA;或者20的整数，我们称之为牛牛。&#xA;&#xA;都无牛或者牌型大小一样时的判断&#xA;取5张牌中最大的一张进行比较，大小顺序依次为：&#xA;K&gt;Q&gt;J&gt;...&gt;A；若最大一张牌也相同者比较花色，大&#xA;小顺序依次为：黑桃&gt;红桃&gt;梅花&gt;方片。&#xA;&#xA;特殊牌型&#xA;四炸：5张牌中有4张一样的牌，此时无需有牛。若庄&#xA;家闲家同为四炸牌型，则比较4张一样牌的大小。&#xA;五花牛：手上5张牌全为JQK的牌型。若庄家闲家同为&#xA;五花牛牌型，则比较最大一张&#xA;牌的大小，若最大一张牌大小相同则比较花色。&#xA;五小牛：即5张牌大小都小于5且总点数小于等于10。&#xA;若5张牌即符合四炸又符合五小牛则按最大牌型计算。" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+                    <Size X="720.0000" Y="900.0000" />
                     <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-                    <Position X="306.4591" Y="526.5505" />
+                    <Position X="360.9193" Y="527.9777" />
                     <Scale ScaleX="1.0000" ScaleY="1.0000" />
-                    <CColor A="255" R="255" G="228" B="209" />
-                    <PrePosition X="0.5108" Y="0.3959" />
-                    <PreSize X="0.9683" Y="0.7632" />
+                    <CColor A="255" R="255" G="255" B="255" />
+                    <PrePosition X="0.5083" Y="0.4061" />
+                    <PreSize X="1.0141" Y="0.7500" />
                     <OutlineColor A="255" R="255" G="0" B="0" />
                     <ShadowColor A="255" R="110" G="110" B="110" />
                   </AbstractNodeData>
                 </Children>
                 <AnchorPoint />
-                <Position X="223.7625" Y="39.8318" />
+                <Position X="323.5004" Y="61.6952" />
                 <Scale ScaleX="1.0000" ScaleY="1.0000" />
                 <CColor A="255" R="255" G="255" B="255" />
-                <PrePosition X="0.2578" Y="0.0776" />
-                <PreSize X="0.6912" Y="0.7505" />
+                <PrePosition X="0.2965" Y="0.0903" />
+                <PreSize X="0.6508" Y="0.7321" />
                 <SingleColor A="255" R="255" G="150" B="100" />
                 <FirstColor A="255" R="255" G="150" B="100" />
                 <EndColor A="255" R="255" G="255" B="255" />
                 <ColorVector ScaleY="1.0000" />
-                <InnerNodeSize Width="600" Height="1330" />
+                <InnerNodeSize Width="710" Height="1300" />
               </AbstractNodeData>
             </Children>
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="667.0001" Y="374.5546" />
+            <Position X="667.0001" Y="375.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.4994" />
-            <PreSize X="0.6507" Y="0.6840" />
-            <FileData Type="PlistSubImage" Path="help_bg.png" Plist="niuniu/res/GameLayout/NiuNiu/help.plist" />
+            <PrePosition X="0.5000" Y="0.5000" />
+            <PreSize X="0.8178" Y="0.9107" />
+            <FileData Type="PlistSubImage" Path="niuniu_help_bg.png" Plist="niuniu/res/GameLayout/NiuNiu/niuniu_help.plist" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
         </Children>

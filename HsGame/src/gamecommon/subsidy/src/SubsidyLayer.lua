@@ -21,7 +21,7 @@ function Subsidy:initLayer(goldNum)
 	self.bg = bg
 	self:_onRootPanelInit(bg)
 	local gold = cc.Label:createWithSystemFont(self:switchNum(goldNum).."金币",SYSFONT,33)
-    gold:setPosition(220,150)
+    gold:setPosition(220,120)
     gold:setColor(cc.c3b(255,210,0))
     bg:addChild(gold)
 

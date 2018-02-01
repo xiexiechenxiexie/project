@@ -40,16 +40,31 @@ function help:init()
 	cardType:setBrightStyle(1)
 	cardType:addClickEventListener(function(sender) self:onClickBack(sender) end)
 	self.cardType = cardType
+	local cardTypeTitle = cc.Label:createWithTTF("牌型说明",GameUtils.getFontName(),30)
+    cardTypeTitle:setColor(cc.c3b(255,255,255))
+    cardTypeTitle:setPosition(cardType:getContentSize().width/2,cardType:getContentSize().height/2)
+    cardType:addChild(cardTypeTitle)
+    self.cardTypeTitle = cardTypeTitle
 
 	local rule = bg:getChildByName("rule")
 	rule:setTag(help.rule)
 	rule:addClickEventListener(function(sender) self:onClickBack(sender) end)
 	self.rule = rule
+	local ruleTitle = cc.Label:createWithTTF("基本规则",GameUtils.getFontName(),30)
+    ruleTitle:setColor(cc.c3b(191, 169, 125))
+    ruleTitle:setPosition(rule:getContentSize().width/2,rule:getContentSize().height/2)
+    rule:addChild(ruleTitle)
+    self.ruleTitle = ruleTitle
 
 	local wanfa = bg:getChildByName("wanfa")
 	wanfa:setTag(help.wanfa)
 	wanfa:addClickEventListener(function(sender) self:onClickBack(sender) end)
 	self.wanfa = wanfa
+	local wanfaTitle = cc.Label:createWithTTF("玩法介绍",GameUtils.getFontName(),30)
+    wanfaTitle:setColor(cc.c3b(191, 169, 125))
+    wanfaTitle:setPosition(wanfa:getContentSize().width/2,wanfa:getContentSize().height/2)
+    wanfa:addChild(wanfaTitle)
+    self.wanfaTitle = wanfaTitle
 
 	local state = bg:getChildByName("shuoming")
 	self.state = state
@@ -69,26 +84,35 @@ function help:onClickBack(sender)
 		self.cardType:setBrightStyle(1)
 		self.rule:setBrightStyle(0)
 		self.wanfa:setBrightStyle(0)
-		self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,377)))
+		-- self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,377)))
 		self.state:show()
 		self.ruleview:hide()
 		self.wanfaView:hide()
+		self.cardTypeTitle:setColor(cc.c3b(255,255,255))
+		self.ruleTitle:setColor(cc.c3b(191, 169, 125))
+		self.wanfaTitle:setColor(cc.c3b(191, 169, 125))
 	elseif tag == help.rule then
 		self.cardType:setBrightStyle(0)
 		self.rule:setBrightStyle(1)
 		self.wanfa:setBrightStyle(0)
-		self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,279.5)))
+		-- self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,279.5)))
 		self.state:hide()
 		self.ruleview:show()
 		self.wanfaView:hide()
+		self.cardTypeTitle:setColor(cc.c3b(191, 169, 125))
+		self.ruleTitle:setColor(cc.c3b(255,255,255))
+		self.wanfaTitle:setColor(cc.c3b(191, 169, 125))
 	elseif tag == help.wanfa then
 		self.cardType:setBrightStyle(0)
 		self.rule:setBrightStyle(0)
 		self.wanfa:setBrightStyle(1)
-		self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,187.5)))
+		-- self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,187.5)))
 		self.state:hide()
 		self.ruleview:hide()
 		self.wanfaView:show()
+		self.cardTypeTitle:setColor(cc.c3b(191, 169, 125))
+		self.ruleTitle:setColor(cc.c3b(255,255,255))
+		self.wanfaTitle:setColor(cc.c3b(191, 169, 125))
 	end
 end
 

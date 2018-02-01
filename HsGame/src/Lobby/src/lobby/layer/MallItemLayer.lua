@@ -200,7 +200,7 @@ function MallItemDiamond:_initView(line, mallDataList)
 			dir = "mall",
 			url = mallDataList[index].imageUrl
 		})
-		itemDiamondIcon:setPosition(cc.p(itemDiamondBg:getContentSize().width/2, itemDiamondBg:getContentSize().height*0.5))
+		itemDiamondIcon:setPosition(cc.p(itemDiamondBg:getContentSize().width/2, itemDiamondBg:getContentSize().height*0.6))
 		itemDiamondBg:addChild(itemDiamondIcon)
 
 		-- 购买价格文字
@@ -295,7 +295,7 @@ function MallItemRoomCard:_initView(line, mallDataList)
 		itemRoomCardBg:addChild(itemRoomCardIcon)
 
 		if 0 < mallDataList[index].date then
-			itemRoomCardIcon:setPosition(cc.p(itemRoomCardBg:getContentSize().width/2, itemRoomCardBg:getContentSize().height*0.55))
+			itemRoomCardIcon:setPosition(cc.p(itemRoomCardBg:getContentSize().width/2, itemRoomCardBg:getContentSize().height*0.6))
 			-- 有效期文字图片
 			local itemRoomCardDate = ccui.ImageView:create("mall_item_room_card_title_date.png", ccui.TextureResType.plistType)
 

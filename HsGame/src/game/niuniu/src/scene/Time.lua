@@ -17,8 +17,9 @@ function Time:init(time)
 	self:addChild(timeBg)
 	self.timeBg = timeBg
  	local atlasFile = GameResPath.."action/time_num.png"
-	local atlasNode = ccui.TextAtlas:create(tostring(time),atlasFile,37,50,"0")
+	local atlasNode = ccui.TextAtlas:create(tostring(time),atlasFile,33,49,"0")
 	atlasNode:setPosition(timeBg:getContentSize().width/2,timeBg:getContentSize().height/2+5)
+	atlasNode:setScale(0.8)
 	timeBg:addChild(atlasNode)
 	self.atlasNode = atlasNode
 	self.CountTime = scheduler:scheduleScriptFunc(handler(self, self.upDateTime), 1, false)
@@ -27,7 +28,7 @@ function Time:init(time)
 	local timeProgress = cc.ProgressTimer:create(timePre)
 	timeProgress:setType(cc.PROGRESS_TIMER_TYPE_RADIAL) --设置为圆形 type:cc.PROGRESS_TIMER_TYPE_BAR条形 
     timeProgress:setPercentage(100) -- 设置初始进度为100
-    timeProgress:setPosition(timeBg:getContentSize().width/2,timeBg:getContentSize().height/2+5)
+    timeProgress:setPosition(timeBg:getContentSize().width/2,timeBg:getContentSize().height/2)
     timeBg:addChild(timeProgress)
     --让进度条一直从0--100重复的act  
     local progressTo = cc.ProgressTo:create(time,0)
