@@ -441,10 +441,10 @@ function LobbyManager:_onSignCheckInCallback( __error,__response )
         print("requestSignCheckIn net error")
     else
         if 200 == __response.status then
-        	UserData.coins = __response.data.bonusScore
-            UserData.roomCards = __response.data.bonusDiamond
-            UserData.diamond = __response.data.bonusRoomCard
-            self._requestSignCheckInCallBack(__response)
+        	UserData.coins = __response.data.userScore
+            UserData.roomCards = __response.data.userRoomCard
+            UserData.diamond = __response.data.userDiamond
+            self._requestSignCheckInCallBack(__response.data)
         end
     end
 end
