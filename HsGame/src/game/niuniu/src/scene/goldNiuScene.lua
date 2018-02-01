@@ -7,21 +7,21 @@
 -- @author tangwen
 
 local  GamePlayInfo = class("GamePlayInfo")
- GamePlayInfo.AvatarUrl   = ""
- GamePlayInfo.Gender      = 2
- GamePlayInfo.NickName    = "游客?"
+ GamePlayInfo.avatar   = ""
+ GamePlayInfo.gender      = 2
+ GamePlayInfo.nickName    = "游客?"
  GamePlayInfo.RoomCardNum = 0
- GamePlayInfo.Score       = 0
- GamePlayInfo.UserId      = 0
+ GamePlayInfo.score       = 0
+ GamePlayInfo.userId      = 0
  GamePlayInfo.diamond     = 0
 function GamePlayInfo:ctor( __params )
 	assert(__params.userId,"invalide userId")
-	self.AvatarUrl   = ""
-	self.Gender      = __params.Gender or ConstantsData.SexType.SEX_WOMEN
-	self.NickName    = __params.NickName or tostring(__params.userId)
+	self.avatar   = ""
+	self.gender      = __params.gender or ConstantsData.SexType.SEX_WOMEN
+	self.NickName    = __params.nickName or tostring(__params.userId)
 	self.RoomCardNum = __params.RoomCardNum or 0
-	self.Score       = __params.Score or 0 --金币
-	self.UserId      = __params.UserId or 0
+	self.score       = __params.score or 0 --金币
+	self.userId      = __params.userId or 0
 	self.diamond     = __params.diamond or 0
 end
 
@@ -413,9 +413,11 @@ function goldNiuScene:upDataRule()
 end
 
 function goldNiuScene:showGamePlayerInfo(data)
+    print("显示个人信息")
+    dump(data)
 	self._userDataList = {}
 	table.insert(self._userDataList,data)
-	local playerInfoView = GamePlayerInfo.new(data.UserId)
+	local playerInfoView = GamePlayerInfo.new(data.userId)
 	playerInfoView:setPosition(0,0)
 	self:addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
 end
@@ -481,7 +483,7 @@ function goldNiuScene:updateInfor(dataArry)
 end
 
 function goldNiuScene:updateAvatarByData(__data)
-	local curUserData = self:checkUserData(__data.UserId)
+	local curUserData = self:checkUserData(__data.userId)
 	if curUserData == 0 or self.uidArray == nil or self.myid==nil then
 		return
 	end
@@ -491,11 +493,11 @@ function goldNiuScene:updateAvatarByData(__data)
 		self:setPlayerNodeVisbile(swichId,true)
 
         local paramTab = {}
-		paramTab.avatarUrl = __data.AvatarUrl
+		paramTab.avatarUrl = __data.avatar
 		paramTab.stencilFile = GameResPath.."player/head_bg.png"
 		paramTab.frameFile = GameResPath.."player/head_clip_bg.png"
         
-        local Gender = __data.Gender or 0
+        local Gender = __data.gender or 0
         paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Gender)
 
 		local headnode = lib.node.Avatar:create(paramTab)
@@ -509,7 +511,7 @@ function goldNiuScene:updateAvatarByData(__data)
         self.headDataArray[swichId] = headnode
         --table.insert(self.headDataArray,headnode)
 		
-        local nickName = cc.Label:createWithSystemFont(string.getMaxLen(__data.NickName,6),SYSFONT,24)
+        local nickName = cc.Label:createWithSystemFont(string.getMaxLen(__data.nickName,6),SYSFONT,24)
 		if swichId == 2 or swichId == 5 then
 			nickName:setPosition(conf.PlayerPosArray[swichId].x+68,conf.PlayerPosArray[swichId].y+70)
 		else
@@ -521,12 +523,12 @@ function goldNiuScene:updateAvatarByData(__data)
         --table.insert(self.NameDataArray,nickName)
         if self.PlayerDataSync then
             for i,v in ipairs(self.PlayerDataSync) do
-                if v.uid == __data.UserId then
-                    __data.Score = v.score
+                if v.uid == __data.userId then
+                    __data.score = v.score
                 end
             end
         end
-        local gameCoin = cc.Label:createWithSystemFont(conf.switchNum(__data.Score),SYSFONT,20)
+        local gameCoin = cc.Label:createWithSystemFont(conf.switchNum(__data.score),SYSFONT,20)
         gameCoin:setAnchorPoint(0,0.5)
         gameCoin:setColor(cc.c3b(255,222,1))
 		gameCoin:setTag(swichId)
@@ -556,18 +558,22 @@ end
 -- 请求用户信息
 function goldNiuScene:RequestUserInfo( __userID)
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID.."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onInfoCallback))
 end
 
 function goldNiuScene:_onInfoCallback( __error,__response )
+    print("获取个人信息")
+    dump(__response)
+    dump(self.playerInfoData)
+    dump(self.playerListUID)
     if __error then
         print("Player Info net error")
     else
         if 200 == __response.status then
-        	local data = __response.data.profile
+        	local data = __response.data
         	if next(data)~=nil then
-        		local kValue=data.UserId
+        		local kValue=data.userId
         		if self.playerInfoData[kValue] == nil then
                     if self.playerListUID then
                         for k,v in pairs(self.playerListUID) do
@@ -584,15 +590,15 @@ function goldNiuScene:_onInfoCallback( __error,__response )
                 end
         		self:updateInfor(self.playerInfoData[kValue])
 
-                userInfo[kValue].AvatarUrl=data.AvatarUrl
-                userInfo[kValue].Gender=data.Gender
-                userInfo[kValue].NickName=data.NickName
-                userInfo[kValue].Score=data.Score
-                userInfo[kValue].UserId=kValue
-                userInfo[kValue].winroundsum=data.winroundsum
-                userInfo[kValue].losesum=data.losesum
-                userInfo[kValue].winning=data.winning
-                userInfo[kValue].seatIndex=data.seatIndex
+                userInfo[kValue].avatar=data.avatar
+                userInfo[kValue].gender=data.gender or 0
+                userInfo[kValue].nickName=data.nickName
+                userInfo[kValue].score=data.score
+                userInfo[kValue].userId=kValue
+                userInfo[kValue].winroundsum=data.winroundsum or 0
+                userInfo[kValue].losesum=data.losesum or 0
+                userInfo[kValue].winning=data.winning or 0
+                userInfo[kValue].seatIndex=data.seatIndex or 0
         	end 
         end
     end
@@ -606,11 +612,11 @@ end
 --设置玩家信息
 function goldNiuScene:setPlayerInfo(uid)
     userInfo[uid] = {}
-    userInfo[uid].AvatarUrl=""
-    userInfo[uid].Gender=0-- 0未知1男2女
-    userInfo[uid].NickName="游客"..tostring(uid)
-    userInfo[uid].Score=0
-    userInfo[uid].UserId=uid
+    userInfo[uid].avatar=""
+    userInfo[uid].gender=0-- 0未知1男2女
+    userInfo[uid].nickName="游客"..tostring(uid)
+    userInfo[uid].score=0
+    userInfo[uid].userId=uid
     userInfo[uid].winroundsum=0
     userInfo[uid].losesum=0
     userInfo[uid].winning=0
@@ -788,13 +794,13 @@ function goldNiuScene:ClickPlayerHead(tag)
                     if self.playerInfoData[k].seatIndex then
     					if conf.swichPos(self.playerInfoData[k].seatIndex-1,self.myid,5) == index then
     						-- GameManager:getInstance():requestGamePlayerInfoData(self.playerInfoData[k].UserId)
-                            local info = self:getPlayerInfo(self.playerInfoData[k].UserId)
+                            local info = self:getPlayerInfo(self.playerInfoData[k].userId)
                             for i,v in pairs(self.PlayerDataSync) do
-                                if v.uid == self.playerInfoData[k].UserId then
+                                if v.uid == self.playerInfoData[k].userId then
                                     info.Score = v.score
                                 end
                             end
-                            local playerInfoView = GamePlayerInfo.new(self.playerInfoData[k].UserId)
+                            local playerInfoView = GamePlayerInfo.new(self.playerInfoData[k].userId)
                             playerInfoView:setInfoData(info)
                             self:addChild(playerInfoView,20)
     					end

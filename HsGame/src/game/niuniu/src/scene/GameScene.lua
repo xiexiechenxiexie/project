@@ -777,11 +777,11 @@ function GameScene:initPlayerInfo(uid)
     if self.playerInfoData[uid] == nil then
         self.playerInfoData[uid] = {}
         local info = {}
-        info.AvatarUrl = ""
-        info.Gender = 0-- 0未知1男2女
-        info.NickName = "游客"..tostring(uid)
-        info.Score = 0
-        info.UserId = uid
+        info.avatar = ""
+        info.gender = 0-- 0未知1男2女
+        info.nickName = "游客"..tostring(uid)
+        info.score = 0
+        info.userId = uid
         info.winroundsum = 0
         info.losesum = 0
         info.winning = 0
@@ -820,16 +820,16 @@ function GameScene:updateAvatarByData(sitId,__data)
 	-- local headnode = lib.node.Avatar:create(paramTab)
 
     local paramTab = {}
-    paramTab.avatarUrl = __data.AvatarUrl
+    paramTab.avatarUrl = __data.avatar
     paramTab.stencilFile = GameResPath.."player/head_bg.png"
     paramTab.frameFile = GameResPath.."player/head_clip_bg.png"   
-    local Gender = __data.Gender or 0
+    local Gender = __data.gender or 0
     paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Gender)
     local headnode = lib.node.Avatar:create(paramTab)
 
     self.headDataArray[swichId]:removeAllChildren()
     self.headDataArray[swichId]:addChild(headnode)
-    self.NameDataArray[swichId]:setString(string.getMaxLen(__data.NickName,5))
+    self.NameDataArray[swichId]:setString(string.getMaxLen(__data.nickName,5))
     self.playerCoinArr[swichId]:setString(conf.switchNum(self.ScoreArray[sitId+1]))
     self.headDataArray[swichId]:setVisible(true)
     self.NameDataArray[swichId]:setVisible(true)
@@ -839,7 +839,7 @@ end
 -- 请求用户信息
 function GameScene:RequestUserInfo( __userID)
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID.."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onInfoCallback))
 end
 
@@ -848,19 +848,19 @@ function GameScene:_onInfoCallback( __error,__response )
         print("Player Info net error")
     else
         if 200 == __response.status then
-        	local data = __response.data.profile
+        	local data = __response.data
         	if data ~= nil then
-                local kValue = data.UserId
+                local kValue = data.userId
                 if self.playerInfoData[kValue] == nil then
                     self:initPlayerInfo(kValue)
                 end
-        		self.playerInfoData[kValue].AvatarUrl = data.AvatarUrl
-                self.playerInfoData[kValue].Gender = data.Gender
-                self.playerInfoData[kValue].NickName = data.NickName
-                self.playerInfoData[kValue].UserId = kValue
-                self.playerInfoData[kValue].winroundsum = data.winroundsum
-                self.playerInfoData[kValue].losesum = data.losesum
-                self.playerInfoData[kValue].winning = data.winning
+        		self.playerInfoData[kValue].avatar = data.avatar
+                self.playerInfoData[kValue].gender = data.gender
+                self.playerInfoData[kValue].nickName = data.nickName
+                self.playerInfoData[kValue].userId = kValue
+                self.playerInfoData[kValue].winroundsum = data.winroundsum or 0
+                self.playerInfoData[kValue].losesum = data.losesum or 0
+                self.playerInfoData[kValue].winning = data.winning or 0
                 self.playerInfoData[kValue].IsRequestUserInfo = 1
         		self:updateInfor()
         	end
@@ -2559,7 +2559,7 @@ function GameScene:onDissolutionResult(State,uid)
         dis:CloseDismissTime()
     end
     if State == 0 and self.playerInfoData[uid] then
-        local player_name_str = string.getMaxLen(self.playerInfoData[uid].NickName,7)
+        local player_name_str = string.getMaxLen(self.playerInfoData[uid].nickName,7)
         GameUtils.showMsg("由于["..player_name_str.."]拒绝"..",\n解散房间失败，牌局继续进行")
     end
 end

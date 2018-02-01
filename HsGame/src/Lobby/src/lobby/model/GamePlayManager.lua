@@ -24,13 +24,14 @@ function GamePlayModel:ctor(__params)
 		self.floorScore = ruleData.base or 0
 		self.way = ruleData.way or 0 --1 手动算牛 0自动
 	end
+	self.level = __params.level or 0 --等级
 	self.playType = __params.deskset_id or 1 --场次类型
-	self.name = __params.deskset_name or "私人房"
-	self.minEnterCoinNum = __params.least_bet or 0--场次最低准入金币数量
-	self.maxEnterCoinNum = __params.maximum_bet or 0--场次最高准入金币数量
+	self.name = __params.name or "私人房"
+	self.minEnterCoinNum = __params.minBet or 0--场次最低准入金币数量
+	self.maxEnterCoinNum = __params.maxBet or 0--场次最高准入金币数量
 	self.onlineNum = __params.onlineNumber or 0--在线人数 
-	self.serverIp = __params.server_ip
-	self.serverPort = __params.server_port
+	self.serverIp = __params.serverIp
+	self.serverPort = __params.serverPort
 	self.fee = __params.fee
 	self.res = {imgItemBg = config.ServerConfig:findResDomain() .. (__params.logo_url or "")
 	,imgFloorScore=config.ServerConfig:findResDomain() ..(__params.score_url or "")
@@ -64,18 +65,20 @@ end
 
 function GamePlayManager:requestGamePlayList( __gameId,__callback )
 	print("GamePlayManager:requestGamePlayList",lobby.LobbyGameEnterManager:getInstance():findSelectedGameId())
-	
-	local url = config.ServerConfig:findModelDomain()..config.ApiConfig.REQUEST_GAME_PLAY_LIST .. lobby.LobbyGameEnterManager:getInstance():findSelectedGameId()
+	local gameId = lobby.LobbyGameEnterManager:getInstance():findSelectedGameId()
+	local url = config.ServerConfig:findModelDomain()..config.ApiConfig.REQUEST_GAME_PLAY_LIST..gameId.."?token="..UserData.token
 	HttpClient:getInstance():get(url,function ( __errorMsg,__reponse )
+		print("的好的哈师大卡死了")
+		dump(__reponse)
 		if not __errorMsg then
 			local model = GamePlayModel:create({deskset_id = config.GamePlayConfig.SRF})
 			model.res = {imgItemBg = "LobbyPlaySRF.png",imgStar = "LobbyPlaySRFAct.png"}
 			if not manager.UserManager:getInstance():findAppCloseRoomCardFlag() then 
 				self._listCache = {[1] = model}	
 			end
-			if __reponse.data.deskSet and #__reponse.data.deskSet > 0 then
+			if __reponse.data and #__reponse.data > 0 then
 				
-				 for _,set in ipairs(__reponse.data.deskSet) do
+				 for _,set in ipairs(__reponse.data) do
 				 	self._listCache[#self._listCache + 1] = GamePlayModel:create(set)
 				 end
 			end

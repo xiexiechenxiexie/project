@@ -779,11 +779,11 @@ function GameTableLayer:onZhuangHeadBtnEvent()
  		self:addChild(playerInfoView,LayZ.playerInfo)
 	else
 		local info = {}
-		info.AvatarUrl = self.SystemZhuangInfo.AvatarUrl or conf.HostZhuangHeadUrl
-		info.Gender = 2
-		info.NickName = self.SystemZhuangInfo.NickName or conf.HostZhuangName
-		info.Score = 0
-		info.UserId = 0
+		info.avatar = self.SystemZhuangInfo.AvatarUrl or conf.HostZhuangHeadUrl
+		info.gender = 2
+		info.nickName = self.SystemZhuangInfo.NickName or conf.HostZhuangName
+		info.score = 0
+		info.userId = 0
 		local gamePlayerInfoView=GamePlayerInfoView.new(0)
 		gamePlayerInfoView:setInfoData(info)
  		self:addChild(gamePlayerInfoView,LayZ.playerInfo)
@@ -856,24 +856,24 @@ function GameTableLayer:updataSZlist()
 				return
 			end
 		else
-			Info.NickName = self.SystemZhuangInfo.NickName or conf.HostZhuangName
-			Info.Score = 88888888888888
-			Info.AvatarUrl = self.SystemZhuangInfo.AvatarUrl or conf.HostZhuangHeadUrl
-			Info.Gender = 2
+			Info.nickName = self.SystemZhuangInfo.NickName or conf.HostZhuangName
+			Info.score = 88888888888888
+			Info.avatar = self.SystemZhuangInfo.AvatarUrl or conf.HostZhuangHeadUrl
+			Info.gender = 2
 			self.ZhuangUid = 0
 		end
 		self.zhuangMoney=Info.Score
 		if self.ZhuangUid > 0 then
-			self.zhuang_score:setString(conf.switchNum(Info.Score))
+			self.zhuang_score:setString(conf.switchNum(Info.score))
 		else
 			self.zhuang_score:setString("系统当庄")
 		end
-		self.zhuang_name:setString(string.getMaxLen(tostring(Info.NickName)))
+		self.zhuang_name:setString(string.getMaxLen(tostring(Info.nickName)))
 
 		local paramTab={}
-		paramTab.avatarUrl=Info.AvatarUrl
+		paramTab.avatarUrl=Info.avatar
 		paramTab.stencilFile=GameResPath.."head_bg.png"
-		paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Info.Gender)
+		paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Info.gender)
 		local headnode=Avatar:create(paramTab)
 		headnode:setScale(1.03)
 		headnode:setPosition(cc.p(0,-2))
@@ -897,9 +897,9 @@ function GameTableLayer:_onSystemZhuangInfoCallback( __error,__response )
         if 200 == __response.status then
         	local data = __response.data
         	if next(data)~=nil then
-        		self.SystemZhuangInfo.AvatarUrl=data.AvatarUrl
-				self.SystemZhuangInfo.NickName=data.NickName
-				if self.SystemZhuangInfo.NickName and self.SystemZhuangInfo.AvatarUrl and self.ZhuangUid > 0 then
+        		self.SystemZhuangInfo.AvatarUrl=data.avatar
+				self.SystemZhuangInfo.nickName=data.nickName
+				if self.SystemZhuangInfo.nickName and self.SystemZhuangInfo.AvatarUrl and self.ZhuangUid > 0 then
 					self.zhuangHead:removeAllChildren()
 					local paramTab={}
 					paramTab.avatarUrl=self.SystemZhuangInfo.AvatarUrl
@@ -909,7 +909,7 @@ function GameTableLayer:_onSystemZhuangInfoCallback( __error,__response )
 					headnode:setScale(1.03)
 					headnode:setPosition(cc.p(0,-2))
 					self.zhuangHead:addChild(headnode)
-					self.zhuang_name:setString(string.getMaxLen(tostring(self.SystemZhuangInfo.NickName)))
+					self.zhuang_name:setString(string.getMaxLen(tostring(self.SystemZhuangInfo.nickName)))
 				end
         	end 
         end
@@ -1015,7 +1015,7 @@ function GameTableLayer:updataSitPlayerScore()
 		if v>0 then
 			local info=GameUserData:getInstance():getUserInfo(v)
 			if info then
-				local score=info.Score
+				local score=info.score
 				if score>=0 then
 					local scoreLab=self.m_playerNode[i]:getChildByName("score")
 					scoreLab:setString(conf.switchNum(score))
@@ -1045,15 +1045,15 @@ function GameTableLayer:updataPlayerSit()
 				end
 				local score=self.m_playerNode[i]:getChildByName("score")
 				local name=self.m_playerNode[i]:getChildByName("name")
-				name:setString(string.getMaxLen(Info.NickName))
-				score:setString(conf.switchNum(Info.Score))
-				self.sitScore[i]=Info.Score
+				name:setString(string.getMaxLen(Info.nickName))
+				score:setString(conf.switchNum(Info.score))
+				self.sitScore[i]=Info.score
 				local Head=self.m_playerNode[i]:getChildByName("head_bg_1")
 				Head:removeAllChildren()
 				local paramTab={}
-				paramTab.avatarUrl=Info.AvatarUrl
+				paramTab.avatarUrl=Info.avatar
 				paramTab.stencilFile=GameResPath.."head_bg.png"
-				paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Info.Gender)
+				paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Info.gender)
 				local headnode=Avatar:create(paramTab)
 				headnode:setScale(1.05)
 				headnode:setPosition(cc.p(-2,-2))
@@ -1186,7 +1186,7 @@ end
 function GameTableLayer:UpdataZhuangScore()
 	if self.ZhuangUid >0 then
 		local info=GameUserData:getInstance():getUserInfo(self.ZhuangUid)
-		local score=info.Score
+		local score=info.score
 		self.zhuangMoney=score
 		self.zhuang_score:setString(conf.switchNum(score))
 	end
@@ -1196,7 +1196,7 @@ end
 function GameTableLayer:ResultUpdata()
 	local info=GameUserData:getInstance():getUserInfo(UserData.userId)
 	if info then
-		local score = info.Score
+		local score = info.score
 		self.MyMoney=score
 		self.myscore:setString(conf.switchNum(score))
 	end
@@ -2095,7 +2095,7 @@ function GameTableLayer:onGameChatText(data)
 	if key > 0 then
 		self.SmallDanMuArray[key]:setStrData(tab.value)
 		if tab.strType == "T" then
-			local sex = tab.info.Gender or 1
+			local sex = tab.info.gender or 1
 			local musicStr = nil
 			if sex == 1 then
 				musicStr = "Man"

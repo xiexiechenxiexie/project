@@ -154,7 +154,7 @@ function GameScene:CreateView()
 	bg:addChild(container)
 	self.container = container
 
-    local roomid = cc.Label:createWithTTF("房间ID:",GameUtils.getFontName(), 24)
+    local roomid = cc.Label:createWithSystemFont("房间ID:",SYSFONT, 24)
     roomid:setPosition(190,730)
     self.bg:addChild(roomid)
     self.roomid=roomid
@@ -164,7 +164,7 @@ function GameScene:CreateView()
     self.bg:addChild(difen)
     local atlasFile = GameResPath.."rule/rule_num.png"
     local atlasNode = ccui.TextAtlas:create("0",atlasFile,14,21,"0")
-    atlasNode:setPosition(610,580)
+    atlasNode:setPosition(600,580)
     self.bg:addChild(atlasNode)
     self.atlasNode = atlasNode
 
@@ -197,7 +197,7 @@ function GameScene:CreateView()
     exploit:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
     bg:addChild(exploit)
     self.exploit = exploit
-    local gameNum = cc.Label:createWithTTF("第0/0局",GameUtils.getFontName(),24)
+    local gameNum = cc.Label:createWithSystemFont("第0/0局",SYSFONT,24)
     gameNum:setPosition(80,40)
     gameNum:setColor(cc.c3b(255,236,109))
     exploit:addChild(gameNum)
@@ -246,7 +246,7 @@ function GameScene:CreateView()
         gradNode:addChild(grad)
         table.insert(self.gradArray,grad)
 
-        local mul=cc.Label:createWithCharMap(GameResPath.."xiazhu_num.png",26,36,string.byte('/'))
+        local mul=cc.Label:createWithCharMap(GameResPath.."xiazhu_num.png",24,33,string.byte('/'))
         mul:setPosition(conf.multiplePosArray[i])
         gradNode:addChild(mul)
         mul:setVisible(false)
@@ -296,18 +296,6 @@ function GameScene:CreateView()
         local bank = panel_pri:getChildByName(str)
         bank:setTag(conf.Tag.bank0+i-1)
         bank:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
-        if i>1 then
-            local node = cc.Node:create()
-            local sprite1 = cc.Sprite:create(GameResPath.."btn_txt_bei.png")
-            sprite1:setPosition(44,0)
-            node:addChild(sprite1)
-            local pTexture=GameResPath.."btn_txt_num.png"
-            local sprite2 = ccui.TextAtlas:create(tostring(i-1),pTexture,25,34,"0")
-            sprite2:setPosition(0,0)
-            node:addChild(sprite2)
-            node:setPosition(55,40)
-            bank:addChild(node)
-        end
     end
 
     --下注
@@ -316,17 +304,6 @@ function GameScene:CreateView()
         local brtting = panel_pri1:getChildByName(str)
         brtting:setTag(conf.Tag.brtting1+i-1)
         brtting:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
-
-        local node = cc.Node:create()
-        local sprite1 = cc.Sprite:create(GameResPath.."btn_txt_bei.png")
-        sprite1:setPosition(44,0)
-        node:addChild(sprite1)
-        local pTexture=GameResPath.."btn_txt_num.png"
-        local sprite2 = ccui.TextAtlas:create(tostring(i),pTexture,25,34,"0")
-        sprite2:setPosition(0,0)
-        node:addChild(sprite2)
-        node:setPosition(55,40)
-        brtting:addChild(node)
     end
 
     self.playerBtnArray = {} 
@@ -376,7 +353,7 @@ function GameScene:CreateView()
         headnode:setVisible(false)
         table.insert(self.headDataArray,headnode)
 
-        local nickName = cc.Label:createWithTTF("",GameUtils.getFontName(),26)
+        local nickName = cc.Label:createWithSystemFont("",SYSFONT,26)
         if i == 2 or i == 5 then
             nickName:setPosition(conf.PlayerPosArray[i].x+68,conf.PlayerPosArray[i].y+70)
         else
@@ -386,67 +363,36 @@ function GameScene:CreateView()
         nickName:setVisible(false)
         table.insert(self.NameDataArray,nickName)
 
-        local gameCoin = cc.Label:createWithTTF("",GameUtils.getFontName(),26)
+        local gameCoin = cc.Label:createWithSystemFont("",SYSFONT,26)
         if i == 2 or i == 5 then
             gameCoin:setPosition(conf.PlayerPosArray[i].x+68,conf.PlayerPosArray[i].y+35)
         else
-            gameCoin:setPosition(conf.PlayerPosArray[i].x+180,conf.PlayerPosArray[i].y+40)
+            gameCoin:setPosition(conf.PlayerPosArray[i].x+195,conf.PlayerPosArray[i].y+28)
         end
         self.bg:addChild(gameCoin,30)
         gameCoin:setString(0)
         gameCoin:setVisible(false)
         table.insert(self.playerCoinArr,gameCoin)
     end
-    
- 	--开始动画
- 	local node = cc.CSLoader:createNode(GameResPath.."action/goldniuniu_ani_start.csb")
-	node:setPosition(0,0)
-	self:addChild(node)
-    local act = cc.CSLoader:createTimeline(GameResPath.."action/goldniuniu_ani_start.csb")
-    act:setTimeSpeed(1) --设置执行动画速度
-    node:runAction(act)
-    node:setVisible(false)
-    self.xiazhu_node=node
-    self.xiazhu_action=act
 
-    --粒子
-	local particle = cc.ParticleSystemQuad:create(GameResPath.."action/start_effect_new.plist")
-	particle:setTexture(cc.Director:getInstance():getTextureCache():addImage(GameResPath.."action/effect_start.png"))
-    particle:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
-    particle:setPosition(display.cx,display.cy+20)
-    self:addChild(particle)
-    particle:stop()
-    particle:setDuration(0.5)
-    self.particleparticle=particle
-    --胜利动画
- 	local winNode = cc.CSLoader:createNode(GameResPath.."win/goldniuniu_win.csb")
-	winNode:setPosition(0,0)
-	self:addChild(winNode,2)
-    local winAct = cc.CSLoader:createTimeline(GameResPath.."win/goldniuniu_win.csb")
-    winAct:setTimeSpeed(1) --设置执行动画速度
-    winNode:runAction(winAct)
-    winNode:setVisible(false)
-    self.winNode=winNode
-    self.winAction=winAct
-    --胜利动画粒子
-    local winActPart = cc.ParticleSystemQuad:create(GameResPath.."win/particle_texture(4).plist")
-    winActPart:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
-    winActPart:setPosition(display.cx,display.cy)
-    self:addChild(winActPart)
-    winActPart:stop()
-    winActPart:setDuration(0.5)
-    self.winActPart=winActPart
+    local dir = GameResPath.."Animation/game_start_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."game_start_Animation0.png",dir.."game_start_Animation0.plist",dir.."game_start_Animation.ExportJson")  
+    self._startAni = ccs.Armature:create("game_start_Animation") 
+    self._startAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self:addChild(self._startAni)
 
-    --失败动画
-    local loseNode = cc.CSLoader:createNode(GameResPath.."lose/Scene.csb")
-    loseNode:setPosition(0,0)
-    self:addChild(loseNode)
-    local loseAct = cc.CSLoader:createTimeline(GameResPath.."lose/Scene.csb")
-    loseAct:setTimeSpeed(1) --设置执行动画速度
-    loseNode:runAction(loseAct)
-    loseNode:setVisible(false)
-    self.loseNode=loseNode
-    self.loseAction=loseAct
+    dir = GameResPath.."Animation/niuni_win2_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."niuni_win2_Animation0.png",dir.."niuni_win2_Animation0.plist",dir.."niuni_win2_Animation.ExportJson")  
+    self._winAni = ccs.Armature:create("niuni_win2_Animation") 
+    self._winAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self._winAni:hide()
+    self:addChild(self._winAni)
+
+    dir = GameResPath.."Animation/lose2_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."lose2_Animation0.png",dir.."lose2_Animation0.plist",dir.."lose2_Animation.ExportJson")  
+    self._loseAni = ccs.Armature:create("lose2_Animation") 
+    self._loseAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self:addChild(self._loseAni)
 
     --算牛框
     local suanniukuang = cc.Sprite:create(GameResPath.."suanniukuang.png")
@@ -611,10 +557,10 @@ function GameScene:onGameSceneGradBanker()
             end
         end
     end
-    -- if self.TableInfoArray.bankerSitId < 5 then
-    --     self:setZhuangData(nil,self.TableInfoArray.bankerSitId)
-    --     self:setZhuang()
-    -- end
+    if self.TableInfoArray.bankerSitId < 5 then
+        self:setZhuangData(nil,self.TableInfoArray.bankerSitId)
+        self:setZhuang()
+    end
 end
 
 --断线重连下注
@@ -683,6 +629,10 @@ function GameScene:onGameSceneShowCard()
     if player[index].isShowCard == 0 then
         if self.TableInfoArray.isJoin then
             self:niuBtn()
+        end
+        if player[index].cardType > 0 then
+            self.hasNiuBtn:setTouchEnabled(true)
+            self.hasNiuBtn:setBright(true)
         end
         for j,v in ipairs(player[index].cardDataArray) do
             local value = string.format("%02X",v) 
@@ -808,11 +758,11 @@ function GameScene:initPlayerInfo(uid)
     if self.playerInfoData[uid] == nil then
         self.playerInfoData[uid] = {}
         local info = {}
-        info.AvatarUrl = ""
-        info.Gender = 0-- 0未知1男2女
-        info.NickName = "游客"..tostring(uid)
-        info.Score = 0
-        info.UserId = uid
+        info.avatar = ""
+        info.gender = 0-- 0未知1男2女
+        info.nickName = "游客"..tostring(uid)
+        info.score = 0
+        info.userId = uid
         info.winroundsum = 0
         info.losesum = 0
         info.winning = 0
@@ -851,16 +801,16 @@ function GameScene:updateAvatarByData(sitId,__data)
 	-- local headnode = lib.node.Avatar:create(paramTab)
 
     local paramTab = {}
-    paramTab.avatarUrl = __data.AvatarUrl
+    paramTab.avatarUrl = __data.avatar
     paramTab.stencilFile = GameResPath.."player/head_bg.png"
     paramTab.frameFile = GameResPath.."player/head_clip_bg.png"   
-    local Gender = __data.Gender or 0
+    local Gender = __data.gender or 0
     paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Gender)
     local headnode = lib.node.Avatar:create(paramTab)
 
     self.headDataArray[swichId]:removeAllChildren()
     self.headDataArray[swichId]:addChild(headnode)
-    self.NameDataArray[swichId]:setString(string.getMaxLen(__data.NickName,5))
+    self.NameDataArray[swichId]:setString(string.getMaxLen(__data.nickName,5))
     self.playerCoinArr[swichId]:setString(conf.switchNum(self.ScoreArray[sitId+1]))
     self.headDataArray[swichId]:setVisible(true)
     self.NameDataArray[swichId]:setVisible(true)
@@ -870,7 +820,7 @@ end
 -- 请求用户信息
 function GameScene:RequestUserInfo( __userID)
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID.."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onInfoCallback))
 end
 
@@ -879,19 +829,19 @@ function GameScene:_onInfoCallback( __error,__response )
         print("Player Info net error")
     else
         if 200 == __response.status then
-        	local data = __response.data.profile
+        	local data = __response.data
         	if data ~= nil then
-                local kValue = data.UserId
+                local kValue = data.userId
                 if self.playerInfoData[kValue] == nil then
                     self:initPlayerInfo(kValue)
                 end
-        		self.playerInfoData[kValue].AvatarUrl = data.AvatarUrl
-                self.playerInfoData[kValue].Gender = data.Gender
-                self.playerInfoData[kValue].NickName = data.NickName
-                self.playerInfoData[kValue].UserId = kValue
-                self.playerInfoData[kValue].winroundsum = data.winroundsum
-                self.playerInfoData[kValue].losesum = data.losesum
-                self.playerInfoData[kValue].winning = data.winning
+        		self.playerInfoData[kValue].avatar = data.avatar
+                self.playerInfoData[kValue].gender = data.gender
+                self.playerInfoData[kValue].nickName = data.nickName
+                self.playerInfoData[kValue].userId = kValue
+                self.playerInfoData[kValue].winroundsum = data.winroundsum or 0
+                self.playerInfoData[kValue].losesum = data.losesum or 0
+                self.playerInfoData[kValue].winning = data.winning or 0
                 self.playerInfoData[kValue].IsRequestUserInfo = 1
         		self:updateInfor()
         	end
@@ -1075,62 +1025,24 @@ end
 
 --游戏开始动画
 function GameScene:startAct()
-	self.xiazhu_node:setVisible(true)
-	self.xiazhu_action:gotoFrameAndPlay(0,false)
+    self._startAni:getAnimation():playWithIndex(0,-1,0)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamestart"],false)
-
-	local a={}
-	a[#a+1]=cc.DelayTime:create(0.1)
-	a[#a+1]=cc.CallFunc:create(function() self.particleparticle:start() end)
-	a[#a+1]=cc.DelayTime:create(0.7)
-	a[#a+1]=cc.CallFunc:create(function() self.xiazhu_node:setVisible(false) end)
-	self:runAction(cc.Sequence:create(a))
 end
 
 --赢的特效
 function GameScene:victoryAct()
-	self.winNode:setVisible(true)
-	self.winAction:gotoFrameAndPlay(0,false)
+    self._winAni:getAnimation():playWithIndex(0,-1,0)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamewin"],false)
-	local a={}
-	a[#a+1]=cc.CallFunc:create(function() 
-        self.winActPart:start()
-		local tableEffect  = tableAction:new()
-		tableEffect:iconGold()
-		self:addChild(tableEffect,1)
-        self.tableEffect = tableEffect
-	 end)
-	a[#a+1]=cc.DelayTime:create(1)
-	a[#a+1]=cc.CallFunc:create(function() self.winNode:setVisible(false) end)
-	self:runAction(cc.Sequence:create(a))
+    local a={}
+    a[#a+1]=cc.DelayTime:create(1)
+    a[#a+1]=cc.CallFunc:create(function() self._winAni:setVisible(false) end)
+    self:runAction(cc.Sequence:create(a))
 end
 
 --输的特效
 function GameScene:loseAct()
-    self.loseNode:setVisible(true)
-    self.loseAction:gotoFrameAndPlay(0,false)
+    self._loseAni:getAnimation():playWithIndex(0,-1,0)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamelose"],false)
-    local a={}
-    a[#a+1]=cc.DelayTime:create(0.5)
-    a[#a+1]=cc.CallFunc:create(function ()
-        local lose = tableAction:new()
-        lose:LoseAutumnleaves()
-        self:addChild(lose)
-        self.lose = lose 
-    end)
-    a[#a+1]=cc.DelayTime:create(2)
-    a[#a+1]=cc.CallFunc:create(function() 
-            self.loseNode:setVisible(false)
-            self.lose:removeFromParent()
-            self.lose = nil
-        end)
-    self:runAction(cc.Sequence:create(a))
-
-	-- local lose = tableAction:new()
- --    lose:loseEffect()
- --    self:addChild(lose)
- --    self.lose = lose
- --    MusicManager:getInstance():playAudioEffect(conf.Music["Gamelose"],false)
 end
 
 --开始发牌
@@ -1332,15 +1244,15 @@ function GameScene:cardDianShu(num,i)
     node:setPosition(35+(i-1)*108,20)
     local pTexture = display.loadImage(GameResPath.."xiazhu_num.png")
     if tonumber(num) < 10 then
-        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(num)+1)*26,0,26,36))
-        kCard:setPosition(13,18)
+        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(num)+1)*24,0,24,33))
+        kCard:setPosition(12,16.5)
         node:addChild(kCard)
     else
-        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect(2*26,0,26,36))
-        kCard1:setPosition(0,18)
+        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect(2*24,0,24,33))
+        kCard1:setPosition(0,16.5)
         node:addChild(kCard1)
-        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect(26,0,26,36))
-        kCard2:setPosition(26,18)
+        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect(24,0,24,33))
+        kCard2:setPosition(24,16.5)
         node:addChild(kCard2)
     end
     self.suanniukuang:addChild(node)
@@ -1361,17 +1273,17 @@ function GameScene:sumCardDianshu(sum)
     numnode:setPosition(xx-60,20)
     local pTexture = display.loadImage(GameResPath.."xiazhu_num.png")
     if tonumber(sum) < 10 then
-        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(sum)+1)*26,0,26,36))
-        kCard:setPosition(13,18)
+        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(sum)+1)*24,0,24,33))
+        kCard:setPosition(12,16.5)
         numnode:addChild(kCard)
     else
         local dec = (sum-(sum%10))/10
         local unit = sum%10
-        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect((dec+1)*26,0,26,36))
-        kCard1:setPosition(0,18)
+        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect((dec+1)*24,0,24,33))
+        kCard1:setPosition(0,16.5)
         numnode:addChild(kCard1)
-        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect((unit+1)*26,0,26,36))
-        kCard2:setPosition(26,18)
+        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect((unit+1)*24,0,24,33))
+        kCard2:setPosition(24,16.5)
         numnode:addChild(kCard2)
     end
     self.suanniukuang:addChild(numnode)
@@ -1696,30 +1608,30 @@ function GameScene:showNiu(seatId,cardtype)
 	-- txtTip:setPosition(txtBg:getContentSize().width/2,txtBg:getContentSize().height/2)
 	-- txtBg:addChild(txtTip)
 
-    if cardtype == 0 or cardtype >= 10 then
+    -- if cardtype == 0 or cardtype >= 10 then
         local txtTip = cc.Sprite:create(GameResPath.."txtNiu/goldtxt_niu"..cardtype..".png")
         txtTip:setPosition(txtBg:getContentSize().width/2,txtBg:getContentSize().height/2)
         txtBg:addChild(txtTip)
-        if cardtype >= 10 then
+        if cardtype > 6 then
             txtTip:setScale(2)
             txtTip:runAction(cc.ScaleTo:create(0.1,1))
         end
-    else
-        local pTexture = display.loadImage(GameResPath.."txtNiu/goldtxt_niu1-9.png")
-        local txtTip1 = cc.Sprite:createWithTexture(pTexture,cc.rect(0,0,43,40))
-        local txtTip2 = cc.Sprite:createWithTexture(pTexture,cc.rect(tonumber(cardtype)*43,0,43,40))
-        txtTip1:setPosition(txtBg:getContentSize().width/2-22,txtBg:getContentSize().height/2)
-        txtTip2:setPosition(txtBg:getContentSize().width/2+22,txtBg:getContentSize().height/2)
-        txtBg:addChild(txtTip1)
-        txtBg:addChild(txtTip2)
+    -- else
+    --     local pTexture = display.loadImage(GameResPath.."txtNiu/goldtxt_niu1-9.png")
+    --     local txtTip1 = cc.Sprite:createWithTexture(pTexture,cc.rect(0,0,43,40))
+    --     local txtTip2 = cc.Sprite:createWithTexture(pTexture,cc.rect(tonumber(cardtype)*43,0,43,40))
+    --     txtTip1:setPosition(txtBg:getContentSize().width/2-22,txtBg:getContentSize().height/2)
+    --     txtTip2:setPosition(txtBg:getContentSize().width/2+22,txtBg:getContentSize().height/2)
+    --     txtBg:addChild(txtTip1)
+    --     txtBg:addChild(txtTip2)
 
-        if cardtype > 6 then
-            txtTip1:setScale(2)
-            txtTip1:runAction(cc.ScaleTo:create(0.1,1))
-            txtTip2:setScale(2)
-            txtTip2:runAction(cc.ScaleTo:create(0.1,1))
-        end
-    end
+    --     if cardtype > 6 then
+    --         txtTip1:setScale(2)
+    --         txtTip1:runAction(cc.ScaleTo:create(0.1,1))
+    --         txtTip2:setScale(2)
+    --         txtTip2:runAction(cc.ScaleTo:create(0.1,1))
+    --     end
+    -- end
 
 
 	-- if cardtype == 0 then
@@ -1882,7 +1794,7 @@ function GameScene:resetTable()
     self:hideNiuBtn()
 
     --隐藏游戏开始动画
-    self.xiazhu_node:setVisible(false)
+    -- self.xiazhu_node:setVisible(false)
 
     --隐藏抢庄按钮
     self:GradbankerHide()
@@ -1897,8 +1809,8 @@ function GameScene:resetTable()
     self:removeClock()
 
     --隐藏赢的动画
-    self.winNode:setVisible(false)
-    self.loseNode:setVisible(false)
+    -- self.winNode:setVisible(false)
+    -- self.loseNode:setVisible(false)
 
     --隐藏牌
     self:hideWancheng()
@@ -2143,7 +2055,7 @@ function GameScene:onGameStart(data)
         self.TableInfoArray.isJoin = true
     end
 
-    self.xiazhu_node:setVisible(false)
+    -- self.xiazhu_node:setVisible(false)
     self:setReadyBtnHide()
     local bankTime = data.bankTime
     local playerNum = data.playerNum
@@ -2274,7 +2186,7 @@ end
 --显示提示语 
 function GameScene:showGameTips(tipes)
     if self._tipsTextLable == nil then
-        self._tipsTextLable = cc.Label:createWithTTF("",GameUtils.getFontName(),25)
+        self._tipsTextLable = cc.Label:createWithSystemFont("",SYSFONT,25)
         self._tipsTextLable:setAnchorPoint(cc.p(0,0.5))
         self:addChild(self._tipsTextLable)         
     end
@@ -2484,7 +2396,7 @@ function GameScene:onGameChatText(data)
         end
     end
 
-    local chatText = cc.Label:createWithTTF(tab.value,GameUtils.getFontName(),26)
+    local chatText = cc.Label:createWithSystemFont(tab.value,SYSFONT,26)
     chatText:setAnchorPoint(0,0.5)
     chatText:setPosition(5,chatBg:getContentSize().height/2)
     chatText:setColor(cc.c3b(111,66,34))
@@ -2609,7 +2521,7 @@ function GameScene:onDissolutionResult(State,uid)
         dis:CloseDismissTime()
     end
     if State == 0 and self.playerInfoData[uid] then
-        local player_name_str = string.getMaxLen(self.playerInfoData[uid].NickName,7)
+        local player_name_str = string.getMaxLen(self.playerInfoData[uid].nickName,7)
         GameUtils.showMsg("由于["..player_name_str.."]拒绝"..",\n解散房间失败，牌局继续进行")
     end
 end

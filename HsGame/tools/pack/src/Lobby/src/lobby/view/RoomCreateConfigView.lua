@@ -13,30 +13,22 @@ function RoomCreateConfigView:ctor( ... )
 	self._bg = bg
 	local size = self._bg:getContentSize()
 
-	local button = cc.exports.lib.uidisplay.createLabelButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "common_big_yellow_btn.png",
+	local button = cc.exports.lib.uidisplay.createUIButton({
+			textureType = ccui.TextureResType.localType,
+			normal = "res/common/common_btn_create_room.png",
 			callback = handler(self,self.onClick),
 			isActionEnabled = true,
-			pos = cc.p(193,92),
-			text = "继续创建",
-			outlineColor = cc.c4b(112,45,2,255),
-			outlineSize = 2,
-			labPos = cc.p(0,2),
+			pos = cc.p(183,92)
 	})
 	button:setTag(TagContinue)
 	bg:addChild(button)
 
-	button = cc.exports.lib.uidisplay.createLabelButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "common_big_blue_btn.png",
+	button = cc.exports.lib.uidisplay.createUIButton({
+			textureType = ccui.TextureResType.localType,
+			normal = "res/common/common_btn_enter_room.png",
 			callback = handler(self,self.onClick),
 			isActionEnabled = true,
-			pos = cc.p(515,92),
-			text = "进入房间",
-			outlineColor = cc.c4b(24,31,92,255),
-			outlineSize = 2,
-			labPos = cc.p(0,2),
+			pos = cc.p(525,92)
 	})
 	button:setTag(TagEnterGame)
 	bg:addChild(button)
@@ -46,16 +38,17 @@ function RoomCreateConfigView:ctor( ... )
 			normal = "Lobby/res/common/common_btn_close.png",
 			callback = handler(self,self.back),
 			isActionEnabled = true,
-			pos = cc.p(size.width - 30,size.height - 30)
+			pos = cc.p(size.width - 111,size.height - 56)
 	})
+	button:setTag(TagEnterGame)
 	bg:addChild(button)
 end
 
 function RoomCreateConfigView:initLabel( __tableId )
 	
-    local richText = GameUtils.createRichText({{Color3B = cc.c3b(224,221,245), opacity = 255, richText = lobby.CreateRoomManager:getInstance():findRoomCreateSuccessString(), fontSize = 30},
-                        {Color3B = cc.c3b(254,243,123), opacity = 255, richText = "【"..__tableId.."】", fontSize = 30}})
-    richText:setPosition(self._bg:getContentSize().width * 0.5,self._bg:getContentSize().height * 2 / 3)
+    local richText = GameUtils.createRichText({{Color3B = cc.c3b(224,221,245), opacity = 255, richText = lobby.CreateRoomManager:getInstance():findRoomCreateSuccessString(), fontSize = 24},
+                        {Color3B = cc.c3b(254,243,123), opacity = 255, richText = "【"..__tableId.."】", fontSize = 24}})
+    richText:setPosition(self._bg:getContentSize().width * 0.5,self._bg:getContentSize().height * 2 / 3-60)
     richText:setAnchorPoint(cc.p(0.5,0.5))
     self._bg:addChild(richText)
 end
@@ -79,7 +72,15 @@ function RoomCreateConfigView:onCloseCallback( ... )
 end
 
 function RoomCreateConfigView:findImgBg( ... )
-	return "common_little_bg.png"
+	return "common_msgbox_bg.png"
+end
+
+function RoomCreateConfigView:findImgCreateRoom( ... )
+	return "res/common/common_btn_create_room.png"
+end
+
+function RoomCreateConfigView:findContinueCreate( ... )
+	return "res/common/common_btn_enter_room.png"
 end
 
 return RoomCreateConfigView

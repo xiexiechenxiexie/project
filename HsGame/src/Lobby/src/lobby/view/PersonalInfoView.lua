@@ -90,7 +90,7 @@ function PersonalInfoView:initView()
 	local SelectSexImg = "PlayInfo_btn_sex_select.png"
     local btnSelectMan  = ccui.Button:create(SelectSexImg, SelectSexImg, SelectSexImg, ccui.TextureResType.plistType)
 	btnSelectMan:addClickEventListener(function()
-        local __param = { token = UserData.token, NickName = UserData.nickName, Gender= ConstantsData.SexType.SEX_MAN}
+        local __param = { token = UserData.token, nickName = UserData.nickName, gender= ConstantsData.SexType.SEX_MAN}
         logic.PlayerInfoManager:getInstance():requestReviseSelfInfo(__param, function( result )
             if result then
                 UserData.gender = ConstantsData.SexType.SEX_MAN
@@ -104,7 +104,7 @@ function PersonalInfoView:initView()
 
     local btnSelectWomen  = ccui.Button:create(SelectSexImg, SelectSexImg, SelectSexImg, ccui.TextureResType.plistType)
 	btnSelectWomen:addClickEventListener(function()
-        local __param = { token = UserData.token, NickName = UserData.nickName, Gender= ConstantsData.SexType.SEX_WOMEN}
+        local __param = { token = UserData.token, nickName = UserData.nickName, gender= ConstantsData.SexType.SEX_WOMEN}
         logic.PlayerInfoManager:getInstance():requestReviseSelfInfo(__param, function( result )
             if result then
                 UserData.gender = ConstantsData.SexType.SEX_WOMEN
@@ -118,7 +118,7 @@ function PersonalInfoView:initView()
 
     local btnSelectUnknown  = ccui.Button:create(SelectSexImg, SelectSexImg, SelectSexImg, ccui.TextureResType.plistType)
 	btnSelectUnknown:addClickEventListener(function()
-        local __param = { token = UserData.token, NickName = UserData.nickName, Gender= ConstantsData.SexType.SEX_UNKNOW}
+        local __param = { token = UserData.token, nickName = UserData.nickName, gender= ConstantsData.SexType.SEX_UNKNOW}
         logic.PlayerInfoManager:getInstance():requestReviseSelfInfo(__param, function( result )
             if result then
                 UserData.gender = ConstantsData.SexType.SEX_UNKNOW
@@ -329,7 +329,7 @@ function PersonalInfoView:updateNickName()
         return
     end
 
-    local __param = { token = UserData.token, NickName = self._EditBox:getText(), Gender= UserData.gender}
+    local __param = { token = UserData.token, nickName = self._EditBox:getText(), gender= UserData.gender}
     logic.PlayerInfoManager:getInstance():requestReviseSelfInfo(__param, function( result )
         if result then
             UserData.nickName = self._EditBox:getText()
@@ -353,7 +353,7 @@ function PersonalInfoView:showPersonalView(data)
         return
     end
 
-    local Gender = data.Gender or 0
+    local Gender = data.gender or 0
     local GenderStr = GameUtils.getInfoBigHeadFileByGender(Gender)
 
     local AvatarUrl = UserData.avatarUrl or ""
@@ -367,20 +367,20 @@ function PersonalInfoView:showPersonalView(data)
     awatar:setTag(AVATAR_TAG)
     self._bg:addChild(awatar)
 
-    self._IDLabel:setString(data.UserId or "")
+    self._IDLabel:setString(data.userId or "")
     self._IDLabel:show()
 
-    local Gender = data.Gender or 0
+    local Gender = data.gender or 0
     self:showSexSelect(Gender)
 
-    data.NickName = GameUtils.FormotGameNickName(data.NickName,6)
+    data.NickName = GameUtils.FormotGameNickName(data.nickName,6)
     self._NickName:setString(data.NickName)
     self._NickName:show()
 
-    GameUtils.updateSwitchNumNode(self._CoinsLabel,data.Score or 0)
+    GameUtils.updateSwitchNumNode(self._CoinsLabel,data.score or 0)
     self._CoinsLabel:show()
 
-    GameUtils.updateSwitchNumNode(self._RoomCardLabel,data.RoomCardNum or 0)
+    GameUtils.updateSwitchNumNode(self._RoomCardLabel,data.roomCard or 0)
     self._RoomCardLabel:show()
 
     GameUtils.updateSwitchNumNode(self._DiamondLabel,data.diamond or 0)

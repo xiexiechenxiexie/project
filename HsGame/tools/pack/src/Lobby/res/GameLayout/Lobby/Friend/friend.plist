@@ -7,54 +7,93 @@
             <key>Lobby_Friend_btnBg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,97},{760,76}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{760,76}}</string>
-                <key>sourceSize</key>
-                <string>{760,76}</string>
-            </dict>
-            <key>Lobby_Friend_btn_check.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{764,97},{76,70}}</string>
+                <string>{{431,2},{760,76}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{76,70}}</string>
+                <string>{{0,0},{760,76}}</string>
                 <key>sourceSize</key>
-                <string>{76,70}</string>
+                <string>{760,76}</string>
+            </dict>
+            <key>Lobby_Friend_btn_add.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,764},{203,82}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{203,82}}</string>
+                <key>sourceSize</key>
+                <string>{203,82}</string>
+            </dict>
+            <key>Lobby_Friend_btn_check.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{86,764},{129,66}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{129,66}}</string>
+                <key>sourceSize</key>
+                <string>{129,66}</string>
             </dict>
             <key>Lobby_Friend_check_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,175},{536,58}}</string>
+                <string>{{2,2},{427,58}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{536,58}}</string>
+                <string>{{0,0},{427,58}}</string>
                 <key>sourceSize</key>
-                <string>{536,58}</string>
+                <string>{427,58}</string>
+            </dict>
+            <key>Lobby_Friend_kuang.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{86,895},{90,90}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{90,90}}</string>
+                <key>sourceSize</key>
+                <string>{90,90}</string>
             </dict>
             <key>Lobby_Friend_list_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{999,93}}</string>
+                <string>{{154,62},{780,117}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{780,117}}</string>
+                <key>sourceSize</key>
+                <string>{780,117}</string>
+            </dict>
+            <key>Lobby_Friend_title.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,969},{71,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{999,93}}</string>
+                <string>{{0,0},{71,34}}</string>
                 <key>sourceSize</key>
-                <string>{999,93}</string>
+                <string>{71,34}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -64,9 +103,9 @@
             <key>realTextureFileName</key>
             <string>friend.png</string>
             <key>size</key>
-            <string>{1003,235}</string>
+            <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:172c8bed4b10b1a4de210b997c90a7e8:8f1d4bd519a9489ce26dfdb8bbf84123:6b0a64026ae56fd16339d3c912c0f817$</string>
+            <string>$TexturePacker:SmartUpdate:7e7273326c98b7e58458a09c4cb35470:1/1$</string>
             <key>textureFileName</key>
             <string>friend.png</string>
         </dict>

@@ -8,20 +8,26 @@ end)
 
 local OK_POS = cc.p(150, -133)
 local CANCEL_POS = cc.p(-150, -133)
+local CLOSE_POS = cc.p(249,171.5)
 local BTN_CENTER_POS = cc.p(0, -133)
 local TITLE_POS = cc.p(0, 185)
-local LABEL_POS = cc.p(0, 50)
+local LABEL_POS = cc.p(0, 20)
 local LABEL_BIG_POS = cc.p(0, 50)
 local LINE_HEIGHT = 40 -- 行间距
 local DIMENSIONS_SIZE = cc.size(600,0) --字体总长宽
 
 function MsgBoxUI:ctor()
-	local bg = ccui.ImageView:create("common_little_bg.png",ccui.TextureResType.plistType)
+	local bg = ccui.ImageView:create("common_msgbox_bg.png",ccui.TextureResType.plistType)
     bg:setAnchorPoint(cc.p(0.5, 0.5))
     bg:setPosition(0,0)
     bg:setScale9Enabled(true)
     self:addChild(bg)
     self._bg = bg
+
+    local title = ccui.ImageView:create("common_exit_title.png",ccui.TextureResType.plistType)
+    title:setAnchorPoint(cc.p(0.5, 0.5))
+    title:setPosition(bg:getContentSize().width/2,bg:getContentSize().height-55)
+    bg:addChild(title)
 
     local label = cc.Label:createWithTTF("",GameUtils.getFontName(),30,DIMENSIONS_SIZE)
     label:setAnchorPoint(cc.p(0.5, 0.5))
@@ -42,31 +48,26 @@ function MsgBoxUI:ctor()
     self._bigLabel = bigLabel
     self._bigLabel:hide()
 
-	local okBtn = cc.exports.lib.uidisplay.createLabelButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "common_big_blue_btn.png",
-			isActionEnabled = true,
-			pos = OK_POS,
-			text = "确定",
-			outlineColor = cc.c4b(24,31,92,255),
-			outlineSize = 2,
-			labPos = cc.p(0,2),
-	})
+    local okImg = "common_btn_sure.png"
+    local okBtn  = ccui.Button:create(okImg, okImg, okImg, ccui.TextureResType.plistType)
+	okBtn:setPosition(OK_POS)
+	okBtn:setPressedActionEnabled(true)
 	self:addChild(okBtn,2)
 	self._okBtn = okBtn
 
-	local cancelBtn = cc.exports.lib.uidisplay.createLabelButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "common_big_yellow_btn.png",
-			isActionEnabled = true,
-			pos = CANCEL_POS,
-			text = "取消",
-			outlineColor = cc.c4b(112,45,2,255),
-			outlineSize = 2,
-			labPos = cc.p(0,2),
-	})
+	local cancelImg = "common_btn_cancel.png"
+	local cancelBtn = ccui.Button:create(cancelImg, cancelImg, cancelImg, ccui.TextureResType.plistType)
+	cancelBtn:setPosition(CANCEL_POS)
+	cancelBtn:setPressedActionEnabled(true)
 	self:addChild(cancelBtn,2)
 	self._cancelBtn = cancelBtn
+
+	local closeImg = "common/common_btn_close.png"
+	local closeImg1 = "common/common_btn_close1.png"
+	local closeBtn = ccui.Button:create(closeImg, closeImg1, "")
+	closeBtn:setPosition(CLOSE_POS)
+	self:addChild(closeBtn,2)
+	self.closeBtn = closeBtn
 
 end
 
@@ -112,6 +113,15 @@ function MsgBoxUI:showMsgBox(__params)
 		end
 	end)
 	self._cancelBtn:addClickEventListener(function()
+		local result = true
+		if callback then
+			result = callback("cancel")
+		end
+		if result then
+			GameUtils.hideMsgBox()
+		end
+	end)
+	self.closeBtn:addClickEventListener(function()
 		local result = true
 		if callback then
 			result = callback("cancel")

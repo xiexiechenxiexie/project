@@ -119,15 +119,7 @@ end
 -- **************************商城数据请求************************** --
 
 function MallManager:getReqURL(index)
-	local reqMallURl = ""
-	local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-	if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) then
-		reqMallURl = config.ServerConfig:findModelDomain() .. config.MallApiConfig.REQUEST_MALL_LIST_DATA .. "ios/" .. index .. "/" .. UserData.token
-	elseif  (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-		reqMallURl = config.ServerConfig:findModelDomain() .. config.MallApiConfig.REQUEST_MALL_LIST_DATA .. "android/" .. index .. "/" .. UserData.token
-	else
-		reqMallURl = config.ServerConfig:findModelDomain() .. config.MallApiConfig.REQUEST_MALL_LIST_DATA .. "android/" .. index .. "/" .. UserData.token
-	end
+	local reqMallURl = config.ServerConfig:findModelDomain() .. config.MallApiConfig.REQUEST_MALL_LIST_DATA..index.."?token="..UserData.token
 	return reqMallURl
 end
 
@@ -159,6 +151,7 @@ end
 
 -- 商城数据回调
 function MallManager:onMallListCallBack(__error, __response)
+	dump(__response)
 	-- body
 	if __error then
     	-- print("Table config net error")
@@ -187,19 +180,19 @@ end
 -- 初始化商城数据
 function MallManager:initMallDataList( data )
 	-- body
-	for i = 1, #data.goods do
+	for i = 1, #data do
 		_mallDataList[_curMallDataListType][i] = MallData.new({
-		goodsId = data.goods[i].GoodsId or 0,								    --商品id
-		goodsName = data.goods[i].GoodsName or "", 					            --商品名称
-		imageUrl = config.ServerConfig:findResDomain() .. data.goods[i].ImageUrl or "",						        --图标下载地址
-		number = data.goods[i].Number or 0,							            --兑换金币
-		amount = data.goods[i].Amount or 0, 						            --消耗钻石
-		date = data.goods[i].Date or 0,									        --房卡有效期
-		tag = data.goods[i].Tag or 0,						                    --0没有角标，1房卡免费，2专属优惠，3未XXXXX
-		appleProductIdentifier = data.goods[i].AppleProductIdentifier or "",	--苹果支付标签
-		payment = data.goods[i].Payment or "",						            --支持支付方式					
-		expendType = data.goods[i].ExpendType or 0,				                --支付货币  1为现金支付, 2钻石虚拟支付
-		paymentPlatform = data.goods[i].paymentPlatform or ""								--当前支付方式
+		goodsId = data[i].id or 0,								    --商品id
+		goodsName = data[i].name or "", 					            --商品名称
+		imageUrl = config.ServerConfig:findResDomain() .. data[i].img or "",						        --图标下载地址
+		number = data[i].score or 0,							            --兑换金币
+		amount = data[i].diamondPrice or 0, 						            --消耗钻石
+		-- date = data[i].Date or 0,									        --房卡有效期
+		tag = data[i].tag or 0,						                    --0没有角标，1房卡免费，2专属优惠，3未XXXXX
+		appleProductIdentifier = data[i].appleIdentifier or "",	--苹果支付标签
+		payment = data[i].Payment or "",						            --支持支付方式					
+		expendType = data[i].payment or 0,				                --支付货币  1为现金支付, 2钻石虚拟支付
+		paymentPlatform = data[i].paymentPlatform or ""								--当前支付方式
 		})
 	end
 end
@@ -406,7 +399,7 @@ function MallManager:buyGoods(mallData)
 	    	GameUtils.showMsg(MallManager.DIAMOND_LOST)
 	    	self:gotoBuyDiamond()
 		else
-			self:getGoodsOrder(mallData.goodsId)	
+			self:getGoodsOrder(mallData.goodsId)
 		end
 	else
 		GameUtils.showMsg(MallManager.UNKNOW_MALL_INFO)
@@ -875,16 +868,9 @@ MallManager.showMessageBox = function(__messageTip,__productType)
 			cc.Director:getInstance():getRunningScene():addChild(require("src/lobby/layer/MallDialog"):create(__productType))
 		end,
 		showType = lib.layer.MessageBox.TYPE_SELECT,
-		resType = ccui.TextureResType.plistType ,
-		okFile = "common_small_blue_btn.png" ,
-		cancelFile = "common_small_yellow_btn.png" ,
-		okText = "前往",
-		okOutlineColor = cc.c4b(24,31,92,255),
-		cancelOutlineColor = cc.c4b(112,45,2,255),
-		okOutlineSize = 2,
-		cancelOutlineSize = 2,
-		okPos = cc.p(0,2),
-		cancelPos = cc.p(0,2),
+		resType = ccui.TextureResType.localType ,
+		okFile = "src/Lobby/res/common/common_go_soon.png" ,
+		cancelFile = "src/Lobby/res/common/common_cancel.png" ,
 	}
 	lib.layer.MessageBox.showMsgBox(params)
 end

@@ -61,18 +61,6 @@ function help:init()
 	local wanfaView = bg:getChildByName("wanfaView")
 	self.wanfaView = wanfaView
 	wanfaView:hide()
-
-	for i=1,2 do
-		local str = "Text"..tostring(i)
-		local wanfa = wanfaView:getChildByName(str)
-		wanfa:setFontName(GameUtils.getFontName())
-	end
-	for i=1,4 do
-		local str = "Text"..tostring(i+2)
-		local rule = ruleview:getChildByName(str)
-		rule:setFontName(GameUtils.getFontName())
-	end
-
 end
 
 function help:onClickBack(sender)
@@ -81,7 +69,6 @@ function help:onClickBack(sender)
 		self.cardType:setBrightStyle(1)
 		self.rule:setBrightStyle(0)
 		self.wanfa:setBrightStyle(0)
-		self.point:stopAllActions()
 		self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,377)))
 		self.state:show()
 		self.ruleview:hide()
@@ -90,7 +77,6 @@ function help:onClickBack(sender)
 		self.cardType:setBrightStyle(0)
 		self.rule:setBrightStyle(1)
 		self.wanfa:setBrightStyle(0)
-		self.point:stopAllActions()
 		self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,279.5)))
 		self.state:hide()
 		self.ruleview:show()
@@ -99,7 +85,6 @@ function help:onClickBack(sender)
 		self.cardType:setBrightStyle(0)
 		self.rule:setBrightStyle(0)
 		self.wanfa:setBrightStyle(1)
-		self.point:stopAllActions()
 		self.point:runAction(cc.MoveTo:create(0.2,cc.p(207,187.5)))
 		self.state:hide()
 		self.ruleview:hide()

@@ -55,9 +55,9 @@ end
 
 function LobbyTableManager:RequestQuickJoinTable()
     local quickData = GameListData.findQuickGameData()
-    GameData.GameID = quickData.GameId
-    GameData.GameIP = quickData.ServerIp
-    GameData.GamePort =quickData.ServerPort
+    GameData.GameID = quickData.gameId
+    GameData.GameIP = quickData.serverIp
+    GameData.GamePort =quickData.serverPort
     GameData.IntoGameType = ConstantsData.IntoGameType.LOBBY_QUICK_JOIN_TYPE
     logic.LobbyManager:getInstance():LoginGameServer()
 end
@@ -72,9 +72,9 @@ end
 function LobbyTableManager:RequestGoldQuickJoinTable()
     local gameId = GameListData.findSelectGameId()
     local data = GameListData.getNormalGameData(gameId)
-    GameData.GameID = data.GameId
-    GameData.GameIP = data.ServerIp
-    GameData.GamePort =data.ServerPort
+    GameData.GameID = data.gameId
+    GameData.GameIP = data.serverIp
+    GameData.GamePort =data.serverPort
     GameData.IntoGameType = ConstantsData.IntoGameType.GOLD_QUICK_JOIN_TYPE
     logic.LobbyManager:getInstance():LoginGameServer()
 end

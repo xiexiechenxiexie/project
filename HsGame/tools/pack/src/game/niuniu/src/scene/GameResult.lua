@@ -27,32 +27,32 @@ function GameResult:initAllResult(arr,playerArr,tableid,playerNum,playerInfoData
 	title:setPosition(x/2,y-60)
 	bgAllResult:addChild(title)
 
-	local roomId = cc.Label:createWithTTF("房间号:"..tostring(tableid),GameUtils.getFontName(),26)
+	local roomId = cc.Label:createWithSystemFont("房间号:"..tostring(tableid),SYSFONT,26)
 	roomId:setColor(TXT_COLOR)
 	roomId:setAnchorPoint(0.0,0.5)
 	roomId:setPosition(220,y-140)
 	bgAllResult:addChild(roomId)
 	local num = tostring(arr.curGameNum.."/"..arr.GameNum)
-	local gameNum = cc.Label:createWithTTF("局数:"..num,GameUtils.getFontName(),26)
+	local gameNum = cc.Label:createWithSystemFont("局数:"..num,SYSFONT,26)
 	gameNum:setColor(TXT_COLOR)
 	gameNum:setAnchorPoint(0.0,0.5)
 	gameNum:setPosition(420,y-140)
 	bgAllResult:addChild(gameNum)
 
-	local playing = cc.Label:createWithTTF("玩法:",GameUtils.getFontName(),26)
+	local playing = cc.Label:createWithSystemFont("玩法:",SYSFONT,26)
 	playing:setColor(TXT_COLOR)
 	playing:setAnchorPoint(0.0,0.5)
 	playing:setPosition(600,y-140)
 	bgAllResult:addChild(playing)
 	local data = NiuNiuData.parseRule(arr.rule)
 	if data then
-		local difen = cc.Label:createWithTTF("底分"..data.GameBet..",",GameUtils.getFontName(),26)
+		local difen = cc.Label:createWithSystemFont("底分"..data.GameBet..",",SYSFONT,26)
 		difen:setColor(TXT_COLOR)
 		difen:setAnchorPoint(0.0,0.5)
 		difen:setPosition(665,y-140)
 		bgAllResult:addChild(difen)
 
-		local suanniu = cc.Label:createWithTTF("",GameUtils.getFontName(),26)
+		local suanniu = cc.Label:createWithSystemFont("",SYSFONT,26)
 		if data.AccountType == 0 then
 			suanniu:setString("自动算牛")
 		elseif data.AccountType == 1 then
@@ -65,7 +65,7 @@ function GameResult:initAllResult(arr,playerArr,tableid,playerNum,playerInfoData
 	end 
 
 	local curTime = os.date("%Y-%m-%d %H:%M")
-	local curTimeTxt = cc.Label:createWithTTF("时间:"..curTime,GameUtils.getFontName(),26)
+	local curTimeTxt = cc.Label:createWithSystemFont("时间:"..curTime,SYSFONT,26)
 	curTimeTxt:setColor(TXT_COLOR)
 	curTimeTxt:setAnchorPoint(0.0,0.5)
 	curTimeTxt:setPosition(x/2+220,y-140)
@@ -108,9 +108,9 @@ function GameResult:createAllItem(index,playerArr,playerData)
 	local info = playerData[playerArr[index].uid]
 
 	local paramTab = {}
-	paramTab.avatarUrl = info.AvatarUrl or ""
+	paramTab.avatarUrl = info.avatar or ""
 	paramTab.stencilFile = GameResultResPath.."head_clip_allBg.png"
-	paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(info.Gender)
+	paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(info.gender)
 	paramTab.frameFile = GameResultResPath.."head_allBg.png"
 
 	local headnode = lib.node.Avatar:create(paramTab)
@@ -125,26 +125,26 @@ function GameResult:createAllItem(index,playerArr,playerData)
 	winner:setPosition(43,y-45)
 	playerAllBg:addChild(winner)
 
-	local palyerName = cc.Label:createWithTTF(string.getMaxLen(info.NickName),GameUtils.getFontName(),28)
+	local palyerName = cc.Label:createWithSystemFont(string.getMaxLen(info.nickName),SYSFONT,28)
 	palyerName:setPosition(x/2,y/2+45)
 	playerAllBg:addChild(palyerName)
 
-	local palyerID = cc.Label:createWithTTF("ID:"..playerArr[index].uid,GameUtils.getFontName(),26)
+	local palyerID = cc.Label:createWithSystemFont("ID:"..playerArr[index].uid,SYSFONT,26)
 	palyerID:setColor(TXT_COLOR1)
 	palyerID:setPosition(x/2,y/2+10)
 	playerAllBg:addChild(palyerID)
 
-	local palyerGard = cc.Label:createWithTTF(playerArr[index].bankerCount,GameUtils.getFontName(),26)
+	local palyerGard = cc.Label:createWithSystemFont(playerArr[index].bankerCount,SYSFONT,26)
 	palyerGard:setColor(TXT_COLOR2)
 	palyerGard:setPosition(x/4*3-40,y/2-25)
 	playerAllBg:addChild(palyerGard)
 
-	local palyerVic = cc.Label:createWithTTF(playerArr[index].vicCount,GameUtils.getFontName(),26)
+	local palyerVic = cc.Label:createWithSystemFont(playerArr[index].vicCount,SYSFONT,26)
 	palyerVic:setColor(TXT_COLOR2)
 	palyerVic:setPosition(x/4*3-40,y/2-70)
 	playerAllBg:addChild(palyerVic)
 
-	local palyerScore = cc.Label:createWithTTF(playerArr[index].allSocre,GameUtils.getFontName(),26)
+	local palyerScore = cc.Label:createWithSystemFont(playerArr[index].allSocre,SYSFONT,26)
 	palyerScore:setColor(TXT_COLOR2)
 	palyerScore:setPosition(x/4*3-18,44)
 	playerAllBg:addChild(palyerScore)

@@ -4,7 +4,15 @@ require "src/Lobby/src/Boot.lua"
 local function main()
 
 	cc.exports.config.channle = {}
-cc.exports.config.channle.CHANNLE_ID = "nn_appstore_01"
+	cc.exports.config.channle.CHANNLE_ID = "nn_appstore_01"
+
+	--获取当前平台ios或android
+	local targetPlatform = cc.Application:getInstance():getTargetPlatform()
+	if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) then
+		cc.exports.config.channle.clientOS = "ios"
+	else
+		cc.exports.config.channle.clientOS = "android"
+	end
 
 	print("config.channle.CHANNLE_ID",config.channle.CHANNLE_ID)
 	-- 友盟注册

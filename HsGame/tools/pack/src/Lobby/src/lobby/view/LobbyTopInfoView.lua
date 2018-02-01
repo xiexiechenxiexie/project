@@ -48,22 +48,23 @@ function LobbyTopInfoView:_initView(index)
 		self:onButtonClickedEvent(sender:getTag(), sender)
     end
 
-    -- 返回按钮
-    local btnBack = ccui.Button:create("lobby_btn_back.png", "", "", ccui.TextureResType.plistType)
+ --    -- 返回按钮
+    local btnBack = ccui.Button:create("lobby_btn_back.png", "lobby_btn_back1.png", "", ccui.TextureResType.plistType)
     -- btnBack:loadTextureNormal("lobby_top_bg.png", ccui.TextureResType.plistType)
 	btnBack:setTag(LobbyTopInfoView.BTN_BACK)
-	btnBack:setPosition(cc.p(btnBack:getContentSize().width/2 + 20, self.infoViewBg:getContentSize().height/2))
-	btnBack:setScale(0.8)
+	btnBack:setPosition(cc.p(self:getContentSize().width - 91, self.infoViewBg:getContentSize().height/2+15))
+	-- btnBack:setScale(0.8)
 	self.infoViewBg:addChild(btnBack)
 	self._btnBack = btnBack
 	btnBack:addClickEventListener(btnCallBack)
+	btnBack:hide()
 
 	-- 添加头像框
-	local btnBack_X, btnBack_Y = btnBack:getPosition()
+	-- local btnBack_X, btnBack_Y = btnBack:getPosition()
     local headBtnImg = "common/Lobby_head_bg.png"
     self._headBtn = ccui.Button:create(headBtnImg, headBtnImg, headBtnImg)
     self._headBtn:setTag(LobbyTopInfoView.BTN_HEAD)
-	self._headBtn:setPosition(cc.p(btnBack_X + btnBack:getContentSize().width/2 + 20 + self._headBtn:getContentSize().width/2, btnBack_Y))
+	self._headBtn:setPosition(cc.p(20 + self._headBtn:getContentSize().width/2, self._headBtn:getContentSize().height-5))
 	self.infoViewBg:addChild(self._headBtn)
 	self._headBtn:addClickEventListener(btnCallBack)
 
@@ -98,12 +99,12 @@ function LobbyTopInfoView:_initView(index)
 	self._txtName:setString(nickeNameStr)
 	self._txtName:setTextColor(cc.c3b(255, 255, 255))
 	self._txtName:setFontSize(26)
-	self._txtName:setFontName(GameUtils.getFontName())
 	-- txtName:setTextAreaSize(cc.size(140, 24))
 	-- txtName:ignoreContentAdaptWithSize(false)
 	self._txtName:setAnchorPoint(cc.p(0, 1))
 	self._txtName:setPosition(cc.p(10, userInfoBg:getContentSize().height - 17))
 	userInfoBg:addChild(self._txtName)
+
 
 	-- 左侧信息背景
 	local userInfoBg_X, userInfoBg_Y = userInfoBg:getPosition()
@@ -114,13 +115,13 @@ function LobbyTopInfoView:_initView(index)
 	self.infoViewBg:addChild(self.assetBgLeft)
 	self.assetBgLeft:addClickEventListener(btnCallBack)
 
-	-- 左侧信息icon
-	self.imageIconLeft = ccui.ImageView:create("lobby_gold_icon.png", ccui.TextureResType.plistType)
-	self.imageIconLeft:setPosition(cc.p(self.imageIconLeft:getContentSize().width/2 + 5,  self.assetBgLeft:getContentSize().height/2))
-	self.assetBgLeft:addChild(self.imageIconLeft)
+	-- -- 左侧信息icon
+	-- self.imageIconLeft = ccui.ImageView:create("lobby_gold_icon.png", ccui.TextureResType.plistType)
+	-- self.imageIconLeft:setPosition(cc.p(self.imageIconLeft:getContentSize().width/2 + 5,  self.assetBgLeft:getContentSize().height/2))
+	-- self.assetBgLeft:addChild(self.imageIconLeft)
 
-    --金币扫光
-    self:addGoldLightEffect("lobby_gold_icon.png",self.imageIconLeft)
+ --    --金币扫光
+ --    self:addGoldLightEffect("lobby_gold_icon.png",self.imageIconLeft)
 
 	self.textLeft = GameUtils.createSwitchNumNode(UserData.coins and UserData.coins or 0)
 	self.textLeft:setPosition(cc.p(self.assetBgLeft:getContentSize().width/2 - 10, self.assetBgLeft:getContentSize().height/2))
@@ -142,13 +143,35 @@ function LobbyTopInfoView:_initView(index)
 	self.infoViewBg:addChild(self.assetBgRight)
 	self.assetBgRight:addClickEventListener(btnCallBack)
 
-    -- 右侧信息icon
-	self.imageIconRight = ccui.ImageView:create("lobby_diamond_icon.png", ccui.TextureResType.plistType)
-	self.imageIconRight:setPosition(cc.p(self.imageIconRight:getContentSize().width/2 + 5,  self.assetBgRight:getContentSize().height/2))
-	self.assetBgRight:addChild(self.imageIconRight)
+	local dirGold = "GameLayout/Animation/DT_jb_Animation/"
+	ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dirGold.."DT_jb_Animation0.png",dirGold.."DT_jb_Animation0.plist",dirGold.."DT_jb_Animation.ExportJson")  
+    self.adAnimGold = ccs.Armature:create("DT_jb_Animation") 
+    self.adAnimGold:setPosition(cc.p(340,  self.infoViewBg:getContentSize().height/2+12))
+    self.infoViewBg:addChild(self.adAnimGold);
+    self.adAnimGold:getAnimation():playWithIndex(0)
 
-    --砖石扫光
-    self:addDiamondLightEffect("lobby_diamond_icon.png",self.imageIconRight)
+	local dirDiamond = "GameLayout/Animation/DT_zs_Animation/"
+	ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dirDiamond.."DT_zs_Animation0.png",dirDiamond.."DT_zs_Animation0.plist",dirDiamond.."DT_zs_Animation.ExportJson")  
+    self.adAnimDiamond = ccs.Armature:create("DT_zs_Animation") 
+    self.adAnimDiamond:setPosition(cc.p(625,  self.infoViewBg:getContentSize().height/2+10))
+    self.infoViewBg:addChild(self.adAnimDiamond);
+    self.adAnimDiamond:getAnimation():playWithIndex(0)
+
+    local dirRoomCard = "GameLayout/Animation/fangka_Animation/"
+	ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dirRoomCard.."fangka_Animation0.png",dirRoomCard.."fangka_Animation0.plist",dirRoomCard.."fangka_Animation.ExportJson")  
+    self.adAnimRoomCard = ccs.Armature:create("fangka_Animation") 
+    -- self.adAnimRoomCard:setPosition(cc.p(200,  self.infoViewBg:getContentSize().height/2))
+    self.infoViewBg:addChild(self.adAnimRoomCard);
+    self.adAnimRoomCard:getAnimation():playWithIndex(0)
+    self.adAnimRoomCard:setVisible(false)
+
+ --    -- 右侧信息icon
+	-- self.imageIconRight = ccui.ImageView:create("lobby_diamond_icon.png", ccui.TextureResType.plistType)
+	-- self.imageIconRight:setPosition(cc.p(self.imageIconRight:getContentSize().width/2 + 5,  self.assetBgRight:getContentSize().height/2))
+	-- self.assetBgRight:addChild(self.imageIconRight)
+
+ --    --砖石扫光
+ --    self:addDiamondLightEffect("lobby_diamond_icon.png",self.imageIconRight)
 
 	self.textRight = GameUtils.createSwitchNumNode(UserData.diamond and UserData.diamond or 0)
 	self.textRight:setPosition(cc.p(self.assetBgRight:getContentSize().width/2, self.assetBgRight:getContentSize().height/2))
@@ -206,59 +229,66 @@ function LobbyTopInfoView:changeTopViewType(index)
 		print("obbyTopInfoView.Lobby")
 		-- 更新顶部坐标
 		if LobbyTopInfoView.Lobby == index then 
-			self.infoViewBg:setPosition(cc.p(self:getContentSize().width, self:getContentSize().height - self.infoViewBg:getContentSize().height/2))
+		-- 	self.infoViewBg:setPosition(cc.p(self:getContentSize().width, self:getContentSize().height - self.infoViewBg:getContentSize().height/2))
 		else
-			self.infoViewBg:setPosition(cc.p(self:getContentSize().width + 100, self:getContentSize().height - self.infoViewBg:getContentSize().height/2))
+			-- self.infoViewBg:setPosition(cc.p(self:getContentSize().width, self:getContentSize().height - self.infoViewBg:getContentSize().height/2))
+			self._btnBack:show()
 		end
 		
 		-- 更新左侧信息样式
-		self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_GOLD)
-		self.imageIconLeft:loadTexture("lobby_gold_icon.png", ccui.TextureResType.plistType)
+		-- self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_GOLD)
+		-- self.imageIconLeft:loadTexture("lobby_gold_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textLeft,UserData.coins and UserData.coins or 0)
-		self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_GOLD)
+		-- self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_GOLD)
 
-        --添加金币扫光
-        self:addGoldLightEffect("lobby_gold_icon.png",self.imageIconLeft)
+  --       --添加金币扫光
+  --       self:addGoldLightEffect("lobby_gold_icon.png",self.imageIconLeft)
 
         -- 更新左侧信息样式
-		self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
-		self.imageIconRight:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
+		-- self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
+		-- self.imageIconRight:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textRight,UserData.diamond and UserData.diamond or 0)
-		self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
-		if self.infoViewBg then
-	        local size = self.infoViewBg:getContentSize()
-	        GameUtils.comeOutEffectSlower(self.infoViewBg,manager.ViewManager:getInstance():findLobbyComeOutEffectTime(),size,GameUtils.COMEOUT_TOP)
-	    end
+		-- self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
+		-- if self.infoViewBg then
+	 --        local size = self.infoViewBg:getContentSize()
+	 --        GameUtils.comeOutEffectSlower(self.infoViewBg,manager.ViewManager:getInstance():findLobbyComeOutEffectTime(),size,GameUtils.COMEOUT_TOP)
+	 --    end
 
-        --添加砖石扫光
-        self:addDiamondLightEffect("lobby_diamond_icon.png",self.imageIconRight)
+  --       --添加砖石扫光
+  --       self:addDiamondLightEffect("lobby_diamond_icon.png",self.imageIconRight)
 
 	elseif LobbyTopInfoView.LobbyMenu == index  then
 		print("obbyTopInfoView.LobbyMenu")
 		-- 更新顶部坐标
-		self.infoViewBg:setPosition(cc.p(self:getContentSize().width + 100, self:getContentSize().height - self.infoViewBg:getContentSize().height/2))
+		self.infoViewBg:setPosition(cc.p(self:getContentSize().width, self:getContentSize().height - self.infoViewBg:getContentSize().height/2))
+		self._btnBack:show()
 
-		-- 更新左侧信息样式
-		self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
-		self.imageIconLeft:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
+		self.adAnimDiamond:setPosition(cc.p(340+2,  self.infoViewBg:getContentSize().height/2+10))
+		self.adAnimRoomCard:setPosition(cc.p(625,  self.infoViewBg:getContentSize().height/2+10))
+		self.adAnimRoomCard:show()
+		self.adAnimGold:hide()
+
+		-- -- 更新左侧信息样式
+		-- self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
+		-- self.imageIconLeft:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textLeft,UserData.diamond and UserData.diamond or 0)
-		self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
+		-- self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
 
-        --添加砖石扫光
-        self:addDiamondLightEffect("lobby_diamond_icon.png",self.imageIconLeft)
+  --       --添加砖石扫光
+  --       self:addDiamondLightEffect("lobby_diamond_icon.png",self.imageIconLeft)
 
         -- 更新左侧信息样式
-		self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_ROOMCARD)
-		self.imageIconRight:loadTexture("lobby_roomcard_icon.png", ccui.TextureResType.plistType)
+		-- self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_ROOMCARD)
+		-- self.imageIconRight:loadTexture("lobby_roomcard_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textRight,UserData.roomCards and UserData.roomCards or 0)
-		self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_ROOMCARD)
-		if self.infoViewBg then
-	        local size = self.infoViewBg:getContentSize()
-	        GameUtils.comeOutEffectElastic(self.infoViewBg,manager.ViewManager:getInstance():findLobbyComeOutEffectTime(),size,GameUtils.COMEOUT_TOP)
-	    end
+		-- self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_ROOMCARD)
+		-- if self.infoViewBg then
+	 --        local size = self.infoViewBg:getContentSize()
+	 --        GameUtils.comeOutEffectElastic(self.infoViewBg,manager.ViewManager:getInstance():findLobbyComeOutEffectTime(),size,GameUtils.COMEOUT_TOP)
+	 --    end
 
-        --添加砖石扫光
-        self:addGoldLightEffect("lobby_roomcard_icon.png",self.imageIconRight)
+  --       --添加砖石扫光
+  --       self:addGoldLightEffect("lobby_roomcard_icon.png",self.imageIconRight)
 
 	end
 	self._index = index
@@ -321,27 +351,37 @@ end
 function LobbyTopInfoView:refreshUserInfo( ... )
 	print("fly","LobbyTopInfoView:refreshUserInfo》》》",self._index )
 	if LobbyTopInfoView.Lobby == self._index or LobbyTopInfoView.LobbyGamePlay == self._index then 
-		self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_GOLD)
-		self.imageIconLeft:loadTexture("lobby_gold_icon.png", ccui.TextureResType.plistType)
+
+		self.adAnimDiamond:setPosition(cc.p(625,  self.infoViewBg:getContentSize().height/2+10))
+		self.adAnimGold:setPosition(cc.p(340,  self.infoViewBg:getContentSize().height/2+12))
+		self.adAnimRoomCard:hide()
+		self.adAnimGold:show()
+		-- self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_GOLD)
+		-- self.imageIconLeft:loadTexture("lobby_gold_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textLeft,UserData.coins and UserData.coins or 0)
-		self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_GOLD)
+		-- self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_GOLD)
 
         -- 更新左侧信息样式
-		self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
-		self.imageIconRight:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
+		-- self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
+		-- self.imageIconRight:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textRight,UserData.diamond and UserData.diamond or 0)
-		self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
+		-- self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
 	elseif LobbyTopInfoView.LobbyMenu == self._index  then 
-		self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
-		self.imageIconLeft:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
+		self.adAnimDiamond:setPosition(cc.p(340+2,  self.infoViewBg:getContentSize().height/2+10))
+		self.adAnimGold:setPosition(cc.p(625,  self.infoViewBg:getContentSize().height/2+10))
+		self.adAnimRoomCard:show()
+		self.adAnimGold:hide()
+
+		-- self.assetBgLeft:setTag(LobbyTopInfoView.BTN_ASSET_BG_DIAMOND)
+		-- self.imageIconLeft:loadTexture("lobby_diamond_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textLeft,UserData.diamond and UserData.diamond or 0)
-		self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
+		-- self.btnAddLeft:setTag(LobbyTopInfoView.BTN_ASSET_ADD_DIAMOND)
 
         -- 更新左侧信息样式
-		self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_ROOMCARD)
-		self.imageIconRight:loadTexture("lobby_roomcard_icon.png", ccui.TextureResType.plistType)
+		-- self.assetBgRight:setTag(LobbyTopInfoView.BTN_ASSET_BG_ROOMCARD)
+		-- self.imageIconRight:loadTexture("lobby_roomcard_icon.png", ccui.TextureResType.plistType)
 		GameUtils.updateSwitchNumNode(self.textRight,UserData.roomCards and UserData.roomCards or 0)
-		self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_ROOMCARD)
+		-- self.btnAddRight:setTag(LobbyTopInfoView.BTN_ASSET_ADD_ROOMCARD)
 	end		
 end
 

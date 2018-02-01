@@ -4,15 +4,15 @@
 
 local NoticeView = class("NoticeView", lib.layer.Window)
 
-local NOTICE_TEXT_SCROLLVIEW_SIZE = cc.size(824, 460)  -- 文字滑动界面大小
-local NOTICE_TEXT_VIEW_POSITION = cc.p(0, 0)		-- 滑动界面初始化位置
+local NOTICE_TEXT_SCROLLVIEW_SIZE = cc.size(680, 480)  -- 文字滑动界面大小
+local NOTICE_TEXT_VIEW_POSITION = cc.p(40, 10)		-- 滑动界面初始化位置
 
-local NOTICE_TITLE_SCROLLVIEW_SIZE = cc.size(200, 470)  -- 标签滑动界面大小
-local NOTICE_TITLE_VIEW_POSITION = cc.p(-208, 0)		-- 滑动界面初始化位置
+local NOTICE_TITLE_SCROLLVIEW_SIZE = cc.size(263, 550)  -- 标签滑动界面大小
+local NOTICE_TITLE_VIEW_POSITION = cc.p(-275, -20)		-- 滑动界面初始化位置
 local RECORD_SIZE = cc.size(168,74)   			--滑动界面节点大小 记录节点大小 
-local NOTICE_INTERVAL_V = 100   --每条记录之间的间距 竖 
+local NOTICE_INTERVAL_V = 121   --每条记录之间的间距 竖 
 
-local DIMENSIONS_SIZE = cc.size(780,0) --字体总长宽
+local DIMENSIONS_SIZE = cc.size(670,0) --字体总长宽
 
 
 function NoticeView:ctor(data)
@@ -28,9 +28,9 @@ function NoticeView:initData(data)
 	self._SyStemEventData = {}
 	self._HotEventData = {}
 	for k,v in pairs(self._data) do
-		if v.Type == ConstantsData.NoticeType.NOTICE_HOTEVENT then 
+		if v.type == ConstantsData.NoticeType.NOTICE_HOTEVENT then 
 			table.insert(self._HotEventData,v)
-		elseif v.Type == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT then
+		elseif v.type == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT then
 			table.insert(self._SyStemEventData,v)
 		else
 			print("系统公告数据格式不对")
@@ -44,48 +44,48 @@ function NoticeView:initView()
 
     local bgSize = bg:getContentSize()
 
-	local btnBgImg = ccui.ImageView:create("Lobby_notice_btn_bg.png", ccui.TextureResType.plistType)
-	btnBgImg:setPosition(bgSize.width/2, bgSize.height - 70)
-	bg:addChild(btnBgImg)
+	-- local btnBgImg = ccui.ImageView:create("Lobby_notice_btn_bg.png", ccui.TextureResType.plistType)
+	-- btnBgImg:setPosition(bgSize.width/2, bgSize.height - 70)
+	-- bg:addChild(btnBgImg)
 
-	local btnBgSize = btnBgImg:getContentSize()
+	-- local btnBgSize = btnBgImg:getContentSize()
 	self._HotEventText = cc.Label:createWithTTF("活动公告",GameUtils.getFontName(),30)
     self._HotEventText:setAnchorPoint(cc.p(0.5, 0.5))
     self._HotEventText:setColor(cc.c3b(255,255,255))
-    self._HotEventText:setPosition(btnBgSize.width/2 - 125, btnBgSize.height/2)
-    btnBgImg:addChild(self._HotEventText,2)
+    self._HotEventText:setPosition(bgSize.width/2- 150, bgSize.height-60)
+    bg:addChild(self._HotEventText,10)
 
     self._SystemEventText = cc.Label:createWithTTF("系统公告",GameUtils.getFontName(),30)
     self._SystemEventText:setAnchorPoint(cc.p(0.5, 0.5))
-    self._SystemEventText:setColor(cc.c3b(104,96,169))
-    self._SystemEventText:setPosition(btnBgSize.width/2 + 125, btnBgSize.height/2)
-    btnBgImg:addChild(self._SystemEventText,2)
+    self._SystemEventText:setColor(cc.c3b(191, 169, 125))
+    self._SystemEventText:setPosition(bgSize.width/2 + 70, bgSize.height-60)
+    bg:addChild(self._SystemEventText,10)
 
-    local btnImg = "common_btn_select.png"
+    local btnImg = "Lobby_notice_btn.png"
     self._btnHotEvent  = ccui.Button:create(btnImg, btnImg, btnImg, ccui.TextureResType.plistType)
 	self._btnHotEvent:addClickEventListener(function()
 		self:showNoticeView(ConstantsData.NoticeType.NOTICE_HOTEVENT)
 	end)
-	self._btnHotEvent:setPosition(btnBgSize.width/2 - 125, btnBgSize.height/2)
-	btnBgImg:addChild(self._btnHotEvent)
+	self._btnHotEvent:setPosition(bgSize.width/2 - 150, bgSize.height-58.5)
+	bg:addChild(self._btnHotEvent)
 	self._btnHotEvent:setOpacity(0)
 
 	self._btnSystemEvent  = ccui.Button:create(btnImg, btnImg, btnImg, ccui.TextureResType.plistType)
 	self._btnSystemEvent:addClickEventListener(function()
 		self:showNoticeView(ConstantsData.NoticeType.NOTICE_SYSTEMEVENT)
 	end)
-	self._btnSystemEvent:setPosition(btnBgSize.width/2 + 125, btnBgSize.height/2)
-	btnBgImg:addChild(self._btnSystemEvent)
+	self._btnSystemEvent:setPosition(bgSize.width/2 + 70, bgSize.height-58.5)
+	bg:addChild(self._btnSystemEvent)
 	self._btnSystemEvent:setOpacity(0)
 
-	self._HotEventImg = ccui.ImageView:create("common_btn_select.png", ccui.TextureResType.plistType)
-	self._HotEventImg:setPosition(btnBgSize.width/2 - 125, btnBgSize.height/2)
-	btnBgImg:addChild(self._HotEventImg)
+	self._HotEventImg = ccui.ImageView:create("Lobby_notice_btn.png", ccui.TextureResType.plistType)
+	self._HotEventImg:setPosition(bgSize.width/2 - 150, bgSize.height-58.5)
+	bg:addChild(self._HotEventImg)
 	self._HotEventImg:show()
 
-	self._SystemEventImg = ccui.ImageView:create("common_btn_select.png", ccui.TextureResType.plistType)
-	self._SystemEventImg:setPosition(btnBgSize.width/2 + 125, btnBgSize.height/2)
-	btnBgImg:addChild(self._SystemEventImg)
+	self._SystemEventImg = ccui.ImageView:create("Lobby_notice_btn.png", ccui.TextureResType.plistType)
+	self._SystemEventImg:setPosition(bgSize.width/2 + 70, bgSize.height-58.5)
+	bg:addChild(self._SystemEventImg)
 	self._SystemEventImg:hide()
 
 	self._HotEventBg = ccui.ImageView:create("Lobby_notice_list_bg.png", ccui.TextureResType.plistType)
@@ -102,12 +102,12 @@ end
 function NoticeView:showNoticeView(index)
 	if  index == ConstantsData.NoticeType.NOTICE_HOTEVENT then 
 		self._HotEventText:setColor(cc.c3b(255,255,255))
-		self._SystemEventText:setColor(cc.c3b(104,96,169))
+		self._SystemEventText:setColor(cc.c3b(191, 169, 125))
 		self._HotEventImg:show()
 		self._SystemEventImg:hide()
 		self:showHotEventView()
 	elseif index == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT then
-		self._HotEventText:setColor(cc.c3b(104,96,169))
+		self._HotEventText:setColor(cc.c3b(191, 169, 125))
 		self._SystemEventText:setColor(cc.c3b(255,255,255))
 		self._HotEventImg:hide()
 		self._SystemEventImg:show()
@@ -123,11 +123,7 @@ function NoticeView:showHotEventView()
 	self._HotEventBg:show()
 	self._SystemEventBg:hide()
 
-	if #self._HotEventList > 0 then
-		return
-	end
-
-	if self._HotEventData == nil then
+	if #self._HotEventList > 0 or next(self._HotEventData) == nil then
 		return
 	end
 
@@ -154,8 +150,8 @@ function NoticeView:showHotEventView()
         self._NoticeTitleScrollView:addChild(titleNode)
 
         local noticeNode = nil
-        if v.Description ~= nil then
-			local textLabel = cc.Label:createWithTTF(v.Description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
+        if v.description ~= nil then
+			local textLabel = cc.Label:createWithTTF(v.description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
 		    textLabel:setAnchorPoint(cc.p(0.5, 0.5))
 		    --textLabel:setPosition(412,440)
 		    textLabel:setLineHeight(50)
@@ -188,7 +184,7 @@ function NoticeView:showHotEventView()
 			print("createnoticeNode type error")
 		end
 
-		local params = { title = titleNode, notice = noticeNode, id = v.Id }
+		local params = { title = titleNode, notice = noticeNode, id = v.id }
 		table.insert(self._HotEventList,params)
 
     end
@@ -199,12 +195,7 @@ function NoticeView:showSystemEventView()
 	self._HotEventBg:hide()
 	self._SystemEventBg:show()
 
-	if #self._SystemEventList > 0 then
-		return
-	end
-
-
-	if self._SyStemEventData == nil then
+	if #self._SystemEventList > 0 or next(self._SyStemEventData) == nil then
 		return
 	end
 
@@ -231,8 +222,8 @@ function NoticeView:showSystemEventView()
 
 		local noticeNode = nil
 
-        if v.Description ~= nil then --显示文字
-			local textLabel = cc.Label:createWithTTF(v.Description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
+        if v.description ~= nil then --显示文字
+			local textLabel = cc.Label:createWithTTF(v.description,GameUtils.getFontName(),26,DIMENSIONS_SIZE)
 		    textLabel:setAnchorPoint(cc.p(0.5, 0.5))
 		    --textLabel:setPosition(412,440)
 		    textLabel:setLineHeight(50)
@@ -265,7 +256,7 @@ function NoticeView:showSystemEventView()
 			print("createnoticeNode type error")
 		end
 
-		local params = { title = titleNode, notice = noticeNode, id = v.Id}
+		local params = { title = titleNode, notice = noticeNode, id = v.id}
 		table.insert(self._SystemEventList,params)
     end
 end
@@ -274,7 +265,7 @@ end
 -- 显示 公告内容
 function NoticeView:showNoticeContentByData(index, num)
 	self:showNoticeTitle(index,num)
-	if index == ConstantsData.NoticeType.NOTICE_HOTEVENT then --活动公告
+	if index == ConstantsData.NoticeType.NOTICE_HOTEVENT and next(self._HotEventList) ~= nil then --活动公告
 		for k,v in pairs(self._HotEventList) do
 			if k == num then
 				v.notice:show()
@@ -282,7 +273,7 @@ function NoticeView:showNoticeContentByData(index, num)
 				v.notice:hide()
 			end
 		end
-	elseif index == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT then -- 系统
+	elseif index == ConstantsData.NoticeType.NOTICE_SYSTEMEVENT and next(self._SystemEventList) ~= nil then -- 系统
 		for k,v in pairs(self._SystemEventList) do
 			if k == num then
 				v.notice:show()
@@ -326,23 +317,23 @@ function NoticeView:createNoticeTitleNode(index,data,showType)
 		return
 	end
 
-	local NoticeIndex ="NOTICE_ID_"..data.Id
+	local NoticeIndex ="NOTICE_ID_"..data.id
 	if index == 1 then
 	    cc.UserDefault:getInstance():setFloatForKey(NoticeIndex,1)
 	end
 
 	local record = ccui.Layout:create()
-	local size = cc.size(168, 74)
+	local size = cc.size(263, 121)
    	record.bg =  ccui.ImageView:create("Lobby_notice_title.png", ccui.TextureResType.plistType)
     record.bg:setContentSize(size)
-    record.bg:setPosition(cc.p(0,0))
+    record.bg:setPosition(cc.p(30,0))
     record:addChild(record.bg)
 
     local bgSize = record.bg:getContentSize()
 
     local titleBtnImg = "Lobby_notice_title_bg.png"
 	record.titleBtn = ccui.Button:create(titleBtnImg,titleBtnImg,titleBtnImg,ccui.TextureResType.plistType)
-	record.titleBtn :setPosition(7,0)
+	record.titleBtn :setPosition(30,0)
 	record.titleBtn :setOpacity(0)
 	record:addChild(record.titleBtn,2)
 	record.titleBtn :addClickEventListener(function()
@@ -372,11 +363,10 @@ function NoticeView:createNoticeTitleNode(index,data,showType)
    	else
    		record.RedImg:hide()
    	end
-   	
-	local nameText = cc.Label:createWithTTF(data.Title,GameUtils.getFontName(),30)
+
+	local nameText = cc.Label:createWithTTF(data.title,GameUtils.getFontName(),30)
     nameText:setAnchorPoint(cc.p(0.5, 0.5))
-    nameText:setPosition(0,3)
-    nameText:enableOutline(cc.c3b(24, 31, 92),2)
+    nameText:setPosition(30,0)
     record:addChild(nameText,5)
 
     return record

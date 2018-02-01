@@ -260,17 +260,17 @@ function Bridge_ios.saveImgToSystemGallery(filepath, filename)
     end
 end
 
--- 获取设备id
-function Bridge_ios.getMachineId()
-    local ok,ret = luaoc.callStaticMethod(BRIDGE_CLASS,"getUUID")
-    if not ok then
-        print("luaj error:" .. ret)
-        return "A501164B366ECFC9E249163873094D50"
-    else
-        print("The ret is:" .. ret)
-        return md5(ret)
-    end
-end
+-- -- 获取设备id
+-- function Bridge_ios.getMachineId()
+--     local ok,ret = luaoc.callStaticMethod(BRIDGE_CLASS,"getUUID")
+--     if not ok then
+--         print("luaj error:" .. ret)
+--         return "A501164B366ECFC9E249163873094D50"
+--     else
+--         print("The ret is:" .. ret)
+--         return md5(ret)
+--     end
+-- end
 
 --获取设备ip
 function Bridge_ios.getClientIpAdress()

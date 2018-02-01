@@ -73,7 +73,7 @@ function dismiss:initAction(DismissArrayInfo,playerInfoData)
 
 	local host_name_str = nil
 	if playerInfoData[reqUid] then
-		host_name_str = string.getMaxLen(playerInfoData[reqUid].NickName,10)
+		host_name_str = string.getMaxLen(playerInfoData[reqUid].nickName,10)
 	else
 		self.playerInfoData = playerInfoData
 		self.DismissArrayInfo = DismissArrayInfo
@@ -82,7 +82,7 @@ function dismiss:initAction(DismissArrayInfo,playerInfoData)
 		return
 	end
 
-	local text = cc.Label:createWithTTF("房间".."["..host_name_str.."]".."要求解散该房间，是否同意解散？",GameUtils.getFontName(),30)
+	local text = cc.Label:createWithSystemFont("房间".."["..host_name_str.."]".."要求解散该房间，是否同意解散？",SYSFONT,30)
 	text:setColor(DIS_COLOR2)
 	text:setPosition(x-180,y/2+240)
 	self.rootNode:addChild(text)
@@ -93,7 +93,7 @@ function dismiss:initAction(DismissArrayInfo,playerInfoData)
 	else
 		tishiStr = "(超过"..tostring(DismissArrayInfo.alltime).."秒未选择，默认为同意)"
 	end
-	local tishi = cc.Label:createWithTTF(tishiStr,GameUtils.getFontName(),30)
+	local tishi = cc.Label:createWithSystemFont(tishiStr,SYSFONT,30)
 	tishi:setColor(DIS_COLOR3)
 	tishi:setPosition(x-180,y/2+200)
 	self.rootNode:addChild(tishi)
@@ -112,9 +112,9 @@ function dismiss:initAction(DismissArrayInfo,playerInfoData)
 			str="等待选择"
 		end
 
-		local player_name_str = string.getMaxLen(playerInfoData[dismissArray[i].uid].NickName,10)
+		local player_name_str = string.getMaxLen(playerInfoData[dismissArray[i].uid].nickName,10)
 
-		local text= cc.Label:createWithTTF("["..player_name_str.."]"..":"..str,GameUtils.getFontName(),30)
+		local text= cc.Label:createWithSystemFont("["..player_name_str.."]"..":"..str,SYSFONT,30)
 		text:setAnchorPoint(0,0)
 	    if i%2 == 1 then
     		text:setPosition(x-560,y-120-(self:getIntPart((i-1)/2)*50))
@@ -145,7 +145,7 @@ end
 -- 请求用户信息
 function dismiss:RequestUserInfo( __userID)
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID.."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onInfoCallback))
 end
 
@@ -154,11 +154,11 @@ function dismiss:_onInfoCallback( __error,__response )
         print("Player Info net error")
     else
         if 200 == __response.status then
-        	local data = __response.data.profile
+        	local data = __response.data
         	if next(data)~=nil then
-        		local index = data.UserId
+        		local index = data.userId
         		self.playerInfoData[index] = {}
-				self.playerInfoData[index].NickName=data.NickName
+				self.playerInfoData[index].NickName=data.nickName
 				self:initAction(self.DismissArrayInfo,self.playerInfoData)
         	end 
         end

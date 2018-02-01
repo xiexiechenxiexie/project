@@ -161,17 +161,33 @@ function LobbyPlayView:createRemoteImgUIView( __layout,__itemData  )
 	local size = cc.size(310,self._listView:getContentSize().height )
 	local imgFile = itemData.res.imgItemBg
 
-	local default = self:findDefaultItemImg()
-	local button = cc.exports.lib.node.RemoteButton:create(default.fileName,default.fileName,default.fileName,default.textureResType)
-	button:setDownloadParams({
-		dir = "lobbyplay",
-		url = __itemData.res.imgItemBg 
+	-- local default = self:findDefaultItemImg()
+	-- local button = cc.exports.lib.node.RemoteButton:create(default.fileName,default.fileName,default.fileName,default.textureResType)
+	-- button:setDownloadParams({
+	-- 	dir = "lobbyplay",
+	-- 	url = __itemData.res.imgItemBg 
+	-- 	})
+	local default = "LobbyPlayXS.png"
+	if __itemData.level == 1 then
+		default = "LobbyPlayXS.png"
+	elseif __itemData.level == 2 then
+		default = "LobbyPlayJY.png"
+	elseif __itemData.level == 3 then
+		default = "LobbyPlayDS.png"
+	end
+	local button = cc.exports.lib.uidisplay.createUIButton({
+		normal = default,
+		textureType = ccui.TextureResType.plistType,
+		isActionEnabled = true,
+		callback = handler(self,self._onGamePlayButtonClick)
 		})
+
+
 	print("__itemData.res.imgItemBg ",__itemData.res.imgItemBg )
 	button:setPosition(cc.p(size.width * 0.5,size.height * 0.5))
 	button:setTag(__itemData.playType)
-	button:addClickEventListener(handler(self,self._onGamePlayButtonClick))
-	button:setPressedActionEnabled(true)
+	-- button:addClickEventListener(handler(self,self._onGamePlayButtonClick))
+	-- button:setPressedActionEnabled(true)
 	button.itemData = __itemData
 	layout:addChild(button)
 	button:setTag(__itemData.playType)
@@ -271,7 +287,7 @@ function LobbyPlayView:_initPlayButton( __targetNode,__itemData,__textureResType
 	local atlasFile = self:findNumAtlas()
 	local atlasNode = ccui.TextAtlas:create(tostring(__itemData.floorScore),atlasFile,27,36,"0")
 	local size = __targetNode:getContentSize()
-	atlasNode:setPosition(120,33)
+	-- atlasNode:setPosition(120,33)
 	atlasNode:setAnchorPoint(cc.p(0.5,0.5))
 	imgFloorScore:addChild(atlasNode)
 
@@ -285,18 +301,18 @@ function LobbyPlayView:_initPlayButton( __targetNode,__itemData,__textureResType
 	})
 	__targetNode:addChild(label)
 
-	local lobbyPlayOnline = ccui.ImageView:create("LobbyPlayOnline.png",ccui.TextureResType.plistType)
-	__targetNode:addChild(lobbyPlayOnline)
-	lobbyPlayOnline:setPosition(107,40)
-	local label = cc.exports.lib.uidisplay.createLabel({
-		fontSize = 23,
-		text = tostring(__itemData.onlineNum),
-		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(255,255,255, 255),
-		pos = cc.p(128,40),
-		anchorPoint = cc.p(0,0.5)
-	})
-	__targetNode:addChild(label)
+	-- local lobbyPlayOnline = ccui.ImageView:create("LobbyPlayOnline.png",ccui.TextureResType.plistType)
+	-- __targetNode:addChild(lobbyPlayOnline)
+	-- lobbyPlayOnline:setPosition(107,40)
+	-- local label = cc.exports.lib.uidisplay.createLabel({
+	-- 	fontSize = 23,
+	-- 	text = tostring(__itemData.onlineNum),
+	-- 	alignment = cc.TEXT_ALIGNMENT_CENTER,
+	-- 	color = cc.c4b(255,255,255, 255),
+	-- 	pos = cc.p(128,40),
+	-- 	anchorPoint = cc.p(0,0.5)
+	-- })
+	-- __targetNode:addChild(label)
 end
 
 function LobbyPlayView:_addStarEffect( __targetNode,__itemData,__textureResType )

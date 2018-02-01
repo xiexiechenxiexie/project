@@ -19,7 +19,7 @@ ResourceManager.findResourceList = function ( ... )
 		{fileName="res/GameLayout/Lobby/Friend/friend.png",plist="res/GameLayout/Lobby/Friend/friend.plist"},
 		{fileName="res/GameLayout/Lobby/Task/task.png",plist="res/GameLayout/Lobby/Task/task.plist"},
 		{fileName="res/GameLayout/Lobby/Service/service.png",plist="res/GameLayout/Lobby/Service/service.plist"},
-		{fileName="res/GameLayout/Promote/promote.png",plist="res/GameLayout/Promote/promote.plist"},
+		{fileName="res/GameLayout/Promote/Lobby_promote.png",plist="res/GameLayout/Promote/Lobby_promote.plist"},
 		{fileName="res/GameLayout/Promote/promoteView.png",plist="res/GameLayout/Promote/promoteView.plist"},
 		{fileName="res/GameLayout/Lobby/Ranking/rank.png",plist="res/GameLayout/Lobby/Ranking/rank.plist"},
 		{fileName="res/GameLayout/Mall/Mall.png",plist="res/GameLayout/Mall/Mall.plist"}

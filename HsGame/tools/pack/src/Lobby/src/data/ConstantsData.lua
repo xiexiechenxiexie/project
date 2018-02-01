@@ -108,6 +108,11 @@ ConstantsData.WindowType = {
     WINDOW_BIG = 1,
     WINDOW_MIDDLE = 2,
     WINDOW_SMALL = 3,
+    WINDOW_SERVICE = 4,
+    WINDOW_TASK = 5,
+    WINDOW_SIGN = 6,
+    WINDOW_PAY = 7
+
 }
 
 ConstantsData.SharaIconIndex = {

@@ -68,7 +68,6 @@ function LobbyGameEnterManager:requestGameList( __callback)
 	local config = cc.exports.config
 	local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_GAME_LIST
 	cc.exports.HttpClient:getInstance():get(url,handler(self,self._onGameListCallback))
-
 end
 
 function LobbyGameEnterManager:_onGameListCallback( __error,__respObj )
@@ -76,7 +75,7 @@ function LobbyGameEnterManager:_onGameListCallback( __error,__respObj )
 	-- 有私人房的一定有金币场面？？？
 	-- print("_onGameListCallback",__respObj[1].Name)
 
-
+	dump(__respObj)
 	if self._gameInfoCache == nil then
 		self._gameInfoCache = {}
 	end
@@ -89,28 +88,36 @@ function LobbyGameEnterManager:_onGameListCallback( __error,__respObj )
 	-- add by tangwen
 	-- GameListData.setData(__respObj)
 	local GameType = config.GameType
-	local GameColllectType = config.GameColllectType 
-	if __respObj  then
-		for i,v in ipairs(__respObj) do
+	local GameColllectType = config.GameColllectType
+	if __respObj.status == 200  then
+		for i,v in ipairs(__respObj.data) do
 			-- --游戏集合列表  2 私人房  1 快速开始  0 NONE
 			-- local GameColllectType = {
 			--    Type_SRF = 2,
 			--    Type_KSKS = 1,
 			--    Type_Game = 0
 			-- }
-			local typeValue = tonumber(v.Type)
+			local typeValue = tonumber(v.typeId)
 			if typeValue == GameColllectType.Type_Game then 
 				self._showGameList[#self._showGameList+ 1] = v
-				local hotUpdateManager = lib.download.HotUpdateManager
+				-- local hotUpdateManager = lib.download.HotUpdateManager
 				if not self._gameListCache then 
 					self._gameListCache = {}
 				end
 
 				local updateInfo = {}
-				local gameId = v.GameId
-				updateInfo.isUpdate = hotUpdateManager:isGameModelNeedToUpadte(gameId)
-				updateInfo.isNeedDownload  = hotUpdateManager:isGameNeedWholePkgDownload(gameId)
-				updateInfo.isEnablePlay = (v.Status  == 1)--1 完成 0未完成
+				local gameId = v.gameId
+				-- updateInfo.isUpdate = hotUpdateManager:isGameModelNeedToUpadte(gameId)
+				-- updateInfo.isNeedDownload  = hotUpdateManager:isGameNeedWholePkgDownload(gameId)
+				-- updateInfo.isEnablePlay = (v.Status  == 1)--1 完成 0未完成
+				updateInfo.isUpdate = false
+				updateInfo.isNeedDownload  = false
+				if gameId == 3 then
+					updateInfo.isEnablePlay = false--1 完成 0未完成
+				else
+					updateInfo.isEnablePlay = true--1 完成 0未完成
+				end
+				
 				self._gameListCache[gameId] = updateInfo
 				print("dump(updateInfo)")
 				dump(updateInfo)
@@ -118,14 +125,16 @@ function LobbyGameEnterManager:_onGameListCallback( __error,__respObj )
 			end
 
 			if typeValue == GameColllectType.Type_KSKS then self._ksksGameList[#self._ksksGameList + 1] = v end
-			if typeValue == GameColllectType.Type_SRF then self._srfGameIdList = v.GameList end
+			if typeValue == GameColllectType.Type_SRF then self._srfGameIdList[#self._srfGameIdList + 1] = v end
+
+			-- if typeValue == GameColllectType.Type_SRF then self._srfGameIdList = v.GameList end
 			
 		end
 
 		local gameArr = {self._showGameList,self._ksksGameList,self._srfGameIdList}
 		for i,list in ipairs(gameArr) do
 			for i,info in ipairs(list) do
-					local key =  info.GameId .. "_" .. info.GameType
+					local key =  info.gameId .. "_" .. info.gameType
 					self._gameInfoCache[key] = info
 			end
 		end
@@ -145,7 +154,7 @@ end
 function LobbyGameEnterManager:findKSKSGameId( __index )
 	--todo:快速开始游戏id
 	__index = __index or 1
-	return self._ksksGameList[__index].GameId
+	return self._ksksGameList[__index].gameId
 end
 
 function LobbyGameEnterManager:findKSKSGameData( __index )
@@ -185,7 +194,7 @@ end
 function LobbyGameEnterManager:findSRFGameId(__index )
 	__index = __index or 1
 	print("findSRFGameId",__index)
-	if self._srfGameIdList[__index] then return self._srfGameIdList[__index].GameId end
+	if self._srfGameIdList[__index] then return self._srfGameIdList[__index].gameId end
 	return 0
 end
 
@@ -205,7 +214,7 @@ end
 
 function LobbyGameEnterManager:isNeedToSelectPlayScene( __gameId )
 	
-	return __gameId == config.GameIDConfig.KPQZ
+	return (__gameId == config.GameIDConfig.KPQZ) or (__gameId == config.GameIDConfig.PSZ)
 end
 
 
@@ -341,6 +350,7 @@ end
 通向游戏的管道,邀请好友 断线重连 入口请求
 ]]
 function LobbyGameEnterManager:pipelToEnterGame( __gameId,__roomId )
+	print("通向游戏的管道,邀请好友 断线重连 入口请求",__gameId,__roomId)
 	self:requestGameList(function ( ... )
 		print("self._gameListCache")
 		dump(self._gameListCache)
@@ -364,9 +374,10 @@ function LobbyGameEnterManager:pipelToEnterGame( __gameId,__roomId )
 end
 
 function LobbyGameEnterManager:launchAppToEnterPreGameRoom()
-	print("LobbyGameEnterManager:launchAppToEnterPreGameRoom")
+	print("LobbyGameEnterManager:launchAppToEnterPreGameRoom",GameData.GameID,config.GameType.COIN,UserData.LastGameRoomType,UserData.LastGameID)
 	self:setSelectGameId(GameData.GameID)
-	if config.GameType.COIN == UserData.LastGameRoomType and UserData.LastGameID > 0 then 
+	if config.GameType.COIN == UserData.LastGameRoomType and UserData.LastGameID > 0 then
+	print("1111111",GameData.GameIP,GameData.GamePort) 
         lobby.GamePlayManager:getInstance():requestGamePlayList(UserData.LastGameID,function ( ... )
         	lobby.GamePlayManager:getInstance():setSelectItemByServerPortAndServerIP(GameData.GameIP ,GameData.GamePort)
         	logic.LobbyManager:getInstance():LoginGameServer()
@@ -384,6 +395,8 @@ function LobbyGameEnterManager:launchAppToEnterInviteGameRoom( __params )
 	local roomId = __params.roomId
 	self:setSelectGameId(gameId )
 	lobby.CreateRoomManager:getInstance():requestRoomInfo(roomId,function ( __info )
+		dump(__info)
+		dump(__info.data)
 		GameData.GameID = gameId
 		GameData.GameIP = __info.data.server_ip
 		GameData.GamePort = __info.data.server_port
@@ -400,7 +413,6 @@ end
 断线重连
 ]]
 function LobbyGameEnterManager:needEnterPreGameRoom()
-
 	GameData.TableID = UserData.LastTableID
 	GameData.GameID = UserData.LastGameID
     GameData.GameIP = UserData.LastGameIP

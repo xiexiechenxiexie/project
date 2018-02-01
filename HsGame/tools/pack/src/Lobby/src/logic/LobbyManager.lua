@@ -320,7 +320,7 @@ end
 -- 登陆游戏服务器
 function LobbyManager:LoginGameServer( )
 	net.SocketClient:getInstance():closeSocket(ConstantsData.CloseScoketType.NOMAL_CLOSE,function()
-		print("开始连接游戏服务器中...")
+		print("开始连接游戏服务器中...",GameData.GamePort,GameData.GameIP)
 		UserData.LoginServerType = ConstantsData.ServerType.GAME_SERVER_TYPE
 		if UserData.LastTableID == 0 then -- 断线重连不走这里，因为这里直接跳转了游戏，场景获取不到
 			GameUtils.startLoading("登陆服务器中，请稍等...")
@@ -357,7 +357,7 @@ function LobbyManager:_onNoticeSetCallback( __error,__response )
     end
 end
 
--- 请求用户信息
+-- 请求公告信息
 function LobbyManager:requestNoticeInfoData(__callback)
     self._requestNoticeInfoCallBack = __callback
     local config = cc.exports.config
@@ -370,7 +370,7 @@ function LobbyManager:_onNoticeInfoCallback( __error,__response )
         print("requestNoticeInfoData net error")
     else
         if 200 == __response.status then
-            local data = __response.data.tips
+            local data = __response.data
             self._requestNoticeInfoCallBack(data)
         else
             GameUtils.showMsg("请求公告信息数据出错,code = "..__response.status)
@@ -383,12 +383,15 @@ function LobbyManager:requestSignSetData(__callback)
 	print("requestSignSetData")
 	self._requestSignSetCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_SET .. UserData.token
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_SIGN_SET .."?token".. UserData.token
+    print("签到开关url",url)
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onSignSetCallback))
 end
 
 
 function LobbyManager:_onSignSetCallback( __error,__response )
+	print("签到开关")
+	dump(__response)
     if __error then
         print("requestSignSetData net error")
     else
@@ -450,16 +453,18 @@ function LobbyManager:requestTaskInfoData(__callback)
 	print("requestTaskInfoData")
 	self._requestTaskInfoCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_TASK_INFO .. UserData.token
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_TASK_INFO .."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onTaskInfoCallback))
 end
 
 function LobbyManager:_onTaskInfoCallback( __error,__response )
+	print("回答了")
+	dump(__response)
     if __error then
         print("requestTaskInfoData net error")
     else
         if 200 == __response.status then
-            local data = __response.data.task
+            local data = __response.data
             self._requestTaskInfoCallBack(data)
         else
             GameUtils.showMsg("请求任务信息数据出错,code = "..__response.status)
@@ -472,8 +477,10 @@ function LobbyManager:requestTaskGetAwardData(__index,__callback)
 	print("requestTaskGetAwardData")
 	self._requestTaskGetAwardCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_TASK_GET_AWARD .. UserData.token .. "/" .. __index
-    cc.exports.HttpClient:getInstance():get(url,handler(self,self._onTaskGetAwardCallback))
+    local param = {}
+    param.token = UserData.token
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_TASK_GET_AWARD .. __index
+    cc.exports.HttpClient:getInstance():post(url,param,handler(self,self._onTaskGetAwardCallback))
 end
 
 function LobbyManager:_onTaskGetAwardCallback( __error,__response )
@@ -482,9 +489,9 @@ function LobbyManager:_onTaskGetAwardCallback( __error,__response )
     else
         if 200 == __response.status then
             local data = __response.data
-            UserData.coins = __response.data.user.Score
-            UserData.roomCards = __response.data.user.RoomCardNum
-            UserData.diamond = __response.data.user.diamond
+            UserData.coins = __response.data.bonusScore
+            UserData.roomCards = __response.data.bonusRoomCard
+            UserData.diamond = __response.data.bonusDiamond
             self._requestTaskGetAwardCallBack(data)
         elseif 504 == __response.status then 
         	GameUtils.showMsg("已经领取")
@@ -531,9 +538,9 @@ function LobbyManager:_onLobbyServerInfoCallback( __error,__response )
         print("requestLobbyServerInfoData net error")
     else
         if __response and 200 == __response.status then
-            local data = __response.data.LobbyServer
-            LobbyData.LobbyServerIP = __response.data.LobbyServer.ServerIp
-            LobbyData.LobbyServerPort = __response.data.LobbyServer.ServerPort
+            local data = __response.data
+            LobbyData.LobbyServerIP = __response.data.serverIp
+            LobbyData.LobbyServerPort = __response.data.serverPort
             self._requestLobbyServerInfoCallBack(data)
             
         else

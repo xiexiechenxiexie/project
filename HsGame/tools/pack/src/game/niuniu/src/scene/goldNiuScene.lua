@@ -7,21 +7,21 @@
 -- @author tangwen
 
 local  GamePlayInfo = class("GamePlayInfo")
- GamePlayInfo.AvatarUrl   = ""
- GamePlayInfo.Gender      = 2
- GamePlayInfo.NickName    = "游客?"
+ GamePlayInfo.avatar   = ""
+ GamePlayInfo.gender      = 2
+ GamePlayInfo.nickName    = "游客?"
  GamePlayInfo.RoomCardNum = 0
- GamePlayInfo.Score       = 0
- GamePlayInfo.UserId      = 0
+ GamePlayInfo.score       = 0
+ GamePlayInfo.userId      = 0
  GamePlayInfo.diamond     = 0
 function GamePlayInfo:ctor( __params )
 	assert(__params.userId,"invalide userId")
-	self.AvatarUrl   = ""
-	self.Gender      = __params.Gender or ConstantsData.SexType.SEX_WOMEN
-	self.NickName    = __params.NickName or tostring(__params.userId)
+	self.avatar   = ""
+	self.gender      = __params.gender or ConstantsData.SexType.SEX_WOMEN
+	self.NickName    = __params.nickName or tostring(__params.userId)
 	self.RoomCardNum = __params.RoomCardNum or 0
-	self.Score       = __params.Score or 0 --金币
-	self.UserId      = __params.UserId or 0
+	self.score       = __params.score or 0 --金币
+	self.userId      = __params.userId or 0
 	self.diamond     = __params.diamond or 0
 end
 
@@ -62,17 +62,14 @@ function goldNiuScene:ctor()
     -- self.isGameing = false
     self._gameStatus = conf.goldState.freetime
     
-    self.niuNum = nil
-    self.handCard = {}
-    self.bTouch = true
-    self.handBackCard = {{},{},{},{},{}}
-    self.allSortCard = {}
-    self.cardTyoeArray = {}
-    self.gradArray = {}
-    self.brttingMArray = {}
-    self.scoreArray = {}
-    self.txtArray = {}
-    self.index = 0
+    self.niuNum = 0                     --根据值判断有牛还是没牛：0没牛，1有牛
+    self.handCard = {}                  --存放自己的牌
+    self.handBackCard = {{},{},{},{},{}}--按照转换后的椅子id来存放的每个人的背面牌
+    self.allSortCard = {}               --存放所有玩家摊牌之后的牌
+    self.cardTyoeArray = {}             --存放牌型
+    self.gradArray = {}                 --存放玩家抢庄的倍数
+    self.brttingMArray = {}             --存放玩家下注的倍数
+    self.txtArray = {}                  --存放完成
 
     self.playerInfoData = {}    		--玩家信息
     self.myid = nil						--自己的椅子id
@@ -93,7 +90,7 @@ function goldNiuScene:ctor()
     self.PlayerDataSync = {}            --数据同步
     self.FifthCardData = nil            --第五张牌得值
     self.luckCardData = {}              --运气牌数组
-    self.goldAction = {}
+    self.goldAction = {}                --存放金币动画
     self.isOnTable = false              --是否坐下
     self.isStart = false                --是否开始
     self.myResuId = 0                   --结算时自己的椅子id
@@ -173,7 +170,7 @@ function goldNiuScene:CreateView()
     local container = cc.CSLoader:createNode(NIUNIU_CSB)
 	bg:addChild(container)
     local bgScene = container:getChildByName("bg")
-    bgScene:setTexture(GameResPath.."bg_gold.png")
+    -- bgScene:setTexture(GameResPath.."bg_gold.png")
 
     --更多
     local MoreBtn_hide = container:getChildByName("Button_more_hide")
@@ -195,35 +192,6 @@ function goldNiuScene:CreateView()
  	panel1:hide()
  	panel_pri:hide()
  	panel_pri1:hide()
-
-    for i=1,4 do
-        local grad = panel1:getChildByName("Button_Rate_"..tostring(i))
-        local node = cc.Node:create()
-        local sprite1 = cc.Sprite:create(GameResPath.."btn_txt_bei.png")
-        sprite1:setPosition(44,0)
-        node:addChild(sprite1)
-        local pTexture=GameResPath.."btn_txt_num.png"
-        local sprite2 = ccui.TextAtlas:create(tostring(i),pTexture,25,34,"0")
-        sprite2:setPosition(0,0)
-        node:addChild(sprite2)
-        node:setPosition(55,40)
-        grad:addChild(node)
-    end
-
-    for i=1,5 do
-        local brtting = panel:getChildByName("Button_Rate_"..tostring(i*5))
-        local node = cc.Node:create()
-        local sprite1 = cc.Sprite:create(GameResPath.."btn_txt_bei.png")
-        sprite1:setPosition(44,0)
-        node:addChild(sprite1)
-        local pTexture=GameResPath.."btn_txt_num.png"
-        local sprite2 = ccui.TextAtlas:create(tostring(i*5),pTexture,25,34,"0")
-        sprite2:setPosition(0,0)
-        node:addChild(sprite2)
-        node:setPosition(55,40)
-        brtting:addChild(node)
-    end
-
  	self.panel = panel
  	self.panel1 = panel1
 
@@ -279,7 +247,7 @@ function goldNiuScene:CreateView()
  	goldbrtting15:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
  	goldbrtting20:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
  	goldbrtting25:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
-
+    --玩家头像框
  	local playerNode1 = container:getChildByName("playerNode1")
  	local playerNode2 = container:getChildByName("playerNode2")
  	local playerNode3 = container:getChildByName("playerNode3")
@@ -313,6 +281,7 @@ function goldNiuScene:CreateView()
  	-- local zhuang4 = playerNode4:getChildByName("zhuang4") zhuang4:hide()
  	-- local zhuang5 = playerNode5:getChildByName("zhuang5") zhuang5:hide()
 
+    --座位按钮
     self._sitBtnList = {} 
     local sit1 = playerNode1:getChildByName("sit1") self.sit1 = sit1 sit1:setTag(conf.Tag.sit1)
     local sit2 = playerNode2:getChildByName("sit2") self.sit2 = sit2 sit2:setTag(conf.Tag.sit2)
@@ -330,95 +299,62 @@ function goldNiuScene:CreateView()
     sit3:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
     sit4:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
     sit5:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
-
+    --商店
     if not manager.UserManager:getInstance():findAppCloseRoomCardFlag() then 
      	local shop_btn = ccui.Button:create()
     	shop_btn:loadTextureNormal("shop_car.png", UI_TEX_TYPE_PLIST)
     	shop_btn:setPosition(1250,670)
     	shop_btn:setTag(conf.Tag.shop)
     	shop_btn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+        shop_btn:setOpacity(0)
     	self.bg:addChild(shop_btn)
 
-
-    	local shop_btn_node = cc.CSLoader:createNode("gamecommon/shop_ani.csb")
-    	shop_btn:setTag(conf.Tag.shop)
-    	shop_btn_node:setPosition(1250,670)
-    	self.bg:addChild(shop_btn_node)
-        local shopAct = cc.CSLoader:createTimeline("gamecommon/shop_ani.csb")
-        shopAct:setTimeSpeed(1)
-        shop_btn_node:runAction(shopAct)
-        shopAct:gotoFrameAndPlay(0,true)
+        local dir = GameResPath.."Animation/shop2_Animation/"
+        ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."shop2_Animation0.png",dir.."shop2_Animation0.plist",dir.."shop2_Animation.ExportJson")  
+        local adAnim = ccs.Armature:create("shop2_Animation") 
+        adAnim:setPosition(shop_btn:getContentSize().width/2,shop_btn:getContentSize().height/2) 
+        shop_btn:addChild(adAnim);
+        adAnim:getAnimation():playWithIndex(0)
     end
 
-    --开始动画
- 	local node = cc.CSLoader:createNode(GameResPath.."action/goldniuniu_ani_start.csb")
-	node:setPosition(0,0)
-	self:addChild(node)
-    local act = cc.CSLoader:createTimeline(GameResPath.."action/goldniuniu_ani_start.csb")
-    act:setTimeSpeed(1) --设置执行动画速度
-    node:runAction(act)
-    node:setVisible(false)
-    self.xiazhu_node=node
-    self.xiazhu_action=act
-    --开始动画粒子
-	local particle = cc.ParticleSystemQuad:create(GameResPath.."action/start_effect_new.plist")
-	particle:setTexture(cc.Director:getInstance():getTextureCache():addImage(GameResPath.."action/effect_start.png"))
-    particle:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
-    particle:setPosition(display.cx,display.cy+20)
-    self:addChild(particle)
-    particle:stop()
-    particle:setDuration(0.5)
-    self.particleparticle=particle
-    --胜利动画
- 	local winNode = cc.CSLoader:createNode(GameResPath.."win/goldniuniu_win.csb")
-	winNode:setPosition(0,0)
-	self:addChild(winNode)
-    local winAct = cc.CSLoader:createTimeline(GameResPath.."win/goldniuniu_win.csb")
-    winAct:setTimeSpeed(1) --设置执行动画速度
-    winNode:runAction(winAct)
-    winNode:setVisible(false)
-    self.winNode=winNode
-    self.winAction=winAct
-    --胜利动画粒子
-    local winActPart = cc.ParticleSystemQuad:create(GameResPath.."win/particle_texture(4).plist")
-    winActPart:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
-    winActPart:setPosition(display.cx,display.cy)
-    self:addChild(winActPart)
-    winActPart:stop()
-    winActPart:setDuration(0.5)
-    self.winActPart=winActPart
+    local dir = GameResPath.."Animation/game_start_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."game_start_Animation0.png",dir.."game_start_Animation0.plist",dir.."game_start_Animation.ExportJson")  
+    self._startAni = ccs.Armature:create("game_start_Animation") 
+    self._startAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self:addChild(self._startAni)
 
+    dir = GameResPath.."Animation/niuni_win2_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."niuni_win2_Animation0.png",dir.."niuni_win2_Animation0.plist",dir.."niuni_win2_Animation.ExportJson")  
+    self._winAni = ccs.Armature:create("niuni_win2_Animation") 
+    self._winAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self._winAni:hide()
+    self:addChild(self._winAni)
 
-    --失败动画
-    local loseNode = cc.CSLoader:createNode(GameResPath.."lose/Scene.csb")
-    loseNode:setPosition(0,0)
-    self:addChild(loseNode)
-    local loseAct = cc.CSLoader:createTimeline(GameResPath.."lose/Scene.csb")
-    loseAct:setTimeSpeed(1) --设置执行动画速度
-    loseNode:runAction(loseAct)
-    loseNode:setVisible(false)
-    self.loseNode=loseNode
-    self.loseAction=loseAct
+    dir = GameResPath.."Animation/lose2_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."lose2_Animation0.png",dir.."lose2_Animation0.plist",dir.."lose2_Animation.ExportJson")  
+    self._loseAni = ccs.Armature:create("lose2_Animation") 
+    self._loseAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
+    self:addChild(self._loseAni)
 
-    --运气爆棚
-    local luckNode = cc.CSLoader:createNode(GameResPath.."CardType.csb")
-    luckNode:setPosition(667,375)
-    self:addChild(luckNode,100)
-    local luckAct = cc.CSLoader:createTimeline(GameResPath.."CardType.csb")
-    luckAct:setTimeSpeed(1) --设置执行动画速度
-    luckNode:runAction(luckAct)
-    luckNode:setVisible(false)
-    local saoguang = luckNode:getChildByName("saoguang")
-    saoguang:setVisible(false)
-    local Bone = luckNode:getChildByName("Bone_5")
-    local luckEffect = cc.Sprite:createWithSpriteFrameName("Card type_effect.png")
-    luckEffect:setPosition(-350,0)
-    luckEffect:setVisible(false)
-    Bone:addChild(luckEffect)
-    self.luckEffect=luckEffect
-    self.luckNode=luckNode
-    self.luckAction=luckAct
-    self:setLuckActCard()
+    -- --运气爆棚
+    -- local luckNode = cc.CSLoader:createNode(GameResPath.."CardType.csb")
+    -- luckNode:setPosition(667,375)
+    -- self:addChild(luckNode,100)
+    -- local luckAct = cc.CSLoader:createTimeline(GameResPath.."CardType.csb")
+    -- luckAct:setTimeSpeed(1) --设置执行动画速度
+    -- luckNode:runAction(luckAct)
+    -- luckNode:setVisible(false)
+    -- local saoguang = luckNode:getChildByName("saoguang")
+    -- saoguang:setVisible(false)
+    -- local Bone = luckNode:getChildByName("Bone_5")
+    -- local luckEffect = cc.Sprite:createWithSpriteFrameName("Card type_effect.png")
+    -- luckEffect:setPosition(-350,0)
+    -- luckEffect:setVisible(false)
+    -- Bone:addChild(luckEffect)
+    -- self.luckEffect=luckEffect
+    -- self.luckNode=luckNode
+    -- self.luckAction=luckAct
+    -- self:setLuckActCard()
 	
     --算牛框
     local suanniukuang = cc.Sprite:create(GameResPath.."suanniukuang.png")
@@ -428,7 +364,7 @@ function goldNiuScene:CreateView()
     self.suanniukuang = suanniukuang
 
     --金币牛牛场次信息
-    local goldNiuConf = cc.Label:createWithTTF("",GameUtils.getFontName(), 24)
+    local goldNiuConf = cc.Label:createWithSystemFont("",SYSFONT, 24)
     goldNiuConf:setPosition(667,190)
     goldNiuConf:setColor(SESS_COLOR)
     self.bg:addChild(goldNiuConf)
@@ -438,13 +374,13 @@ function goldNiuScene:CreateView()
 	local broadCastView = require("Lobby/src/lobby/view/BroadCastView").new(1)
 	self:addChild(broadCastView)  
 
-
+    --颜色层
     local layerColor = cc.LayerColor:create(cc.c4b(10,10,10,120), display.width, display.height)
     layerColor:setVisible(false)
     self:addChild(layerColor,25)
     self.layerColor = layerColor
 end
-
+--更新游戏规则
 function goldNiuScene:upDataRule()
     local data = lobby.GamePlayManager:getInstance():findSelectItemData()
     if data == nil then
@@ -461,13 +397,15 @@ function goldNiuScene:upDataRule()
 end
 
 function goldNiuScene:showGamePlayerInfo(data)
+    print("显示个人信息")
+    dump(data)
 	self._userDataList = {}
 	table.insert(self._userDataList,data)
-	local playerInfoView = GamePlayerInfo.new(data.UserId)
+	local playerInfoView = GamePlayerInfo.new(data.userId)
 	playerInfoView:setPosition(0,0)
 	self:addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
 end
-
+--設置椅子隱藏顯示
 function goldNiuScene:setSitHide()
     for k,v in pairs(self._sitBtnList) do
         v:hide()
@@ -478,6 +416,7 @@ function goldNiuScene:setSitShow()
         v:show()
     end
 end
+--玩家頭像隱藏
 function goldNiuScene:setPlayHide()
     for k,v in pairs(self._playBtnList) do
         v:hide()
@@ -490,7 +429,7 @@ function goldNiuScene:updatePlayerInfo(seatId,uid,uidArray)
 	self:RequestUserInfo(uid)
 end
 
---显示玩家
+--显示玩家头像
 function goldNiuScene:setPlayerNodeVisbile(seatId,isVisible)
 	if seatId == 1 then
 		self.player1:show() 
@@ -519,6 +458,7 @@ function goldNiuScene:initData(uidArray)
 		end 
 	end
 end
+--更新玩家头像信息
 function goldNiuScene:updateInfor(dataArry)
 	if dataArry == nil and self.uidArray ==nil then
 		return
@@ -527,7 +467,7 @@ function goldNiuScene:updateInfor(dataArry)
 end
 
 function goldNiuScene:updateAvatarByData(__data)
-	local curUserData = self:checkUserData(__data.UserId)
+	local curUserData = self:checkUserData(__data.userId)
 	if curUserData == 0 or self.uidArray == nil or self.myid==nil then
 		return
 	end
@@ -537,11 +477,11 @@ function goldNiuScene:updateAvatarByData(__data)
 		self:setPlayerNodeVisbile(swichId,true)
 
         local paramTab = {}
-		paramTab.avatarUrl = __data.AvatarUrl
+		paramTab.avatarUrl = __data.avatar
 		paramTab.stencilFile = GameResPath.."player/head_bg.png"
 		paramTab.frameFile = GameResPath.."player/head_clip_bg.png"
         
-        local Gender = __data.Gender or 0
+        local Gender = __data.gender or 0
         paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Gender)
 
 		local headnode = lib.node.Avatar:create(paramTab)
@@ -555,9 +495,7 @@ function goldNiuScene:updateAvatarByData(__data)
         self.headDataArray[swichId] = headnode
         --table.insert(self.headDataArray,headnode)
 		
-        -- local nickName = cc.Label:createWithSystemFont(string.getMaxLen(__data.NickName,6),SYSFONT,24)
-        local nickName = cc.Label:createWithTTF(string.getMaxLen(__data.NickName,6),GameUtils.getFontName(),24)
-
+        local nickName = cc.Label:createWithSystemFont(string.getMaxLen(__data.nickName,6),SYSFONT,24)
 		if swichId == 2 or swichId == 5 then
 			nickName:setPosition(conf.PlayerPosArray[swichId].x+68,conf.PlayerPosArray[swichId].y+70)
 		else
@@ -569,17 +507,19 @@ function goldNiuScene:updateAvatarByData(__data)
         --table.insert(self.NameDataArray,nickName)
         if self.PlayerDataSync then
             for i,v in ipairs(self.PlayerDataSync) do
-                if v.uid == __data.UserId then
-                    __data.Score = v.score
+                if v.uid == __data.userId then
+                    __data.score = v.score
                 end
             end
         end
-        local gameCoin = cc.Label:createWithTTF(conf.switchNum(__data.Score),GameUtils.getFontName(),24)
+        local gameCoin = cc.Label:createWithSystemFont(conf.switchNum(__data.score),SYSFONT,20)
+        gameCoin:setAnchorPoint(0,0.5)
+        gameCoin:setColor(cc.c3b(255,222,1))
 		gameCoin:setTag(swichId)
 		if swichId == 2 or swichId == 5 then
-			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+68,conf.PlayerPosArray[swichId].y+35)
+			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+40,conf.PlayerPosArray[swichId].y+38)
 		else
-			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+180,conf.PlayerPosArray[swichId].y+40)
+			gameCoin:setPosition(conf.PlayerPosArray[swichId].x+160,conf.PlayerPosArray[swichId].y+28)
 		end
 		
         self.playerCoinArr[swichId] = gameCoin
@@ -602,18 +542,22 @@ end
 -- 请求用户信息
 function goldNiuScene:RequestUserInfo( __userID)
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID.."?token="..UserData.token
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onInfoCallback))
 end
 
 function goldNiuScene:_onInfoCallback( __error,__response )
+    print("获取个人信息")
+    dump(__response)
+    dump(self.playerInfoData)
+    dump(self.playerListUID)
     if __error then
         print("Player Info net error")
     else
         if 200 == __response.status then
-        	local data = __response.data.profile
+        	local data = __response.data
         	if next(data)~=nil then
-        		local kValue=data.UserId
+        		local kValue=data.userId
         		if self.playerInfoData[kValue] == nil then
                     if self.playerListUID then
                         for k,v in pairs(self.playerListUID) do
@@ -630,15 +574,15 @@ function goldNiuScene:_onInfoCallback( __error,__response )
                 end
         		self:updateInfor(self.playerInfoData[kValue])
 
-                userInfo[kValue].AvatarUrl=data.AvatarUrl
-                userInfo[kValue].Gender=data.Gender
-                userInfo[kValue].NickName=data.NickName
-                userInfo[kValue].Score=data.Score
-                userInfo[kValue].UserId=kValue
-                userInfo[kValue].winroundsum=data.winroundsum
-                userInfo[kValue].losesum=data.losesum
-                userInfo[kValue].winning=data.winning
-                userInfo[kValue].seatIndex=data.seatIndex
+                userInfo[kValue].avatar=data.avatar
+                userInfo[kValue].gender=data.gender or 0
+                userInfo[kValue].nickName=data.nickName
+                userInfo[kValue].score=data.score
+                userInfo[kValue].userId=kValue
+                userInfo[kValue].winroundsum=data.winroundsum or 0
+                userInfo[kValue].losesum=data.losesum or 0
+                userInfo[kValue].winning=data.winning or 0
+                userInfo[kValue].seatIndex=data.seatIndex or 0
         	end 
         end
     end
@@ -652,11 +596,11 @@ end
 --设置玩家信息
 function goldNiuScene:setPlayerInfo(uid)
     userInfo[uid] = {}
-    userInfo[uid].AvatarUrl=""
-    userInfo[uid].Gender=0-- 0未知1男2女
-    userInfo[uid].NickName="游客"..tostring(uid)
-    userInfo[uid].Score=0
-    userInfo[uid].UserId=uid
+    userInfo[uid].avatar=""
+    userInfo[uid].gender=0-- 0未知1男2女
+    userInfo[uid].nickName="游客"..tostring(uid)
+    userInfo[uid].score=0
+    userInfo[uid].userId=uid
     userInfo[uid].winroundsum=0
     userInfo[uid].losesum=0
     userInfo[uid].winning=0
@@ -713,7 +657,7 @@ function goldNiuScene:onButtonClickedEvent(sender)
     elseif tag == conf.Tag.sit5 then self:RequestPlayerSitDown()
 	end
 end
-
+--隐藏椅子按钮
 function goldNiuScene:removeSit()
     self:setSitHide()
 end
@@ -751,7 +695,7 @@ function goldNiuScene:hideChatBtn()
     self.chatBtn:setBright(false)
 end
 
---
+--移除玩家头像数据
 function goldNiuScene:removeData()
     --self:setPlayHide()
     if self.playerInfoData then
@@ -834,13 +778,13 @@ function goldNiuScene:ClickPlayerHead(tag)
                     if self.playerInfoData[k].seatIndex then
     					if conf.swichPos(self.playerInfoData[k].seatIndex-1,self.myid,5) == index then
     						-- GameManager:getInstance():requestGamePlayerInfoData(self.playerInfoData[k].UserId)
-                            local info = self:getPlayerInfo(self.playerInfoData[k].UserId)
+                            local info = self:getPlayerInfo(self.playerInfoData[k].userId)
                             for i,v in pairs(self.PlayerDataSync) do
-                                if v.uid == self.playerInfoData[k].UserId then
+                                if v.uid == self.playerInfoData[k].userId then
                                     info.Score = v.score
                                 end
                             end
-                            local playerInfoView = GamePlayerInfo.new(self.playerInfoData[k].UserId)
+                            local playerInfoView = GamePlayerInfo.new(self.playerInfoData[k].userId)
                             playerInfoView:setInfoData(info)
                             self:addChild(playerInfoView,20)
     					end
@@ -940,7 +884,7 @@ end
 --游戏开始倒计时
 function goldNiuScene:startTime(time)
     self:hideCard()
-    self:setLuckAct()
+    -- self:setLuckAct()
     if self.isOnTable then
     	self:createClock(conf.time.wait,time)
         self:hideGameTips()
@@ -952,16 +896,8 @@ function goldNiuScene:startAct()
     self._gameStatus = conf.goldState.grapBanker
   
     if self.isOnTable  then
-    	self.xiazhu_node:setVisible(true)
-    	self.xiazhu_action:gotoFrameAndPlay(0,false)
+         self._startAni:getAnimation():playWithIndex(0,-1,0)
         MusicManager:getInstance():playAudioEffect(conf.Music["Gamestart"],false)
-
-    	local a={}
-    	a[#a+1]=cc.DelayTime:create(0.1)
-    	a[#a+1]=cc.CallFunc:create(function() self.particleparticle:start() end)
-    	a[#a+1]=cc.DelayTime:create(0.7)
-    	a[#a+1]=cc.CallFunc:create(function() self.xiazhu_node:setVisible(false) end)
-    	self:runAction(cc.Sequence:create(a))
     end
 end
 
@@ -973,59 +909,35 @@ function goldNiuScene:initPlayerStatus(playerDataArray)
 end
 --赢的特效
 function goldNiuScene:victoryAct()
-	self.winNode:setVisible(true)
-	self.winAction:gotoFrameAndPlay(0,false)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamewin"],false)
-	local a={}
-	a[#a+1]=cc.CallFunc:create(function() 
-        self.winActPart:start()
+    self._winAni:getAnimation():playWithIndex(0,-1,0)
+    self._winAni:show()
+    local a={}
+    a[#a+1]=cc.DelayTime:create(1)
+    a[#a+1]=cc.CallFunc:create(function() self._winAni:setVisible(false) end)
+    self:runAction(cc.Sequence:create(a))
 
-		local tableEffect  = tableAction:new()
-		tableEffect:iconGold()
-        self.tableEffect = tableEffect
-		self:addChild(tableEffect)
-	 end)
-	a[#a+1]=cc.DelayTime:create(2)
-	a[#a+1]=cc.CallFunc:create(function() self.winNode:setVisible(false) end)
-	self:runAction(cc.Sequence:create(a))
 end
 --输的特效
 function goldNiuScene:loseAct()
-    self.loseNode:setVisible(true)
-    self.loseAction:gotoFrameAndPlay(0,false)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamelose"],false)
-    local a={}
-    a[#a+1]=cc.DelayTime:create(0.5)
-    a[#a+1]=cc.CallFunc:create(function ()
-        local lose = tableAction:new()
-        lose:LoseAutumnleaves()
-        self:addChild(lose)
-        self.lose = lose 
-    end)
-    a[#a+1]=cc.DelayTime:create(2)
-    a[#a+1]=cc.CallFunc:create(function() 
-            self.loseNode:setVisible(false)
-            self.lose:removeFromParent()
-            self.lose = nil
-        end)
-    self:runAction(cc.Sequence:create(a))
+    self._loseAni:getAnimation():playWithIndex(0,-1,0)
 end
 --运气爆棚特效
-function goldNiuScene:luckAct()
-    self.luckNode:setVisible(true)
-    self.luckEffect:setVisible(true)
-    self.luckAction:gotoFrameAndPlay(0,false)
-    local a={}
-    a[#a+1]=cc.DelayTime:create(2)
-    a[#a+1]=cc.CallFunc:create(function() self.luckNode:setVisible(false) end)
-    self:runAction(cc.Sequence:create(a))
-    local b={}
-    b[#b+1]=cc.MoveTo:create(1,cc.p(350,0))
-    b[#b+1]=cc.DelayTime:create(1)
-    b[#b+1]=cc.CallFunc:create(function() self.luckEffect:setVisible(false) end)
-    -- self.luckEffect:runAction(cc.Sequence:create(b))--cc.Repeat:create
-    self.luckEffect:runAction(cc.RepeatForever:create(cc.Sequence:create(b)))
-end
+-- function goldNiuScene:luckAct()
+    -- self.luckNode:setVisible(true)
+    -- self.luckEffect:setVisible(true)
+    -- self.luckAction:gotoFrameAndPlay(0,false)
+    -- local a={}
+    -- a[#a+1]=cc.DelayTime:create(2)
+    -- a[#a+1]=cc.CallFunc:create(function() self.luckNode:setVisible(false) end)
+    -- self:runAction(cc.Sequence:create(a))
+    -- local b={}
+    -- b[#b+1]=cc.MoveTo:create(1,cc.p(350,0))
+    -- b[#b+1]=cc.DelayTime:create(1)
+    -- b[#b+1]=cc.CallFunc:create(function() self.luckEffect:setVisible(false) end)
+    -- self.luckEffect:runAction(cc.Sequence:create(b))
+-- end
 
 --设置发牌数据
 function goldNiuScene:setShowCardData(dataArray)
@@ -1157,6 +1069,7 @@ function goldNiuScene:cardClickedEvent(sprite)
 	listener:registerScriptHandler(onTouchEnded,cc.Handler.EVENT_TOUCH_ENDED )
 	cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(listener, sprite)
 end
+--点击牌谈起落下
 function goldNiuScene:upCard(sprite)
     if sprite then
         if self.clickNum < 3 then
@@ -1201,7 +1114,7 @@ function goldNiuScene:niuCount(sprite)
     table.insert(self.clickCard,sprite)
     table.insert(self.clickCardValue,kNum)
 end 
-
+--判断牌值是不是空的
 function goldNiuScene:isCardDataNull()
     if next(self.CardData) == nil then
         for k,v in pairs(GameManager.TableInfoArray.player) do
@@ -1221,15 +1134,15 @@ function goldNiuScene:cardDianShu(num,i)
     node:setPosition(35+(i-1)*108,20)
     local pTexture = display.loadImage(GameResPath.."xiazhu_num.png")
     if tonumber(num) < 10 then
-        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(num)+1)*26,0,26,36))
-        kCard:setPosition(13,18)
+        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(num)+1)*24,0,24,33))
+        kCard:setPosition(12,16.5)
         node:addChild(kCard)
     else
-        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect(2*26,0,26,36))
-        kCard1:setPosition(0,18)
+        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect(2*24,0,24,33))
+        kCard1:setPosition(0,16.5)
         node:addChild(kCard1)
-        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect(26,0,26,36))
-        kCard2:setPosition(26,18)
+        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect(24,0,24,33))
+        kCard2:setPosition(24,16.5)
         node:addChild(kCard2)
     end
     self.suanniukuang:addChild(node)
@@ -1251,17 +1164,17 @@ function goldNiuScene:sumCardDianshu(sum)
     numnode:setPosition(xx-60,20)
     local pTexture = display.loadImage(GameResPath.."xiazhu_num.png")
     if tonumber(sum) < 10 then
-        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(sum)+1)*26,0,26,36))
-        kCard:setPosition(13,18)
+        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(sum)+1)*24,0,24,33))
+        kCard:setPosition(12,16.5)
         numnode:addChild(kCard)
     else
         local dec = (sum-(sum%10))/10
         local unit = sum%10
-        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect((dec+1)*26,0,26,36))
-        kCard1:setPosition(0,18)
+        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect((dec+1)*24,0,24,33))
+        kCard1:setPosition(0,16.5)
         numnode:addChild(kCard1)
-        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect((unit+1)*26,0,26,36))
-        kCard2:setPosition(26,18)
+        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect((unit+1)*24,0,24,33))
+        kCard2:setPosition(24,16.5)
         numnode:addChild(kCard2)
     end
     self.suanniukuang:addChild(numnode)
@@ -1339,23 +1252,7 @@ function goldNiuScene:GradbankerHide()
 end
 --抢庄的倍数
 function goldNiuScene:gradMultiple(index,multiple)
-    -- local grad = cc.Sprite:createWithSpriteFrameName("txt_qiang"..multiple..".png")
-    local grad = cc.Node:create()
-    if multiple == 0 then
-        local sprite = cc.Sprite:create(GameResPath.."txtNiu/txt_qiang0.png")
-        sprite:setPosition(0,0)
-        grad:addChild(sprite)
-    else
-        local sprite1 = cc.Sprite:create(GameResPath.."txtNiu/txt_qiang.png")
-        sprite1:setPosition(-46,0)
-        grad:addChild(sprite1)
-        local pTexture=GameResPath.."txtNiu/txt_qiang_num.png"
-        local sprite2 = ccui.TextAtlas:create(tostring(multiple),pTexture,26,36,"/")
-        sprite2:setString("/"..tostring(multiple))
-        sprite2:setPosition(0,0)
-        grad:addChild(sprite2)
-    end
-
+    local grad = cc.Sprite:createWithSpriteFrameName("txt_qiang"..multiple..".png")
     grad:setPosition(conf.multiplePosArray[index])
     self.bg:addChild(grad)
 
@@ -1412,7 +1309,7 @@ function goldNiuScene:brttingMultiple(index,multiple)
     end
     local pTexture=GameResPath.."xiazhu_num.png"
     local node = cc.Node:create()
-    local brtting = ccui.TextAtlas:create(tostring(multiple),pTexture,26,36,"/")
+    local brtting = ccui.TextAtlas:create(tostring(multiple),pTexture,24,33,"/")
     brtting:setPosition(0,0)
     brtting:setString("/"..tostring(multiple))
     node:addChild(brtting)
@@ -1617,13 +1514,13 @@ function goldNiuScene:showTourLastCard(seatId)
     backCard:runAction(cc.EaseSineIn:create(cc.MoveTo:create(0.2,cc.p(conf.showCardPosArray[seatId].x+5*30,conf.showCardPosArray[seatId].y))))
     MusicManager:getInstance():playAudioEffect(conf.Music["Fapai_one"],false)
 end
-
+--显示最后一张牌
 function goldNiuScene:initLastPlayerCard()
     if self.isOnTable and self._isGameing then
         self:initPlayerCard(self.FifthCardData,5)
     end
 end
-
+--摊牌的时间
 function goldNiuScene:taipaiTime(time)
     if self.isOnTable and self._isGameing then
     	self:createClock(conf.time.putCard,time)
@@ -1662,6 +1559,7 @@ function goldNiuScene:ShowCard()
     	self:hideNiuBtn()
     end
 end
+--隐藏有牛没牛按钮
 function goldNiuScene:hideNiuBtn()
     if self.isOnTable and self._isGameing then
     	self.hasNiuBtn:hide()
@@ -1744,34 +1642,34 @@ function goldNiuScene:showNiu(seatId,cardtype,uid)
         return
     end
 
-	local txtBg = cc.Sprite:create(GameResPath.."txtNiu/txt_bg.png")
+	local txtBg = cc.Sprite:createWithSpriteFrameName("txt_bg.png")
 	txtBg:setPosition(conf.showCardPosArray[seatId].x+90,conf.showCardPosArray[seatId].y-30)
 	self.bg:addChild(txtBg,10)
     
-    if cardtype == 0 or cardtype >= 10 then
+    -- if cardtype == 0 or cardtype >= 10 then
         local txtTip = cc.Sprite:create(GameResPath.."txtNiu/goldtxt_niu"..cardtype..".png")
         txtTip:setPosition(txtBg:getContentSize().width/2,txtBg:getContentSize().height/2)
         txtBg:addChild(txtTip)
-        if cardtype >= 10 then
+        if cardtype > 6 then
             txtTip:setScale(2.5)
             txtTip:runAction(cc.ScaleTo:create(0.1,1))
         end
-    else
-        local pTexture = display.loadImage(GameResPath.."txtNiu/goldtxt_niu1-9.png")
-        local txtTip1 = cc.Sprite:createWithTexture(pTexture,cc.rect(0,0,43,40))
-        local txtTip2 = cc.Sprite:createWithTexture(pTexture,cc.rect(tonumber(cardtype)*43,0,43,40))
-        txtTip1:setPosition(txtBg:getContentSize().width/2-22,txtBg:getContentSize().height/2)
-        txtTip2:setPosition(txtBg:getContentSize().width/2+22,txtBg:getContentSize().height/2)
-        txtBg:addChild(txtTip1)
-        txtBg:addChild(txtTip2)
+    -- else
+        -- local pTexture = display.loadImage(GameResPath.."txtNiu/goldtxt_niu1-9.png")
+        -- local txtTip1 = cc.Sprite:createWithTexture(pTexture,cc.rect(0,0,43,40))
+        -- local txtTip2 = cc.Sprite:createWithTexture(pTexture,cc.rect(tonumber(cardtype)*43,0,43,40))
+        -- txtTip1:setPosition(txtBg:getContentSize().width/2-22,txtBg:getContentSize().height/2)
+        -- txtTip2:setPosition(txtBg:getContentSize().width/2+22,txtBg:getContentSize().height/2)
+        -- txtBg:addChild(txtTip1)
+        -- txtBg:addChild(txtTip2)
 
-        if cardtype > 6 then
-            txtTip1:setScale(2.5)
-            txtTip1:runAction(cc.ScaleTo:create(0.1,1))
-            txtTip2:setScale(2.5)
-            txtTip2:runAction(cc.ScaleTo:create(0.1,1))
-        end
-    end
+        -- if cardtype > 6 then
+        --     txtTip1:setScale(2.5)
+        --     txtTip1:runAction(cc.ScaleTo:create(0.1,1))
+        --     txtTip2:setScale(2.5)
+        --     txtTip2:runAction(cc.ScaleTo:create(0.1,1))
+        -- end
+    -- end
 	-- if cardtype == 0 then
 	-- 	txtBg:setOpacity(0)
 	-- end
@@ -1852,7 +1750,7 @@ function goldNiuScene:setGoldHeadToward(id)
     a[#a+1] = cc.CallFunc:create(function () self:setGoldHeadEff(id) end)
     self:runAction(cc.Sequence:create(a))
 end
---
+--金币飞到头像上的特效
 function goldNiuScene:setGoldHeadEff(id)
     if id == nil then
         return
@@ -1874,7 +1772,7 @@ function goldNiuScene:setGoldHeadEff(id)
     winHeadNode:runAction(winHeadAct)
     self.winHeadNode = winHeadNode
 
-    --胜利头像例子
+    --金币飞到头像上例子
     local winPart = cc.ParticleSystemQuad:create(GameResPath.."winHead/particle_texture(1).plist")
     winPart:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
     if id == 2 or id == 5 then
@@ -1895,7 +1793,7 @@ function goldNiuScene:wancheng(index)
         return
     end
 
-	local txtBg = cc.Sprite:create(GameResPath.."txtNiu/txt_bg.png")
+	local txtBg = cc.Sprite:createWithSpriteFrameName("txt_bg.png")
 	txtBg:setPosition(conf.showCardPosArray[index].x+90,conf.showCardPosArray[index].y-30)
 	self.bg:addChild(txtBg,5)
 	-- local txtTip = cc.Sprite:createWithSpriteFrameName("txt_wancheng.png")
@@ -1942,7 +1840,7 @@ function goldNiuScene:playerScore(seatId,score)
     self.scoreNode = scoreNode
     self.isStart = false 
 end
-
+--设置幸运牌型动画
 function goldNiuScene:setLuckAct()
     if self.playerDataArray == nil or self.playerArr ==nil then
         return
@@ -1960,6 +1858,7 @@ function goldNiuScene:setLuckAct()
         end
     end
 end
+--初始化幸运牌型的一些数据
 function goldNiuScene:setLuckActCard()
     local layerColor = cc.LayerColor:create(cc.c4b(0,0,0,220), display.width, display.height)
     layerColor:setVisible(false)
@@ -1983,7 +1882,7 @@ function goldNiuScene:setLuckActCard()
         table.insert(self.luckCardData,backCard)
     end
 
-    local txtBg = cc.Sprite:create(GameResPath.."txtNiu/txt_bg.png")
+    local txtBg = cc.Sprite:createWithSpriteFrameName("txt_bg.png")
     txtBg:setPosition(667,200)
     txtBg:setVisible(false)
     txtBg:setScale(1.2)
@@ -1997,7 +1896,7 @@ function goldNiuScene:setLuckActCard()
     self.luckTxtBg = txtBg
     self.luckTxtTip = txtTip
 end
-
+--幸运牌型动画显示
 function goldNiuScene:setLuckActEffect(score,cardArr,niuType)
     self.luckLayerColor:setVisible(true)
     self.luckScoreNode:setVisible(true)
@@ -2060,7 +1959,7 @@ function goldNiuScene:setDataHide()
     	self.setbank:gamgEnd()
     end
 end
---隐藏
+--移除一些数据
 function goldNiuScene:hideCard()
 	--隐藏
     if self.handCard~=nil then
@@ -2083,12 +1982,6 @@ function goldNiuScene:hideCard()
     		v:removeFromParent()
     	end
         self.cardTyoeArray = {}
-    end
-    if self.scoreArray~=nil then
-    	for i,v in pairs (self.scoreArray) do
-    		v:removeFromParent()
-    	end
-        self.scoreArray = {}
     end
     if self.brttingMArray~=nil then
     	for i,v in pairs (self.brttingMArray) do
@@ -2121,14 +2014,14 @@ function goldNiuScene:hideCard()
         self.winPart = nil
     end
 
-    self.luckNode:setVisible(false)
-    self.luckEffect:setVisible(false)
-    self.luckLayerColor:setVisible(false)
-    self.luckScoreNode:setVisible(false)
-    self.luckTxtBg:setVisible(false)
-    for i,v in ipairs(self.luckCardData) do
-        v:setVisible(false)
-    end
+    -- self.luckNode:setVisible(false)
+    -- self.luckEffect:setVisible(false)
+    -- self.luckLayerColor:setVisible(false)
+    -- self.luckScoreNode:setVisible(false)
+    -- self.luckTxtBg:setVisible(false)
+    -- for i,v in ipairs(self.luckCardData) do
+    --     v:setVisible(false)
+    -- end
 
 	self:reSet()
 end
@@ -2138,7 +2031,6 @@ function goldNiuScene:reSet()
 	self.handBackCard = {}
 	self.allSortCard = {}
 	self.cardTyoeArray = {}
-	self.scoreArray = {}
 	self.brttingMArray = {}
 
     self:hideWancheng()
@@ -2179,9 +2071,6 @@ function goldNiuScene:reSet()
        self.lose = nil
     end
 
-    if self.loseNode then
-       self.loseNode:hide()
-    end
 
     if self.rezhuang then
        self.rezhuang:removeFromParent()
@@ -2250,7 +2139,7 @@ function goldNiuScene:onGameChatText(data)
         MusicManager:getInstance():playAudioEffect(conf.Music["chat_effect"]..musicStr,false)
     end
 
-    local chatText = cc.Label:createWithTTF(tab.value,GameUtils.getFontName(),26)
+    local chatText = cc.Label:createWithSystemFont(tab.value,SYSFONT,26)
     chatText:setAnchorPoint(0,0.5)
     chatText:setPosition(5,chatBg:getContentSize().height/2)
     chatText:setColor(cc.c3b(111,66,34))
@@ -2341,12 +2230,13 @@ function goldNiuScene:onGameProp(data)
     userInfo[srcUid].Score=curScore  
 
 end
-
+--换桌
 function goldNiuScene:ShowChangeTable()
     self:clearCache()
     self:showChatBtn()
     self._gameRequest:RequestTabelInfo()
-end      
+end   
+--清楚缓存   
 function goldNiuScene:clearCache()
     self:stopAllActions()
     self:removeClockNode()
@@ -2404,24 +2294,20 @@ function goldNiuScene:clearCache()
     self:removeData()
     self:setDataHide()
 
-    self.winNode:hide()
-    self.xiazhu_node:hide()
-    self.loseNode:hide()
-
-    self.luckNode:setVisible(false)
-    self.luckEffect:setVisible(false)
-    self.luckLayerColor:setVisible(false)
-    self.luckScoreNode:setVisible(false)
-    self.luckTxtBg:setVisible(false)
-    for i,v in ipairs(self.luckCardData) do
-        v:setVisible(false)
-    end
+    -- self.luckNode:setVisible(false)
+    -- self.luckEffect:setVisible(false)
+    -- self.luckLayerColor:setVisible(false)
+    -- self.luckScoreNode:setVisible(false)
+    -- self.luckTxtBg:setVisible(false)
+    -- for i,v in ipairs(self.luckCardData) do
+    --     v:setVisible(false)
+    -- end
 end     
-
+--请求玩家战旗
 function goldNiuScene:RequestPlayerStandUp()
     self._gameRequest:RequestPlayerStandUp()
 end
-
+--请求玩家坐下
 function goldNiuScene:RequestPlayerSitDown()
     local bool = false
     if self.playerListUID then
@@ -2726,6 +2612,10 @@ function goldNiuScene:onGameStatusRoundAction(player)
             end    
         end
 
+        if player[mysitid+1].cardType > 0 then
+            self.hasNiuBtn:setTouchEnabled(true)
+            self.hasNiuBtn:setBright(true)
+        end
         --算牛情况
         self:niuBtn()
         self.suanniukuang:show()
@@ -2818,6 +2708,7 @@ function goldNiuScene:onGameBankRupt(data)
 end
 -- 破产补助uid
 function goldNiuScene:onGameBankSucc(data)
+    dump(data)
     if tostring(data.uid) == tostring(UserData.userId) then
         GameUtils.showMsg("领取成功")
     end
@@ -2890,7 +2781,7 @@ end
 --显示提示语 
 function goldNiuScene:showGameTips(tipes)
     if self._tipsTextLable == nil then
-        self._tipsTextLable = cc.Label:createWithTTF("",GameUtils.getFontName(),25)
+        self._tipsTextLable = cc.Label:createWithSystemFont("",SYSFONT,25)
         self._tipsTextLable:setAnchorPoint(cc.p(0,0.5))
         self.bg:addChild(self._tipsTextLable)         
     end

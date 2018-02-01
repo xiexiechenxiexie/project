@@ -17,7 +17,7 @@ MyRoomInfoLayer._roomListView = nil
 
 MyRoomInfoLayer._chessInfoLayer = nil
 MyRoomInfoLayer._chessListView = nil
-MyRoomInfoLayer._slideButtonImgs = {[TAG_PROGRESS] = "btnProgress.png",[TAG_ENDED] = "btnEnded.png"}
+MyRoomInfoLayer._slideButtonImgs = {[TAG_PROGRESS] = "btnSelected.png",[TAG_ENDED] = "btnSelected.png"}
 
 MyRoomInfoLayer._inputInfo = {} 
 
@@ -48,50 +48,64 @@ end
 
 function MyRoomInfoLayer:_init(  )
 	local dir = CREATE_ROOM_DIR
-	local imgProgressEnded = dir .. "imgProgressEnded.png"
-	imgProgressEnded = ccui.ImageView:create(imgProgressEnded,ccui.TextureResType.plistType)
-	self:addChild(imgProgressEnded)
-	imgProgressEnded:setPosition(396,530)
+	-- local imgProgressEnded = dir .. "imgProgressEnded.png"
+	-- imgProgressEnded = ccui.ImageView:create(imgProgressEnded,ccui.TextureResType.plistType)
+	-- self:addChild(imgProgressEnded)
+	-- imgProgressEnded:setPosition(396,530)
 
-	local imgProgressFlag = "imgProgressFlag.png"
+	local imgProgressFlag = "btnNormal.png"
 	imgProgressFlag = ccui.ImageView:create(imgProgressFlag,ccui.TextureResType.plistType)
-	imgProgressEnded:addChild(imgProgressFlag)
+	self:addChild(imgProgressFlag,10)
 	imgProgressFlag:setVisible(true)
 
-	local imgEndedFlag = "imgEndedFlag.png"
+	local imgEndedFlag = "btnNormal.png"
 	imgEndedFlag = ccui.ImageView:create(imgEndedFlag,ccui.TextureResType.plistType)
-	imgProgressEnded:addChild(imgEndedFlag)
+	self:addChild(imgEndedFlag,10)
 	imgEndedFlag:setVisible(false)
 
-	local slideImg = CREATE_ROOM_DIR .. self._slideButtonImgs[TAG_PROGRESS]
+	local progressText = cc.Label:createWithTTF("进行中",GameUtils.getFontName(),30)
+    progressText:setAnchorPoint(cc.p(0.5, 0.5))
+    progressText:setColor(cc.c3b(255,255,255))
+    progressText:setPosition(133,495)
+    self:addChild(progressText,10)
 
+    local endedText = cc.Label:createWithTTF("已结束",GameUtils.getFontName(),30)
+    endedText:setAnchorPoint(cc.p(0.5, 0.5))
+    endedText:setColor(cc.c3b(191, 169, 125))
+    endedText:setPosition(133,495-100)
+    self:addChild(endedText,10)
+
+	local slideImg = CREATE_ROOM_DIR .. self._slideButtonImgs[TAG_PROGRESS]
 	local button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
-	imgProgressEnded:addChild(button)
+	self:addChild(button)
 	button:addClickEventListener(function ( __sender)
 			self:_slideToProgress(__sender)
 			imgProgressFlag:setVisible(true)
 			imgEndedFlag:setVisible(false)
+			progressText:setColor(cc.c3b(255,255,255))
+			endedText:setColor(cc.c3b(191, 169, 125))
 	end)
-	local size = button:getContentSize()
-	local x = size.width / 2 + 5 + 67
-	local y = imgProgressEnded:getContentSize().height * 0.5 - 5
-	button:setPosition(x,y)
-	imgProgressFlag:setPosition(x,y)
+	-- local size = button:getContentSize()
+	-- local x = size.width / 2 + 5
+	-- local y = imgProgressEnded:getContentSize().height * 0.5 - 5
+	button:setPosition(133,495)
+	imgProgressFlag:setPosition(133,495)
 
 	slideImg = CREATE_ROOM_DIR .. self._slideButtonImgs[TAG_ENDED]
-
 	button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
-	imgProgressEnded:addChild(button)
+	self:addChild(button)
 	button:addClickEventListener(function ( __sender)
 			self:_sildeToEnded(__sender)
 			imgProgressFlag:setVisible(false)
 			imgEndedFlag:setVisible(true)
+			progressText:setColor(cc.c3b(191, 169, 125))
+			endedText:setColor(cc.c3b(255,255,255))
 		end)
-	local size = button:getContentSize()
-	x = imgProgressEnded:getContentSize().width -  size.width / 2 - 5 - 67
-	y = imgProgressEnded:getContentSize().height * 0.5 - 5
-	button:setPosition(x,y)
-	imgEndedFlag:setPosition(x,y)
+	-- local size = button:getContentSize()
+	-- x = imgProgressEnded:getContentSize().width -  size.width / 2 - 5
+	-- y = imgProgressEnded:getContentSize().height * 0.5 - 5
+	button:setPosition(133,495-100)
+	imgEndedFlag:setPosition(133,495-100)
 
 end
 
@@ -126,7 +140,9 @@ function MyRoomInfoLayer:_initItemBgtn( __data,__imgFile,__pos,__type ,__anchorP
 			else
 				callback = handler(self,self._onGuanZhanBtnClick)	
 			end
+		 	
 		end
+		
 	elseif __type == TAG_ENDED then
 		callback = handler(self,self._onLookForDetail)
 	elseif __type == TAG_JOIN_CHESS then
@@ -145,64 +161,67 @@ end
 
 function MyRoomInfoLayer:_createBaseItem( __data,__type,__index)
 	local contentNode = ccui.Widget:create()
-	contentNode:setContentSize(cc.size(773,127))
+	contentNode:setContentSize(cc.size(1016,100))
 
 	local imgBg = CREATE_ROOM_DIR .. "imgMyRoomItemBg.png"
-	local button = self:_initItemBgtn(__data,imgBg,cc.p(752 /2 + 20,10),__type,cc.p(0.5,0),true)
+	local button = self:_initItemBgtn(__data,imgBg,cc.p(1016 /2,40),__type,cc.p(0.5,0),true)
 	contentNode:addChild(button)
 	button:setTag(__index)
 
-	local imgCreateRoomItemLine = CREATE_ROOM_DIR .. "imgCreateRoomItemLine.png"
-	imgCreateRoomItemLine = ccui.ImageView:create(imgCreateRoomItemLine,ccui.TextureResType.plistType)
-	imgCreateRoomItemLine:setPosition(20,64)
-	contentNode:addChild(imgCreateRoomItemLine)
+	-- local imgCreateRoomItemLine = CREATE_ROOM_DIR .. "imgCreateRoomItemLine.png"
+	-- imgCreateRoomItemLine = ccui.ImageView:create(imgCreateRoomItemLine,ccui.TextureResType.plistType)
+	-- imgCreateRoomItemLine:setPosition(20,64)
+	-- contentNode:addChild(imgCreateRoomItemLine)
 	return contentNode
 end
 
 
 function MyRoomInfoLayer:_createProgressItem(__data,__index )
+	print("MyRoomInfoLayer:_createProgressItem附件的历史开放记录的世界观")
+	dump(__data)
 	local ManagerClazz = cc.exports.lobby.CreateRoomManager
 	local layout = self:_createBaseItem(__data,TAG_PROGRESS,__index)
+	local size = layout:getContentSize()
 	local params = {{
 		fontName = GameUtils.getFontName(),
 		fontSize = 24,
 		text = __data.timeOfCreateRoom,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(34,107),
-		anchorPoint = cc.p(0,0.5)
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(1016,20),
+		anchorPoint = cc.p(1,0.5)
 		}
 		,{
 		fontName = GameUtils.getFontName(),
 		fontSize = 30,
 		text = __data.roomId,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(115,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(70,size.height/2+18),
 		},
 		{
 		fontName = GameUtils.getFontName(),
 		fontSize = 30,
 		text = __data.leftGameRound,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(260,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(260+120,size.height/2+18),
 		},
 		{
 		fontName = GameUtils.getFontName(),
 		fontSize = 30,
 		text = ManagerClazz:getInstance():findCostSeatLanguage(__data),
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(0,240,255, 255),
-		pos = cc.p(378,44),
+		color = cc.c4b(191, 169, 125, 255),
+		pos = cc.p(378+170,size.height/2+18),
 		},
 		{
 		fontName = GameUtils.getFontName(),
 		fontSize = 28,
 		text = ManagerClazz:getInstance():findNumOfRoomString(__data),
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(255,248,187, 255),
-		pos = cc.p(513,60),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(513+220,size.height/2+18),
 		}
 	}
 
@@ -212,72 +231,46 @@ function MyRoomInfoLayer:_createProgressItem(__data,__index )
 		layout:addChild(label)
 	end
 
-	local imgBarBg = ccui.ImageView:create("imgBarBg.png",ccui.TextureResType.plistType)
-	imgBarBg:setPosition(513,32)
-	layout:addChild(imgBarBg)
+	-- local imgBarBg = ccui.ImageView:create("imgBarBg.png",ccui.TextureResType.plistType)
+	-- imgBarBg:setPosition(513,32)
+	-- layout:addChild(imgBarBg)
 
-	local loadingBar = ccui.LoadingBar:create("imgBar.png",ccui.TextureResType.plistType,__data.peopleNumOfRoom / __data.capityPeopleNumOfRoom * 100)
-	imgBarBg:addChild(loadingBar)
-	loadingBar:setPosition(imgBarBg:getContentSize().width * 0.5,imgBarBg:getContentSize().height * 0.5)
-	loadingBar:setPercent(__data.peopleNumOfRoom / __data.capityPeopleNumOfRoom * 100)
+	-- local loadingBar = ccui.LoadingBar:create("imgBar.png",ccui.TextureResType.plistType,__data.peopleNumOfRoom / __data.capityPeopleNumOfRoom * 100)
+	-- imgBarBg:addChild(loadingBar)
+	-- loadingBar:setPosition(imgBarBg:getContentSize().width * 0.5,imgBarBg:getContentSize().height * 0.5)
+	-- loadingBar:setPercent(__data.peopleNumOfRoom / __data.capityPeopleNumOfRoom * 100)
 
 	local button = nil
+	local normal = "btnGuanZhan.png"
 	if __data.peopleNumOfRoom < __data.capityPeopleNumOfRoom then  
-		button = cc.exports.lib.uidisplay.createLabelButton({
-            textureType = ccui.TextureResType.plistType,
-            normal = "common_small_green_btn.png",
-            callback = handler(self,self._onInviteBtnClick),
-            isActionEnabled = true,
-            pos = cc.p(670,44),
-            text = "邀请好友",
-            outlineColor = cc.c4b(24,73,30,255),
-            outlineSize = 2,
-            labPos = cc.p(0,2),
-            scale = 0.5,
-    	})
-	else
-		button = cc.exports.lib.uidisplay.createLabelButton({
-            textureType = ccui.TextureResType.plistType,
-            normal = "common_small_yellow_btn.png",
-            callback = handler(self,self._onGuanZhanBtnClick),
-            isActionEnabled = true,
-            pos = cc.p(670,44),
-            text = "观 战",
-            outlineColor = cc.c4b(112,45,2,255),
-            outlineSize = 2,
-            labPos = cc.p(0,2),
-            scale = 0.5,
-    	})
+		normal = "btnInvite.png"
 	end
-	button:setTag(__index)
+	button = self:_initItemBgtn(__data,normal,cc.p(670+290,size.height/2+16),TAG_PROGRESS,cc.p(0.5,0.5))
 	layout:addChild(button)
+	button:setTag(__index)
+	button:setPressedActionEnabled(true)
 	return layout
 end
 
 function MyRoomInfoLayer:_refreshProgressLayer( ... )
-	print("MyRoomInfoLayer:_refreshProgressLayer")
+	print("MyRoomInfoLayer:_refreshProgressLayer",self._roomInfoLayer)
+
 	if self._roomInfoLayer == nil then
 		self._roomInfoLayer = cc.Layer:create()
 		self:addChild(self._roomInfoLayer)
 		local imgMyRoomTitle = CREATE_ROOM_DIR .. "imgMyRoomTitle.png"
 		imgMyRoomTitle = ccui.ImageView:create(imgMyRoomTitle,ccui.TextureResType.plistType)
 		imgMyRoomTitle:setAnchorPoint(cc.p(0,0))
-		imgMyRoomTitle:setPosition(12,445)
+		imgMyRoomTitle:setPosition(285,500)
 		self._roomInfoLayer:addChild(imgMyRoomTitle)
 
 		self._roomListView = ccui.ListView:create()
-		self._roomListView:setContentSize(cc.size(784,402))
+		self._roomListView:setContentSize(cc.size(1016,440))
 		self._roomListView:setAnchorPoint(cc.p(0,0))
+		self._roomListView:setScrollBarEnabled(false)
 		self._roomListView:setDirection(ccui.ListViewDirection.vertical)
 		self._roomInfoLayer:addChild(self._roomListView)
-		self._roomListView:setPosition(17,42)
-
-		local str = "房间ID        剩余局数   收费入座     房间人数"
-		local labelTip = cc.Label:createWithTTF(str,GameUtils.getFontName(), 24)
-		labelTip:setPosition(100,12)
-		labelTip:setAnchorPoint(cc.p(0,0))
-		labelTip:setColor(cc.c4b(180,168,240,255))
-		imgMyRoomTitle:addChild(labelTip)
+		self._roomListView:setPosition(260,42)
 	end
 
 	local ManagerClazz = cc.exports.lobby.CreateRoomManager
@@ -293,40 +286,41 @@ end
 function MyRoomInfoLayer:_createEndedItem( __data,__index)
 	local ManagerClazz = cc.exports.lobby.CreateRoomManager
 	local layout = self:_createBaseItem(__data,TAG_ENDED,__index)
+	local size = layout:getContentSize()
 	local params = {{
 		fontName = GameUtils.getFontName(),
-		fontSize = 14,
+		fontSize = 24,
 		text = __data.timeOfCreateRoom,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(34,107),
-		anchorPoint = cc.p(0,0.5)
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(1016,20),
+		anchorPoint = cc.p(1,0.5)
 		}
 		,{
 		fontName = GameUtils.getFontName(),
-		fontSize = 19,
+		fontSize = 24,
 		text = ManagerClazz:getInstance():findRoomIdString(" ") .. __data.roomId,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(65,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(40,size.height/2+18),
 		anchorPoint = cc.p(0,0.5)
 		},
 		{
 		fontName = GameUtils.getFontName(),
-		fontSize = 20,
+		fontSize = 24,
 		text = ManagerClazz:getInstance():findChessNumString("    ") .. __data.gameRound,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(290,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(290+75,size.height/2+18),
 		anchorPoint = cc.p(0,0.5)
 		},
 		{
 		fontName = GameUtils.getFontName(),
-		fontSize = 23,
+		fontSize = 24,
 		text = ManagerClazz:getInstance():findJoinNumString() .. __data.peopleNumOfRoom,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(458,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(458+150,size.height/2+18),
 		anchorPoint = cc.p(0,0.5)
 		}
 	}
@@ -336,21 +330,10 @@ function MyRoomInfoLayer:_createEndedItem( __data,__index)
 		local label = cc.exports.lib.uidisplay.createLabel(param)
 		layout:addChild(label)
 	end 
-
-	local button = cc.exports.lib.uidisplay.createLabelButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "common_small_blue_btn.png",
-			callback = handler(self,self._onLookForDetail),
-			isActionEnabled = true,
-			pos = cc.p(670,44),
-			text = "查看详情",
-			outlineColor = cc.c4b(24,31,92,255),
-			outlineSize = 2,
-			labPos = cc.p(0,2),
-			scale = 0.5,
-	})
-	button:setTag(__index)
+	local button = self:_initItemBgtn(__data,"btnLookDedtail.png",cc.p(670+290,size.height/2+18),TAG_ENDED,cc.p(0.5,0.5))
 	layout:addChild(button)
+	button:setTag(__index)
+	button:setPressedActionEnabled(true)
 	return layout
 end
 
@@ -365,18 +348,18 @@ function MyRoomInfoLayer:_refreshEndedLayer( __data )
 			fontSize = 23,
 			text = ManagerClazz:getInstance():findLastChessString(),
 			alignment = cc.TEXT_ALIGNMENT_CENTER,
-			color = cc.c4b(115,99,192, 255),
-			pos = cc.p(60,465),
+			color = cc.c4b(255,255,255, 255),
+			pos = cc.p(300,510),
 		}
 		local label = cc.exports.lib.uidisplay.createLabel(labelConfig)
 		self._chessInfoLayer:addChild(label)
 
 		self._chessListView = ccui.ListView:create()
-		self._chessListView:setContentSize(cc.size(784,402))
+		self._chessListView:setContentSize(cc.size(1016,440))
 		self._chessListView:setAnchorPoint(cc.p(0,0))
 		self._chessListView:setDirection(ccui.ListViewDirection.vertical)
 		self._chessInfoLayer:addChild(self._chessListView)
-		self._chessListView:setPosition(17,42)
+		self._chessListView:setPosition(260,42)
 	end
 
 	self._chessListView:removeAllChildren()
@@ -448,40 +431,41 @@ end
 function MyChessInfoLayer:_createJoinChessItems( __data,__index )
 	local ManagerClazz = cc.exports.lobby.CreateRoomManager
 	local layout = self:_createBaseItem(__data,TAG_JOIN_CHESS,__index)
+	local size = layout:getContentSize()
 	local params = {{
 		fontName = GameUtils.getFontName(),
-		fontSize = 14,
+		fontSize = 24,
 		text = __data.timeOfCreateRoom,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(34,107),
-		anchorPoint = cc.p(0,0.5)
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(1016,20),
+		anchorPoint = cc.p(1,0.5)
 		}
 		,{
 		fontName = GameUtils.getFontName(),
-		fontSize = 19,
+		fontSize = 24,
 		text = ManagerClazz:getInstance():findRoomIdString(" ") .. __data.roomId,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(65,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(40,size.height/2+18),
 		anchorPoint = cc.p(0,0.5)
 		},
 		{
 		fontName = GameUtils.getFontName(),
-		fontSize = 20,
+		fontSize = 24,
 		text = ManagerClazz:getInstance():findCreatorString(__data) ,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(250,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(290+50,size.height/2+18),
 		anchorPoint = cc.p(0,0.5)
 		},
 		{
 		fontName = GameUtils.getFontName(),
-		fontSize = 23,
+		fontSize = 24,
 		text = ManagerClazz:getInstance():findScoreString(__data) ,
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
-		color = cc.c4b(209,205,247, 255),
-		pos = cc.p(458,44),
+		color = cc.c4b(255,255,255, 255),
+		pos = cc.p(458+175,size.height/2+18),
 		anchorPoint = cc.p(0,0.5)
 		}
 	}
@@ -491,20 +475,8 @@ function MyChessInfoLayer:_createJoinChessItems( __data,__index )
 		local label = cc.exports.lib.uidisplay.createLabel(param)
 		layout:addChild(label)
 	end 
-
-	local button = cc.exports.lib.uidisplay.createLabelButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "common_small_blue_btn.png",
-			callback = handler(self,self._onLookForDetail),
-			isActionEnabled = true,
-			pos = cc.p(670,44),
-			text = "查看详情",
-			outlineColor = cc.c4b(24,31,92,255),
-			outlineSize = 2,
-			labPos = cc.p(0,2),
-			scale = 0.5,
-	})
-
+	local button = self:_initItemBgtn(__data,"btnLookDedtail.png",cc.p(670+290,size.height/2+18),TAG_JOIN_CHESS,cc.p(0.5,0.5))
+	button:setPressedActionEnabled(true)
 	button:setTag(__index)
 	layout:addChild(button)
 	return layout
@@ -513,23 +485,28 @@ end
 function MyChessInfoLayer:refresh( ... )
 	local ManagerClazz = cc.exports.lobby.CreateRoomManager
 	if self._chessListView == nil  then
+		local labelBg = "btnNormal.png"
+		labelBg = ccui.ImageView:create(labelBg,ccui.TextureResType.plistType)
+		labelBg:setPosition(133,495)
+		self:addChild(labelBg)
+
 		local labelConfig =	{
 			fontName = GameUtils.getFontName(),
-			fontSize = 23,
+			fontSize = 30,
 			text = ManagerClazz:getInstance():findLastChessString(),
 			alignment = cc.TEXT_ALIGNMENT_CENTER,
-			color = cc.c4b(115,99,192, 255),
-			pos = cc.p(60,465),
+			color = cc.c4b(255,255,255, 255),
+			pos = cc.p(133,495),
 		}
 		local label = cc.exports.lib.uidisplay.createLabel(labelConfig)
 		self:addChild(label)
 
 		self._chessListView = ccui.ListView:create()
-		self._chessListView:setContentSize(cc.size(784,402))
+		self._chessListView:setContentSize(cc.size(1016,440))
 		self._chessListView:setAnchorPoint(cc.p(0,0))
 		self._chessListView:setDirection(ccui.ListViewDirection.vertical)
 		self:addChild(self._chessListView)
-		self._chessListView:setPosition(17,42)
+		self._chessListView:setPosition(260,42)
 	end
 	
 	self._chessListView:removeAllChildren()
@@ -591,13 +568,15 @@ function CreateRoomView:ctor( ... )
 	self._createInput = CreateInput.create()
 	self._roomInfoLayer = nil
 	self._chessInfoLayer = nil
-	self:_addMyRoomAndChessPanel()
+	
 	
 	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
 	manager:RequestPrivateTableConfig(function ( ... )
 		self._createInput.chess = 10
 		self._createInput.cost = manager:findRoomCardCost(self._createInput.chess)
-		self:_addCreateRoomPanel()
+		-- self:_addCreateRoomPanel()
+
+		self:_addMyRoomAndChessPanel()
 	end)
 end
 
@@ -605,135 +584,235 @@ end
 
 
 function CreateRoomView:_addTabBtn( __targetNode )
-	local dir = self:_findCreateRoomDir()
-	local btnMyRoom0 = dir .. "btnMyRoom1.png"
-	local btnMyRoom1 = dir .. "btnMyRoom0.png"
+	-- local dir = self:_findCreateRoomDir()
+	-- local btnMyRoom0 = dir .. "btnMyRoom0.png"
+	-- local btnMyRoom1 = dir .. "btnMyRoom1.png"
 
-	local btnMyChess0 = dir .. "btnMyChess1.png"
-	local btnMyChess1 = dir .. "btnMyChess0.png"
-
-	local roomInfo = dir.."btnRoomInfo_bg.png"
-
-	local myRoom = dir.."btnCreateRoom_bg.png"
-	local myChess = dir.."btnCreateRoom_bg.png"
+	-- local btnMyChess0 = dir .. "btnMyChess0.png"
+	-- local btnMyChess1 = dir .. "btnMyChess1.png"
 
 	local tabTagMyRoom = 1
 	local tabTagMyChess = 2
+	local tabTagRoomSet = 3
 	local topOrder = 99
 	local bottomOrder = 98
 	local size = __targetNode:getContentSize()
 
-	local roomInfoBg = cc.Sprite:createWithSpriteFrameName(roomInfo)
-	__targetNode:addChild(roomInfoBg)
-	roomInfoBg:setPosition(375,588)
+	 local btnImg = "btnTopSelected.png"
+    self._roomSet = ccui.Button:create(btnImg, btnImg, btnImg, ccui.TextureResType.plistType)
+	self._roomSet:setPosition(405, size.height-58.5)
+	__targetNode:addChild(self._roomSet)
+	self._roomSet:setOpacity(0)
 
-	local myRoomBg = cc.Sprite:createWithSpriteFrameName(myRoom)
-	__targetNode:addChild(myRoomBg)
-	myRoomBg:setPosition(31,586.5)
-	myRoomBg:setVisible(true)
-	myRoomBg:setAnchorPoint(0,0.5)
-	local myChessBg = cc.Sprite:createWithSpriteFrameName(myChess)
-	__targetNode:addChild(myChessBg)
-	myChessBg:setPosition(717,586.5)
-	myChessBg:setVisible(false)
-	myChessBg:setAnchorPoint(1,0.5)
+	self._myRoom = ccui.Button:create(btnImg, btnImg, btnImg, ccui.TextureResType.plistType)
+	self._myRoom:setPosition(405+352, size.height-58.5)
+	__targetNode:addChild(self._myRoom)
+	self._myRoom:setOpacity(0)
 
-	local btnMyRoom =  ccui.Button:create(btnMyRoom0,btnMyRoom1,btnMyRoom0,ccui.TextureResType.plistType)
-	__targetNode:addChild(btnMyRoom)
-	local buttonSize = btnMyRoom:getContentSize()
-	btnMyRoom:setPressedActionEnabled(false)
-	btnMyRoom:setZoomScale(0)
-	btnMyRoom:setPosition(buttonSize.width / 2 + 175 ,size.height + buttonSize.height / 2 + 10)
+	self._myJoinRoom = ccui.Button:create(btnImg, btnImg, btnImg, ccui.TextureResType.plistType)
+	self._myJoinRoom:setPosition(405+352*2, size.height-58.5)
+	__targetNode:addChild(self._myJoinRoom)
+	self._myJoinRoom:setOpacity(0)
+
+	self.__roomSetImg = ccui.ImageView:create("btnTopSelected.png", ccui.TextureResType.plistType)
+	self.__roomSetImg:setPosition(405, size.height-58.5)
+	__targetNode:addChild(self.__roomSetImg)
+	self.__roomSetImg:show()
+
+	self._myRoomImg = ccui.ImageView:create("btnTopSelected.png", ccui.TextureResType.plistType)
+	self._myRoomImg:setPosition(405+352, size.height-58.5)
+	__targetNode:addChild(self._myRoomImg)
+	self._myRoomImg:hide()
+
+	self._myJoinRoomImg = ccui.ImageView:create("btnTopSelected.png", ccui.TextureResType.plistType)
+	self._myJoinRoomImg:setPosition(405+352*2, size.height-58.5)
+	__targetNode:addChild(self._myJoinRoomImg)
+	self._myJoinRoomImg:hide()
+
+	self._roomSetText = cc.Label:createWithTTF("房间设定",GameUtils.getFontName(),30)
+    self._roomSetText:setAnchorPoint(cc.p(0.5, 0.5))
+    self._roomSetText:setColor(cc.c3b(255,255,255))
+    self._roomSetText:setPosition(405, size.height-60)
+    __targetNode:addChild(self._roomSetText,10)
+
+    self._myRoomText = cc.Label:createWithTTF("我的房间",GameUtils.getFontName(),30)
+    self._myRoomText:setAnchorPoint(cc.p(0.5, 0.5))
+    self._myRoomText:setColor(cc.c3b(191, 169, 125))
+    self._myRoomText:setPosition(405+352, size.height-60)
+    __targetNode:addChild(self._myRoomText,10)
+
+    self._myJoinRoomText = cc.Label:createWithTTF("我参与的牌局",GameUtils.getFontName(),30)
+    self._myJoinRoomText:setAnchorPoint(cc.p(0.5, 0.5))
+    self._myJoinRoomText:setColor(cc.c3b(191, 169, 125))
+    self._myJoinRoomText:setPosition(405+352*2, size.height-60)
+    __targetNode:addChild(self._myJoinRoomText,10)
+
+	-- local btnMyRoom =  ccui.Button:create(btnMyRoom0,btnMyRoom1,btnMyRoom1,ccui.TextureResType.plistType)
+	-- __targetNode:addChild(btnMyRoom)
+	-- local buttonSize = btnMyRoom:getContentSize()
+	-- btnMyRoom:setPressedActionEnabled(false)
+	-- btnMyRoom:setZoomScale(0)
+	-- btnMyRoom:setPosition(buttonSize.width / 2 ,size.height + buttonSize.height / 2 - 20)
 
 
-	local btnMyChess =  ccui.Button:create(btnMyChess0,btnMyChess1,btnMyChess0,ccui.TextureResType.plistType)
-	__targetNode:addChild(btnMyChess)
-	local buttonSize = btnMyRoom:getContentSize()
-	btnMyChess:setPosition(387 + 125,size.height + buttonSize.height / 2 + 10)
-	btnMyChess:setPressedActionEnabled(false)
-	btnMyChess:setZoomScale(0)
+	-- local btnMyChess =  ccui.Button:create(btnMyChess0,btnMyChess1,btnMyChess1,ccui.TextureResType.plistType)
+	-- __targetNode:addChild(btnMyChess)
+	-- local buttonSize = btnMyRoom:getContentSize()
+	-- btnMyChess:setPosition(387,size.height + buttonSize.height / 2 - 20)
+	-- btnMyChess:setPressedActionEnabled(false)
+	-- btnMyChess:setZoomScale(0)
+
 	local initCallback = function ( __sender)
-		local tag = __sender ~= nil and __sender:getTag() or tabTagMyRoom
+	local tag = __sender ~= nil and __sender:getTag() or tabTagRoomSet
 		if  tag == tabTagMyRoom then
 			self:_onShowMyRoom()
-			btnMyRoom:setTouchEnabled(false)
-			btnMyChess:setTouchEnabled(true)
-			myRoomBg:setVisible(true)
-			myChessBg:setVisible(false)
-			-- btnMyChess:setLocalZOrder(bottomOrder)
-			-- btnMyRoom:setLocalZOrder(topOrder)
-			-- btnMyRoom:loadTextures(btnMyRoom1,btnMyRoom0,btnMyRoom0,ccui.TextureResType.plistType)
-			-- btnMyChess:loadTextures(btnMyChess0,btnMyChess1,btnMyChess1,ccui.TextureResType.plistType)
+			self.__roomSetImg:hide()
+			self._myRoomImg:show()
+			self._myJoinRoomImg:hide()
+			self._roomSetText:setColor(cc.c3b(191, 169, 125))
+			self._myRoomText:setColor(cc.c3b(255,255,255))
+			self._myJoinRoomText:setColor(cc.c3b(191, 169, 125))
 		elseif tag == tabTagMyChess then
 			self:_onShowMyChess()
-			btnMyRoom:setTouchEnabled(true)
-			btnMyChess:setTouchEnabled(false)
-			myRoomBg:setVisible(false)
-			myChessBg:setVisible(true)
-			-- btnMyChess:setLocalZOrder(topOrder)
-			-- btnMyRoom:setLocalZOrder(bottomOrder)
-			-- btnMyRoom:loadTextures(btnMyRoom0,btnMyRoom1,btnMyRoom1,ccui.TextureResType.plistType)
-			-- btnMyChess:loadTextures(btnMyChess1,btnMyChess0,btnMyChess0,ccui.TextureResType.plistType)
+			self.__roomSetImg:hide()
+			self._myRoomImg:hide()
+			self._myJoinRoomImg:show()
+			self._roomSetText:setColor(cc.c3b(191, 169, 125))
+			self._myRoomText:setColor(cc.c3b(191, 169, 125))
+			self._myJoinRoomText:setColor(cc.c3b(255,255,255))
+		elseif tag == tabTagRoomSet then
+			self:_onShowRoomSet()
+			self.__roomSetImg:show()
+			self._myRoomImg:hide()
+			self._myJoinRoomImg:hide()
+			self._roomSetText:setColor(cc.c3b(255,255,255))
+			self._myRoomText:setColor(cc.c3b(191, 169, 125))
+			self._myJoinRoomText:setColor(cc.c3b(191, 169, 125))
 		end
 	end
 
-	btnMyRoom:addClickEventListener(function ( __sender ) initCallback(__sender) end)
-	btnMyRoom:setTag(tabTagMyRoom)
+	self._roomSet:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	self._roomSet:setTag(tabTagRoomSet)
+	self._myRoom:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	self._myRoom:setTag(tabTagMyRoom)
+	self._myJoinRoom:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	self._myJoinRoom:setTag(tabTagMyChess)
 
-	btnMyChess:addClickEventListener(function ( __sender ) initCallback(__sender) end)
-	btnMyChess:setTag(tabTagMyChess)
+	-- btnMyRoom:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	-- btnMyRoom:setTag(tabTagMyRoom)
+
+	-- btnMyChess:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	-- btnMyChess:setTag(tabTagMyChess)
 	initCallback(nil)
 end
 
 function CreateRoomView:_addMyRoomAndChessPanel( ... )
 	local dir = self:_findCreateRoomDir()
-	local imgMyInfo = dir .. "imgMyInfo.png"
-	local imgBg = ccui.Scale9Sprite:createWithSpriteFrameName(imgMyInfo,cc.rect(100,88,8,8))
-	imgBg:setContentSize(cc.size(774,562))
+	local imgMyInfo = dir .. "imgCreateRoomBg.png"
+	local imgBg = ccui.ImageView:create(imgMyInfo,ccui.TextureResType.plistType)
+	-- imgBg:setContentSize(cc.size(774,562))
 	self:addChild(imgBg)
 	imgBg:setAnchorPoint(0,0)
 	imgBg:setPosition(10,15)
 	self:_addTabBtn(imgBg)
-
-	local str = "如果游戏在十分钟内没有正式开始，系统会自动解散房间并退还房卡"
-	local labelTip = cc.Label:createWithTTF(str,GameUtils.getFontName(), 20)
-	labelTip:setPosition(imgBg:getContentSize().width/2,15)
-	labelTip:setColor(cc.c4b(133,125,190, 255))
-	imgBg:addChild(labelTip)
 end
 
 function CreateRoomView:_initCreateRoomPanel( __parent )
 	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
-	local size = __parent:getContentSize()
-	local dir  = self:_findCreateRoomDir()
-	local imgCreateRoom = dir .. "imgCreateRoom.png"
-	imgCreateRoom = ccui.ImageView:create(imgCreateRoom,ccui.TextureResType.plistType)
-	__parent:addChild(imgCreateRoom)
-	imgCreateRoom:setPosition(265,size.height - 35)
+	-- local size = __parent:getContentSize()
+	-- local dir  = self:_findCreateRoomDir()
+	-- local imgCreateRoom = dir .. "imgCreateRoom.png"
+	-- local imgCreateRoom = cc.Label:createWithTTF("创建房间",GameUtils.getFontName(), 30)
+	-- __parent:addChild(imgCreateRoom)
+	-- imgCreateRoom:setPosition(667,375)
 
-	local textColor = cc.c4b(185,165,255, 255)
+	for i=1,5 do
+		local line = ccui.ImageView:create("imgCreateRoomLine.png",ccui.TextureResType.plistType)
+		__parent:addChild(line)
+		if i == 1 then
+			line:setPosition(405+352,460)
+		else
+			line:setPosition(405+352,450-(i-1)*70)
+		end
+	end
+
+	local gameBgNiu = "btnNormal.png"
+	gameBgNiu = ccui.ImageView:create(gameBgNiu,ccui.TextureResType.plistType)
+	__parent:addChild(gameBgNiu,10)
+	gameBgNiu:setVisible(true)
+
+	local gameBgZjh = "btnNormal.png"
+	gameBgZjh = ccui.ImageView:create(gameBgZjh,ccui.TextureResType.plistType)
+	__parent:addChild(gameBgZjh,10)
+	gameBgZjh:setVisible(false)
+
+	local gameTextNiu = cc.Label:createWithTTF("抢庄牛牛",GameUtils.getFontName(),30)
+    gameTextNiu:setAnchorPoint(cc.p(0.5, 0.5))
+    gameTextNiu:setColor(cc.c3b(255,255,255))
+    gameTextNiu:setPosition(133,495)
+    __parent:addChild(gameTextNiu,10)
+
+    local gameTextZjh = cc.Label:createWithTTF("炸金花",GameUtils.getFontName(),30)
+    gameTextZjh:setAnchorPoint(cc.p(0.5, 0.5))
+    gameTextZjh:setColor(cc.c3b(191, 169, 125))
+    gameTextZjh:setPosition(133,495-100)
+    __parent:addChild(gameTextZjh,10)
+
+	local slideImg = "btnSelected.png"
+	local button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	__parent:addChild(button)
+	button:addClickEventListener(function ( __sender)
+			gameBgNiu:setVisible(true)
+			gameBgZjh:setVisible(false)
+			gameTextNiu:setColor(cc.c3b(255,255,255))
+			gameTextZjh:setColor(cc.c3b(191, 169, 125))
+	end)
+	-- local size = button:getContentSize()
+	-- local x = size.width / 2 + 5
+	-- local y = imgProgressEnded:getContentSize().height * 0.5 - 5
+	button:setPosition(133,495)
+	gameBgNiu:setPosition(133,495)
+
+	slideImg = "btnSelected.png"
+	button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	__parent:addChild(button)
+	button:addClickEventListener(function ( __sender)
+			GameUtils.showMsg("游戏正在开发中")
+			-- gameBgNiu:setVisible(false)
+			-- gameBgZjh:setVisible(true)
+			-- gameTextNiu:setColor(cc.c3b(191, 169, 125))
+			-- gameTextZjh:setColor(cc.c3b(255,255,255))
+		end)
+	-- local size = button:getContentSize()
+	-- x = imgProgressEnded:getContentSize().width -  size.width / 2 - 5
+	-- y = imgProgressEnded:getContentSize().height * 0.5 - 5
+	button:setPosition(133,495-100)
+	gameBgZjh:setPosition(133,495-100)
+
+
+	local textColor = cc.c4b(191, 169, 125, 255)
 	local valueCOloe = cc.c4b(255,255,255,255)
-	local data = manager:findSelectedData()
+	-- local data = manager:findSelectedData()
 
-	local y = 368
+	local y = 350
 	local params = {
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findMinScoreString("  "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(100,514),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findChessNumString("  "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(100,430),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findMinScoreString("        "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,500),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findChessNumString("        "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,425),anchorPoint = cc.p(0,0.5)},
 		
 		--算牛
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findComNiuLabelString("      "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(15,y),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findAutoNiuLabelString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(187,y),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findSelfNiuLabelString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(395,y),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findComNiuLabelString("        "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,y),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findAutoNiuLabelString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(485,y),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findSelfNiuLabelString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(700,y),anchorPoint = cc.p(0,0.5)},
 		
 		--授权入座
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findSeatDownRightString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(15,y - 80),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findCloseString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(187,y - 80),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findOpenString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(395,y - 80),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findSeatDownRightString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,y - 75),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findCloseString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(485,y - 75),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findOpenString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(700,y - 75),anchorPoint = cc.p(0,0.5)},
 		
 		--收费入座
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findCostSeatDownString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(15,y - 160),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findYesString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(187,y - 160),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findNoString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(395,y - 160),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findCostSeatDownString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,y - 150),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findYesString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(485,y - 150),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findNoString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(700,y - 150),anchorPoint = cc.p(0,0.5)},
 		
 		--开房花费显示
 		--{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findCostSeatDownString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(15,y - 186),anchorPoint = cc.p(0,0.5)},
@@ -769,9 +848,9 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	self._costWidgetContainer = self._costWidgetContainer or {}
 	-- self._costWidgetContainer["iconRoomCard"] = iconRoomCard 
 
-	local imgCreateRoomLine = ccui.ImageView:create("imgCreateRoomLine.png",ccui.TextureResType.plistType)
-	__parent:addChild(imgCreateRoomLine)
-	imgCreateRoomLine:setPosition(cc.p(size.width * 0.5,400))
+	-- local imgCreateRoomLine = ccui.ImageView:create("imgCreateRoomLine.png",ccui.TextureResType.plistType)
+	-- __parent:addChild(imgCreateRoomLine)
+	-- imgCreateRoomLine:setPosition(cc.p(size.width * 0.5,400))
 
 
 
@@ -779,94 +858,88 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	local btnRadioSelected =  "btnRadioSelected.png"
 	
 	cc.exports.lib.uidisplay.createRadioGroup({
-		groupPos = cc.p(167,y),
+		groupPos = cc.p(455,y),
 		parent = __parent,
 		fileSelect = btnRadioSelected,
 		fileUnselect = btnRadioBg,
 		num = 2,
 		textureType = ccui.TextureResType.plistType,
-		poses = {cc.p(167,y),cc.p(375,y)},
+		poses = {cc.p(455,y),cc.p(680,y)},
 		callback = handler(self,self._onCalculateRadioGroupClick)
 	})
 	self._createInput.isAutoNiu = true
-
+	
 	if  isGrantAuthorizationShow  then
-		local height = y - 80
+		print("fdsjagjdsjafsdfdsfdfsajljfaleufd",isGrantAuthorizationShow)
+		local height = y - 75
 		cc.exports.lib.uidisplay.createRadioGroup({
-			groupPos = cc.p(167,height),
+			groupPos = cc.p(455,height),
 			parent = __parent,
 			fileSelect = btnRadioSelected,
 			fileUnselect = btnRadioBg,
 			num = 2,
 			textureType = ccui.TextureResType.plistType,
-			poses = {cc.p(167,height),cc.p(375,height)},
+			poses = {cc.p(455,height),cc.p(680,height)},
 			callback = handler(self,self._onOpenClosedRadioGroupClick)
 		})
-		self._createInput.isOpenRightToSeat = true
+		self._createInput.isOpenRightToSeat = false
 	end
 
 	if  isCostSitSelectionShow  then 
-		local height = y - 160	
+		local height = y - 150	
 		cc.exports.lib.uidisplay.createRadioGroup({
-			groupPos = cc.p(167,height),
+			groupPos = cc.p(455,height),
 			parent = __parent,
 			fileSelect = btnRadioSelected,
 			fileUnselect = btnRadioBg,
 			num = 2,
 			textureType = ccui.TextureResType.plistType,
-			poses = {cc.p(167,height),cc.p(375,height)},
+			poses = {cc.p(455,height),cc.p(680,height)},
 			callback = handler(self,self._onYesNoRadioGroupClick)
 		})
 		self._createInput.isCostToSeat = true
 	end
 
-	local button = cc.exports.lib.uidisplay.createLabelButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "common_big_blue_btn.png",
-			callback = handler(self,self._onCreateRoomClick),
-			isActionEnabled = true,
-			pos = cc.p(271,98),
-			text = "开房",
-			outlineColor = cc.c4b(24,31,92,255),
-			outlineSize = 2,
-			labPos = cc.p(-70,2),
-	})
-	__parent:addChild(button)
-
-	local sp = cc.Sprite:createWithSpriteFrameName("btnCreateRoomBg.png")
-	sp:setPosition(button:getContentSize().width/2+50,button:getContentSize().height/2+4)
-	button:addChild(sp)
-
-
-	local iconRoomCard = ccui.ImageView:create("res/common/iconRoomCard.png",ccui.TextureResType.localType)
-	button:addChild(iconRoomCard)
-	iconRoomCard:setPosition(cc.p(165,button:getContentSize().height * 0.5 + 2))
-	local param = {fontName = GameUtils.getFontName(),fontSize = 30,text = "X".. self._createInput.cost,alignment = cc.TEXT_ALIGNMENT_CENTER,color = cc.c4b(255,231,148,255),pos = cc.p(184,button:getContentSize().height * 0.5),anchorPoint = cc.p(0,0.5)}
-	local label = cc.exports.lib.uidisplay.createLabel(param)
-	button:addChild(label)
-	self._lbRoomCardInButton = label
 
 
 	local button = cc.exports.lib.uidisplay.createUIButton({
-			textureType = ccui.TextureResType.localType,
-			normal = "res/common/btnHelp.png",
-			callback = handler(self,self._onBtnHelpClick),
+			textureType = ccui.TextureResType.plistType,
+			normal = "btnCreateRoomCmd.png",
+			callback = handler(self,self._onCreateRoomClick),
 			isActionEnabled = true,
-			pos = cc.p(size.width -43,42)
+			pos = cc.p(405+352,120)
 	})
 	__parent:addChild(button)
+
+	-- local iconRoomCard = ccui.ImageView:create("res/common/iconRoomCard.png",ccui.TextureResType.localType)
+	-- button:addChild(iconRoomCard)
+	-- iconRoomCard:setPosition(cc.p(145,button:getContentSize().height * 0.5 + 2))
+	-- local param = {fontName = GameUtils.getFontName(),fontSize = 30,text = "X".. self._createInput.cost,alignment = cc.TEXT_ALIGNMENT_CENTER,color = cc.c4b(255,231,148,255),pos = cc.p(164,button:getContentSize().height * 0.5),anchorPoint = cc.p(0,0.5)}
+	-- local label = cc.exports.lib.uidisplay.createLabel(param)
+	-- button:addChild(label)
+	-- self._lbRoomCardInButton = label
+
+
+	-- local button = cc.exports.lib.uidisplay.createUIButton({
+	-- 		textureType = ccui.TextureResType.localType,
+	-- 		normal = "res/common/btnHelp.png",
+	-- 		callback = handler(self,self._onBtnHelpClick),
+	-- 		isActionEnabled = true,
+	-- 		pos = cc.p(size.width -75,size.height - 60)
+	-- })
+	-- __parent:addChild(button)
 
 	local node = cc.exports.lib.uidisplay.createAddMinusNode({
 		imgBg = "imgAddMinus.png",
 		callback = handler(self,self._onAddMinsScoreClick),
-		imgMinus = "btnMinus0.png",
-		imgMinusPrssed = "btnMinus1.png",
-		imgMinusDisabled = "btnMinus1.png",
-		imgMinusSize = cc.size(50,39),
-		imgAdd = "btnAdd0.png",
-		imgAddPrssed = "btnAdd1.png",
-		imgAddDisabled = "btnAdd1.png",
-		imgAddSize = cc.size(50,39),
+		imgMinus = "btnMinus.png",
+		imgMinusPrssed = "btnMinus.png",
+		imgMinusDisabled = "btnMinus.png",
+		imgMinusSize = cc.size(53,53),
+		imgAdd = "btnAdd.png",
+		imgAddPrssed = "btnAdd.png",
+		imgAddDisabled = "btnAdd.png",
+		imgAddSize = cc.size(53,53),
 		textureType = ccui.TextureResType.plistType,
 		textSize = 30,
 		textColor = cc.c4b(255,255,255,255),
@@ -877,19 +950,19 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 		dNum = 1
 		})
 	__parent:addChild(node)
-	node:setPosition(307,size.height - 104)
+	node:setPosition(520,500)
 
 	local node = cc.exports.lib.uidisplay.createAddMinusNode({
 		imgBg = "imgAddMinus.png",
 		callback = handler(self,self._onAddMinsChessClick),
-		imgMinus = "btnMinus0.png",
-		imgMinusPrssed = "btnMinus1.png",
-		imgMinusDisabled = "btnMinus1.png",
-		imgMinusSize = cc.size(50,39),
-		imgAdd = "btnAdd0.png",
-		imgAddPrssed = "btnAdd1.png",
-		imgAddDisabled = "btnAdd1.png",
-		imgAddSize = cc.size(50,39),
+		imgMinus = "btnMinus.png",
+		imgMinusPrssed = "btnMinus.png",
+		imgMinusDisabled = "btnMinus.png",
+		imgMinusSize = cc.size(53,53),
+		imgAdd = "btnAdd.png",
+		imgAddPrssed = "btnAdd.png",
+		imgAddDisabled = "btnAdd.png",
+		imgAddSize = cc.size(53,53),
 		textureType = ccui.TextureResType.plistType,
 		textSize = 30,
 		textColor = cc.c4b(255,255,255,255),
@@ -900,8 +973,14 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 		dNum = 10
 		})
 	__parent:addChild(node)
-	node:setPosition(307,size.height - 188)
+	node:setPosition(520,425)
 	self:_onDataOnCreatePanelRefresh(self._createInput.chess)
+
+	local endedText = cc.Label:createWithTTF("如果游戏在十分钟内没有正式开始，系统会自动解散房间并退还房卡",GameUtils.getFontName(),20)
+    endedText:setAnchorPoint(cc.p(0.5, 0.5))
+    endedText:setColor(cc.c3b(191, 169, 125))
+    endedText:setPosition(405+352,60)
+    __parent:addChild(endedText,10)
 end
 
 --[[--
@@ -956,11 +1035,11 @@ end
 function CreateRoomView:_onOpenClosedRadioGroupClick( __selectRadioButton,__index,_eventType )
 	print("_onOpenClosedRadioGroupClick",__selectRadioButton,__index,_eventType)
 	if __index == 0 then
-		print("open")
-		self._createInput.isOpenRightToSeat = true
-	else
-		print("cloase")	
+		print("close")
 		self._createInput.isOpenRightToSeat = false
+	else
+		print("open")	
+		self._createInput.isOpenRightToSeat = true
 	end
 end
 
@@ -1015,12 +1094,12 @@ end
 function CreateRoomView:_addCreateRoomPanel( ... )
 	local dir = self:_findCreateRoomDir()
 	local imgCreateRoomPanel = dir .. "imgCreateRoomPanel.png"
-	local imgBg = ccui.Scale9Sprite:createWithSpriteFrameName(imgCreateRoomPanel,cc.rect(100,140,4,4))
-	imgBg:setContentSize(cc.size(518,618))
+	local imgBg = ccui.ImageView:create(imgCreateRoomPanel,ccui.TextureResType.plistType)
+	-- imgBg:setContentSize(cc.size(518,618))
 	self:addChild(imgBg)
 	imgBg:setAnchorPoint(1,0)
-	imgBg:setPosition(display.width - 15,15)
-	self:_initCreateRoomPanel(imgBg)
+	imgBg:setPosition(display.width - 1,15)
+	-- self:_initCreateRoomPanel(imgBg)
 end
 
 function CreateRoomView:_onShowMyRoom( ... )
@@ -1032,6 +1111,7 @@ function CreateRoomView:_onShowMyRoom( ... )
 	self._roomInfoLayer:setVisible(true) 
 	self._roomInfoLayer:refresh()
 	if self._chessInfoLayer then  self._chessInfoLayer:setVisible(false) end 
+	if self._roomSetLayer then self._roomSetLayer:setVisible(false) end
 end
 
 function CreateRoomView:_onShowMyChess( ... )
@@ -1042,8 +1122,26 @@ function CreateRoomView:_onShowMyChess( ... )
 		print("create chess layer")
 	end 
 	if self._roomInfoLayer then  self._roomInfoLayer:setVisible(false) end 
+	if self._roomSetLayer then self._roomSetLayer:setVisible(false) end
 	self._chessInfoLayer:setVisible(true)
 	self._chessInfoLayer:refresh()
+end
+
+function CreateRoomView:_onShowRoomSet( ... )
+	if self._roomSetLayer == nil then 
+		self:roomSetLayer()
+	end
+	self._roomSetLayer:setVisible(true)
+	if self._roomInfoLayer then self._roomInfoLayer:setVisible(false) end 
+	if self._chessInfoLayer then self._chessInfoLayer:setVisible(false) end
+end
+
+function CreateRoomView:roomSetLayer( ... )
+	if self._roomSetLayer == nil then
+		self._roomSetLayer = cc.Layer:create()
+		self:addChild(self._roomSetLayer)
+		self:_initCreateRoomPanel(self._roomSetLayer)
+	end
 end
 
 function CreateRoomView:onListersInitCallback( ... )

@@ -325,17 +325,17 @@ function MultiPlatform:triggerPickImg(callback, needClip)
 end
 
 
--- 获取设备id
-function MultiPlatform:getMachineId()
-	local plat = self:getSupportPlatform()
+-- -- 获取设备id  
+-- function MultiPlatform:getMachineId()
+-- 	local plat = self:getSupportPlatform()
 
-	if nil ~= self:reqModule(PLATFORM[plat]) and nil ~= self:reqModule(PLATFORM[plat]).getMachineId then
-		return self:reqModule(PLATFORM[plat]).getMachineId( )
-	else
-		print("unknow platform ==> " .. plat)
-		return "A501164B366ECFC9E249163873094D50"
-	end	
-end
+-- 	if nil ~= self:reqModule(PLATFORM[plat]) and nil ~= self:reqModule(PLATFORM[plat]).getMachineId then
+-- 		return self:reqModule(PLATFORM[plat]).getMachineId( )
+-- 	else
+-- 		print("unknow platform ==> " .. plat)
+-- 		return "A501164B366ECFC9E249163873094D50"
+-- 	end	
+-- end
 
 -- 获取设备ip
 function MultiPlatform:getClientIpAdress()

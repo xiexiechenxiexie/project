@@ -128,40 +128,40 @@ end
 ]]
 function LogoScene:checkHotUpdate( ... )
 	local gameId = -1
-	local updateFunc = function ( ... )
-		if lib.download.HotUpdateManager:isGameModelNeedToUpadte(gameId) then 
-			local hot = lib.download.HotUpdateManager.new(-1,nil) 
-			self._hotUpdateNode = hot
-			self:addChild(hot)
-			hot:checkUpdate()
-		else
+	-- local updateFunc = function ( ... )
+	-- 	if lib.download.HotUpdateManager:isGameModelNeedToUpadte(gameId) then 
+	-- 		local hot = lib.download.HotUpdateManager.new(-1,nil) 
+	-- 		self._hotUpdateNode = hot
+	-- 		self:addChild(hot)
+	-- 		hot:checkUpdate()
+	-- 	else
 			print("跳过热更新")
 			self:onUpdateFinish()
-		end
-	end	
+	-- 	end
+	-- end	
 
-	lib.download.HotUpdateManager:queryManifests(function ( ... )
-		--检测大包
-		local downloadInfo = lib.download.HotUpdateManager:findDownloadInfo()
-		if downloadInfo then
-			local version = downloadInfo.version;
-			if version  then
-				print("fly","config.channle.VERSION",config.channle.VERSION)
-				local code = lib.download.HotUpdateManager:findVersionChangedCode(config.channle.VERSION,version)
-				if code then
-					print("强制更新...")
-					local updateBigPackage = require "src/preload/src/UpdateBigPackageView"
-					self:addChild(updateBigPackage.new(downloadInfo))
-				else
-					updateFunc()
-				end
-			else
-				updateFunc()
-			end
-		else
-			updateFunc()
-		end
-	end)
+	-- lib.download.HotUpdateManager:queryManifests(function ( ... )
+	-- 	--检测大包
+	-- 	local downloadInfo = lib.download.HotUpdateManager:findDownloadInfo()
+	-- 	if downloadInfo then
+	-- 		local version = downloadInfo.version;
+	-- 		if version  then
+	-- 			print("fly","config.channle.VERSION",config.channle.VERSION)
+	-- 			local code = lib.download.HotUpdateManager:findVersionChangedCode(config.channle.VERSION,version)
+	-- 			if code then
+	-- 				print("强制更新...")
+	-- 				local updateBigPackage = require "src/preload/src/UpdateBigPackageView"
+	-- 				self:addChild(updateBigPackage.new(downloadInfo))
+	-- 			else
+	-- 				updateFunc()
+	-- 			end
+	-- 		else
+	-- 			updateFunc()
+	-- 		end
+	-- 	else
+			-- updateFunc()
+	-- 	end
+	-- end)
 
 end
 

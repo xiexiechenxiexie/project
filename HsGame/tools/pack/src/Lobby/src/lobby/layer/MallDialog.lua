@@ -21,28 +21,28 @@ local btnMenuRes = {}
 
 -- 金币按钮图片样式
 btnMenuRes[BTN_MENU_GOLD] = {}
--- btnMenuRes[BTN_MENU_GOLD]["NORMAL"] = "TP/Mall/mall_btn_menu_gold_normal.png"
--- btnMenuRes[BTN_MENU_GOLD]["SELECTED"] = "TP/Mall/mall_btn_menu_gold_selected.png"
-btnMenuRes[BTN_MENU_GOLD]["NORMAL"] = "TP/Mall/Store/mall_dialog_title_btn_normal.png"
-btnMenuRes[BTN_MENU_GOLD]["SELECTED"] = "TP/Mall/Store/mall_dialog_title_btn_selected.png"
+-- btnMenuRes[BTN_MENU_GOLD]["NORMAL"] = "mall_btn_menu_gold_normal.png"
+-- btnMenuRes[BTN_MENU_GOLD]["SELECTED"] = "mall_btn_menu_gold_selected.png"
+btnMenuRes[BTN_MENU_GOLD]["NORMAL"] = "mall_dialog_title_btn_normal.png"
+btnMenuRes[BTN_MENU_GOLD]["SELECTED"] = "mall_dialog_title_btn_selected.png"
 btnMenuRes[BTN_MENU_GOLD]["TEXT"] = "金币"
 btnMenuRes[BTN_MENU_GOLD]["POS"] = cc.p(83, 37)
 
 -- 钻石按钮图片样式
 btnMenuRes[BTN_MENU_DIAMOND] = {}
--- btnMenuRes[BTN_MENU_DIAMOND]["NORMAL"] = "TP/Mall/mall_btn_menu_diamond_normal.png"
--- btnMenuRes[BTN_MENU_DIAMOND]["SELECTED"] = "TP/Mall/mall_btn_menu_diamond_selected.png"
-btnMenuRes[BTN_MENU_DIAMOND]["NORMAL"] = "TP/Mall/Store/mall_dialog_title_btn_normal.png"
-btnMenuRes[BTN_MENU_DIAMOND]["SELECTED"] = "TP/Mall/Store/mall_dialog_title_btn_selected.png"
+-- btnMenuRes[BTN_MENU_DIAMOND]["NORMAL"] = "mall_btn_menu_diamond_normal.png"
+-- btnMenuRes[BTN_MENU_DIAMOND]["SELECTED"] = "mall_btn_menu_diamond_selected.png"
+btnMenuRes[BTN_MENU_DIAMOND]["NORMAL"] = "mall_dialog_title_btn_normal.png"
+btnMenuRes[BTN_MENU_DIAMOND]["SELECTED"] = "mall_dialog_title_btn_selected.png"
 btnMenuRes[BTN_MENU_DIAMOND]["TEXT"] = "钻石"
 btnMenuRes[BTN_MENU_DIAMOND]["POS"] = cc.p(244, 37)
 
 -- 房卡按钮图片样式
 btnMenuRes[BTN_MENU_ROOMCARD] = {}
--- btnMenuRes[BTN_MENU_ROOMCARD]["NORMAL"] = "TP/Mall/mall_btn_menu_room_card_normal.png"
--- btnMenuRes[BTN_MENU_ROOMCARD]["SELECTED"] = "TP/Mall/mall_btn_menu_rooom_card_selected.png"
-btnMenuRes[BTN_MENU_ROOMCARD]["NORMAL"] = "TP/Mall/Store/mall_dialog_title_btn_normal.png"
-btnMenuRes[BTN_MENU_ROOMCARD]["SELECTED"] = "TP/Mall/Store/mall_dialog_title_btn_selected.png"
+-- btnMenuRes[BTN_MENU_ROOMCARD]["NORMAL"] = "mall_btn_menu_room_card_normal.png"
+-- btnMenuRes[BTN_MENU_ROOMCARD]["SELECTED"] = "mall_btn_menu_rooom_card_selected.png"
+btnMenuRes[BTN_MENU_ROOMCARD]["NORMAL"] = "mall_dialog_title_btn_normal.png"
+btnMenuRes[BTN_MENU_ROOMCARD]["SELECTED"] = "mall_dialog_title_btn_selected.png"
 btnMenuRes[BTN_MENU_ROOMCARD]["TEXT"] = "房卡"
 btnMenuRes[BTN_MENU_ROOMCARD]["POS"] = cc.p(405, 37)
 
@@ -54,22 +54,22 @@ btnMenuRes[BTN_MENU_ROOMCARD]["POS"] = cc.p(405, 37)
 -- local textInfoRes = {}
 
 -- textInfoRes[TEXT_INFO_DIAMOND] = {}
--- textInfoRes[TEXT_INFO_DIAMOND]["INFO_BG"] = "TP/Mall/mall_top_info_item_bg.png"
--- textInfoRes[TEXT_INFO_DIAMOND]["INFO_ICON"] = "TP/Mall/mall_info_diamond.png"
+-- textInfoRes[TEXT_INFO_DIAMOND]["INFO_BG"] = "mall_top_info_item_bg.png"
+-- textInfoRes[TEXT_INFO_DIAMOND]["INFO_ICON"] = "mall_info_diamond.png"
 -- textInfoRes[TEXT_INFO_DIAMOND]["POS"] = cc.p(490, 705)
 -- textInfoRes[TEXT_INFO_DIAMOND]["ICON_OFFSET_X"] = 3
 -- textInfoRes[TEXT_INFO_DIAMOND]["ICON_OFFSET_Y"] = 0
 
 -- textInfoRes[TEXT_INFO_GOLD] = {}
--- textInfoRes[TEXT_INFO_GOLD]["INFO_BG"] = "TP/Mall/mall_top_info_item_bg.png"
--- textInfoRes[TEXT_INFO_GOLD]["INFO_ICON"] = "TP/Mall/mall_info_gold.png"
+-- textInfoRes[TEXT_INFO_GOLD]["INFO_BG"] = "mall_top_info_item_bg.png"
+-- textInfoRes[TEXT_INFO_GOLD]["INFO_ICON"] = "mall_info_gold.png"
 -- textInfoRes[TEXT_INFO_GOLD]["POS"] = cc.p(750, 705)
 -- textInfoRes[TEXT_INFO_GOLD]["ICON_OFFSET_X"] = 0
 -- textInfoRes[TEXT_INFO_GOLD]["ICON_OFFSET_Y"] = -1
 
 -- textInfoRes[TEXT_INFO_ROOM_CARD] = {}
--- textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_BG"] = "TP/Mall/mall_top_info_item_bg.png"
--- textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_ICON"] = "TP/Mall/mall_info_room_card.png"
+-- textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_BG"] = "mall_top_info_item_bg.png"
+-- textInfoRes[TEXT_INFO_ROOM_CARD]["INFO_ICON"] = "mall_info_room_card.png"
 -- textInfoRes[TEXT_INFO_ROOM_CARD]["POS"] = cc.p(1010, 705)
 -- textInfoRes[TEXT_INFO_ROOM_CARD]["ICON_OFFSET_X"] = 10
 -- textInfoRes[TEXT_INFO_ROOM_CARD]["ICON_OFFSET_Y"] = 1
@@ -86,7 +86,7 @@ end
 function MallDialg:_initView()
 
 	-- 商城背景
-	-- self.mallDialogBg = ccui.ImageView:create("TP/Mall/Store/mall_dialog_bg.png", ccui.TextureResType.plistType)
+	-- self.mallDialogBg = ccui.ImageView:create("mall_dialog_bg.png", ccui.TextureResType.plistType)
 	self.mallDialogBg = self._root
 	-- self.mallDialogBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height/2))
 	-- self.mallDialogBg:setTag(1)
@@ -94,7 +94,7 @@ function MallDialg:_initView()
 	-- self:_onRootPanelInit(self.mallDialogBg)
 
 	-- 抬头背景
-	self.dialogTitle = ccui.ImageView:create("TP/Mall/Store/mall_dialog_title_bg.png", ccui.TextureResType.plistType)
+	self.dialogTitle = ccui.ImageView:create("mall_dialog_title_bg.png", ccui.TextureResType.plistType)
 	self.dialogTitle:setPosition(cc.p(self.mallDialogBg:getContentSize().width/2, 480))
 	self.mallDialogBg:addChild(self.dialogTitle)
 
@@ -109,7 +109,6 @@ function MallDialg:_initView()
 		local btnMenu = ccui.Button:create(btnMenuRes[index]["NORMAL"], btnMenuRes[index]["SELECTED"], "", ccui.TextureResType.plistType)
 		btnMenu:setTitleText(btnMenuRes[index]["TEXT"])
 		btnMenu:setTitleFontSize(30)
-		btnMenu:setTitleFontName(GameUtils.getFontName())
 		btnMenu:setTitleColor(cc.c3b(104, 96, 169))
 		btnMenu:setTouchEnabled(true)
 		btnMenu:setContentSize(cc.size(155, 65))

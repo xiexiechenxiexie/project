@@ -120,7 +120,7 @@ function GameManager:onTableInfo(event,data)
             userPlayStateArray[player.seatid + 1] = true
         end
     end  
-
+    --设置玩家状态，判斷玩家入局入座的狀態
     self._view:setPlayerStatus(userPlayStateArray)
 
     self._view:setPlayerState(TableInfoArray.tableState,PlayerSelfInfo.cardNum)

@@ -33,7 +33,7 @@ conf.popPosArray =
 conf.multiplePosArray = 
 {
 	cc.p(244,178),	--1
-	cc.p(250,460),	--2
+	cc.p(240,460),	--2
 	cc.p(550,687),	--3
 	cc.p(787,687),	--4
 	cc.p(1121,460),	--5

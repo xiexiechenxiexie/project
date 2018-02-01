@@ -7,21 +7,24 @@ local Window = class("Window",lib.layer.BaseWindow)
 Window.BIG = 1
 Window.MIDDLE = 2
 Window.SMALL = 3
+Window.SERVICE = 4
+Window.TASK = 5
+Window.SIGN = 6
+Window.PAY = 7
 
-local exitImgInfo = {path = "common_bg_exitImg.png",textureResType = ccui.TextureResType.plistType,dPos = {dxFromRight = 85,dyFromTop = 50}}
-local btnCloseInfo = {path = "src/Lobby/res/common/common_btn_close.png",textureResType = ccui.TextureResType.localType,dPos = {dxFromRight = 45,dyFromTop = 40}}
+-- local exitImgInfo = {path = "common_bg_exitImg.png",textureResType = ccui.TextureResType.plistType,dPos = {dxFromRight = 85,dyFromTop = 50}}
+local btnCloseInfo = {path = "src/Lobby/res/common/common_btn_close.png",path1 = "src/Lobby/res/common/common_btn_close1.png",textureResType = ccui.TextureResType.localType,dPos = {dxFromRight = 112,dyFromTop = 57}}
 
--- local WindowDict = {
--- 	[Window.BIG] = {size = {width = 1060,height = 640},imgBg = "common_big_bg.png",textureResType = ccui.TextureResType.plistType,capInsets = cc.rect(100,135,8,8),exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
--- 	[Window.MIDDLE] = {size = {width = 940,height = 560},imgBg = "common_mid_bg.png",textureResType = ccui.TextureResType.plistType,capInsets = cc.rect(100,135,8,8),exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
--- 	[Window.SMALL] = {size = {width = 720,height = 410},imgBg = "common_little_bg.png",textureResType = ccui.TextureResType.plistType,capInsets = cc.rect(100,135,8,8),exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
--- }
 local WindowDict = {
-	[Window.BIG] = {size = {width = 1060,height = 640},imgBg = "common_big_bg.png",textureResType = ccui.TextureResType.plistType,capInsets = cc.rect(368,219,8,8),exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
-	[Window.MIDDLE] = {size = {width = 941,height = 561},imgBg = "common_mid_bg.png",textureResType = ccui.TextureResType.plistType,capInsets = cc.rect(368,136,8,8),exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
-	[Window.SMALL] = {size = {width = 721,height = 415},imgBg = "common_little_bg.png",textureResType = ccui.TextureResType.plistType,capInsets = cc.rect(237,136,8,8),exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
+	[Window.BIG] = {size = {width = 1091,height = 683},imgBg = "common_big_bg.png",textureResType = ccui.TextureResType.plistType,exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
+	[Window.MIDDLE] = {size = {width = 903,height = 568},imgBg = "common_mid_bg.png",textureResType = ccui.TextureResType.plistType,exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
+	[Window.SMALL] = {size = {width = 721,height = 457},imgBg = "common_msgbox_bg.png",textureResType = ccui.TextureResType.plistType,exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
+	[Window.SERVICE] = {size = {width = 1091,height = 683},imgBg = "lobby_service_bg.png",textureResType = ccui.TextureResType.plistType,exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
+	[Window.TASK] = {size = {width = 1091,height = 683},imgBg = "lobby_task_bg.png",textureResType = ccui.TextureResType.plistType,exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
+	[Window.SIGN] = {size = {width = 1091,height = 692},imgBg = "lobby_sign_bg.png",textureResType = ccui.TextureResType.plistType,exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
+	[Window.PAY] = {size = {width = 903,height = 568},imgBg = "shop_pay_bg.png",textureResType = ccui.TextureResType.plistType,exitImgInfo = exitImgInfo,btnCloseInfo = btnCloseInfo},
 }
--- 大 368,219 中 368,136 小 237,136
+
 
 function Window:ctor( __type )
 	__type = __type or Window.BIG
@@ -29,9 +32,9 @@ function Window:ctor( __type )
 	local info = WindowDict[__type]
 	local imgBg = nil
 	if info.textureResType == ccui.TextureResType.plistType then
-		imgBg = ccui.Scale9Sprite:createWithSpriteFrameName(info.imgBg,info.capInsets)
+		imgBg = ccui.ImageView:create(info.imgBg,info.textureResType)
 	else
-		imgBg = ccui.Scale9Sprite:create(info.capInsets,info.imgBg)
+		imgBg = ccui.ImageView:create(info.imgBg,info.textureResType)
 	end
 	assert(imgBg,"error invalid imgBg file , or create error ")
 	
@@ -42,17 +45,20 @@ function Window:ctor( __type )
 
 	local btnCloseInfo = info.btnCloseInfo
 	if not btnCloseInfo then return  end
-	local btnClose =  ccui.Button:create(btnCloseInfo.path,btnCloseInfo.path,btnCloseInfo.path,btnCloseInfo.textureResType)
+	local btnClose =  ccui.Button:create(btnCloseInfo.path,btnCloseInfo.path1,"",btnCloseInfo.textureResType)
 	self._root:addChild(btnClose)
 	btnClose:setPosition(info.size.width -  btnCloseInfo.dPos.dxFromRight,info.size.height -  btnCloseInfo.dPos.dyFromTop)
-	btnClose:setPressedActionEnabled(false)
+	-- btnClose:setPressedActionEnabled(false)
 	btnClose:addClickEventListener(handler(self,self.onCloseCallback))
+	if __type == Window.SIGN then
+		btnClose:setPosition(info.size.width -  btnCloseInfo.dPos.dxFromRight+1,info.size.height -  btnCloseInfo.dPos.dyFromTop-9)
+	end
 
-	local exitImgInfo = info.exitImgInfo
-	if not exitImgInfo then return  end
-	local exitImg  = ccui.ImageView:create(exitImgInfo.path,exitImgInfo.textureResType)
-	self._root:addChild(exitImg)
-	exitImg:setPosition(info.size.width -  exitImgInfo.dPos.dxFromRight,info.size.height -  exitImgInfo.dPos.dyFromTop)
+	-- local exitImgInfo = info.exitImgInfo
+	-- if not exitImgInfo then return  end
+	-- local exitImg  = ccui.ImageView:create(exitImgInfo.path,exitImgInfo.textureResType)
+	-- self._root:addChild(exitImg)
+	-- exitImg:setPosition(info.size.width -  exitImgInfo.dPos.dxFromRight,info.size.height -  exitImgInfo.dPos.dyFromTop)
 end
 
 cc.exports.lib.layer.Window = Window

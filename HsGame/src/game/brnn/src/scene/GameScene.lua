@@ -111,9 +111,9 @@ function GameScene:onTableInfo(data)
 	local scoreArray={}
 	for i=1,playerNum do
 		local tab={}
-		tab.UserId=byteArray:readUInt()
+		tab.userId=byteArray:readUInt()
 		local len = byteArray:readUShort()
-		tab.Score=tonumber(byteArray:readString(len))
+		tab.score=tonumber(byteArray:readString(len))
 		table.insert(scoreArray,tab)
 	end
 
@@ -370,9 +370,9 @@ function GameScene:OnGameSettilement(data)
 	local scoreArray={}
 	for i=1,playerNum do
 		local tab={}
-		tab.UserId=byteArray:readUInt()
+		tab.userId=byteArray:readUInt()
 		local len = byteArray:readUShort()
-		tab.Score=tonumber(byteArray:readString(len))
+		tab.score=tonumber(byteArray:readString(len))
 		table.insert(scoreArray,tab)
 	end
 	if self.m_TableLayer then

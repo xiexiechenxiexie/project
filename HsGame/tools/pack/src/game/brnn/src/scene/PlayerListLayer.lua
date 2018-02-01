@@ -123,7 +123,7 @@ function PlayerListLayer:createItem(data,index)
 		local paramTab={}
 		paramTab.avatarUrl=v.AvatarUrl or ""
 		paramTab.stencilFile="game/brnn/res/GameLayout/head_bg.png"
-		paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(info.Gender)
+		paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(info.gender)
 		local headnode=Avatar:create(paramTab)
 		headnode:setPosition(cc.p(x-124,y-49))
 		headnode:setScale(1.05)
@@ -135,8 +135,8 @@ function PlayerListLayer:createItem(data,index)
 			nameStr="???"
 			scoreStr="???"
 		else
-			nameStr=string.getMaxLen(info.NickName)
-			scoreStr=conf.switchNum(info.Score)
+			nameStr=string.getMaxLen(info.nickName)
+			scoreStr=conf.switchNum(info.score)
 		end
 
 		local labelConfig =	{

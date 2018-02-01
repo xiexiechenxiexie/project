@@ -11,7 +11,8 @@ end
 function FriendManager:requestFriendListData(__callback)
     self._requestFriendListCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_FRIEND_LIST ..UserData.token
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_FRIEND_LIST .."?token="..UserData.token..
+                "&pageNum=1&pageSize=50"
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onFriendListCallback))
 end
 
@@ -20,7 +21,7 @@ function FriendManager:_onFriendListCallback( __error,__response )
         printError("requestFriendListData net error")
     else
         if 200 == __response.status then
-            local data = __response.data.friends
+            local data = __response.data
             self._requestFriendListCallBack(data)
         else
             GameUtils.showMsg("查询好友列表失败："..__response.status .. "/" .. UserData.token)
@@ -29,19 +30,26 @@ function FriendManager:_onFriendListCallback( __error,__response )
 end
 
 -- 查找好友
-function FriendManager:requestCheckFriendData(__GameID, __callback)
+function FriendManager:requestCheckFriendData(__FriendId, __callback)
+    print("查找好友uid",__FriendId)
+    print("自己uid",UserData.userId)
     self._requestCheckFriendCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_CHECK_FRIEND .. __GameID
-    cc.exports.HttpClient:getInstance():get(url,handler(self,self._onCheckFriendCallback))
+    local param = {}
+    param.token = UserData.token
+    param.friendId = __FriendId
+    dump(param)
+    print("urlllll",url)
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_CHECK_FRIEND
+    cc.exports.HttpClient:getInstance():post(url,param,handler(self,self._onCheckFriendCallback))
 end
 
 function FriendManager:_onCheckFriendCallback( __error,__response )
     if __error then
-        printError("requestCheckFriendData net error")
+        printError("requestCheckFriendData net error") 
     else
         if 200 == __response.status then
-            local data = __response.data.user
+            local data = __response.data
             self._requestCheckFriendCallBack(data)
         else
             GameUtils.showMsg("查找好友失败："..__response.status)
@@ -51,10 +59,14 @@ end
 
 -- 添加好友
 function FriendManager:requestAddFriendData(__userID, __callback)
+    print("请求添加好友请求添加好友",__userID)
     self._requestAddFriendCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_ADD_FRIEND .. UserData.token .. "/" .. __userID
-    cc.exports.HttpClient:getInstance():get(url,handler(self,self._onAddFriendCallback))
+    local param = {}
+    param.token = UserData.token
+    param.friendId = __userID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_ADD_FRIEND 
+    cc.exports.HttpClient:getInstance():post(url,param,handler(self,self._onAddFriendCallback))
 end
 
 function FriendManager:_onAddFriendCallback( __error,__response )
@@ -78,7 +90,7 @@ end
 function FriendManager:requestApplyFriendListData( __callback)
     self._requestApplyFriendListCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_APPLY_FRIEND_LIST .. UserData.token
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_APPLY_FRIEND_LIST .."?token=".. UserData.token.."&pageNum=1&pageSize=50"
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onApplyFriendListCallback))
 end
 
@@ -87,7 +99,7 @@ function FriendManager:_onApplyFriendListCallback( __error,__response )
         printError("requestApplyFriendListData net error")
     else
         if 200 == __response.status then
-            local data = __response.data.applyList
+            local data = __response.data
             self._requestApplyFriendListCallBack(data)
         else
             GameUtils.showMsg("查询好友申请列表失败："..__response.status)
@@ -99,8 +111,12 @@ end
 function FriendManager:requestReplyApplyFriendData( __userID, __actionID, __callback)
     self._requestReplyApplyFriendCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_REPLY_APPLY_FRIEND .. UserData.token .. "/" .. __userID .. "/" .. __actionID 
-    cc.exports.HttpClient:getInstance():get(url,handler(self,self._onReplyApplyFriendCallback))
+    local param = {}
+    param.token = UserData.token
+    param.friendId = __userID
+    param.action = __actionID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_REPLY_APPLY_FRIEND
+    cc.exports.HttpClient:getInstance():post(url,param,handler(self,self._onReplyApplyFriendCallback))
 end
 
 function FriendManager:_onReplyApplyFriendCallback( __error,__response )
@@ -120,8 +136,11 @@ end
 function FriendManager:requestDeleteFriendData( __userID, __callback)
     self._requestDeleteFriendCallBack = __callback
     local config = cc.exports.config
-    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_DELETE_FRIEND .. UserData.token .. "/" .. __userID 
-    cc.exports.HttpClient:getInstance():get(url,handler(self,self._onDeleteFriendCallback))
+    local param = {}
+    param.token = UserData.token
+    param.friendId = __userID
+    local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_DELETE_FRIEND
+    cc.exports.HttpClient:getInstance():post(url,param,handler(self,self._onDeleteFriendCallback))
 end
 
 function FriendManager:_onDeleteFriendCallback( __error,__response )

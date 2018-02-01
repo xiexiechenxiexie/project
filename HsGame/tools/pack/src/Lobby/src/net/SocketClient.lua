@@ -120,6 +120,15 @@ function SocketClient:onClosed(event)
 	print("SocketClient:onClosed(event)")
 	if self._closeFlag == ConstantsData.CloseScoketType.EXCEPTION_COLSE then
     	print("服务器或者系统断开连接")
+  --   	local function callback(event)
+		-- 	if "ok" == event then
+		-- 		net.SocketClient:getInstance():closeSocket(ConstantsData.CloseScoketType.NOMAL_CLOSE,function()
+		-- 			LoginManager:enterLogin()
+		-- 		end)
+		-- 	end
+		-- end
+		-- local parm = {type = ConstantsData.ShowMgsBoxType.NORMAL_TYPE, msg = "服务器断开连接，请重新登陆", btn = {"ok"}, callback = callback}
+		-- GameUtils.showMsgBox(parm)
 		self.isReconnect = true
 		GameUtils.startLoading("网络异常尝试重新登陆...")
 	else

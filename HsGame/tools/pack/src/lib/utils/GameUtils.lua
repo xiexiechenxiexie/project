@@ -564,7 +564,7 @@ function GameUtils.getFontName()
 end
 
 function GameUtils:findBoldFontName( ... )
-    return "src/preload/res/fonts/normalFont.ttf"
+    return "src/preload/res/fonts/normalFont.otf"
 end
 
 -- table深拷贝

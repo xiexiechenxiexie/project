@@ -2,9 +2,9 @@
 @author fly
 ]]
 local GameIDConfig = {
-	BRNN = 1002, --百人牛牛
-	KPQZ = 1001, --  看牌强庄 牛牛
-	PSZ  = 1003, -- 拼三张  炸金花
+	BRNN = 2, --百人牛牛
+	KPQZ = 1, --  看牌强庄 牛牛
+	PSZ  = 3, -- 拼三张  炸金花
 	HHDZ = 1004  --红黑大战  
 }
 

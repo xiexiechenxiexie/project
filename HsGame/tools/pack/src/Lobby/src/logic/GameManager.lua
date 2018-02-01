@@ -337,9 +337,7 @@ function GameManager:onUserJoinTable(event,data)
 	if joinState  == 1 then 
 		print("加入房间成功 :joinState,code:",joinState,code)
 		self:initDealMsgState() -- 初始化
-		print("我要开始请求tableInfo")
 		self._gameRequest:RequestTabelInfo()
-		print("我请求tableInfo")
 		--self._view:onEnterGame()	
 	else
 		if code == ConstantsData.JoinTableCode.ERR_JOIN_TABLE_NO_ALLOW then 

@@ -123,8 +123,8 @@ function SZListLayer:updateSZList()
 		for i=1,self.SZnum do
 			if dataArray[i]<=0 then
 				local Info={}
-				Info.NickName=string.getMaxLen(conf.HostZhuangName)
-				Info.Score= "系统当庄"
+				Info.nickName=string.getMaxLen(conf.HostZhuangName)
+				Info.score= "系统当庄"
 				table.insert(self.playerInfo,Info)
 			else
 				local Info=GameUserData:getInstance():getUserInfo(dataArray[i])
@@ -166,8 +166,8 @@ function SZListLayer:createItem(data,index)
 		nameStr="???"
 		scoreStr="???"
 	else
-		nameStr=data.NickName
-		scoreStr=conf.switchNum(data.Score)
+		nameStr=data.nickName
+		scoreStr=conf.switchNum(data.score)
 	end
 
 	local labelConfig =	{
