@@ -146,7 +146,7 @@ function GameScene:CreateView()
     --     self._gameRequest:RequestTabelInfo()
     -- end)
 
-	local bg = display.newSprite(GameResPath.."bg.png")
+	local bg = display.newSprite(GameResPath.."bg.jpg")
 	bg:setPosition(667,375)
 	self.bg = bg
 	self:addChild(bg)
@@ -243,11 +243,14 @@ function GameScene:CreateView()
         local grad = cc.Sprite:createWithSpriteFrameName("txt_qiang0.png")
         grad:setPosition(conf.multiplePosArray[i])
         grad:setVisible(false)
+        grad:setScale(0.6)
         gradNode:addChild(grad)
         table.insert(self.gradArray,grad)
 
-        local mul=cc.Label:createWithCharMap(GameResPath.."xiazhu_num.png",24,33,string.byte('/'))
+        -- local mul=cc.Label:createWithCharMap(GameResPath.."xiazhu_num.png",24,33,string.byte('/'))
+        local mul = cc.Sprite:createWithSpriteFrameName("niuniutxt_beishu_1.png")
         mul:setPosition(conf.multiplePosArray[i])
+        mul:setScale(0.6)
         gradNode:addChild(mul)
         mul:setVisible(false)
         table.insert(self.brttingMArray,mul)
@@ -393,6 +396,22 @@ function GameScene:CreateView()
     self._loseAni = ccs.Armature:create("lose2_Animation") 
     self._loseAni:setPosition(self:getContentSize().width/2,self:getContentSize().height/2) 
     self:addChild(self._loseAni)
+
+    self.headAniArray = {}
+    dir = GameResPath.."Animation/niuniu_head2_Animation/"
+    ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."niuniu_head2_Animation0.png",dir.."niuniu_head2_Animation0.plist",dir.."niuniu_head2_Animation.ExportJson")  
+    for i=1,5 do
+        self._headAni = ccs.Armature:create("niuniu_head2_Animation") 
+        self._headAni:setVisible(false)
+        self:addChild(self._headAni)
+        -- self._headAni:getAnimation():playWithIndex(0)
+        if i == 2 or i == 5 then
+            self._headAni:setPosition(conf.headPosArray[i].x+68,conf.headPosArray[i].y+129) 
+        else
+            self._headAni:setPosition(conf.headPosArray[i].x+62,conf.headPosArray[i].y+61) 
+        end
+        table.insert(self.headAniArray,self._headAni)
+    end
 
     --算牛框
     local suanniukuang = cc.Sprite:create(GameResPath.."suanniukuang.png")
@@ -1031,6 +1050,7 @@ end
 
 --赢的特效
 function GameScene:victoryAct()
+    self._winAni:show()
     self._winAni:getAnimation():playWithIndex(0,-1,0)
     MusicManager:getInstance():playAudioEffect(conf.Music["Gamewin"],false)
     local a={}
@@ -1240,21 +1260,30 @@ end
 
 --牌的点数
 function GameScene:cardDianShu(num,i)
-    local node = cc.Node:create()
-    node:setPosition(35+(i-1)*108,20)
-    local pTexture = display.loadImage(GameResPath.."xiazhu_num.png")
-    if tonumber(num) < 10 then
-        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(num)+1)*24,0,24,33))
-        kCard:setPosition(12,16.5)
-        node:addChild(kCard)
-    else
-        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect(2*24,0,24,33))
-        kCard1:setPosition(0,16.5)
-        node:addChild(kCard1)
-        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect(24,0,24,33))
-        kCard2:setPosition(24,16.5)
-        node:addChild(kCard2)
+    if num > 10 then
+        num = 10
     end
+    local node = cc.Node:create()
+    node:setPosition(35+(i-1)*106,20)
+    local pTexture = GameResPath.."suanniu_shuzi.png"
+    local point = ccui.TextAtlas:create(tostring(num),pTexture,30,40,"0")
+    point:setPosition(15,20)
+    node:addChild(point)
+    -- local node = cc.Node:create()
+    -- node:setPosition(35+(i-1)*108,20)
+    -- local pTexture = display.loadImage(GameResPath.."xiazhu_num.png")
+    -- if tonumber(num) < 10 then
+    --     local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(num)+1)*24,0,24,33))
+    --     kCard:setPosition(12,16.5)
+    --     node:addChild(kCard)
+    -- else
+    --     local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect(2*24,0,24,33))
+    --     kCard1:setPosition(0,16.5)
+    --     node:addChild(kCard1)
+    --     local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect(24,0,24,33))
+    --     kCard2:setPosition(24,16.5)
+    --     node:addChild(kCard2)
+    -- end
     self.suanniukuang:addChild(node)
     table.insert(self.clickCardNode,node)
 end
@@ -1272,20 +1301,24 @@ function GameScene:sumCardDianshu(sum)
     local numnode = cc.Node:create()
     numnode:setPosition(xx-60,20)
     local pTexture = display.loadImage(GameResPath.."xiazhu_num.png")
-    if tonumber(sum) < 10 then
-        local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(sum)+1)*24,0,24,33))
-        kCard:setPosition(12,16.5)
-        numnode:addChild(kCard)
-    else
-        local dec = (sum-(sum%10))/10
-        local unit = sum%10
-        local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect((dec+1)*24,0,24,33))
-        kCard1:setPosition(0,16.5)
-        numnode:addChild(kCard1)
-        local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect((unit+1)*24,0,24,33))
-        kCard2:setPosition(24,16.5)
-        numnode:addChild(kCard2)
-    end
+    local pTexture = GameResPath.."suanniu_shuzi.png"
+    local pointSum = ccui.TextAtlas:create(tostring(sum),pTexture,30,40,"0")
+    pointSum:setPosition(15,20)
+    numnode:addChild(pointSum)
+    -- if tonumber(sum) < 10 then
+    --     local kCard = cc.Sprite:createWithTexture(pTexture,cc.rect((tonumber(sum)+1)*24,0,24,33))
+    --     kCard:setPosition(12,16.5)
+    --     numnode:addChild(kCard)
+    -- else
+    --     local dec = (sum-(sum%10))/10
+    --     local unit = sum%10
+    --     local kCard1 = cc.Sprite:createWithTexture(pTexture,cc.rect((dec+1)*24,0,24,33))
+    --     kCard1:setPosition(0,16.5)
+    --     numnode:addChild(kCard1)
+    --     local kCard2 = cc.Sprite:createWithTexture(pTexture,cc.rect((unit+1)*24,0,24,33))
+    --     kCard2:setPosition(24,16.5)
+    --     numnode:addChild(kCard2)
+    -- end
     self.suanniukuang:addChild(numnode)
     self.numnode = numnode
 end
@@ -1390,7 +1423,8 @@ end
 
 --下注的倍数
 function GameScene:brttingMultiple(index,multiple)
-    self.brttingMArray[index]:setString("/"..multiple)
+    self.brttingMArray[index]:initWithSpriteFrameName("niuniutxt_beishu_"..tostring(multiple)..".png")
+    -- self.brttingMArray[index]:setString("/"..multiple)
     self.brttingMArray[index]:setVisible(true)
 end
 
@@ -1700,39 +1734,43 @@ function GameScene:setGoldEffect(id1,id2)
     local a = {}
     a[#a+1] = cc.DelayTime:create(1)
     a[#a+1] = cc.CallFunc:create(function () self:setGoldHeadEff(id2) end)
+    a[#a+1] = cc.DelayTime:create(1)
+    a[#a+1] = cc.CallFunc:create(function () self.headAniArray[id]:setVisible(false) end)
     self:runAction(cc.Sequence:create(a))
 end
 
 function GameScene:setGoldHeadEff(id)
-    local winHeadNode = nil
-    local winHeadAct = nil
-    if id == 2 or id == 5 then
-        winHeadNode = cc.CSLoader:createNode(GameResPath.."winHead/win_gold_effect_2.csb")
-        winHeadAct = cc.CSLoader:createTimeline(GameResPath.."winHead/win_gold_effect_2.csb")
-        winHeadNode:setPosition(conf.headPosArray[id].x+55,conf.headPosArray[id].y+90)
-    else
-        winHeadNode = cc.CSLoader:createNode(GameResPath.."winHead/win_gold_effect.csb")
-        winHeadAct = cc.CSLoader:createTimeline(GameResPath.."winHead/win_gold_effect.csb")
-        winHeadNode:setPosition(conf.headPosArray[id].x+113.5,conf.headPosArray[id].y+56.5)
-    end
-    self.bg:addChild(winHeadNode)
-    winHeadAct:setTimeSpeed(1) --设置执行动画速度
-    winHeadAct:gotoFrameAndPlay(0,false)
-    winHeadNode:runAction(winHeadAct)
+    self.headAniArray[id]:setVisible(true)
+    self.headAniArray[id]:getAnimation():playWithIndex(0,-1,0)
+    -- local winHeadNode = nil
+    -- local winHeadAct = nil
+    -- if id == 2 or id == 5 then
+    --     winHeadNode = cc.CSLoader:createNode(GameResPath.."winHead/win_gold_effect_2.csb")
+    --     winHeadAct = cc.CSLoader:createTimeline(GameResPath.."winHead/win_gold_effect_2.csb")
+    --     winHeadNode:setPosition(conf.headPosArray[id].x+55,conf.headPosArray[id].y+90)
+    -- else
+    --     winHeadNode = cc.CSLoader:createNode(GameResPath.."winHead/win_gold_effect.csb")
+    --     winHeadAct = cc.CSLoader:createTimeline(GameResPath.."winHead/win_gold_effect.csb")
+    --     winHeadNode:setPosition(conf.headPosArray[id].x+113.5,conf.headPosArray[id].y+56.5)
+    -- end
+    -- self.bg:addChild(winHeadNode)
+    -- winHeadAct:setTimeSpeed(1) --设置执行动画速度
+    -- winHeadAct:gotoFrameAndPlay(0,false)
+    -- winHeadNode:runAction(winHeadAct)
 
-    --胜利头像例子
-    local winPart = cc.ParticleSystemQuad:create(GameResPath.."winHead/particle_texture(1).plist")
-    winPart:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
-    if id == 2 or id == 5 then
-        winPart:setPosition(conf.headPosArray[id].x+55,conf.headPosArray[id].y+90)
-    else
-        winPart:setPosition(conf.headPosArray[id].x+113.5,conf.headPosArray[id].y+56.5)
-    end
-    self:addChild(winPart)
-    winPart:start()
-    winPart:setScale(0.5)
-    winPart:setDuration(0.2)
-    self.winPart = winPart
+    -- --胜利头像例子
+    -- local winPart = cc.ParticleSystemQuad:create(GameResPath.."winHead/particle_texture(1).plist")
+    -- winPart:setPositionType(cc.TMX_TILE_HORIZONTAL_FLAG)
+    -- if id == 2 or id == 5 then
+    --     winPart:setPosition(conf.headPosArray[id].x+55,conf.headPosArray[id].y+90)
+    -- else
+    --     winPart:setPosition(conf.headPosArray[id].x+113.5,conf.headPosArray[id].y+56.5)
+    -- end
+    -- self:addChild(winPart)
+    -- winPart:start()
+    -- winPart:setScale(0.5)
+    -- winPart:setDuration(0.2)
+    -- self.winPart = winPart
 end
 
 --摊牌完成
@@ -1909,14 +1947,14 @@ function GameScene:resetTable()
     self.suanniukuang:removeAllChildren()
     self.suanniukuang:setVisible(false)
 
-    if self.winHeadNode then
-        self.winHeadNode:removeFromParent()
-        self.winHeadNode = nil
-    end
-    if self.winPart then
-        self.winPart:removeFromParent()
-        self.winPart = nil
-    end
+    -- if self.winHeadNode then
+    --     self.winHeadNode:removeFromParent()
+    --     self.winHeadNode = nil
+    -- end
+    -- if self.winPart then
+    --     self.winPart:removeFromParent()
+    --     self.winPart = nil
+    -- end
 end
 
 ----------------------------------------------------------------------消息处理----------------------------------------------------------------------

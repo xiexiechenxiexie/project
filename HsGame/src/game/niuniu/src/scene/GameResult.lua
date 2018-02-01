@@ -4,10 +4,10 @@
 local GameResult = class("GameResult",cc.Layer)
 local GameResultResPath = "game/niuniu/res/GameLayout/NiuNiu/result/"
 
-local TXT_COLOR = cc.c3b(255,228,209)--信息
-local TXT_COLOR1 = cc.c3b(255,206,176)--id
-local TXT_COLOR2 = cc.c3b(250,230,113)--胜利和当庄次数 赢总成绩
-local TXT_COLOR3 = cc.c3b(78,249,255)--输总成绩
+local TXT_COLOR = cc.c3b(255, 198, 178)--信息
+local TXT_COLOR1 = cc.c3b(255, 198, 178)--id
+local TXT_COLOR2 = cc.c3b(246, 212, 94)--胜利和当庄次数 赢总成绩
+local TXT_COLOR3 = cc.c3b(14, 224, 255)--输总成绩
 
 GameResult.SHAREBTN = 11 				--分享
 GameResult.QUITBTN = 12 				--退出
@@ -23,9 +23,9 @@ function GameResult:initAllResult(arr,playerArr,tableid,playerNum,playerInfoData
 
 	local x,y = bgAllResult:getContentSize().width, bgAllResult:getContentSize().height
 
-	local title = display.newSprite(GameResultResPath.."title_all.png")
-	title:setPosition(x/2,y-60)
-	bgAllResult:addChild(title)
+	-- local title = display.newSprite(GameResultResPath.."title_all.png")
+	-- title:setPosition(x/2,y-60)
+	-- bgAllResult:addChild(title)
 
 	local roomId = cc.Label:createWithSystemFont("房间号:"..tostring(tableid),SYSFONT,26)
 	roomId:setColor(TXT_COLOR)
@@ -122,7 +122,7 @@ function GameResult:createAllItem(index,playerArr,playerData)
 	playerAllBg:addChild(effect)
 
 	local winner = display.newSprite(GameResultResPath.."winner.png")
-	winner:setPosition(43,y-45)
+	winner:setPosition(50,y-45-8)
 	playerAllBg:addChild(winner)
 
 	local palyerName = cc.Label:createWithSystemFont(string.getMaxLen(info.NickName),SYSFONT,28)
@@ -136,17 +136,17 @@ function GameResult:createAllItem(index,playerArr,playerData)
 
 	local palyerGard = cc.Label:createWithSystemFont(playerArr[index].bankerCount,SYSFONT,26)
 	palyerGard:setColor(TXT_COLOR2)
-	palyerGard:setPosition(x/4*3-40,y/2-25)
+	palyerGard:setPosition(x/2+15,y/2-25)
 	playerAllBg:addChild(palyerGard)
 
 	local palyerVic = cc.Label:createWithSystemFont(playerArr[index].vicCount,SYSFONT,26)
 	palyerVic:setColor(TXT_COLOR2)
-	palyerVic:setPosition(x/4*3-40,y/2-70)
+	palyerVic:setPosition(x/2+15,y/2-75)
 	playerAllBg:addChild(palyerVic)
 
 	local palyerScore = cc.Label:createWithSystemFont(playerArr[index].allSocre,SYSFONT,26)
 	palyerScore:setColor(TXT_COLOR2)
-	palyerScore:setPosition(x/4*3-18,44)
+	palyerScore:setPosition(x/4*3-18-10,50)
 	playerAllBg:addChild(palyerScore)
 
 	if playerArr[index].allSocre >= 0 then

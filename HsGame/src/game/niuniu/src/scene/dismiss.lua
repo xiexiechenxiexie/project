@@ -84,7 +84,7 @@ function dismiss:initAction(DismissArrayInfo,playerInfoData)
 
 	local text = cc.Label:createWithSystemFont("房间".."["..host_name_str.."]".."要求解散该房间，是否同意解散？",SYSFONT,30)
 	text:setColor(DIS_COLOR2)
-	text:setPosition(x-180,y/2+240)
+	text:setPosition(x-220,y/2+240)
 	self.rootNode:addChild(text)
 
 	local tishiStr = nil
@@ -95,11 +95,11 @@ function dismiss:initAction(DismissArrayInfo,playerInfoData)
 	end
 	local tishi = cc.Label:createWithSystemFont(tishiStr,SYSFONT,30)
 	tishi:setColor(DIS_COLOR3)
-	tishi:setPosition(x-180,y/2+200)
+	tishi:setPosition(x-220,y/2+200)
 	self.rootNode:addChild(tishi)
 
 	local time = Time.new(DismissArrayInfo.time)
-	time:setPosition(x-190,y-333)
+	time:setPosition(x-240,y-333)
 	self.rootNode:addChild(time)
 
 	for i=1,playerNum do
@@ -117,9 +117,9 @@ function dismiss:initAction(DismissArrayInfo,playerInfoData)
 		local text= cc.Label:createWithSystemFont("["..player_name_str.."]"..":"..str,SYSFONT,30)
 		text:setAnchorPoint(0,0)
 	    if i%2 == 1 then
-    		text:setPosition(x-560,y-120-(self:getIntPart((i-1)/2)*50))
+    		text:setPosition(x-560-20,y-140-(self:getIntPart((i-1)/2)*50))
 	    else
-    		text:setPosition(x-160,y-120-(self:getIntPart((i-1)/2)*50))
+    		text:setPosition(x-160-20,y-140-(self:getIntPart((i-1)/2)*50))
 	    end
 	    text:setColor(DIS_COLOR2)
 	    self.rootNode:addChild(text)

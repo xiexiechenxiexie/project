@@ -14,7 +14,9 @@ end
 function ScoreNode:init(id,str)
 	if str==nil then
 		print("传入参数错误")
-		return 
+		return
+	else
+		print("传入参数正确",str)
 	end
 	local strFile = nil
 	local scoreNode = nil
@@ -26,7 +28,7 @@ function ScoreNode:init(id,str)
 		strFile=GameResPath.."score_num_add.png"
 		scoreBg = cc.Sprite:create(GameResPath.."score_num_add_bg.png")
 	end
-	scoreNode = ccui.TextAtlas:create(str,strFile,36,43,"/")
+	scoreNode = ccui.TextAtlas:create(str,strFile,32,46,"/")
 	scoreNode:setPosition(scoreBg:getContentSize().width/2,scoreBg:getContentSize().height/2)
 	scoreBg:addChild(scoreNode)
 	scoreNode:setString("/"..str)

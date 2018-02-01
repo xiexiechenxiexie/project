@@ -4,148 +4,96 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>goldNiu_sit.png</key>
+            <key>gold_effect1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,824},{105,105}}</string>
+                <string>{{2,152},{298,148}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{105,105}}</string>
+                <string>{{0,1},{298,148}}</string>
                 <key>sourceSize</key>
-                <string>{105,105}</string>
-            </dict>
-            <key>gold_effect1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,188},{335,184}}</string>
-                <key>offset</key>
-                <string>{-1,1}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,3},{335,184}}</string>
-                <key>sourceSize</key>
-                <string>{343,192}</string>
+                <string>{298,150}</string>
             </dict>
             <key>gold_effect2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{335,184}}</string>
+                <string>{{2,2},{298,148}}</string>
                 <key>offset</key>
-                <string>{-1,1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{3,3},{335,184}}</string>
+                <string>{{0,1},{298,148}}</string>
                 <key>sourceSize</key>
-                <string>{343,192}</string>
+                <string>{298,150}</string>
             </dict>
             <key>gold_effectS1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,628},{194,251}}</string>
+                <string>{{302,432},{174,213}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,2},{194,251}}</string>
+                <string>{{0,0},{174,213}}</string>
                 <key>sourceSize</key>
-                <string>{196,253}</string>
+                <string>{174,213}</string>
             </dict>
             <key>gold_effectS2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{286,398},{194,251}}</string>
+                <string>{{302,217},{174,213}}</string>
                 <key>offset</key>
-                <string>{0,-1}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,2},{194,251}}</string>
+                <string>{{0,0},{174,213}}</string>
                 <key>sourceSize</key>
-                <string>{196,253}</string>
+                <string>{174,213}</string>
             </dict>
             <key>gold_effect_heng.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,374},{282,131}}</string>
+                <string>{{2,302},{298,147}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{282,131}}</string>
+                <string>{{0,0},{298,147}}</string>
                 <key>sourceSize</key>
-                <string>{282,131}</string>
+                <string>{298,147}</string>
             </dict>
             <key>gold_effect_shu.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{339,2},{144,203}}</string>
+                <string>{{302,2},{175,213}}</string>
                 <key>offset</key>
-                <string>{0,-2}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,4},{144,203}}</string>
+                <string>{{0,0},{175,213}}</string>
                 <key>sourceSize</key>
-                <string>{144,207}</string>
+                <string>{175,213}</string>
             </dict>
             <key>gold_zhuang.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{70,931},{52,57}}</string>
+                <string>{{2,451},{47,45}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{52,57}}</string>
+                <string>{{0,0},{47,45}}</string>
                 <key>sourceSize</key>
-                <string>{52,57}</string>
-            </dict>
-            <key>gold_zhuang_effect.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,931},{66,74}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{66,74}}</string>
-                <key>sourceSize</key>
-                <string>{66,74}</string>
-            </dict>
-            <key>player_mianban_heng.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,507},{272,119}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{272,119}}</string>
-                <key>sourceSize</key>
-                <string>{272,119}</string>
-            </dict>
-            <key>player_mianban_shu.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{339,207},{134,189}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{134,189}}</string>
-                <key>sourceSize</key>
-                <string>{134,189}</string>
+                <string>{47,45}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -157,7 +105,7 @@
             <key>size</key>
             <string>{512,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6d8031c69a7852f9f01fbd2495e6d8b0$</string>
+            <string>$TexturePacker:SmartUpdate:0c93de7fbc96394d0660d04b14a0f239:1/1$</string>
             <key>textureFileName</key>
             <string>playerPanel.png</string>
         </dict>

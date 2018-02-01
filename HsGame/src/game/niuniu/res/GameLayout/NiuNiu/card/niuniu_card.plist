@@ -7,11 +7,11 @@
             <key>niuniu_card_0x00.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{139,179}}</string>
+                <string>{{505,1271},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -20,11 +20,11 @@
             <key>niuniu_card_0x01.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,183},{139,179}}</string>
+                <string>{{324,1271},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -33,11 +33,11 @@
             <key>niuniu_card_0x02.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{143,2},{139,179}}</string>
+                <string>{{143,1271},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -46,7 +46,7 @@
             <key>niuniu_card_0x03.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,364},{139,179}}</string>
+                <string>{{867,1130},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>niuniu_card_0x04.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,545},{139,179}}</string>
+                <string>{{686,1130},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,46 +72,7 @@
             <key>niuniu_card_0x05.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,2},{139,179}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,179}}</string>
-                <key>sourceSize</key>
-                <string>{139,179}</string>
-            </dict>
-            <key>niuniu_card_0x06.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{143,183},{139,179}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,179}}</string>
-                <key>sourceSize</key>
-                <string>{139,179}</string>
-            </dict>
-            <key>niuniu_card_0x07.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{143,364},{139,179}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,179}}</string>
-                <key>sourceSize</key>
-                <string>{139,179}</string>
-            </dict>
-            <key>niuniu_card_0x08.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{183,545},{139,179}}</string>
+                <string>{{505,1130},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -121,10 +82,49 @@
                 <key>sourceSize</key>
                 <string>{139,179}</string>
             </dict>
+            <key>niuniu_card_0x06.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{324,1130},{139,179}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{139,179}}</string>
+                <key>sourceSize</key>
+                <string>{139,179}</string>
+            </dict>
+            <key>niuniu_card_0x07.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{143,1130},{139,179}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{139,179}}</string>
+                <key>sourceSize</key>
+                <string>{139,179}</string>
+            </dict>
+            <key>niuniu_card_0x08.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,1854},{139,179}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{139,179}}</string>
+                <key>sourceSize</key>
+                <string>{139,179}</string>
+            </dict>
             <key>niuniu_card_0x09.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{425,2},{139,179}}</string>
+                <string>{{2,1673},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>niuniu_card_0x0A.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,183},{139,179}}</string>
+                <string>{{2,1492},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>niuniu_card_0x0B.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{284,364},{139,179}}</string>
+                <string>{{2,1311},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,20 @@
             <key>niuniu_card_0x0C.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{364,545},{139,179}}</string>
+                <string>{{2,1130},{139,179}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{139,179}}</string>
+                <key>sourceSize</key>
+                <string>{139,179}</string>
+            </dict>
+            <key>niuniu_card_0x0D.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{726,989},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -173,27 +186,14 @@
                 <key>sourceSize</key>
                 <string>{139,179}</string>
             </dict>
-            <key>niuniu_card_0x0D.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{566,2},{139,179}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{139,179}}</string>
-                <key>sourceSize</key>
-                <string>{139,179}</string>
-            </dict>
             <key>niuniu_card_0x11.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{425,183},{139,179}}</string>
+                <string>{{545,989},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -202,11 +202,11 @@
             <key>niuniu_card_0x12.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{425,364},{139,179}}</string>
+                <string>{{364,989},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -215,7 +215,7 @@
             <key>niuniu_card_0x13.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{545,545},{139,179}}</string>
+                <string>{{183,989},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,11 +228,11 @@
             <key>niuniu_card_0x14.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{707,2},{139,179}}</string>
+                <string>{{2,989},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -241,11 +241,11 @@
             <key>niuniu_card_0x15.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{566,183},{139,179}}</string>
+                <string>{{726,848},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -254,11 +254,11 @@
             <key>niuniu_card_0x16.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{566,364},{139,179}}</string>
+                <string>{{545,848},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -267,11 +267,11 @@
             <key>niuniu_card_0x17.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{848,2},{139,179}}</string>
+                <string>{{364,848},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -280,11 +280,11 @@
             <key>niuniu_card_0x18.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{707,183},{139,179}}</string>
+                <string>{{183,848},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -293,11 +293,11 @@
             <key>niuniu_card_0x19.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{707,364},{139,179}}</string>
+                <string>{{2,848},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -306,7 +306,7 @@
             <key>niuniu_card_0x1A.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{726,545},{139,179}}</string>
+                <string>{{726,707},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -319,11 +319,11 @@
             <key>niuniu_card_0x1B.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{989,2},{139,179}}</string>
+                <string>{{545,707},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -332,11 +332,11 @@
             <key>niuniu_card_0x1C.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{848,183},{139,179}}</string>
+                <string>{{364,707},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -345,11 +345,11 @@
             <key>niuniu_card_0x1D.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{848,364},{139,179}}</string>
+                <string>{{183,707},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -358,7 +358,7 @@
             <key>niuniu_card_0x21.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{907,545},{139,179}}</string>
+                <string>{{2,707},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,11 +371,11 @@
             <key>niuniu_card_0x22.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1130,2},{139,179}}</string>
+                <string>{{726,566},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -384,11 +384,11 @@
             <key>niuniu_card_0x23.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{989,183},{139,179}}</string>
+                <string>{{545,566},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -397,11 +397,11 @@
             <key>niuniu_card_0x24.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{989,364},{139,179}}</string>
+                <string>{{364,566},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -410,7 +410,7 @@
             <key>niuniu_card_0x25.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1088,545},{139,179}}</string>
+                <string>{{183,566},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -423,11 +423,11 @@
             <key>niuniu_card_0x26.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1271,2},{139,179}}</string>
+                <string>{{2,566},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -436,11 +436,11 @@
             <key>niuniu_card_0x27.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1130,183},{139,179}}</string>
+                <string>{{726,425},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -449,11 +449,11 @@
             <key>niuniu_card_0x28.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1130,364},{139,179}}</string>
+                <string>{{545,425},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -462,7 +462,7 @@
             <key>niuniu_card_0x29.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1269,545},{139,179}}</string>
+                <string>{{364,425},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,11 +475,11 @@
             <key>niuniu_card_0x2A.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1412,2},{139,179}}</string>
+                <string>{{183,425},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -488,11 +488,11 @@
             <key>niuniu_card_0x2B.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1271,183},{139,179}}</string>
+                <string>{{2,425},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -501,11 +501,11 @@
             <key>niuniu_card_0x2C.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1271,364},{139,179}}</string>
+                <string>{{726,284},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -514,11 +514,11 @@
             <key>niuniu_card_0x2D.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1553,2},{139,179}}</string>
+                <string>{{545,284},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -527,11 +527,11 @@
             <key>niuniu_card_0x31.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1412,183},{139,179}}</string>
+                <string>{{364,284},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -540,11 +540,11 @@
             <key>niuniu_card_0x32.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1412,364},{139,179}}</string>
+                <string>{{183,284},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -553,7 +553,7 @@
             <key>niuniu_card_0x33.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1450,545},{139,179}}</string>
+                <string>{{2,284},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -566,11 +566,11 @@
             <key>niuniu_card_0x34.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1694,2},{139,179}}</string>
+                <string>{{726,143},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -579,11 +579,11 @@
             <key>niuniu_card_0x35.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1553,183},{139,179}}</string>
+                <string>{{545,143},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -592,11 +592,11 @@
             <key>niuniu_card_0x36.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1553,364},{139,179}}</string>
+                <string>{{364,143},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -605,7 +605,7 @@
             <key>niuniu_card_0x37.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1631,545},{139,179}}</string>
+                <string>{{183,143},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -618,11 +618,11 @@
             <key>niuniu_card_0x38.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1835,2},{139,179}}</string>
+                <string>{{2,143},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -631,11 +631,11 @@
             <key>niuniu_card_0x39.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1694,183},{139,179}}</string>
+                <string>{{726,2},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -644,11 +644,11 @@
             <key>niuniu_card_0x3A.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1694,364},{139,179}}</string>
+                <string>{{545,2},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -657,7 +657,7 @@
             <key>niuniu_card_0x3B.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1812,545},{139,179}}</string>
+                <string>{{364,2},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -670,11 +670,11 @@
             <key>niuniu_card_0x3C.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1835,183},{139,179}}</string>
+                <string>{{183,2},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -683,11 +683,11 @@
             <key>niuniu_card_0x3D.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{1835,364},{139,179}}</string>
+                <string>{{2,2},{139,179}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{139,179}}</string>
                 <key>sourceSize</key>
@@ -701,9 +701,9 @@
             <key>realTextureFileName</key>
             <string>niuniu_card.png</string>
             <key>size</key>
-            <string>{1993,686}</string>
+            <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:f9a5a6fd0b588ef3054028c25cdd93ef:b7fccdacb64baef820a533669ad46013:fc430f32d5740640cefabb3b4fdc91e6$</string>
+            <string>$TexturePacker:SmartUpdate:6743927648f842b26b316c3591ae2f22:1/1$</string>
             <key>textureFileName</key>
             <string>niuniu_card.png</string>
         </dict>

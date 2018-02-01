@@ -188,8 +188,8 @@ function RankView:createRankRecord(ranking,data,__type)
 	local listBtn = record:getChildByTag(RankTag.LIST_BTN_TAG)
 	listBtn:addClickEventListener(function()
 		local playerInfoView = PlayerInfo.new(data.UserId)
-		self:getParent():addChild(playerInfoView,1000)
-		-- self:getParent():addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
+		-- self:getParent():addChild(playerInfoView,1000)
+		self:getParent():addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
 	end)
 
 	local NickName = data.NickName or ""

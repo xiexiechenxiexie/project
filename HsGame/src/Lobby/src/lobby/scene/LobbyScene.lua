@@ -52,17 +52,20 @@ btnListRes[LobbyScene.BTN_MAIL]["POS"] = cc.p(205, 40)
 btnListRes[LobbyScene.BTN_TASK] = {}
 btnListRes[LobbyScene.BTN_TASK]["NORMAL"] = "lobby_btn_task.png"
 btnListRes[LobbyScene.BTN_TASK]["SELECTED"] = "lobby_btn_task1.png"
-btnListRes[LobbyScene.BTN_TASK]["POS"] = cc.p(340, 40)
+-- btnListRes[LobbyScene.BTN_TASK]["POS"] = cc.p(340, 40)
+btnListRes[LobbyScene.BTN_TASK]["POS"] = cc.p(205, 40)
 
 btnListRes[LobbyScene.BTN_FRIENDS] = {}
 btnListRes[LobbyScene.BTN_FRIENDS]["NORMAL"] = "lobby_btn_friends.png"
 btnListRes[LobbyScene.BTN_FRIENDS]["SELECTED"] = "lobby_btn_friends1.png"
-btnListRes[LobbyScene.BTN_FRIENDS]["POS"] = cc.p(460, 40)
+-- btnListRes[LobbyScene.BTN_FRIENDS]["POS"] = cc.p(460, 40)
+btnListRes[LobbyScene.BTN_FRIENDS]["POS"] = cc.p(340, 40)
 
 btnListRes[LobbyScene.BTN_SPREAD] = {}
 btnListRes[LobbyScene.BTN_SPREAD]["NORMAL"] = "lobby_btn_spread.png"
 btnListRes[LobbyScene.BTN_SPREAD]["SELECTED"] = "lobby_btn_spread1.png"
-btnListRes[LobbyScene.BTN_SPREAD]["POS"] = cc.p(590, 40)
+-- btnListRes[LobbyScene.BTN_SPREAD]["POS"] = cc.p(590, 40)
+btnListRes[LobbyScene.BTN_SPREAD]["POS"] = cc.p(460, 40)
 
 local LobbyLocalZOrder = {
 	LOBBYSCENE_CSB = 1,
@@ -119,6 +122,11 @@ function LobbyScene:initView()
 	local lobbySceneDi = ccui.ImageView:create("GameLayout/Lobby/lobby_di.png", ccui.TextureResType.localType)
 	lobbySceneDi:setPosition(cc.p(self:getContentSize().width/2, lobbySceneDi:getContentSize().height/2))
 	self:addChild(lobbySceneDi)
+	for i=1,4 do
+		local lobbySceneShu = ccui.ImageView:create("GameLayout/Lobby/Lobby_di_shu.png", ccui.TextureResType.localType)
+		lobbySceneShu:setPosition(cc.p(140+(i-1)*130, lobbySceneDi:getContentSize().height/2))
+		self:addChild(lobbySceneShu)
+	end
 
 	-- self.bottomBg = ccui.ImageView:create("lobby_bottom_bg.png", ccui.TextureResType.plistType)
 	-- self.bottomBg:setPosition(cc.p(lobbySceneBg:getContentSize().width/2, self.bottomBg:getContentSize().height/2))
@@ -136,6 +144,10 @@ function LobbyScene:initView()
 		btnMenu:setTag(index)
 		self:addChild(btnMenu)
 		btnMenu:addClickEventListener(btnCallBack)
+
+		if LobbyScene.BTN_MAIL == index then
+			btnMenu:setVisible(false)
+		end
 
 		if LobbyScene.BTN_MORE_SHOW == index then
 			self.btnMore = btnMenu
@@ -231,7 +243,7 @@ function LobbyScene:initView()
 	self._redPointNodeList = {}
 	for i=1,3 do
 		local redPointNode = ccui.ImageView:create("common_redPoint.png", ccui.TextureResType.plistType)
-    	redPointNode:setPosition(160 + (i-1)*130,75)
+    	redPointNode:setPosition(160 + (i-2)*130,75)
     	redPointNode:hide()
     	self:addChild(redPointNode)
     	table.insert(self._redPointNodeList,redPointNode)
