@@ -173,6 +173,10 @@ function LogoScene:initView(logoScene)
 	self:addChild(bg)
 	bg:setPosition(display.width * 0.5,display.height * 0.5)
 
+	local logo = ccui.ImageView:create("preload/res/logo.png",ccui.TextureResType.localType)
+	self:addChild(logo)
+	logo:setPosition(display.width * 0.5,display.height * 0.5)
+
 	-- local imgGirl = ccui.ImageView:create("src/preload/res/imgGirl.png")
 	-- bg:addChild(imgGirl)
 

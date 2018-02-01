@@ -49,6 +49,10 @@ function LoginScene:initView()
     loginScene:addChild(adAnim);
     adAnim:getAnimation():playWithIndex(0)
 
+    local logo = display.newSprite("GameLayout/Login/login_logo.png")
+    logo:setPosition(logo:getContentSize().width/2,loginScene:getContentSize().height-logo:getContentSize().height/2-20)
+	loginScene:addChild(logo)
+
 	local info = display.newSprite("GameLayout/Login/info.png")
     info:setPosition(667,50)
 	loginScene:addChild(info)
