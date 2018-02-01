@@ -89,9 +89,6 @@ end
 function SignView:requestSignCheckIn()
 	logic.LobbyManager:getInstance():requestSignCheckIn(function( result )
     	if result then
-    		print("签到完成")
-    		dump(result)
-    		local data = result.data
         	-- self._btnSign:hide()
         	-- self._imgGotSign:show()
 
@@ -108,6 +105,12 @@ function SignView:requestSignCheckIn()
 
 			self._curSignAni:stopAllActions()
 			self._curSignAni:hide()
+
+			local data = self._signData.checkInSetting[curSignNum]
+
+			if curSignNum > 8 then
+				return
+			end
 
 			local d_type = 0
 		    local d_num = 0
