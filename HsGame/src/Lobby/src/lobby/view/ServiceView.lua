@@ -32,7 +32,7 @@ function ServiceView:initView()
 
     local qqServiceStr = self._ServiceData.qqProxy or ""
     local qqProxyStr = self._ServiceData.qqService or ""
-    local weChatProxyStr = self._ServiceData.qqServiceStr or ""
+    local weChatProxyStr = self._ServiceData.wechatProxy or ""
 
     local textStrList = {}
 
