@@ -441,7 +441,9 @@ function LobbyManager:_onSignCheckInCallback( __error,__response )
         print("requestSignCheckIn net error")
     else
         if 200 == __response.status then
-        	manager.UserManager:getInstance():refreshUserInfo()
+        	UserData.coins = __response.data.bonusScore
+            UserData.roomCards = __response.data.bonusDiamond
+            UserData.diamond = __response.data.bonusRoomCard
             self._requestSignCheckInCallBack(__response)
         end
     end
