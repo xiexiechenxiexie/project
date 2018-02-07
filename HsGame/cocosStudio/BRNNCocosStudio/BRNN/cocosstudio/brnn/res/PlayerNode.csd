@@ -6,8 +6,8 @@
       <ObjectData Name="Node" Tag="943" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="head_bg_1" ActionTag="-2013735972" Tag="128" IconVisible="False" LeftMargin="-47.0000" RightMargin="-47.0000" TopMargin="-110.0000" BottomMargin="16.0000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="64" Scale9Height="72" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
-            <Size X="94.0000" Y="94.0000" />
+          <AbstractNodeData Name="head_bg_1" ActionTag="-2013735972" Tag="128" IconVisible="False" LeftMargin="-38.5000" RightMargin="-38.5000" TopMargin="-101.5000" BottomMargin="24.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="47" Scale9Height="55" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+            <Size X="77.0000" Y="77.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position Y="63.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -21,8 +21,8 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="head_bg" ActionTag="1559160907" Tag="970" IconVisible="False" LeftMargin="-47.4999" RightMargin="-47.5001" TopMargin="-110.5000" BottomMargin="15.5000" ctype="SpriteObjectData">
-            <Size X="95.0000" Y="95.0000" />
+          <AbstractNodeData Name="head_bg" ActionTag="1559160907" Tag="970" IconVisible="False" LeftMargin="-41.4999" RightMargin="-41.5001" TopMargin="-104.5000" BottomMargin="21.5000" ctype="SpriteObjectData">
+            <Size X="83.0000" Y="83.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position X="0.0001" Y="63.0000" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -48,7 +48,7 @@
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position Y="13.3479" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
+            <CColor A="255" R="164" G="194" B="179" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <OutlineColor A="255" R="255" G="0" B="0" />
@@ -59,7 +59,7 @@
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position Y="-13.3506" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="246" B="198" />
+            <CColor A="255" R="255" G="214" B="48" />
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
             <OutlineColor A="255" R="255" G="0" B="0" />

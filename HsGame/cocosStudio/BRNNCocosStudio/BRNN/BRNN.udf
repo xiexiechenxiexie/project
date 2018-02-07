@@ -31,17 +31,14 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="brnn/res/BRNNScene.csd" />
-          <FilePathData Path="gamecommon/chat/res/ChatNode.csd" />
-          <FilePathData Path="brnn/res/SZListNode.csd" />
-          <FilePathData Path="brnn/res/WinRecordNode.csd" />
-          <FilePathData Path="brnn/res/HelpNode.csd" />
-          <FilePathData Path="brnn/res/MenuNode.csd" />
           <FilePathData Path="brnn/res/NiuNiuNumNode.csd" />
+          <FilePathData Path="brnn/res/BRNNScene.csd" />
           <FilePathData Path="brnn/res/PlayerListNode.csd" />
           <FilePathData Path="brnn/res/PlayerNode.csd" />
+          <FilePathData Path="brnn/res/SZListNode.csd" />
+          <FilePathData Path="gamecommon/chat/res/ChatNode.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="brnn/res/NiuNiuNumNode.csd" />
+        <ActiveDocument Path="gamecommon/chat/res/ChatNode.csd" />
       </Value>
     </Item>
   </Properties>
