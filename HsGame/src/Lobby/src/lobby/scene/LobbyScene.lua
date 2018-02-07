@@ -610,7 +610,6 @@ end
 function LobbyScene:runGameScene()
 	local __sceneRes = nil
 	GameUtils.stopLoading()
-	print("我日你吗也我日你吗也我日你吗也",GameData.GameType,config.GameType.COIN,config.GameType.SRF)
 	if GameData.GameType == config.GameType.COIN then --金币场
 		__sceneRes = config.GamePathResConfig:getGoldGameSceneResPathRes()
 	elseif GameData.GameType == config.GameType.SRF then  --私人房

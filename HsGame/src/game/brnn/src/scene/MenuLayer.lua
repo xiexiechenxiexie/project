@@ -72,8 +72,8 @@ function MenuLayer:closeLayer()
 		cc.Director:getInstance():getEventDispatcher():removeEventListener(self.listener)
 	end
 	local a={}
-	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.1, cc.p(180,648)))
-	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.2, cc.p(180,840)))
+	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.1, cc.p(175,663)))
+	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.2, cc.p(175,840)))
     a[#a+1] = cc.CallFunc:create(
     	function(sender)
     		if self:getParent().setMenuBtn then
@@ -88,11 +88,11 @@ end
 
 --弹出界面
 function MenuLayer:popLayer()
-	self.node:setPosition(cc.p(180,840))
+	self.node:setPosition(cc.p(175,840))
 	local a={}
-	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.2,cc.p(180,658)))
-	a[#a+1]= cc.EaseSineOut:create(cc.MoveTo:create(0.1,cc.p(180,678)))
-	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.1,cc.p(180,658)))
+	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.2,cc.p(175,673)))
+	a[#a+1]= cc.EaseSineOut:create(cc.MoveTo:create(0.1,cc.p(175,693)))
+	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.1,cc.p(175,673)))
  	self.node:runAction(cc.Sequence:create(a))
 end
 

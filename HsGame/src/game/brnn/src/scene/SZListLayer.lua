@@ -71,7 +71,7 @@ function SZListLayer:init()
 	--上庄列表
 	self.SZ_list = self.RootNode:getChildByName("PlayerList")
 	--item大小
-	self.ItemSize=cc.size(529,75)
+	self.ItemSize=cc.size(780,70)
 
 	--庄家列表数量
 	self.SZnum=0
@@ -156,9 +156,9 @@ function SZListLayer:createItem(data,index)
 		sp:setPosition(cc.p(30,self.ItemSize.height/2))
 		layout:addChild(sp)
 	end
-	local sp_line=cc.Sprite:createWithSpriteFrameName("chat_line.png")
-	sp_line:setPosition(cc.p(self.ItemSize.width/2,5))
-	layout:addChild(sp_line)
+	-- local sp_line=cc.Sprite:createWithSpriteFrameName("chat_line.png")
+	-- sp_line:setPosition(cc.p(self.ItemSize.width/2,5))
+	-- layout:addChild(sp_line)
 
 	local nameStr=nil
 	local scoreStr=nil
@@ -189,7 +189,7 @@ function SZListLayer:createItem(data,index)
 			text =scoreStr or "系统当庄",
 			alignment = cc.TEXT_ALIGNMENT_CENTER,
 			color = cc.c4b(255,246,198, 255),
-			pos = cc.p(500,self.ItemSize.height/2),
+			pos = cc.p(760,self.ItemSize.height/2),
 			anchorPoint = cc.p(1,0.5)
 		}
 	local scoreLab = cc.exports.lib.uidisplay.createLabel(labelConfig)

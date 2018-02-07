@@ -68,8 +68,6 @@ function GamePlayManager:requestGamePlayList( __gameId,__callback )
 	local gameId = lobby.LobbyGameEnterManager:getInstance():findSelectedGameId()
 	local url = config.ServerConfig:findModelDomain()..config.ApiConfig.REQUEST_GAME_PLAY_LIST..gameId.."?token="..UserData.token
 	HttpClient:getInstance():get(url,function ( __errorMsg,__reponse )
-		print("的好的哈师大卡死了")
-		dump(__reponse)
 		if not __errorMsg then
 			local model = GamePlayModel:create({deskset_id = config.GamePlayConfig.SRF})
 			model.res = {imgItemBg = "LobbyPlaySRF.png",imgStar = "LobbyPlaySRFAct.png"}

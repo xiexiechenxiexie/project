@@ -76,7 +76,7 @@ function ChatLayer:init()
 											"chat_btn_chat_.png",
 											ccui.TextureResType.plistType
 											)
-	duanyuBtn:setPosition(-221.54-15,239.04-3)
+	duanyuBtn:setPosition(-221.54-13,239.04-5)
 	self.node:addChild(duanyuBtn)
 
 	local browBtn = ccui.CheckBox:create("chat_btn_emoticons_0.png",
@@ -86,7 +86,7 @@ function ChatLayer:init()
 											"chat_btn_emoticons_0.png",
 											ccui.TextureResType.plistType
 											)
-	browBtn:setPosition(-221.54-15,60-3)
+	browBtn:setPosition(-221.54-13,60-4)
 	self.node:addChild(browBtn)
 
 	local jiluBtn = ccui.CheckBox:create("chat_btn_jilu_0.png",
@@ -96,7 +96,7 @@ function ChatLayer:init()
 											"chat_btn_jilu_0.png",
 											ccui.TextureResType.plistType
 											)
-	jiluBtn:setPosition(-221.54-15,-119.04-3)
+	jiluBtn:setPosition(-221.54-13,-119.04-3)
 	self.node:addChild(jiluBtn)
 
 	duanyuBtn:setTag(1)
@@ -558,7 +558,7 @@ function ChatLayer:closeLayer()
 	if self.listener then
 		cc.Director:getInstance():getEventDispatcher():removeEventListener(self.listener)
 	end
-	local pos=self.hidePos or cc.p(-280,375)
+	local pos=self.hidePos or cc.p(-290,375)
 	local a={}
 	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.1, pos))
     a[#a+1] = cc.CallFunc:create(
@@ -571,8 +571,8 @@ end
 
 --弹出界面
 function ChatLayer:popLayer()
-	local pos1=self.hidePos or cc.p(-280,375)
-	local pos2=self.showPos or cc.p(280,375)
+	local pos1=self.hidePos or cc.p(-290,375)
+	local pos2=self.showPos or cc.p(290,375)
 	self.node:setPosition(pos1)
 	local a={}
 	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.1, pos2))
