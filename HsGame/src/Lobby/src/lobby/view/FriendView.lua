@@ -614,7 +614,7 @@ function FriendView:createApplyFriendRecord(data)
             self:requestReplyApplyFriend(record, data.userId, 1)
         end
         })
-	record._okBtn:setPosition(size.width/2 - 60, 0)
+	record._okBtn:setPosition(size.width/2 - 80, 0)
 	record:addChild(record._okBtn)
 
 	record._refuseBtn = lib.uidisplay.createUIButton({
@@ -625,7 +625,7 @@ function FriendView:createApplyFriendRecord(data)
             self:requestReplyApplyFriend(record, data.userId, 0)
         end
         })
-	record._refuseBtn:setPosition(size.width/2 - 172, 0)
+	record._refuseBtn:setPosition(size.width/2 - 240, 0)
 	record:addChild(record._refuseBtn)
 
     return record
