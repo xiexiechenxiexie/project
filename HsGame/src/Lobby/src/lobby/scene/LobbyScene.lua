@@ -115,9 +115,16 @@ function LobbyScene:initView()
 	lobbySceneBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height/2))
 	self:addChild(lobbySceneBg)
 
-	local lobbySceneGirl = ccui.ImageView:create("GameLayout/Lobby/lobby_girl.png", ccui.TextureResType.localType)
-	lobbySceneGirl:setPosition(cc.p(self:getContentSize().width/2-220, lobbySceneGirl:getContentSize().height/2))
-	self:addChild(lobbySceneGirl)
+	-- local lobbySceneGirl = ccui.ImageView:create("GameLayout/Lobby/lobby_girl.png", ccui.TextureResType.localType)
+	-- lobbySceneGirl:setPosition(cc.p(self:getContentSize().width/2-220, lobbySceneGirl:getContentSize().height/2))
+	-- self:addChild(lobbySceneGirl)
+
+	local dir = "GameLayout/Animation/DL_wm_Animation/"
+	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."DL_wm_Animation0.png",dir.."DL_wm_Animation0.plist",dir.."DL_wm_Animation.ExportJson")  
+    local adAnim = ccs.Armature:create("DL_wm_Animation") 
+    adAnim:setPosition(self:getContentSize().width/2, self:getContentSize().height/2) 
+    self:addChild(adAnim);
+    adAnim:getAnimation():playWithIndex(0)
 
 	local lobbySceneDi = ccui.ImageView:create("GameLayout/Lobby/lobby_di.png", ccui.TextureResType.localType)
 	lobbySceneDi:setPosition(cc.p(self:getContentSize().width/2, lobbySceneDi:getContentSize().height/2))
@@ -286,22 +293,23 @@ function LobbyScene:initView()
 
 	local RichBtn = "rankingList_btn.png"
     self._BtnRankList  = ccui.Button:create(RichBtn, RichBtn, RichBtn, ccui.TextureResType.plistType)
-	self._BtnRankList:setPosition(-535,5)
+	self._BtnRankList:setPosition(132,380)
 	self._BtnRankList:setTag(LobbyScene.RANKLIST)
-	self.rankListView:addChild(self._BtnRankList)
+	self:addChild(self._BtnRankList)
 	self._BtnRankList:addClickEventListener(function(sender)
 		self:requestRankView(sender)
 	end)
 	self._BtnRankList:setOpacity(0)
 
-	self.rankView = require("lobby/view/RankView").new()
-	self:addChild(self.rankView,LobbyLocalZOrder.RANK_LAYER+1)
-	self.rankView:setPosition(0,375)
+	-- self.rankView = require("lobby/view/RankView").new()
+	-- self:addChild(self.rankView,LobbyLocalZOrder.RANK_LAYER+1)
+	-- self.rankView:hide()
+	-- self.rankView:setPosition(0,375)
 
 	local RankBtn = "rankingList_btn1.png"
     self._BtnRank  = ccui.Button:create(RankBtn, RankBtn, RankBtn, ccui.TextureResType.plistType)
-	self._BtnRank:setPosition(-245,5)
-	self.rankView:addChild(self._BtnRank)
+	self._BtnRank:setPosition(422,380)
+	self:addChild(self._BtnRank)
 	self._BtnRank:setTag(LobbyScene.RANK)
 	self._BtnRank:addClickEventListener(function(sender)
 		self:requestRankView(sender)
@@ -309,16 +317,28 @@ function LobbyScene:initView()
 	self._BtnRank:setOpacity(0)
 end
 
+function LobbyScene:RankViewShow( ... )
+	self.rankListView:hide()
+	self.rankView = require("lobby/view/RankView").new()
+	self.rankView:initView()
+	self:addChild(self.rankView,LobbyLocalZOrder.RANK_LAYER+1)
+	self.rankView:setTag(111)
+end
+
+function LobbyScene:RankViewHide( ... )
+	self.rankListView:show()
+	if self:getChildByTag(111) then
+		self:getChildByTag(111):closeLayer()
+	end
+end
+
 function LobbyScene:requestRankView( sender )
 	local tag = sender:getTag()
 	print("我要找tag",tag)
 	if tag == LobbyScene.RANKLIST then
-		self.rankView:show()
-		self.rankView:runAction(cc.MoveTo:create(0.2,cc.p(667,375)))
-		self.rankListView:hide()
+		self:RankViewShow()
 	elseif tag == LobbyScene.RANK then
-		self.rankView:runAction(cc.MoveTo:create(0.2,cc.p(0,375)))
-		self.rankListView:show()
+		self:RankViewHide()
 	end
 end
 
