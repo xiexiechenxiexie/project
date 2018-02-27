@@ -218,6 +218,19 @@ function CreateRoomManager:onTableConfigCallback( __error,__response )
             	if self._callback then self._callback() end
             elseif gameId == GameIdConfig.BRNN then
                 print("gameId == 1002")
+            elseif gameId == GameIdConfig.PSZ then
+            	print("拼三张规则")
+                self._configCreate = {}
+                self._configCreate._costOfOneRoomCard =  __response.data.round --局数
+                self._configCreate._cardCostUnit = __response.data.spend  --每round 消耗spend房卡
+                if __response.options then
+                    self._configCreate._isAuthorizeSitSelectionShow = __response.data.permission == 1   -- 授权入座选项，0不显示，1显示
+                else
+                	self._configCreate._isAuthorizeSitSelectionShow = true
+                end
+                self._configCreate._isCostSitSelectionShow = __response.data.toll  == 1 -- 收费入座选项，0不现实，1显示
+
+            	if self._callback then self._callback() end
             else
                 print("game id error")
             end

@@ -34,13 +34,10 @@ function PlayerInfoManager:requestPlayerInfoData( __userID, __callback)
     self._requestPlayerInfoCallBack = __callback
     local config = cc.exports.config
     local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_PLAYER_INFO .. __userID.."?token="..UserData.token
-    print("请求用户信息请求用户信息请求用户信息",url)
     cc.exports.HttpClient:getInstance():get(url,handler(self,self._onPlayerInfoCallback))
 end
 
 function PlayerInfoManager:_onPlayerInfoCallback( __error,__response )
-    print("用户信息用户信息用户信息")
-    dump(__response)
     if __error then
         print("Player Info net error")
     else

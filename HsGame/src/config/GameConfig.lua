@@ -35,9 +35,10 @@ local GameType = {
 
 --游戏集合列表  2 私人房  1 快速开始  2 金币
 local GameColllectType = {
+   Type_COIN = 2,
    Type_SRF = 3,
    Type_KSKS = 4,
-   Type_COIN = 2,
+   Type_ZJH = 5,
 }
 
 local RobotRange = {

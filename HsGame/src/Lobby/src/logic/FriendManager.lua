@@ -135,6 +135,8 @@ function FriendManager:requestDeleteFriendData( __userID, __callback)
     local param = {}
     param.token = UserData.token
     param.friendId = __userID
+    print("要删除的好友")
+    dump(param)
     local url = config.ServerConfig:findModelDomain() .. config.ApiConfig.REQUEST_DELETE_FRIEND
     cc.exports.HttpClient:getInstance():post(url,param,handler(self,self._onDeleteFriendCallback))
 end

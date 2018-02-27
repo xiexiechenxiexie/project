@@ -255,19 +255,32 @@ function PlayerInfoView:showPlayerInfoView(data)
     self._WinRateNumText:setString(winRateNum*100 .. "%")
     self._WinRateNumText:show()
 
-    local friendInfo = UserData.findFriendByIndex(data.userId or 0)
-    if friendInfo ~= nil then
-        self._btnAddFriend:hide()
-        self._btnRemoveFriend:show()
+    if data.isFriend then
+        if data.isFriend == 1 then
+            self._btnAddFriend:hide()
+            self._btnRemoveFriend:show()
+        else
+            self._btnAddFriend:show()
+            self._btnRemoveFriend:hide()
+        end
     else
-        self._btnAddFriend:show()
+        self._btnAddFriend:hide()
         self._btnRemoveFriend:hide()
     end
 
-    if friendInfo == 1 then
-        self._btnAddFriend:hide()
-        self._btnRemoveFriend:hide()
-    end
+    -- local friendInfo = UserData.findFriendByIndex(data.userId or 0)
+    -- if friendInfo ~= nil then
+    --     self._btnAddFriend:hide()
+    --     self._btnRemoveFriend:show()
+    -- else
+    --     self._btnAddFriend:show()
+    --     self._btnRemoveFriend:hide()
+    -- end
+
+    -- if friendInfo == 1 then
+    --     self._btnAddFriend:hide()
+    --     self._btnRemoveFriend:hide()
+    -- end
 
 end
 
