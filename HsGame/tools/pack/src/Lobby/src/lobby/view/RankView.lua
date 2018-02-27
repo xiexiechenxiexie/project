@@ -2,9 +2,7 @@
 -- @date 2017.08.05
 -- @author tangwen
 
-local RankView = class("RankView", function()
-	return display.newNode()
-end)
+local RankView = class("RankView", lib.layer.BaseLayer)
 
 local PlayerInfo = require "PlayerInfoView"
 
@@ -33,23 +31,51 @@ local RankTag = {
 function RankView:ctor()
 	self:setPosition(display.cx,display.cy)
 	self:enableNodeEvents() 
-	self:initView()
+	self:createView()
 	self._isRichRankLoaded = false  -- 财富榜记录
 	self._isFriendRankListLoaded = false  -- 好友榜记录
 	self._rickRankScrollView = nil
+end
+
+function RankView:createView( ... )
+	--透明遮罩层
+	local layer = cc.LayerColor:create(cc.c4b(10, 10, 10, 120), display.width*2, display.height)
+	layer:setPosition(-667,-375)
+    self:addChild(layer)
+    local function onTouchBegan(touch, event)
+    	return true
+    end
+    local function onTouchMove(touch, event)
+    	return true
+    end
+    local function onTouchEnd(touch, event)
+    	self:closeLayer()
+    	return true
+    end
+    local listener = cc.EventListenerTouchOneByOne:create()
+    listener:registerScriptHandler(onTouchBegan, cc.Handler.EVENT_TOUCH_BEGAN)
+    listener:registerScriptHandler(onTouchMove, cc.Handler.EVENT_TOUCH_MOVED)
+    listener:registerScriptHandler(onTouchEnd, cc.Handler.EVENT_TOUCH_ENDED)
+    listener:setSwallowTouches(false)
+    cc.Director:getInstance():getEventDispatcher():addEventListenerWithSceneGraphPriority(listener,layer)
+    self.listener=listener
+
+    local node=cc.Node:create()
+	layer:addChild(node)
+	self.node=node
 end
 
 function RankView:initView()
 	self._RichListbg = ccui.ImageView:create("ranking_bg.png", ccui.TextureResType.plistType)
     self._RichListbg:setAnchorPoint(cc.p(0.5, 0.5))
     self._RichListbg:setPosition(RANK_BG_POS)
-    self:addChild(self._RichListbg)
+    self.node:addChild(self._RichListbg)
     self._RichListbg:show()
 
     self._FriendListbg = ccui.Button:create("ranking_bg.png","ranking_bg.png","ranking_bg.png", ccui.TextureResType.plistType)
     self._FriendListbg:setAnchorPoint(cc.p(0.5, 0.5))
     self._FriendListbg:setPosition(RANK_BG_POS)
-    self:addChild(self._FriendListbg)
+    self.node:addChild(self._FriendListbg)
     self._FriendListbg:hide()
 
     local labelFriend = cc.Label:createWithTTF("按好友周盈利进行排名",GameUtils.getFontName(),20)
@@ -60,7 +86,7 @@ function RankView:initView()
     local RichImg = "ranking_btn_select.png"
     self._btnRich  = ccui.Button:create(RichImg, RichImg, RichImg, ccui.TextureResType.plistType)
 	self._btnRich:setPosition(RANK_RICH_TITLE_POS)
-	self:addChild(self._btnRich,2)
+	self.node:addChild(self._btnRich,2)
 	self._btnRich:addClickEventListener(function()
 		self:requestRichRankView()
 	end)
@@ -69,7 +95,7 @@ function RankView:initView()
 	local FriendImg = "ranking_btn_select.png"
     self._btnFriend  = ccui.Button:create(FriendImg, FriendImg, FriendImg, ccui.TextureResType.plistType)
 	self._btnFriend:setPosition(RANK_FRIEND_TITLE_POS)
-	self:addChild(self._btnFriend,2)
+	self.node:addChild(self._btnFriend,2)
 	self._btnFriend:setOpacity(0)
 	self._btnFriend:addClickEventListener(function()
 		self:requestFriendRankView()
@@ -79,18 +105,55 @@ function RankView:initView()
 	self._RichTitle = cc.Label:createWithTTF("财富榜",GameUtils.getFontName(),30)
     self._RichTitle:setColor(cc.c3b(236, 224, 184))
     self._RichTitle:setPosition(RANK_RICH_TITLE_POS)
-    self:addChild(self._RichTitle,3)
+    self.node:addChild(self._RichTitle,3)
     self._RichTitle:show()
 
     self._FriendTitle = cc.Label:createWithTTF("好友榜",GameUtils.getFontName(),30)
     self._FriendTitle:setColor(cc.c3b(185, 183, 181))
     self._FriendTitle:setPosition(RANK_FRIEND_TITLE_POS)
-    self:addChild(self._FriendTitle,3)
+    self.node:addChild(self._FriendTitle,3)
     self._FriendTitle:show()
 
     self._RankModelNode = self:createRankCloneNode()
     self._RankModelNode:retain()
 
+    self.node:setPosition(0,375)
+ 	self:setCPPos(cc.p(0,375),cc.p(667,375))
+end
+
+function RankView:setCPPos(hidePos,showPos)
+	self.hidePos=hidePos
+	self.showPos=showPos
+end
+
+--关闭界面
+function RankView:closeLayer()
+	if self.listener then
+		cc.Director:getInstance():getEventDispatcher():removeEventListener(self.listener)
+	end
+	local pos=self.hidePos or cc.p(0,375)
+	local a={}
+	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.2, pos))
+    a[#a+1] = cc.CallFunc:create(
+    	function(sender)
+    		if self:getParent().RankViewHide then
+    			self:getParent():RankViewHide()
+    		end
+    		self:removeFromParent()
+    	end)
+    self.node:stopAllActions()
+ 	self.node:runAction(cc.Sequence:create(a))
+end
+
+--弹出界面
+function RankView:popLayer()
+	local pos1=self.hidePos or cc.p(0,375)
+	local pos2=self.showPos or cc.p(667,375)
+	self.node:setPosition(pos1)
+	local a={}
+	a[#a+1]= cc.EaseSineIn:create(cc.MoveTo:create(0.2, pos2))
+	self.node:stopAllActions()
+ 	self.node:runAction(cc.Sequence:create(a))
 end
 
 -- 创建scrollView界面
@@ -326,6 +389,10 @@ function RankView:showFriendRankView(__rankListData)
 end
 
 function RankView:onEnter()
+	self:popLayer()
+	self:_addTouchEvent()
+	self:addEventListerns()
+
 	-- self:requestRichRankView()
 	if self._RichListbg then
         local size = self._RichListbg:getContentSize()
@@ -334,6 +401,8 @@ function RankView:onEnter()
 end
 
 function RankView:onExit()
+	self:_removeTouchEvent()
+	self:removeEventListeners()
 	if self._RankModelNode then self._RankModelNode:release() self._RankModelNode = nil end
 end
 

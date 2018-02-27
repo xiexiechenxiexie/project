@@ -44,7 +44,7 @@ function PlayerListLayer:init()
 	--玩家列表
 	self.PlayerList = self.RootNode:getChildByName("PlayerList")
 	--item大小
-	self.ItemSize=cc.size(920,140)
+	self.ItemSize=cc.size(800,115)
 
 	self.data={}
 
@@ -103,7 +103,7 @@ function PlayerListLayer:RenderPlayerList()
 end
 
 function PlayerListLayer:createItem(data,index)
-	local xx=300
+	local xx=280
 	local layout=ccui.Layout:create()
 	layout:setContentSize(self.ItemSize)
 
@@ -125,7 +125,7 @@ function PlayerListLayer:createItem(data,index)
 		paramTab.stencilFile="game/brnn/res/GameLayout/head_bg.png"
 		paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(info.gender)
 		local headnode=Avatar:create(paramTab)
-		headnode:setPosition(cc.p(x-124,y-49))
+		headnode:setPosition(cc.p(x-125,y-50))
 		headnode:setScale(1.05)
 		layout:addChild(headnode)
 
@@ -145,7 +145,7 @@ function PlayerListLayer:createItem(data,index)
 				text =string.getMaxLen(nameStr),
 				alignment = cc.TEXT_ALIGNMENT_CENTER,
 				color = cc.c4b(255,242,233, 255),
-				pos = cc.p(x+10,y+18),
+				pos = cc.p(x-10,y+18),
 				anchorPoint = cc.p(0,0.5)
 			}
 		local nameLab = cc.exports.lib.uidisplay.createLabel(labelConfig)
@@ -157,7 +157,7 @@ function PlayerListLayer:createItem(data,index)
 				text =scoreStr,
 				alignment = cc.TEXT_ALIGNMENT_CENTER,
 				color = cc.c4b(255,246,198, 255),
-				pos = cc.p(x+10,y-18),
+				pos = cc.p(x+20,y-16),
 				anchorPoint = cc.p(0,0.5)
 			}
 		local scoreLab = cc.exports.lib.uidisplay.createLabel(labelConfig)

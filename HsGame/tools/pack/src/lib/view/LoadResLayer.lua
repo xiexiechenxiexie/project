@@ -21,13 +21,17 @@ end
 
 function LoadResLayer:initView()
 
-	local bg = ccui.ImageView:create("preload/res/bg.png",ccui.TextureResType.localType)
+	local bg = ccui.ImageView:create("preload/res/loadRes_bg.png",ccui.TextureResType.localType)
 	self:addChild(bg)
 	bg:setPosition(display.width * 0.5,display.height * 0.5)
+
+	local logo = display.newSprite("GameLayout/Login/login_logo.png")
+    logo:setPosition(logo:getContentSize().width/2,bg:getContentSize().height-logo:getContentSize().height/2-20)
+	bg:addChild(logo)
 	
-	local logo = ccui.ImageView:create("preload/res/logo.png",ccui.TextureResType.localType)
-	self:addChild(logo,10)
-	logo:setPosition(display.width * 0.5,display.height * 0.5)
+	-- local logo = ccui.ImageView:create("preload/res/logo.png",ccui.TextureResType.localType)
+	-- self:addChild(logo,10)
+	-- logo:setPosition(display.width * 0.5,display.height * 0.5)
 
  	local loadBarBg = ccui.ImageView:create("preload/res/loading_bg.png",ccui.TextureResType.localType)
 	bg:addChild(loadBarBg)

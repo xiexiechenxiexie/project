@@ -7,80 +7,80 @@
             <key>btn_quxiaoshenqing_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{248,2},{184,74}}</string>
+                <string>{{2,275},{257,85}}</string>
                 <key>offset</key>
-                <string>{0,2}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{3,6},{184,74}}</string>
+                <string>{{0,0},{257,85}}</string>
                 <key>sourceSize</key>
-                <string>{190,90}</string>
+                <string>{257,85}</string>
             </dict>
             <key>btn_quxiaoshenqing_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{84,2},{184,80}}</string>
+                <string>{{2,184},{261,89}}</string>
                 <key>offset</key>
-                <string>{0,5}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{3,0},{184,80}}</string>
+                <string>{{0,0},{261,89}}</string>
                 <key>sourceSize</key>
-                <string>{190,90}</string>
+                <string>{261,89}</string>
             </dict>
             <key>btn_shenqingshangzhuang_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{324,2},{184,74}}</string>
+                <string>{{356,2},{257,85}}</string>
                 <key>offset</key>
-                <string>{0,2}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,6},{184,74}}</string>
+                <string>{{0,0},{257,85}}</string>
                 <key>sourceSize</key>
-                <string>{190,90}</string>
+                <string>{257,85}</string>
             </dict>
             <key>btn_shenqingshangzhuang_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{186,80}}</string>
+                <string>{{2,93},{261,89}}</string>
                 <key>offset</key>
-                <string>{0,5}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{2,0},{186,80}}</string>
+                <string>{{0,0},{261,89}}</string>
                 <key>sourceSize</key>
-                <string>{190,90}</string>
+                <string>{261,89}</string>
             </dict>
             <key>btn_shenqingxiazhuang_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{400,2},{184,74}}</string>
+                <string>{{265,2},{261,89}}</string>
                 <key>offset</key>
-                <string>{0,2}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,6},{184,74}}</string>
+                <string>{{0,0},{261,89}}</string>
                 <key>sourceSize</key>
-                <string>{190,90}</string>
+                <string>{261,89}</string>
             </dict>
             <key>btn_shenqingxiazhuang_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{166,2},{184,80}}</string>
+                <string>{{2,2},{261,89}}</string>
                 <key>offset</key>
-                <string>{0,5}</string>
+                <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{3,0},{184,80}}</string>
+                <string>{{0,0},{261,89}}</string>
                 <key>sourceSize</key>
-                <string>{190,90}</string>
+                <string>{261,89}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -90,9 +90,9 @@
             <key>realTextureFileName</key>
             <string>zhuangjia_btn.png</string>
             <key>size</key>
-            <string>{476,190}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:5c3e057fc6a967890548127935457e8f:a0dc6265185c6a26913dc386ddca1f0f:b2ceeed3805637d3b3d94c750f0c28b4$</string>
+            <string>$TexturePacker:SmartUpdate:40aadeab2d686cfdfa16a7e50a907a7f:1/1$</string>
             <key>textureFileName</key>
             <string>zhuangjia_btn.png</string>
         </dict>

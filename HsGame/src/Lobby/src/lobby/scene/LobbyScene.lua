@@ -123,16 +123,16 @@ function LobbyScene:initView()
 	local node = ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."DL_wm_Animation0.png",dir.."DL_wm_Animation0.plist",dir.."DL_wm_Animation.ExportJson")  
     local adAnim = ccs.Armature:create("DL_wm_Animation") 
     adAnim:setPosition(self:getContentSize().width/2, self:getContentSize().height/2) 
-    self:addChild(adAnim);
+    lobbySceneBg:addChild(adAnim);
     adAnim:getAnimation():playWithIndex(0)
 
-	local lobbySceneDi = ccui.ImageView:create("GameLayout/Lobby/lobby_di.png", ccui.TextureResType.localType)
+	local lobbySceneDi = ccui.ImageView:create("GameLayout/Lobby/Lobby_di.png", ccui.TextureResType.localType)
 	lobbySceneDi:setPosition(cc.p(self:getContentSize().width/2, lobbySceneDi:getContentSize().height/2))
-	self:addChild(lobbySceneDi)
+	lobbySceneBg:addChild(lobbySceneDi)
 	for i=1,4 do
 		local lobbySceneShu = ccui.ImageView:create("GameLayout/Lobby/Lobby_di_shu.png", ccui.TextureResType.localType)
 		lobbySceneShu:setPosition(cc.p(140+(i-1)*130, lobbySceneDi:getContentSize().height/2))
-		self:addChild(lobbySceneShu)
+		lobbySceneBg:addChild(lobbySceneShu)
 	end
 
 	-- self.bottomBg = ccui.ImageView:create("lobby_bottom_bg.png", ccui.TextureResType.plistType)

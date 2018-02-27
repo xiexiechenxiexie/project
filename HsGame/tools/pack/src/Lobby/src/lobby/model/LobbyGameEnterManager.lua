@@ -112,11 +112,7 @@ function LobbyGameEnterManager:_onGameListCallback( __error,__respObj )
 				-- updateInfo.isEnablePlay = (v.Status  == 1)--1 完成 0未完成
 				updateInfo.isUpdate = false
 				updateInfo.isNeedDownload  = false
-				if gameId == 3 then
-					updateInfo.isEnablePlay = false--1 完成 0未完成
-				else
-					updateInfo.isEnablePlay = true--1 完成 0未完成
-				end
+				updateInfo.isEnablePlay = true--1 完成 0未完成
 				
 				self._gameListCache[gameId] = updateInfo
 				print("dump(updateInfo)")

@@ -342,7 +342,7 @@ function NoticeView:createNoticeTitleNode(index,data,showType)
 	end)
 
 	record.NewImg = ccui.ImageView:create("Lobby_notice_new.png", ccui.TextureResType.plistType)
-    record.NewImg:setPosition(cc.p(-size.width/2 + 27,size.height/2 -20))
+    record.NewImg:setPosition(cc.p(-size.width/2 + 57,size.height/2 -23))
     record:addChild(record.NewImg,3)
     if data.tag == ConstantsData.NoticeShowType.NOTICE_NORMAL then
     	record.NewImg:hide()

@@ -532,7 +532,6 @@ end
 
 function LobbyGameEnter:_enterGame( __gameId )
 	local managerClazz = lobby.LobbyGameEnterManager
-
 	managerClazz:getInstance():setSelectGameId(__gameId)
 	if managerClazz:getInstance():isNeedToSelectPlayScene(__gameId) then
 		self:_gotoSelectPlayScene(__gameId)
@@ -546,7 +545,6 @@ function LobbyGameEnter:_enterGame( __gameId )
 		print("看牌强庄")
 	elseif __gameId == managerClazz.PSZ then
 		print("拼三张")
-		logic.LobbyManager:getInstance():LoginGameServer()
 	elseif __gameId == managerClazz.HHDZ then
 		print("红黑大战")
 	else 

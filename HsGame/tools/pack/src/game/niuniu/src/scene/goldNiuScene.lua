@@ -302,14 +302,14 @@ function goldNiuScene:CreateView()
     --商店
     if not manager.UserManager:getInstance():findAppCloseRoomCardFlag() then 
      	local shop_btn = ccui.Button:create()
-    	shop_btn:loadTextureNormal("shop_car.png", UI_TEX_TYPE_PLIST)
+    	shop_btn:loadTextureNormal("shop.png", UI_TEX_TYPE_PLIST)
     	shop_btn:setPosition(1250,670)
     	shop_btn:setTag(conf.Tag.shop)
     	shop_btn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
         shop_btn:setOpacity(0)
     	self.bg:addChild(shop_btn)
 
-        local dir = GameResPath.."Animation/shop2_Animation/"
+        local dir = "gamecommon/shop2_Animation/"
         ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."shop2_Animation0.png",dir.."shop2_Animation0.plist",dir.."shop2_Animation.ExportJson")  
         local adAnim = ccs.Armature:create("shop2_Animation") 
         adAnim:setPosition(shop_btn:getContentSize().width/2,shop_btn:getContentSize().height/2) 

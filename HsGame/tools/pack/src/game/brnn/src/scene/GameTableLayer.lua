@@ -149,20 +149,37 @@ function GameTableLayer:init()
     self.ludan_btn_action = ludan_btn_action
 
     if not manager.UserManager:getInstance():findAppCloseRoomCardFlag() then 
-		local shop_btn = ccui.Button:create("shop_car.png","shop_car.png","shop_car.png",ccui.TextureResType.plistType)
-		shop_btn:setPosition(1278,690)
-		shop_btn:setTag(Tag.shop)
-		shop_btn:addClickEventListener(function(sender)self:onButtonClickedEvent(sender)end)
-		self.m_RootNode:addChild(shop_btn)
+     	local shop_btn = ccui.Button:create()
+    	shop_btn:loadTextureNormal("shop.png", UI_TEX_TYPE_PLIST)
+    	shop_btn:setPosition(1250,670)
+    	shop_btn:setTag(conf.Tag.shop)
+    	shop_btn:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+        shop_btn:setOpacity(0)
+    	self.m_RootNode:addChild(shop_btn)
 
-		local shop_btn_node = cc.CSLoader:createNode("gamecommon/shop_ani.csb")
-		shop_btn_node:setPosition(1278,690)
-		self.m_RootNode:addChild(shop_btn_node)
-	    local shopAct = cc.CSLoader:createTimeline("gamecommon/shop_ani.csb")
-	    shopAct:setTimeSpeed(1)
-	    shop_btn_node:runAction(shopAct)
-	    shopAct:gotoFrameAndPlay(0,true)
-	end
+        local dir = "gamecommon/shop2_Animation/"
+        ccs.ArmatureDataManager:getInstance():addArmatureFileInfo(dir.."shop2_Animation0.png",dir.."shop2_Animation0.plist",dir.."shop2_Animation.ExportJson")  
+        local adAnim = ccs.Armature:create("shop2_Animation") 
+        adAnim:setPosition(shop_btn:getContentSize().width/2,shop_btn:getContentSize().height/2) 
+        shop_btn:addChild(adAnim);
+        adAnim:getAnimation():playWithIndex(0)
+    end
+
+ --    if not manager.UserManager:getInstance():findAppCloseRoomCardFlag() then 
+	-- 	local shop_btn = ccui.Button:create("shop_car.png","shop_car.png","shop_car.png",ccui.TextureResType.plistType)
+	-- 	shop_btn:setPosition(1278,690)
+	-- 	shop_btn:setTag(Tag.shop)
+	-- 	shop_btn:addClickEventListener(function(sender)self:onButtonClickedEvent(sender)end)
+	-- 	self.m_RootNode:addChild(shop_btn)
+
+	-- 	local shop_btn_node = cc.CSLoader:createNode("gamecommon/shop_ani.csb")
+	-- 	shop_btn_node:setPosition(1278,690)
+	-- 	self.m_RootNode:addChild(shop_btn_node)
+	--     local shopAct = cc.CSLoader:createTimeline("gamecommon/shop_ani.csb")
+	--     shopAct:setTimeSpeed(1)
+	--     shop_btn_node:runAction(shopAct)
+	--     shopAct:gotoFrameAndPlay(0,true)
+	-- end
 
 	--人群按钮
 	local people_btn=self.m_RootNode:getChildByName("people_btn")
@@ -190,28 +207,28 @@ function GameTableLayer:init()
 	tishi_text:setName("tishi_text")
 	self.m_tishiNode=tishiNode
 	
-	--特效层
-	--开始下注动画
-    --骨骼动画
-	local node = cc.CSLoader:createNode(GameResPath.."start_xiazhu.csb")
-	node:setPosition(display.cx,display.cy)
-	self:addChild(node,LayZ.effect)
-    local act = cc.CSLoader:createTimeline(GameResPath.."start_xiazhu.csb")
-    act:setTimeSpeed(1) --设置执行动画速度
-    -- actction.sFrame = 0  --执行动作的开始帧和结尾帧index
-    -- actction.eFrame = 0
-    node:runAction(act)
-    node:setVisible(false)
-    self.xiazhu_node=node
-    self.xiazhu_action=act
+	-- --特效层
+	-- --开始下注动画
+ --    --骨骼动画
+	-- local node = cc.CSLoader:createNode(GameResPath.."start_xiazhu.csb")
+	-- node:setPosition(display.cx,display.cy)
+	-- self:addChild(node,LayZ.effect)
+ --    local act = cc.CSLoader:createTimeline(GameResPath.."start_xiazhu.csb")
+ --    act:setTimeSpeed(1) --设置执行动画速度
+ --    -- actction.sFrame = 0  --执行动作的开始帧和结尾帧index
+ --    -- actction.eFrame = 0
+ --    node:runAction(act)
+ --    node:setVisible(false)
+ --    self.xiazhu_node=node
+ --    self.xiazhu_action=act
 
-    --粒子
-	local particle = cc.ParticleSystemQuad:create(GameResPath.."particle_start_xiazhu.plist")
-    particle:setPositionType(cc.POSITION_TYPE_GROUPED )
-    particle:setPosition(display.cx,display.cy)
-    self:addChild(particle,LayZ.effect)
-    particle:stop()
-    self.particle_start_xiazhu=particle
+ --    --粒子
+	-- local particle = cc.ParticleSystemQuad:create(GameResPath.."particle_start_xiazhu.plist")
+ --    particle:setPositionType(cc.POSITION_TYPE_GROUPED )
+ --    particle:setPosition(display.cx,display.cy)
+ --    self:addChild(particle,LayZ.effect)
+ --    particle:stop()
+ --    self.particle_start_xiazhu=particle
 
 	--扑克层
 	local card_layout=cc.Node:create()
@@ -251,7 +268,7 @@ function GameTableLayer:init()
 	self.m_SmallLDEffecArray={}
 	for i=1,conf.QUYU_NUM do
 		local node=SmallLuDanNode.new()
-		node:setPosition(cc.p(422+222*(i-1),325))
+		node:setPosition(cc.p(422+217*(i-1),325))
 		SmallLuDan_Layer:addChild(node)
 		
 		local effect_node = SmallLuDanEffect.new()
@@ -414,7 +431,7 @@ function GameTableLayer:init()
 	paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(2)
 	local headnode=Avatar:create(paramTab)
 	headnode:setScale(1.03)
-	headnode:setPosition(cc.p(0,-2))
+	headnode:setPosition(cc.p(-9.5,-8.5))
 	zhuangHead:addChild(headnode)
 	self.zhuangHead=zhuangHead
 
@@ -442,7 +459,7 @@ function GameTableLayer:init()
 	paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(UserData.gender)
 	local headnode=Avatar:create(paramTab)
 	headnode:setScale(1.03)
-	headnode:setPosition(cc.p(-1,0))
+	headnode:setPosition(cc.p(-9,-9.5))
 	myHead:addChild(headnode)
 	self.myHead=myHead
 
@@ -510,7 +527,7 @@ function GameTableLayer:initCard()
 	self.m_CardBackArray={}
 	for i=1,(conf.Card_Num)*(conf.CardNodeNum) do
 		local CardSp=cc.Sprite:createWithSpriteFrameName("niuniu_card_0x00.png")
-		CardSp:setScale(conf.Card_Size)
+		CardSp:setScale(conf.Card_Size*0.9)
 		CardSp:setTag(i)
 		self.m_card_layout:addChild(CardSp,(conf.Card_Num)*(conf.CardNodeNum)+i)
 		table.insert(self.m_CardBackArray,CardSp)
@@ -526,7 +543,7 @@ function GameTableLayer:initCard()
 		Tpos.x=conf.CardNodePos[a].x+(b-3)*conf.Card_X
 		Tpos.y=conf.CardNodePos[a].y
 		CardSp:setPosition(Tpos)
-		CardSp:setScale(conf.Card_Size)
+		CardSp:setScale(conf.Card_Size*0.9)
 		CardSp:setVisible(false)
 		self.m_card_layout:addChild(CardSp,(conf.Card_Num)*(conf.CardNodeNum)+i)
 		table.insert(self.m_CardArray,CardSp)
@@ -876,7 +893,7 @@ function GameTableLayer:updataSZlist()
 		paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Info.gender)
 		local headnode=Avatar:create(paramTab)
 		headnode:setScale(1.03)
-		headnode:setPosition(cc.p(0,-2))
+		headnode:setPosition(cc.p(-9.5,-8.5))
 		self.zhuangHead:addChild(headnode)
 	end
 end
@@ -907,7 +924,7 @@ function GameTableLayer:_onSystemZhuangInfoCallback( __error,__response )
 					paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(2)
 					local headnode=Avatar:create(paramTab)
 					headnode:setScale(1.03)
-					headnode:setPosition(cc.p(0,-2))
+					headnode:setPosition(cc.p(-9.5,-8.5))
 					self.zhuangHead:addChild(headnode)
 					self.zhuang_name:setString(string.getMaxLen(tostring(self.SystemZhuangInfo.nickName)))
 				end
@@ -1056,7 +1073,7 @@ function GameTableLayer:updataPlayerSit()
 				paramTab.defalutFile = GameUtils.getDefalutHeadFileByGender(Info.gender)
 				local headnode=Avatar:create(paramTab)
 				headnode:setScale(1.05)
-				headnode:setPosition(cc.p(-2,-2))
+				headnode:setPosition(cc.p(-10,-12))
 				Head:addChild(headnode)
 				self.sitUidOldArray[i]=v
 			end
@@ -1495,15 +1512,33 @@ end
 
 --开始下注动画
 function GameTableLayer:StartXiaZhuAction()
-	self.xiazhu_node:setVisible(true)
-	self.xiazhu_action:gotoFrameAndPlay(0,false)
+	-- self.xiazhu_node:setVisible(true)
+	-- self.xiazhu_action:gotoFrameAndPlay(0,false)
 
-	local a={}
-	a[#a+1]=cc.DelayTime:create(0.2)
-	a[#a+1]=cc.CallFunc:create(function()
-		self.particle_start_xiazhu:start()
-	end)
-	self:runAction(cc.Sequence:create(a))
+	-- local a={}
+	-- a[#a+1]=cc.DelayTime:create(0.2)
+	-- a[#a+1]=cc.CallFunc:create(function()
+	-- 	self.particle_start_xiazhu:start()
+	-- end)
+	-- self:runAction(cc.Sequence:create(a))
+
+	local spriteFrame  = cc.SpriteFrameCache:getInstance()  
+   	spriteFrame:addSpriteFrames(GameResPath.."brnn_kaishixiazhu.plist")
+   	local startXiazhu = cc.Sprite:createWithSpriteFrameName("brnn_kaishixiazhu_0.png")
+   	startXiazhu:setPosition(display.cx,display.cy)
+   	self:addChild(startXiazhu)
+
+   	local animation = cc.Animation:create()
+   	for i=1,19 do
+   		local frameName =string.format("brnn_kaishixiazhu_%d.png",i)
+		local spriteFra = spriteFrame:getSpriteFrame(frameName)
+		animation:addSpriteFrame(spriteFra)
+   	end
+	animation:setDelayPerUnit(0.035)            --设置两个帧播放时间
+	animation:setRestoreOriginalFrame(false)    --动画执行后还原初始状态
+	local action =(cc.Repeat:create(cc.Animate:create(animation),1))
+	local callfunc = cc.CallFunc:create(function() startXiazhu:setVisible(false) end)
+	startXiazhu:runAction(cc.Sequence:create(action,callfunc))
 end
 
 --下注
@@ -1932,24 +1967,42 @@ end
 
 --获得金币特效
 function GameTableLayer:PlayGoldAction(ppos)
-	local node = cc.CSLoader:createNode(GameResPath.."gold_effect.csb")
-    local act = cc.CSLoader:createTimeline(GameResPath.."gold_effect.csb")
-    act:setTimeSpeed(1)
-    node:runAction(act)
-    act:gotoFrameAndPlay(0,false)
-    act:setLastFrameCallFunc(function()
-		node:removeFromParent()
-	end)
-	local particle1 = cc.ParticleSystemQuad:create(GameResPath.."win_effect.plist")
-    particle1:setPositionType(cc.POSITION_TYPE_GROUPED )
-    particle1:setPosition(0,0)
-    node:addChild(particle1)
-    particle1:setScale(0.4)
-    particle1:setBlendFunc(cc.blendFunc(gl.SRC_ALPHA,gl.DST_ALPHA))
-    particle1:start()
+	-- local node = cc.CSLoader:createNode(GameResPath.."gold_effect.csb")
+ --    local act = cc.CSLoader:createTimeline(GameResPath.."gold_effect.csb")
+ --    act:setTimeSpeed(1)
+ --    node:runAction(act)
+ --    act:gotoFrameAndPlay(0,false)
+ --    act:setLastFrameCallFunc(function()
+	-- 	node:removeFromParent()
+	-- end)
+	-- local particle1 = cc.ParticleSystemQuad:create(GameResPath.."win_effect.plist")
+ --    particle1:setPositionType(cc.POSITION_TYPE_GROUPED )
+ --    particle1:setPosition(0,0)
+ --    node:addChild(particle1)
+ --    particle1:setScale(0.4)
+ --    particle1:setBlendFunc(cc.blendFunc(gl.SRC_ALPHA,gl.DST_ALPHA))
+ --    particle1:start()
     
-    self:addChild(node,LayZ.tishi)
-    node:setPosition(ppos)
+ --    self:addChild(node,LayZ.tishi)
+ --    node:setPosition(ppos)
+
+ 	local spriteFrame  = cc.SpriteFrameCache:getInstance()  
+   	spriteFrame:addSpriteFrames(GameResPath.."brnn_headeffect.plist")
+   	local headEffect = cc.Sprite:createWithSpriteFrameName("brnn_headeffect_0.png")
+   	headEffect:setPosition(ppos)
+   	self:addChild(headEffect)
+
+   	local animation = cc.Animation:create()
+   	for i=1,15 do
+   		local frameName =string.format("brnn_headeffect_%d.png",i)
+		local spriteFra = spriteFrame:getSpriteFrame(frameName)
+		animation:addSpriteFrame(spriteFra)
+   	end
+	animation:setDelayPerUnit(0.05)            --设置两个帧播放时间
+	animation:setRestoreOriginalFrame(false)    --动画执行后还原初始状态
+	local action =(cc.Repeat:create(cc.Animate:create(animation),1))
+	local callfunc = cc.CallFunc:create(function() headEffect:setVisible(false) end)
+	headEffect:runAction(cc.Sequence:create(action,callfunc))
 end
 
 --刷新玩家金币 

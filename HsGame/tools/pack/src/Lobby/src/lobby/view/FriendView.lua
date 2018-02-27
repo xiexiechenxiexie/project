@@ -442,7 +442,8 @@ function FriendView:createMyFriendRecord(data)
 	headBtn:setPosition(-size.width/2 + 50,0)
 	record:addChild(headBtn)
 	headBtn:addClickEventListener(function()
-		local playerInfoView = PlayerInfo.new(data.userId)
+		print("阿卡丽大神大神大神解答开始了",data.friendId)
+		local playerInfoView = PlayerInfo.new(data.friendId)
 		self:addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
 	end)
 
@@ -614,7 +615,7 @@ function FriendView:createApplyFriendRecord(data)
             self:requestReplyApplyFriend(record, data.userId, 1)
         end
         })
-	record._okBtn:setPosition(size.width/2 - 60, 0)
+	record._okBtn:setPosition(size.width/2 - 80, 0)
 	record:addChild(record._okBtn)
 
 	record._refuseBtn = lib.uidisplay.createUIButton({
@@ -625,7 +626,7 @@ function FriendView:createApplyFriendRecord(data)
             self:requestReplyApplyFriend(record, data.userId, 0)
         end
         })
-	record._refuseBtn:setPosition(size.width/2 - 172, 0)
+	record._refuseBtn:setPosition(size.width/2 - 240, 0)
 	record:addChild(record._refuseBtn)
 
     return record

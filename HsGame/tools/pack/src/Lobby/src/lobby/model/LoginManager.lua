@@ -273,7 +273,7 @@ function LoginManager:onLogin(__response)
     end
     UserData.diamond = __response.data.diamond or 0
     UserData.HasNewbiePack = __response.data.hasNewbiePack -- 是否有新手大礼包
-    UserData.LastGameRoomType = __response.data.gameType or 1
+    UserData.LastGameRoomType = __response.data.roomType or 2
     UserData.MobilePhone =  __response.data.mobile or ""
 
     self:enterLobby()

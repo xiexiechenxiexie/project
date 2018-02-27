@@ -718,23 +718,13 @@ function CreateRoomView:_addMyRoomAndChessPanel( ... )
 end
 
 function CreateRoomView:_initCreateRoomPanel( __parent )
-	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+	local manager = cc.exports.lobby.LobbyGameEnterManager:getInstance()
 	-- local size = __parent:getContentSize()
 	-- local dir  = self:_findCreateRoomDir()
 	-- local imgCreateRoom = dir .. "imgCreateRoom.png"
 	-- local imgCreateRoom = cc.Label:createWithTTF("创建房间",GameUtils.getFontName(), 30)
 	-- __parent:addChild(imgCreateRoom)
 	-- imgCreateRoom:setPosition(667,375)
-
-	for i=1,5 do
-		local line = ccui.ImageView:create("imgCreateRoomLine.png",ccui.TextureResType.plistType)
-		__parent:addChild(line)
-		if i == 1 then
-			line:setPosition(405+352,460)
-		else
-			line:setPosition(405+352,450-(i-1)*70)
-		end
-	end
 
 	local gameBgNiu = "btnNormal.png"
 	gameBgNiu = ccui.ImageView:create(gameBgNiu,ccui.TextureResType.plistType)
@@ -762,6 +752,8 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	local button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
 	__parent:addChild(button)
 	button:addClickEventListener(function ( __sender)
+			manager:setSelectGameId(manager.KPQZ)
+			self:createNNRuleLayer(__parent)
 			gameBgNiu:setVisible(true)
 			gameBgZjh:setVisible(false)
 			gameTextNiu:setColor(cc.c3b(255,255,255))
@@ -777,11 +769,13 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
 	__parent:addChild(button)
 	button:addClickEventListener(function ( __sender)
-			GameUtils.showMsg("游戏正在开发中")
-			-- gameBgNiu:setVisible(false)
-			-- gameBgZjh:setVisible(true)
-			-- gameTextNiu:setColor(cc.c3b(191, 169, 125))
-			-- gameTextZjh:setColor(cc.c3b(255,255,255))
+			-- GameUtils.showMsg("游戏正在开发中")
+			manager:setSelectGameId(manager.PSZ)
+			self:createPSZRuleLayer(__parent)
+			gameBgNiu:setVisible(false)
+			gameBgZjh:setVisible(true)
+			gameTextNiu:setColor(cc.c3b(191, 169, 125))
+			gameTextZjh:setColor(cc.c3b(255,255,255))
 		end)
 	-- local size = button:getContentSize()
 	-- x = imgProgressEnded:getContentSize().width -  size.width / 2 - 5
@@ -789,7 +783,85 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	button:setPosition(133,495-100)
 	gameBgZjh:setPosition(133,495-100)
 
+	local button = cc.exports.lib.uidisplay.createUIButton({
+			textureType = ccui.TextureResType.plistType,
+			normal = "btnCreateRoomCmd.png",
+			callback = handler(self,self._onCreateRoomClick),
+			isActionEnabled = true,
+			pos = cc.p(405+352,120)
+	})
+	__parent:addChild(button)
 
+	if manager:findSelectedGameId() == manager.KPQZ then
+		self:createNNRuleLayer(__parent)
+		gameBgNiu:setVisible(true)
+		gameBgZjh:setVisible(false)
+		gameTextNiu:setColor(cc.c3b(255,255,255))
+		gameTextZjh:setColor(cc.c3b(191, 169, 125))
+	elseif manager:findSelectedGameId() == manager.PSZ then
+		self:createPSZRuleLayer(__parent)
+		gameBgNiu:setVisible(false)
+		gameBgZjh:setVisible(true)
+		gameTextNiu:setColor(cc.c3b(191, 169, 125))
+		gameTextZjh:setColor(cc.c3b(255,255,255))
+		self:createPSZRuleLayer(__parent)
+	end
+
+
+	-- local iconRoomCard = ccui.ImageView:create("res/common/iconRoomCard.png",ccui.TextureResType.localType)
+	-- button:addChild(iconRoomCard)
+	-- iconRoomCard:setPosition(cc.p(145,button:getContentSize().height * 0.5 + 2))
+	-- local param = {fontName = GameUtils.getFontName(),fontSize = 30,text = "X".. self._createInput.cost,alignment = cc.TEXT_ALIGNMENT_CENTER,color = cc.c4b(255,231,148,255),pos = cc.p(164,button:getContentSize().height * 0.5),anchorPoint = cc.p(0,0.5)}
+	-- local label = cc.exports.lib.uidisplay.createLabel(param)
+	-- button:addChild(label)
+	-- self._lbRoomCardInButton = label
+
+
+	-- local button = cc.exports.lib.uidisplay.createUIButton({
+	-- 		textureType = ccui.TextureResType.localType,
+	-- 		normal = "res/common/btnHelp.png",
+	-- 		callback = handler(self,self._onBtnHelpClick),
+	-- 		isActionEnabled = true,
+	-- 		pos = cc.p(size.width -75,size.height - 60)
+	-- })
+	-- __parent:addChild(button)
+
+	
+
+	local endedText = cc.Label:createWithTTF("如果游戏在十分钟内没有正式开始，系统会自动解散房间并退还房卡",GameUtils.getFontName(),20)
+    endedText:setAnchorPoint(cc.p(0.5, 0.5))
+    endedText:setColor(cc.c3b(191, 169, 125))
+    endedText:setPosition(405+352,60)
+    __parent:addChild(endedText,10)
+end
+
+
+function CreateRoomView:createNNRuleLayer(target)
+	if target:getChildByTag(lobby.LobbyGameEnterManager.PSZ) then
+		local node = target:getChildByTag(lobby.LobbyGameEnterManager.PSZ)
+		node:setVisible(false)
+	end
+	if target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ) then
+		local node = target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ)
+		node:setVisible(true)
+		return
+	end
+
+	local __parent = cc.Layer:create()
+	target:addChild(__parent)
+	__parent:setTag(lobby.LobbyGameEnterManager.KPQZ)
+
+	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+
+	for i=1,5 do
+		local line = ccui.ImageView:create("imgCreateRoomLine.png",ccui.TextureResType.plistType)
+		__parent:addChild(line)
+		if i == 1 then
+			line:setPosition(405+352,460)
+		else
+			line:setPosition(405+352,450-(i-1)*70)
+		end
+	end
 	local textColor = cc.c4b(191, 169, 125, 255)
 	local valueCOloe = cc.c4b(255,255,255,255)
 	-- local data = manager:findSelectedData()
@@ -825,9 +897,9 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	for i=1,#params do
 		local param = params[i]
 
-		if (not isGrantAuthorizationShow and (i >= 6 and i <= 8)) or 
-		   (not isCostSitSelectionShow and (i >= 9 and i <= 13)) then
-		else 
+		-- if (not isGrantAuthorizationShow and (i >= 6 and i <= 8)) or 
+		--    (not isCostSitSelectionShow and (i >= 9 and i <= 13)) then
+		-- else 
 		    local label = cc.exports.lib.uidisplay.createLabel(param)
 			__parent:addChild(label)
 			-- if i == #params or i == #params -1 then
@@ -837,7 +909,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 			-- 	self._costWidgetContainer = self._costWidgetContainer or {}
 			-- 	self._costWidgetContainer[i] = label 
 			-- end 
-		end
+		-- end
 	end
 
 	-- local iconRoomCard = ccui.ImageView:create("res/common/iconRoomCard.png",ccui.TextureResType.localType)
@@ -885,7 +957,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 		self._createInput.isOpenRightToSeat = false
 	end
 
-	if  isCostSitSelectionShow  then 
+	-- if  isCostSitSelectionShow  then 
 		local height = y - 150	
 		cc.exports.lib.uidisplay.createRadioGroup({
 			groupPos = cc.p(455,height),
@@ -898,36 +970,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 			callback = handler(self,self._onYesNoRadioGroupClick)
 		})
 		self._createInput.isCostToSeat = true
-	end
-
-
-
-	local button = cc.exports.lib.uidisplay.createUIButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "btnCreateRoomCmd.png",
-			callback = handler(self,self._onCreateRoomClick),
-			isActionEnabled = true,
-			pos = cc.p(405+352,120)
-	})
-	__parent:addChild(button)
-
-	-- local iconRoomCard = ccui.ImageView:create("res/common/iconRoomCard.png",ccui.TextureResType.localType)
-	-- button:addChild(iconRoomCard)
-	-- iconRoomCard:setPosition(cc.p(145,button:getContentSize().height * 0.5 + 2))
-	-- local param = {fontName = GameUtils.getFontName(),fontSize = 30,text = "X".. self._createInput.cost,alignment = cc.TEXT_ALIGNMENT_CENTER,color = cc.c4b(255,231,148,255),pos = cc.p(164,button:getContentSize().height * 0.5),anchorPoint = cc.p(0,0.5)}
-	-- local label = cc.exports.lib.uidisplay.createLabel(param)
-	-- button:addChild(label)
-	-- self._lbRoomCardInButton = label
-
-
-	-- local button = cc.exports.lib.uidisplay.createUIButton({
-	-- 		textureType = ccui.TextureResType.localType,
-	-- 		normal = "res/common/btnHelp.png",
-	-- 		callback = handler(self,self._onBtnHelpClick),
-	-- 		isActionEnabled = true,
-	-- 		pos = cc.p(size.width -75,size.height - 60)
-	-- })
-	-- __parent:addChild(button)
+	-- end
 
 	local node = cc.exports.lib.uidisplay.createAddMinusNode({
 		imgBg = "imgAddMinus.png",
@@ -976,12 +1019,29 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	node:setPosition(520,425)
 	self:_onDataOnCreatePanelRefresh(self._createInput.chess)
 
-	local endedText = cc.Label:createWithTTF("如果游戏在十分钟内没有正式开始，系统会自动解散房间并退还房卡",GameUtils.getFontName(),20)
-    endedText:setAnchorPoint(cc.p(0.5, 0.5))
-    endedText:setColor(cc.c3b(191, 169, 125))
-    endedText:setPosition(405+352,60)
-    __parent:addChild(endedText,10)
+
+
+
 end
+
+function CreateRoomView:createPSZRuleLayer(target)
+	if target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ) then
+		local node = target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ)
+		node:setVisible(false)
+	end
+	if target:getChildByTag(lobby.LobbyGameEnterManager.PSZ) then
+		local node = target:getChildByTag(lobby.LobbyGameEnterManager.PSZ)
+		node:setVisible(true)
+		return
+	end
+
+	local __parent = cc.Layer:create()
+	target:addChild(__parent)
+	__parent:setTag(lobby.LobbyGameEnterManager.PSZ)
+
+	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+end
+
 
 --[[--
 刷新消耗的房卡
