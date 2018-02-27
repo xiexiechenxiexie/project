@@ -24,11 +24,11 @@ end
 
 -- 初始化
 function CardTypeNode:init()
-	--牛一到牛九
-	local text_niu_num = self.RootNode:getChildByName("text_niu_num")
-	text_niu_num:setVisible(false)
-	self.text_niu_num = text_niu_num
-	--没牛,炸弹等特殊牌型
+	-- --牛一到牛九
+	-- local text_niu_num = self.RootNode:getChildByName("text_niu_num")
+	-- text_niu_num:setVisible(false)
+	-- self.text_niu_num = text_niu_num
+	--牌型
 	local txt_niu_sp = self.RootNode:getChildByName("txt_niu_sp")
 	txt_niu_sp:setVisible(false)
 	self.txt_niu_sp = txt_niu_sp
@@ -113,7 +113,7 @@ function CardTypeNode:setNiuType(value,niuniuActionType)
 	local seq1=cc.Sequence:create(scat1,scat11,scat3)
 	local seq2=cc.Sequence:create(scat2,scat22,scat3)
 	if value==0 then
-		self.text_niu_num:setVisible(false)
+		-- self.text_niu_num:setVisible(false)
 		self.txt_niu_sp:setVisible(true)
 		self.txt_niu_sp:setTexture(GameResPath.."txt_niunum0.png")
 		if niuniuActionType>0 then
@@ -126,24 +126,25 @@ function CardTypeNode:setNiuType(value,niuniuActionType)
 			self.txt_niu_sp:runAction(seq1)
 		end
 	elseif value>0 and value<=9 then
-		self.text_niu_num:setVisible(true)
-		self.txt_niu_sp:setVisible(false)
-		if value==1 then
-			self.text_niu_num:setString("./")
-		else
-			self.text_niu_num:setString("."..tostring(value-2))
-		end
+		-- self.text_niu_num:setVisible(false)
+		self.txt_niu_sp:setVisible(true)
+		-- if value==1 then
+		-- 	self.text_niu_num:setString("./")
+		-- else
+		-- 	self.text_niu_num:setString("."..tostring(value-2))
+		-- end
+		self.txt_niu_sp:setTexture(GameResPath.."txt_niunum"..tostring(value..".png"))
 		if niuniuActionType>0 then
-			self.text_niu_num:stopAllActions()
-			self.text_niu_num:setScale(5)
-			self.text_niu_num:runAction(seq2)
+			self.txt_niu_sp:stopAllActions()
+			self.txt_niu_sp:setScale(5)
+			self.txt_niu_sp:runAction(seq2)
 		else
-			self.text_niu_num:stopAllActions()
-			self.text_niu_num:setScale(0)
-			self.text_niu_num:runAction(seq1)
+			self.txt_niu_sp:stopAllActions()
+			self.txt_niu_sp:setScale(0)
+			self.txt_niu_sp:runAction(seq1)
 		end
 	elseif value>9 then
-		self.text_niu_num:setVisible(false)
+		-- self.text_niu_num:setVisible(false)
 		self.txt_niu_sp:setVisible(true)
 		local str=GameResPath.."txt_niunum"..tostring(value..".png")
 		self.txt_niu_sp:setTexture(str)

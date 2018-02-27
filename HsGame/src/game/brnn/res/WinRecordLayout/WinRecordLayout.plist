@@ -4,122 +4,135 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>data0.png</key>
+            <key>WinRecord_bg.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{236,2},{70,50}}</string>
+                <string>{{2,2},{1091,662}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{70,50}}</string>
+                <string>{{0,0},{1091,662}}</string>
                 <key>sourceSize</key>
-                <string>{70,50}</string>
+                <string>{1091,662}</string>
+            </dict>
+            <key>data0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{666,38},{60,40}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,40}}</string>
+                <key>sourceSize</key>
+                <string>{60,40}</string>
             </dict>
             <key>data1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{288,2},{70,50}}</string>
+                <string>{{811,2},{60,40}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{70,50}}</string>
+                <string>{{0,0},{60,40}}</string>
                 <key>sourceSize</key>
-                <string>{70,50}</string>
+                <string>{60,40}</string>
             </dict>
             <key>ico_club.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{340,2},{60,60}}</string>
+                <string>{{666,136},{54,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{60,60}}</string>
+                <string>{{0,0},{54,54}}</string>
                 <key>sourceSize</key>
-                <string>{62,62}</string>
+                <string>{54,54}</string>
             </dict>
             <key>ico_diamond.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{402,2},{60,60}}</string>
+                <string>{{722,94},{54,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{60,60}}</string>
+                <string>{{0,0},{54,54}}</string>
                 <key>sourceSize</key>
-                <string>{62,62}</string>
+                <string>{54,54}</string>
             </dict>
             <key>ico_heart.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{464,2},{60,60}}</string>
+                <string>{{666,80},{54,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{60,60}}</string>
+                <string>{{0,0},{54,54}}</string>
                 <key>sourceSize</key>
-                <string>{62,62}</string>
+                <string>{54,54}</string>
             </dict>
             <key>ico_spabe.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{526,2},{60,60}}</string>
+                <string>{{728,38},{54,54}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{1,1},{60,60}}</string>
+                <string>{{0,0},{54,54}}</string>
                 <key>sourceSize</key>
-                <string>{62,62}</string>
+                <string>{54,54}</string>
             </dict>
             <key>line.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{630,2},{937,56}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{937,56}}</string>
-                <key>sourceSize</key>
-                <string>{937,56}</string>
-            </dict>
-            <key>new.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{588,2},{58,40}}</string>
+                <string>{{784,38},{1042,22}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{58,40}}</string>
+                <string>{{0,0},{1042,22}}</string>
                 <key>sourceSize</key>
-                <string>{58,40}</string>
+                <string>{1042,22}</string>
             </dict>
-            <key>title_shengfuzoushi.png</key>
+            <key>new.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{232,70}}</string>
+                <string>{{722,150},{44,32}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{232,70}}</string>
+                <string>{{0,0},{44,32}}</string>
                 <key>sourceSize</key>
-                <string>{232,70}</string>
+                <string>{44,32}</string>
+            </dict>
+            <key>title_shengfuzoushi.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{666,2},{143,34}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{143,34}}</string>
+                <key>sourceSize</key>
+                <string>{143,34}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -129,9 +142,9 @@
             <key>realTextureFileName</key>
             <string>WinRecordLayout.png</string>
             <key>size</key>
-            <string>{1569,74}</string>
+            <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:200de3787b921463f8a7ef6ad4e74af9:528de4e8df29f791f30657f8095860f3:fa9a37e21cc30a3c9b83e3915df21b2c$</string>
+            <string>$TexturePacker:SmartUpdate:33bec65df2b1544e220131cd8f6bc339:1/1$</string>
             <key>textureFileName</key>
             <string>WinRecordLayout.png</string>
         </dict>

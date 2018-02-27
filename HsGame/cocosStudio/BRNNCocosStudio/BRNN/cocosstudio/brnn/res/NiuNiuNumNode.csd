@@ -6,8 +6,8 @@
       <ObjectData Name="Node" Tag="1187" ctype="GameNodeObjectData">
         <Size X="0.0000" Y="0.0000" />
         <Children>
-          <AbstractNodeData Name="txt_bg" ActionTag="-1908275954" Tag="1192" IconVisible="False" LeftMargin="-95.5000" RightMargin="-95.5000" TopMargin="-17.5000" BottomMargin="-17.5000" ctype="SpriteObjectData">
-            <Size X="191.0000" Y="35.0000" />
+          <AbstractNodeData Name="txt_bg" ActionTag="-1908275954" Tag="1192" IconVisible="False" LeftMargin="-89.0000" RightMargin="-89.0000" TopMargin="-25.0000" BottomMargin="-25.0000" ctype="SpriteObjectData">
+            <Size X="178.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
@@ -26,18 +26,8 @@
             <PrePosition />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="text_niu_num" ActionTag="-1197181829" Tag="1190" IconVisible="False" LeftMargin="-43.0000" RightMargin="-43.0000" TopMargin="-20.0000" BottomMargin="-20.0000" CharWidth="43" CharHeight="40" LabelText=".." StartChar="." ctype="TextAtlasObjectData">
-            <Size X="86.0000" Y="40.0000" />
-            <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position />
-            <Scale ScaleX="1.0000" ScaleY="1.0000" />
-            <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition />
-            <PreSize X="0.0000" Y="0.0000" />
-            <LabelAtlasFileImage_CNB Type="Normal" Path="brnn/res/GameLayout/txt_niunum.png" Plist="" />
-          </AbstractNodeData>
-          <AbstractNodeData Name="txt_niu_sp" Visible="False" ActionTag="-293727152" Tag="1191" IconVisible="False" LeftMargin="-40.0000" RightMargin="-40.0000" TopMargin="-20.5000" BottomMargin="-20.5000" ctype="SpriteObjectData">
-            <Size X="80.0000" Y="41.0000" />
+          <AbstractNodeData Name="txt_niu_sp" ActionTag="-293727152" Tag="1191" IconVisible="False" LeftMargin="-45.5000" RightMargin="-45.5000" TopMargin="-22.5000" BottomMargin="-22.5000" ctype="SpriteObjectData">
+            <Size X="91.0000" Y="45.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
             <Position />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />

@@ -32,9 +32,9 @@ function WinRecordLayer:init()
 	self.RootNode:addChild(self.SpNode)
 
 	self.SpTab={}
-	local XX=-424
+	local XX=-500
 	local YY=85
-	local x=84
+	local x=98
 	local y=100
 	for i=1,conf.LUDAN_NUM do
 		local Tab={}

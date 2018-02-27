@@ -1,0 +1,463 @@
+{
+  "content_scale": 1.0,
+  "armature_data": [
+    {
+      "strVersion": "1.6.0.0",
+      "version": 1.6,
+      "name": "DL_wm_Animation",
+      "bone_data": [
+        {
+          "name": "mz",
+          "parent": "",
+          "dI": 0,
+          "x": -270.2861328125,
+          "y": 202.39994812011719,
+          "z": 11,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.4168069,
+          "kY": -0.4168069,
+          "arrow_x": 204.66502380371094,
+          "arrow_y": 7.007853128015995E-05,
+          "effectbyskeleton": true,
+          "bl": 204,
+          "display_data": [
+            {
+              "name": "rw_mz.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 63.853035,
+                  "y": 14.2192535,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": -0.41680634,
+                  "kY": 0.4168079
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "s",
+          "parent": "",
+          "dI": 0,
+          "x": -307.42919921875,
+          "y": 38.114261627197266,
+          "z": 9,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 1.44644129,
+          "kY": -1.44644129,
+          "arrow_x": 207.31513977050781,
+          "arrow_y": -3.5496941563906148E-05,
+          "effectbyskeleton": true,
+          "bl": 207,
+          "display_data": [
+            {
+              "name": "rw_s.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 110.46888,
+                  "y": 0.5883255,
+                  "cX": 1.00000012,
+                  "cY": 1.00000012,
+                  "kX": -1.44644129,
+                  "kY": 1.446445
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "s2",
+          "parent": "s",
+          "dI": 0,
+          "x": 207.66964721679688,
+          "y": 2.8350753784179688,
+          "z": 10,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": -3.370228,
+          "kY": 3.370228,
+          "arrow_x": 231.41104125976563,
+          "arrow_y": -3.0320239602588117E-05,
+          "effectbyskeleton": true,
+          "bl": 231,
+          "display_data": [
+            {
+              "name": "rw_s2.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 167.470566,
+                  "y": 10.3116913,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 1.92378783,
+                  "kY": -1.92378461
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "st",
+          "parent": "",
+          "dI": 0,
+          "x": -197.14291381835938,
+          "y": -87.428581237792969,
+          "z": 8,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 0.0,
+          "kY": 0.0,
+          "arrow_x": 0.0,
+          "arrow_y": 0.0,
+          "effectbyskeleton": false,
+          "bl": 0,
+          "display_data": [
+            {
+              "name": "rw_st.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 0.0,
+                  "y": 0.0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "tf",
+          "parent": "",
+          "dI": 0,
+          "x": -306.00054931640625,
+          "y": 126.68568420410156,
+          "z": 7,
+          "cX": 1.0,
+          "cY": 1.0,
+          "kX": 1.67593479,
+          "kY": -1.67593479,
+          "arrow_x": 285.8642578125,
+          "arrow_y": -4.1122046241071075E-05,
+          "effectbyskeleton": true,
+          "bl": 285,
+          "display_data": [
+            {
+              "name": "rw_tf_001.png",
+              "displayType": 0,
+              "skin_data": [
+                {
+                  "x": 148.280731,
+                  "y": -12.6513672,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 4.60725,
+                  "kY": 1.6759398
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "animation_data": [
+    {
+      "name": "DL_wm_Animation",
+      "mov_data": [
+        {
+          "name": "Animation1",
+          "dr": 91,
+          "lp": true,
+          "to": 0,
+          "drTW": 0,
+          "twE": 0,
+          "sc": 0.5,
+          "mov_bone_data": [
+            {
+              "name": "mz",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0349065848,
+                  "kY": -0.0349065848,
+                  "fi": 40,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 90,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "s2",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.08726646,
+                  "kY": -0.08726646,
+                  "fi": 45,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 90,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "s",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0349065848,
+                  "kY": -0.0349065848,
+                  "fi": 45,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 90,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "st",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": 0.0,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            },
+            {
+              "name": "tf",
+              "dl": 0.0,
+              "frame_data": [
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.0349065848,
+                  "kY": 0.0349065848,
+                  "fi": 0,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": 0.0,
+                  "kY": -3.7252903E-09,
+                  "fi": 45,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                },
+                {
+                  "dI": 0,
+                  "x": 0.0,
+                  "y": 0.0,
+                  "z": 0,
+                  "cX": 1.0,
+                  "cY": 1.0,
+                  "kX": -0.0349065848,
+                  "kY": 0.03490658,
+                  "fi": 90,
+                  "twE": 0,
+                  "tweenFrame": true,
+                  "bd_src": 1,
+                  "bd_dst": 771
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "texture_data": [
+    {
+      "name": "rw_tf_001",
+      "width": 170.0,
+      "height": 323.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "rw_st",
+      "width": 373.0,
+      "height": 584.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "rw_s",
+      "width": 69.0,
+      "height": 227.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "rw_s2",
+      "width": 166.0,
+      "height": 340.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    },
+    {
+      "name": "rw_mz",
+      "width": 272.0,
+      "height": 171.0,
+      "pX": 0.5,
+      "pY": 0.5,
+      "plistFile": ""
+    }
+  ],
+  "config_file_path": [
+    "DL_wm_Animation0.plist"
+  ],
+  "config_png_path": [
+    "DL_wm_Animation0.png"
+  ]
+}

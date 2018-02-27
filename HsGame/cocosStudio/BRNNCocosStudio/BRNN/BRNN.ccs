@@ -7,21 +7,13 @@
           <Folder Name="res">
             <Folder Name="GameLayout">
               <PlistImageFolder Image="btn_score.png" PListFile="btn_score.plist" Name=".btn_score_PList.Dir">
-                <PlistImageFile Name="btn_chip_100_0.png" Key="btn_chip_100_0.png" />
-                <PlistImageFile Name="btn_chip_100_1.png" Key="btn_chip_100_1.png" />
-                <PlistImageFile Name="btn_chip_100_2.png" Key="btn_chip_100_2.png" />
-                <PlistImageFile Name="btn_chip_1000_0.png" Key="btn_chip_1000_0.png" />
-                <PlistImageFile Name="btn_chip_1000_1.png" Key="btn_chip_1000_1.png" />
-                <PlistImageFile Name="btn_chip_1000_2.png" Key="btn_chip_1000_2.png" />
-                <PlistImageFile Name="btn_chip_10000_0.png" Key="btn_chip_10000_0.png" />
-                <PlistImageFile Name="btn_chip_10000_1.png" Key="btn_chip_10000_1.png" />
-                <PlistImageFile Name="btn_chip_10000_2.png" Key="btn_chip_10000_2.png" />
-                <PlistImageFile Name="btn_chip_100000_0.png" Key="btn_chip_100000_0.png" />
-                <PlistImageFile Name="btn_chip_100000_1.png" Key="btn_chip_100000_1.png" />
-                <PlistImageFile Name="btn_chip_100000_2.png" Key="btn_chip_100000_2.png" />
-                <PlistImageFile Name="btn_chip_1000000_0.png" Key="btn_chip_1000000_0.png" />
-                <PlistImageFile Name="btn_chip_1000000_1.png" Key="btn_chip_1000000_1.png" />
-                <PlistImageFile Name="btn_chip_1000000_2.png" Key="btn_chip_1000000_2.png" />
+                <PlistImageFile Name="btn_chip_ban.png" Key="btn_chip_ban.png" />
+                <PlistImageFile Name="btn_chip_blue_0.png.png" Key="btn_chip_blue_0.png.png" />
+                <PlistImageFile Name="btn_chip_blue_1.png" Key="btn_chip_blue_1.png" />
+                <PlistImageFile Name="btn_chip_red_0.png" Key="btn_chip_red_0.png" />
+                <PlistImageFile Name="btn_chip_red_1.png" Key="btn_chip_red_1.png" />
+                <PlistImageFile Name="btn_chip_yellow_0.png" Key="btn_chip_yellow_0.png" />
+                <PlistImageFile Name="btn_chip_yellow_1.png" Key="btn_chip_yellow_1.png" />
               </PlistImageFolder>
               <Image Name="banker_head_bg.png" />
               <Image Name="BG.png" />
@@ -36,6 +28,7 @@
               <Image Name="btn_playerlist_0.png" />
               <Image Name="btn_playerlist_1.png" />
               <Image Name="btn_shop.png" />
+              <Image Name="game_ludan_2.png" />
               <Image Name="game_shangzhuang_0.png" />
               <Image Name="game_shangzhuang_1.png" />
               <Image Name="game_xiazhuang_0.png" />
@@ -51,12 +44,7 @@
               <Image Name="start_xiazhu.png" />
               <Image Name="time_bg.png" />
               <Image Name="txt_bg.png" />
-              <Image Name="txt_niunum.png" />
               <Image Name="txt_niunum0.png" />
-              <Image Name="txt_niunum10.png" />
-              <Image Name="txt_niunum11.png" />
-              <Image Name="txt_niunum12.png" />
-              <Image Name="txt_niunum13.png" />
               <Image Name="vip_sit.png" />
               <Image Name="xuanqu.png" />
             </Folder>
@@ -72,6 +60,7 @@
               <Image Name="quit_btn_1.png" />
             </Folder>
             <Folder Name="PlayerListLayout">
+              <Image Name="PlayerLst_bg2.png" />
               <Image Name="title_PlayerLst.png" />
             </Folder>
             <Folder Name="SZListLayout">
@@ -83,6 +72,7 @@
                 <PlistImageFile Name="btn_shenqingxiazhuang_0.png" Key="btn_shenqingxiazhuang_0.png" />
                 <PlistImageFile Name="btn_shenqingxiazhuang_1.png" Key="btn_shenqingxiazhuang_1.png" />
               </PlistImageFolder>
+              <Image Name="banker_list_effect_bg.png" />
               <Image Name="szList_title.png" />
             </Folder>
             <Folder Name="WinRecordLayout">
@@ -96,6 +86,7 @@
                 <PlistImageFile Name="line.png" Key="line.png" />
                 <PlistImageFile Name="new.png" Key="new.png" />
                 <PlistImageFile Name="title_shengfuzoushi.png" Key="title_shengfuzoushi.png" />
+                <PlistImageFile Name="WinRecord_bg.png" Key="WinRecord_bg.png" />
               </PlistImageFolder>
             </Folder>
             <Image Name="bg.png" />

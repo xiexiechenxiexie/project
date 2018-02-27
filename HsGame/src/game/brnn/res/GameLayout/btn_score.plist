@@ -4,200 +4,96 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>btn_chip_1000000_0.png</key>
+            <key>btn_chip_ban.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,260},{167,88}}</string>
+                <string>{{348,175},{171,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{167,88}}</string>
+                <string>{{0,0},{171,88}}</string>
                 <key>sourceSize</key>
-                <string>{167,88}</string>
+                <string>{171,88}</string>
             </dict>
-            <key>btn_chip_1000000_1.png</key>
+            <key>btn_chip_blue_0.png.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{161,84}}</string>
+                <string>{{175,2},{171,90}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
+                <string>{{0,0},{171,90}}</string>
                 <key>sourceSize</key>
-                <string>{167,88}</string>
+                <string>{171,90}</string>
             </dict>
-            <key>btn_chip_1000000_2.png</key>
+            <key>btn_chip_blue_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{165,2},{161,84}}</string>
+                <string>{{175,94},{171,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
+                <string>{{0,0},{171,88}}</string>
                 <key>sourceSize</key>
-                <string>{167,88}</string>
+                <string>{171,88}</string>
             </dict>
-            <key>btn_chip_100000_0.png</key>
+            <key>btn_chip_red_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{171,260},{167,88}}</string>
+                <string>{{2,2},{171,90}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{167,88}}</string>
+                <string>{{0,0},{171,90}}</string>
                 <key>sourceSize</key>
-                <string>{167,88}</string>
+                <string>{171,90}</string>
             </dict>
-            <key>btn_chip_100000_1.png</key>
+            <key>btn_chip_red_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{340,260},{167,88}}</string>
+                <string>{{2,348},{171,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{167,88}}</string>
+                <string>{{0,0},{171,88}}</string>
                 <key>sourceSize</key>
-                <string>{167,88}</string>
+                <string>{171,88}</string>
             </dict>
-            <key>btn_chip_100000_2.png</key>
+            <key>btn_chip_yellow_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{328,2},{161,84}}</string>
+                <string>{{2,175},{171,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
+                <string>{{0,0},{171,88}}</string>
                 <key>sourceSize</key>
-                <string>{167,88}</string>
+                <string>{171,88}</string>
             </dict>
-            <key>btn_chip_10000_0.png</key>
+            <key>btn_chip_yellow_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,350},{167,88}}</string>
+                <string>{{348,2},{171,88}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{167,88}}</string>
+                <string>{{0,0},{171,88}}</string>
                 <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_10000_1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,88},{161,84}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_10000_2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{165,88},{161,84}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_1000_0.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{328,88},{161,84}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_1000_1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{2,174},{161,84}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_1000_2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{165,174},{161,84}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_100_0.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{171,350},{167,88}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{167,88}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_100_1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{340,350},{167,88}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{167,88}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
-            </dict>
-            <key>btn_chip_100_2.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{328,174},{161,84}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <false/>
-                <key>sourceColorRect</key>
-                <string>{{3,2},{161,84}}</string>
-                <key>sourceSize</key>
-                <string>{167,88}</string>
+                <string>{171,88}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -207,9 +103,9 @@
             <key>realTextureFileName</key>
             <string>btn_score.png</string>
             <key>size</key>
-            <string>{509,440}</string>
+            <string>{512,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:cce14ff1a85f038ff843bf171c8ace50:4a3b8242eb7a1e4dc4d6b011355fb204:731f4cd3eef6ea1b8a7562cbb8b17aeb$</string>
+            <string>$TexturePacker:SmartUpdate:b2db186ea343c9885ae67773cc800d6b:1/1$</string>
             <key>textureFileName</key>
             <string>btn_score.png</string>
         </dict>

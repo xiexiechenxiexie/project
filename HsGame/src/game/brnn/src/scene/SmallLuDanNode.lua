@@ -22,7 +22,7 @@ function SmallLuDanNode:init()
 	local xx=18
 	for i=1,conf.LUDAN_NUM do
 		local sp=cc.Sprite:createWithSpriteFrameName("yuanquan0.png")
-		sp:setPosition(cc.p(xx*(1-i),0))
+		sp:setPosition(cc.p(xx*(1-i),20))
 		self.SpNode:addChild(sp)
 		sp:setVisible(false)
 		table.insert(self.YuanQuanTab,sp)

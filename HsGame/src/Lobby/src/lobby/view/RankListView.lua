@@ -38,14 +38,6 @@ function RankListView:initListView( ... )
     self._RankOut:setPosition(self._RankListbg:getContentSize().width-12,self._RankListbg:getContentSize().height/2+5)
     self._RankListbg:addChild(self._RankOut)
 
- --    local RichBtn = "rankingList_btn.png"
- --    self._BtnRankList  = ccui.Button:create(RichBtn, RichBtn, RichBtn, ccui.TextureResType.plistType)
-	-- self._BtnRankList:setPosition(130,255)
-	-- self._RankListbg:addChild(self._BtnRankList,2)
-	-- self._BtnRankList:addClickEventListener(function()
-	-- 	self:RequestRankView()
-	-- end)
-
     logic.LobbyRankManager:getInstance():requestRickRankList(function( result )
 		if result then
 			self:showRichRankListView(result)
@@ -124,10 +116,6 @@ function RankListView:createRankListRecord(ranking,data,__type)
 	record:addChild(awatar)
 
     return record
-end
-
-function RankListView:RequestRankView( ... )
-	print("给我出来")
 end
 
 function RankListView:onEnter()
