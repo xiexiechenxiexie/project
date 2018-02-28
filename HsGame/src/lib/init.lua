@@ -4,6 +4,7 @@ cc.exports.lib.download = cc.exports.lib.download or {}
 cc.exports.lib.layer = cc.exports.lib.layer or {}
 cc.exports.lib.node = cc.exports.lib.node or {}
 cc.exports.lib.factory = cc.exports.lib.factory or {}
+cc.exports.lib.rule = cc.exports.lib.rule or {}
 require "src/lib/frameworksext/guiConstantExt.lua"
 require "src/lib/utils/SingleInstance.lua"
 
@@ -28,3 +29,5 @@ require "src/lib/component/layer/MessageBox.lua"
 require "src/lib/component/node/RemoteNode.lua"
 require "src/lib/component/node/Avatar.lua"
 require "src/lib/factory/FrameAniFactory.lua"
+require "src/lib/rule/NiuNiuRule.lua"
+require "src/lib/rule/ZhaJinHuaRule.lua"

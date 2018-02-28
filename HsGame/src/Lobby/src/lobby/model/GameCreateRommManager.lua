@@ -27,8 +27,8 @@ function RoomProgressData:ctor( __param )
 	self.leftGameRound = __param.gameRound - __param.currentRound --剩余局数
 	self.gameId = __param.gameId
 	if __param.id == config.GameIDConfig.KPQZ then
-		local data = NiuNiuData.parseRule(__param.rule)
-		self.isCostSeat = NiuNiuData.isOpen(data.charges)  --是否收费入座
+		local data = NiuNiuRule:parseRule(__param.rule)
+		self.isCostSeat = NiuNiuRule:isOpen(data.charges)  --是否收费入座
 		self.gameBet = data.GameBet
 	end
 	
@@ -63,7 +63,7 @@ function RoomEndedData:ctor( __param )
 	self.timeOfCreateRoom = string.sub(self.timeOfCreateRoom,6)
 	self.createrName = string.getMaxLen(__param.NickName,12)
 	if __param.KindID == config.GameIDConfig.KPQZ then
-		local data = NiuNiuData.parseRule(__param.CurrentRule)
+		local data = NiuNiuRule:parseRule(__param.CurrentRule)
 		self.isAutoNiu = data.AccountType == 0
 		self.gameBet = data.GameBet
 	end
@@ -92,7 +92,7 @@ function JoinChessData:ctor( __param )
 	self.createrName = string.getMaxLen(__param.NickName,12)  --创建者
 	self.score = __param.Score  --战绩
 	if __param.KindID == config.GameIDConfig.KPQZ then
-		local data = NiuNiuData.parseRule(__param.CurrentRule)
+		local data = NiuNiuRule:parseRule(__param.CurrentRule)
 		self.isAutoNiu = data.AccountType == 0
 		self.gameBet = data.GameBet
 	end
@@ -131,7 +131,7 @@ function ChessDetailData:ctor ( __roomList )
 end
 
 
-
+local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
 
 local CreateRoomManager = class("CreateRoomManager")
 
@@ -208,16 +208,12 @@ function CreateRoomManager:onTableConfigCallback( __error,__response )
     			self._configCreate = {}
                 self._configCreate._costOfOneRoomCard =  __response.data.round --局数
                 self._configCreate._cardCostUnit = __response.data.spend  --每round 消耗spend房卡
-                if __response.options then
-                    self._configCreate._isAuthorizeSitSelectionShow = __response.data.permission == 1   -- 授权入座选项，0不显示，1显示
-                else
-                	self._configCreate._isAuthorizeSitSelectionShow = true
-                end
-                self._configCreate._isCostSitSelectionShow = __response.data.toll  == 1 -- 收费入座选项，0不现实，1显示
-
+                -- self._configCreate._isAuthorizeSitSelectionShow = (__response.data.permission or 0) == 1   -- 授权入座选项，0不显示，1显示
+                self._configCreate._isAuthorizeSitSelectionShow = false
+                self._configCreate._isCostSitSelectionShow = (__response.data.toll or 1)  == 1 -- 收费入座选项，0不现实，1显示
             	if self._callback then self._callback() end
             elseif gameId == GameIdConfig.BRNN then
-                print("gameId == 1002")
+                print("gameId == 2")
             elseif gameId == GameIdConfig.PSZ then
             	print("拼三张规则")
                 self._configCreate = {}
@@ -360,7 +356,7 @@ function CreateRoomManager:requestGameMyChess( __callback )
 	end
 
 	local url = self:findRequestUrl(config.ApiConfig.REQUEST_MY_JOIN_ROOM)
-	url = url .. UserData.token .. "/" .. lobby.LobbyGameEnterManager:getInstance():findSelectedGameId()
+	url = url .. "?token"..UserData.token 
 	HttpClient:getInstance():get(url,function (__errorMsg,__rsp)
 		if __errorMsg then
 			print("网络错误",__errorMsg)
@@ -397,13 +393,15 @@ function CreateRoomManager:requestGameEnded( __callback )
 	end
 
 	local url = self:findRequestUrl(config.ApiConfig.REQUEST_GET_ROOM_FINISH)
-	url = url .. UserData.token .. "/" .. lobby.LobbyGameEnterManager:getInstance():findSelectedGameId()
+	url = url .. "?token="..UserData.token
+	print("获取已经结束的房间")
 	HttpClient:getInstance():get(url,function (__errorMsg,__rsp)
 		if __errorMsg then
 			print("网络错误",__errorMsg)
 			return
 		end
-		if __rsp.status == 200 then
+		dump(__rsp)
+		if __rsp.status == 200 and next(__rsp.data) then
 			self._listEnded = {}
 			for i,info in ipairs(__rsp.data.roomlist) do
 				dump(info)
@@ -418,7 +416,6 @@ function CreateRoomManager:requestGameEnded( __callback )
 			local event = cc.EventCustom:new(config.EventConfig.EVENT_ROOM_ENDED_TO_VIEW)
 			lib.EventUtils.dispatch(event)	
 		else
-			print("已经结束房间 数据异常",__rsp.msg)
 			if __callback then 
 				__callback(__rsp.msg,nil)
 			end
@@ -483,17 +480,12 @@ function CreateRoomManager:RequestCreatePrivateTable(__params)
     print("url:",url)
     local param = {}
     if __params.gameID == config.GameIDConfig.KPQZ  then -- 牛牛 看牌抢庄
-        NiuNiuData.AccountType = __params.accountType
-        NiuNiuData.GameBet  = __params.gameBet
-        
-        NiuNiuData.AuthorizeSit  = __params.authorizeSit
-        NiuNiuData.ChargeSit  = __params.chargeSit
     end
     param.token= UserData.token
     param.round = GameData.GameRoundNum
     param.gameId = GameData.GameID
     param.playerLimit = GameData.GamePlayerNum
-    param.rule = NiuNiuData.createRule()
+    param.rule = NiuNiuRule:createRule()
     param.charges = __params.chargeSit + 1
     logic.LobbyTableManager:getInstance():setGameId(__params.gameID )
     dump(param)
@@ -652,7 +644,7 @@ end
 function CreateRoomManager:checkSitDown( __roomId,__callback)
 	local enterTipFunc = function ( __info )
 		local roomInfo = {}
-		local data = NiuNiuData.parseRule(__info.data.rule)
+		local data = NiuNiuRule:parseRule(__info.data.rule)
 		dump(data)
 		roomInfo.AuthorizeSit = data.AuthorizeSit 
 		roomInfo.ChargeSit = data.ChargeSit 

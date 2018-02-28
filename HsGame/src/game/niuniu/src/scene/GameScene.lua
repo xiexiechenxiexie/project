@@ -4,6 +4,7 @@
 local Test = false
 local GameModel = require "gamemodel/scene/GameModelScene"
 local GameResPath  = "game/niuniu/res/GameLayout/NiuNiu/"
+local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
 local NIUNIU_CSB = GameResPath .. "Layer.csb"
 local GameScene = class("GameScene", GameModel)
 
@@ -442,7 +443,7 @@ function GameScene:updateTableInfo(TableInfoArray)
     local tableID = self.TableInfoArray.tableID
     local curNum = self.TableInfoArray.curGameNum
     local allNum = self.TableInfoArray.GameNum
-    local ruledata = NiuNiuData.parseRule(self.TableInfoArray.rule)
+    local ruledata = NiuNiuRule:parseRule(self.TableInfoArray.rule)
     local playerdata = self.TableInfoArray.playerUidData
     local playerArray = self.TableInfoArray.playerArray
     --自己的椅子id初始值为0

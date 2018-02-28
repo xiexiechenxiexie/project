@@ -19,7 +19,6 @@ end
 
 
 function GameModelScene:RequestAuthorizeSitApply()
-	print(self._TableInfoArray.landlord,UserData.userId)
     if self._SitState == 1 then
     	if self._TableInfoArray.landlord == UserData.userId then
     		self._gameRequest:RequestAuthorizeSitApply()

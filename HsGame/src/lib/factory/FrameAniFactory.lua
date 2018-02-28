@@ -2,7 +2,6 @@
 --特效
 -----------------------------------------
 local spriteFrameCache = cc.SpriteFrameCache:getInstance()
-local director = cc.Director:getInstance()
 
 local FrameAniFactory = class("FrameAniFactory")
 

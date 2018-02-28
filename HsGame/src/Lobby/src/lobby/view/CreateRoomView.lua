@@ -2,9 +2,8 @@
 @author :fly
 ]]
 
-
-
-
+local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
+local ZhaJinHuaRule=cc.exports.lib.rule.ZhaJinHuaRule:getInstance()
 local CREATE_ROOM_DIR = ""
 local ChessesDetail = require "ChessesDetail"
 local HelpView = require "HelpView"
@@ -560,20 +559,16 @@ CreateRoomView._roomInfoLayer = nil
 CreateRoomView._chessInfoLayer = nil
 CreateRoomView._lbCostInLabel = nil
 CreateRoomView._lbRoomCardInButton = nil
-CreateRoomView._createInput = nil--创建房间信息
 CreateRoomView._MAX_FLOOR_SCORE = 10
 CreateRoomView._MAX_CHESS_NUM = 100
 function CreateRoomView:ctor( ... )
 	CreateRoomView.super.ctor(self)
-	self._createInput = CreateInput.create()
 	self._roomInfoLayer = nil
 	self._chessInfoLayer = nil
 	
 	
 	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
 	manager:RequestPrivateTableConfig(function ( ... )
-		self._createInput.chess = 10
-		self._createInput.cost = manager:findRoomCardCost(self._createInput.chess)
 		-- self:_addCreateRoomPanel()
 
 		self:_addMyRoomAndChessPanel()
@@ -736,7 +731,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	__parent:addChild(gameBgZjh,10)
 	gameBgZjh:setVisible(false)
 
-	local gameTextNiu = cc.Label:createWithTTF("抢庄牛牛",GameUtils.getFontName(),30)
+	local gameTextNiu = cc.Label:createWithTTF("牛  牛",GameUtils.getFontName(),30)
     gameTextNiu:setAnchorPoint(cc.p(0.5, 0.5))
     gameTextNiu:setColor(cc.c3b(255,255,255))
     gameTextNiu:setPosition(133,495)
@@ -847,181 +842,9 @@ function CreateRoomView:createNNRuleLayer(target)
 		return
 	end
 
-	local __parent = cc.Layer:create()
-	target:addChild(__parent)
-	__parent:setTag(lobby.LobbyGameEnterManager.KPQZ)
-
-	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
-
-	for i=1,5 do
-		local line = ccui.ImageView:create("imgCreateRoomLine.png",ccui.TextureResType.plistType)
-		__parent:addChild(line)
-		if i == 1 then
-			line:setPosition(405+352,460)
-		else
-			line:setPosition(405+352,450-(i-1)*70)
-		end
-	end
-	local textColor = cc.c4b(191, 169, 125, 255)
-	local valueCOloe = cc.c4b(255,255,255,255)
-	-- local data = manager:findSelectedData()
-
-	local y = 350
-	local params = {
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findMinScoreString("        "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,500),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findChessNumString("        "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,425),anchorPoint = cc.p(0,0.5)},
-		
-		--算牛
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findComNiuLabelString("        "),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,y),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findAutoNiuLabelString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(485,y),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findSelfNiuLabelString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(700,y),anchorPoint = cc.p(0,0.5)},
-		
-		--授权入座
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findSeatDownRightString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,y - 75),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findCloseString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(485,y - 75),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findOpenString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(700,y - 75),anchorPoint = cc.p(0,0.5)},
-		
-		--收费入座
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findCostSeatDownString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(300,y - 150),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findYesString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(485,y - 150),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findNoString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueCOloe,pos = cc.p(700,y - 150),anchorPoint = cc.p(0,0.5)},
-		
-		--开房花费显示
-		--{fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findCostSeatDownString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(15,y - 186),anchorPoint = cc.p(0,0.5)},
-		-- {fontName = GameUtils.getFontName(),fontSize = 30,text = manager:findCostLabelString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = textColor,pos = cc.p(15,y - 186),anchorPoint = cc.p(0,0.5)},
-		-- {fontName = GameUtils.getFontName(),fontSize = 30,text = "X" .. manager:findRoomCardCost(self._createInput.chess),alignment = cc.TEXT_ALIGNMENT_CENTER,color = cc.c4b(255,231,148,255),pos = cc.p(197,y - 186),anchorPoint = cc.p(0,0.5)},
-	}
-
-	local isGrantAuthorizationShow = manager:isGrantAuthorizationShow()
-	local isCostSitSelectionShow = manager:isCostSitSelectionShow()
-	for i=1,#params do
-		local param = params[i]
-
-		-- if (not isGrantAuthorizationShow and (i >= 6 and i <= 8)) or 
-		--    (not isCostSitSelectionShow and (i >= 9 and i <= 13)) then
-		-- else 
-		    local label = cc.exports.lib.uidisplay.createLabel(param)
-			__parent:addChild(label)
-			-- if i == #params or i == #params -1 then
-			-- 	if i == #params then
-			-- 		self._lbCostInLabel = label
-			-- 	end
-			-- 	self._costWidgetContainer = self._costWidgetContainer or {}
-			-- 	self._costWidgetContainer[i] = label 
-			-- end 
-		-- end
-	end
-
-	-- local iconRoomCard = ccui.ImageView:create("res/common/iconRoomCard.png",ccui.TextureResType.localType)
-	-- __parent:addChild(iconRoomCard)
-	-- iconRoomCard:setPosition(cc.p(177,y - 186))
-	-- iconRoomCard:setVisible(isCostSitSelectionShow)
-
-	self._costWidgetContainer = self._costWidgetContainer or {}
-	-- self._costWidgetContainer["iconRoomCard"] = iconRoomCard 
-
-	-- local imgCreateRoomLine = ccui.ImageView:create("imgCreateRoomLine.png",ccui.TextureResType.plistType)
-	-- __parent:addChild(imgCreateRoomLine)
-	-- imgCreateRoomLine:setPosition(cc.p(size.width * 0.5,400))
-
-
-
-	local btnRadioBg = "btnRadioBg.png"
-	local btnRadioSelected =  "btnRadioSelected.png"
-	
-	cc.exports.lib.uidisplay.createRadioGroup({
-		groupPos = cc.p(455,y),
-		parent = __parent,
-		fileSelect = btnRadioSelected,
-		fileUnselect = btnRadioBg,
-		num = 2,
-		textureType = ccui.TextureResType.plistType,
-		poses = {cc.p(455,y),cc.p(680,y)},
-		callback = handler(self,self._onCalculateRadioGroupClick)
-	})
-	self._createInput.isAutoNiu = true
-	
-	if  isGrantAuthorizationShow  then
-		print("fdsjagjdsjafsdfdsfdfsajljfaleufd",isGrantAuthorizationShow)
-		local height = y - 75
-		cc.exports.lib.uidisplay.createRadioGroup({
-			groupPos = cc.p(455,height),
-			parent = __parent,
-			fileSelect = btnRadioSelected,
-			fileUnselect = btnRadioBg,
-			num = 2,
-			textureType = ccui.TextureResType.plistType,
-			poses = {cc.p(455,height),cc.p(680,height)},
-			callback = handler(self,self._onOpenClosedRadioGroupClick)
-		})
-		self._createInput.isOpenRightToSeat = false
-	end
-
-	-- if  isCostSitSelectionShow  then 
-		local height = y - 150	
-		cc.exports.lib.uidisplay.createRadioGroup({
-			groupPos = cc.p(455,height),
-			parent = __parent,
-			fileSelect = btnRadioSelected,
-			fileUnselect = btnRadioBg,
-			num = 2,
-			textureType = ccui.TextureResType.plistType,
-			poses = {cc.p(455,height),cc.p(680,height)},
-			callback = handler(self,self._onYesNoRadioGroupClick)
-		})
-		self._createInput.isCostToSeat = true
-	-- end
-
-	local node = cc.exports.lib.uidisplay.createAddMinusNode({
-		imgBg = "imgAddMinus.png",
-		callback = handler(self,self._onAddMinsScoreClick),
-		imgMinus = "btnMinus.png",
-		imgMinusPrssed = "btnMinus.png",
-		imgMinusDisabled = "btnMinus.png",
-		imgMinusSize = cc.size(53,53),
-		imgAdd = "btnAdd.png",
-		imgAddPrssed = "btnAdd.png",
-		imgAddDisabled = "btnAdd.png",
-		imgAddSize = cc.size(53,53),
-		textureType = ccui.TextureResType.plistType,
-		textSize = 30,
-		textColor = cc.c4b(255,255,255,255),
-		textFont = GameUtils.getFontName(),
-		num = self._createInput.score,
-		maxNum = self._MAX_FLOOR_SCORE,
-		minNum = 1,
-		dNum = 1
-		})
-	__parent:addChild(node)
-	node:setPosition(520,500)
-
-	local node = cc.exports.lib.uidisplay.createAddMinusNode({
-		imgBg = "imgAddMinus.png",
-		callback = handler(self,self._onAddMinsChessClick),
-		imgMinus = "btnMinus.png",
-		imgMinusPrssed = "btnMinus.png",
-		imgMinusDisabled = "btnMinus.png",
-		imgMinusSize = cc.size(53,53),
-		imgAdd = "btnAdd.png",
-		imgAddPrssed = "btnAdd.png",
-		imgAddDisabled = "btnAdd.png",
-		imgAddSize = cc.size(53,53),
-		textureType = ccui.TextureResType.plistType,
-		textSize = 30,
-		textColor = cc.c4b(255,255,255,255),
-		textFont = GameUtils.getFontName(),
-		num = self._createInput.chess,
-		maxNum = self._MAX_CHESS_NUM,
-		minNum = self._createInput.chess,
-		dNum = 10
-		})
-	__parent:addChild(node)
-	node:setPosition(520,425)
-	self:_onDataOnCreatePanelRefresh(self._createInput.chess)
-
-
-
-
+	local layer = NiuNiuRule:createRuleLayer()
+	target:addChild(layer)
+	layer:setTag(lobby.LobbyGameEnterManager.KPQZ)
 end
 
 function CreateRoomView:createPSZRuleLayer(target)
@@ -1035,91 +858,89 @@ function CreateRoomView:createPSZRuleLayer(target)
 		return
 	end
 
-	local __parent = cc.Layer:create()
-	target:addChild(__parent)
-	__parent:setTag(lobby.LobbyGameEnterManager.PSZ)
-
-	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+	local layer = ZhaJinHuaRule:createRuleLayer()
+	target:addChild(layer)
+	layer:setTag(lobby.LobbyGameEnterManager.PSZ)
 end
 
 
 --[[--
 刷新消耗的房卡
 ]]
-function CreateRoomView:_onDataOnCreatePanelRefresh( __num)
-	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
-	local cardCost = manager:findRoomCardCost(__num)
-	if self._createInput.isCostToSeat then 
-		cardCost = cardCost / 3
-	end
-	self._createInput.cost = cardCost
-	if self._lbCostInLabel then self._lbCostInLabel:setString("X" .. cardCost) end
-	if self._lbRoomCardInButton then self._lbRoomCardInButton:setString("X" .. cardCost) end
-end
+-- function CreateRoomView:_onDataOnCreatePanelRefresh( __num)
+-- 	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+-- 	local cardCost = manager:findRoomCardCost(__num)
+-- 	if self._createInput.isCostToSeat then 
+-- 		cardCost = cardCost / 3
+-- 	end
+-- 	self._createInput.cost = cardCost
+-- 	if self._lbCostInLabel then self._lbCostInLabel:setString("X" .. cardCost) end
+-- 	if self._lbRoomCardInButton then self._lbRoomCardInButton:setString("X" .. cardCost) end
+-- end
 
-function CreateRoomView:_onAddMinsScoreClick( __num,__label)
-	print("_onAddMinsScoreClick",__num,CreateRoomView._MAX_FLOOR_SCORE)
-	if __num > CreateRoomView._MAX_FLOOR_SCORE then 
-		__num = CreateRoomView._MAX_FLOOR_SCORE
-	end
-	self._createInput.score = __num
-	__label:setString(""..__num)
-end
+-- function CreateRoomView:_onAddMinsScoreClick( __num,__label)
+-- 	print("_onAddMinsScoreClick",__num,CreateRoomView._MAX_FLOOR_SCORE)
+-- 	if __num > CreateRoomView._MAX_FLOOR_SCORE then 
+-- 		__num = CreateRoomView._MAX_FLOOR_SCORE
+-- 	end
+-- 	self._createInput.score = __num
+-- 	__label:setString(""..__num)
+-- end
 
-function CreateRoomView:_onAddMinsChessClick( __num,__label )
+-- function CreateRoomView:_onAddMinsChessClick( __num,__label )
 	
-	if __num > self._MAX_CHESS_NUM then __num = self._MAX_CHESS_NUM end
-	__label:setString(""..__num)
-	--多少局对应多少房卡
-	self:_onDataOnCreatePanelRefresh(__num)
-	self._createInput.chess = __num
-	print("_onAddMinsChessClick",self._createInput.chess,CreateRoomView._MAX_CHESS_NUM)
-	-- local manager = cc.exports.lobby.CreateRoomManager:getInstance()
-	-- local cardCost = manager:findRoomCardCost(__num)
-	-- self._createInput.cost = cardCost
-end
+-- 	if __num > self._MAX_CHESS_NUM then __num = self._MAX_CHESS_NUM end
+-- 	__label:setString(""..__num)
+-- 	--多少局对应多少房卡
+-- 	self:_onDataOnCreatePanelRefresh(__num)
+-- 	self._createInput.chess = __num
+-- 	print("_onAddMinsChessClick",self._createInput.chess,CreateRoomView._MAX_CHESS_NUM)
+-- 	-- local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+-- 	-- local cardCost = manager:findRoomCardCost(__num)
+-- 	-- self._createInput.cost = cardCost
+-- end
 
 
-function CreateRoomView:_onCalculateRadioGroupClick( __selectRadioButton,__index,_eventType )
-	print("_onCalculateRadioGroupClick",__selectRadioButton,__index,_eventType)
-	if __index == 0 then
-		print("选择了自动计算")
-		self._createInput.isAutoNiu = true
-	else
-		print("选择了手动计算")	
-		self._createInput.isAutoNiu = false
-	end
-end
+-- function CreateRoomView:_onCalculateRadioGroupClick( __selectRadioButton,__index,_eventType )
+-- 	print("_onCalculateRadioGroupClick",__selectRadioButton,__index,_eventType)
+-- 	if __index == 0 then
+-- 		print("选择了自动计算")
+-- 		self._createInput.isAutoNiu = true
+-- 	else
+-- 		print("选择了手动计算")	
+-- 		self._createInput.isAutoNiu = false
+-- 	end
+-- end
 
 --是否开启授权入座
-function CreateRoomView:_onOpenClosedRadioGroupClick( __selectRadioButton,__index,_eventType )
-	print("_onOpenClosedRadioGroupClick",__selectRadioButton,__index,_eventType)
-	if __index == 0 then
-		print("close")
-		self._createInput.isOpenRightToSeat = false
-	else
-		print("open")	
-		self._createInput.isOpenRightToSeat = true
-	end
-end
+-- function CreateRoomView:_onOpenClosedRadioGroupClick( __selectRadioButton,__index,_eventType )
+-- 	print("_onOpenClosedRadioGroupClick",__selectRadioButton,__index,_eventType)
+-- 	if __index == 0 then
+-- 		print("close")
+-- 		self._createInput.isOpenRightToSeat = false
+-- 	else
+-- 		print("open")	
+-- 		self._createInput.isOpenRightToSeat = true
+-- 	end
+-- end
 
 --是否收费入座
-function CreateRoomView:_onYesNoRadioGroupClick( __selectRadioButton,__index,_eventType )
-	print("_onYesNoRadioGroupClick",__selectRadioButton,__index,_eventType)
-	if __index == 0 then
-		print("yes")
-		for k,v in pairs(self._costWidgetContainer) do
-			v:show()
-		end
-		self._createInput.isCostToSeat = true
-	else
-		for k,v in pairs(self._costWidgetContainer) do
-			v:hide()
-		end
-		self._createInput.isCostToSeat = false
-	end
-	self:_onDataOnCreatePanelRefresh(self._createInput.chess)
-end
+-- function CreateRoomView:_onYesNoRadioGroupClick( __selectRadioButton,__index,_eventType )
+-- 	print("_onYesNoRadioGroupClick",__selectRadioButton,__index,_eventType)
+-- 	if __index == 0 then
+-- 		print("yes")
+-- 		for k,v in pairs(self._costWidgetContainer) do
+-- 			v:show()
+-- 		end
+-- 		self._createInput.isCostToSeat = true
+-- 	else
+-- 		for k,v in pairs(self._costWidgetContainer) do
+-- 			v:hide()
+-- 		end
+-- 		self._createInput.isCostToSeat = false
+-- 	end
+-- 	self:_onDataOnCreatePanelRefresh(self._createInput.chess)
+-- end
 
 function CreateRoomView:_onCreateRoomClick( ... )
 	--创建房间信息接口调用
@@ -1130,10 +951,9 @@ end
 
 function CreateRoomView:_requestCreateRoom( ... )
 	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
-	if not Mall.MallManager.checkNeedGotoMallBuyRoomCard(manager:findNotEnoughRoomCardString(), self._createInput.cost) then 
-		
-		print(manager:findActGameId())
-		manager:requestCreateRoom( self._createInput,manager:findActGameId(),self._createInput.roomNum)	
+	local data = NiuNiuRule:getCurrRule()
+	if not Mall.MallManager.checkNeedGotoMallBuyRoomCard(manager:findNotEnoughRoomCardString(), data.cost) then 
+		manager:requestCreateRoom( data,manager:findActGameId(),data.roomNum)	
 	end
 end
 

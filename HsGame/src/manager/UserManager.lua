@@ -8,7 +8,7 @@ end
 function UserManager:refreshUserInfo( ... )
     if UserData.userId then 
         local config = cc.exports.config
-        local url = config.ServerConfig:findLoginDomain() .. config.ApiConfig.REQUEST_SELF_INFO .. UserData.token
+        local url = config.ServerConfig:findLoginDomain() .. config.ApiConfig.REQUEST_SELF_INFO .."?token=".. UserData.token
         cc.exports.HttpClient:getInstance():get(url,handler(self,self._onInfoCallback))
     end
 end
@@ -20,7 +20,6 @@ function UserManager:_onInfoCallback( __error,__response )
         print("Player Info net error")
     else
         if 200 == __response.status then
-        	print(tostring(__response))
         	local data = __response.data
 			if data.NickName then UserData.nickName = data.nickName end
 			if data.Score then UserData.coins = data.score end

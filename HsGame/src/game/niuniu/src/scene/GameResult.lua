@@ -3,6 +3,7 @@
 ------------------------------------------
 local GameResult = class("GameResult",cc.Layer)
 local GameResultResPath = "game/niuniu/res/GameLayout/NiuNiu/result/"
+local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
 
 local TXT_COLOR = cc.c3b(255, 198, 178)--信息
 local TXT_COLOR1 = cc.c3b(255, 198, 178)--id
@@ -44,7 +45,7 @@ function GameResult:initAllResult(arr,playerArr,tableid,playerNum,playerInfoData
 	playing:setAnchorPoint(0.0,0.5)
 	playing:setPosition(600,y-140)
 	bgAllResult:addChild(playing)
-	local data = NiuNiuData.parseRule(arr.rule)
+	local data = NiuNiuRule:parseRule(arr.rule)
 	if data then
 		local difen = cc.Label:createWithSystemFont("底分"..data.GameBet..",",SYSFONT,26)
 		difen:setColor(TXT_COLOR)
