@@ -111,8 +111,8 @@ function help:onClickBack(sender)
 		self.ruleview:hide()
 		self.wanfaView:show()
 		self.cardTypeTitle:setColor(cc.c3b(191, 169, 125))
-		self.ruleTitle:setColor(cc.c3b(255,255,255))
-		self.wanfaTitle:setColor(cc.c3b(191, 169, 125))
+		self.ruleTitle:setColor(cc.c3b(191, 169, 125))
+		self.wanfaTitle:setColor(cc.c3b(255,255,255))
 	end
 end
 
