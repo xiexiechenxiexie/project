@@ -113,11 +113,13 @@ function LobbyGameEnterManager:_onGameListCallback( __error,__respObj )
 				updateInfo.isUpdate = false
 				updateInfo.isNeedDownload  = false
 				updateInfo.isEnablePlay = true--1 完成 0未完成
+				if typeValue == 5 then
+					updateInfo.isEnablePlay = false
+				end
 				
 				self._gameListCache[gameId] = updateInfo
 				print("dump(updateInfo)")
 				dump(updateInfo)
-
 			end
 
 			if typeValue == GameColllectType.Type_KSKS then self._ksksGameList[#self._ksksGameList + 1] = v end
