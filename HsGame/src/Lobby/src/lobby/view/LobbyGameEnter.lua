@@ -148,18 +148,18 @@ function LobbyGameEnter:ctor()
 end
 
 function LobbyGameEnter:_createScrollView( ... )
-    local _scrollView = ScrollViewEx:create()
-    _scrollView:setDirection(ccui.ScrollViewDir.horizontal);--设置方向为垂直
-    _scrollView:setTouchEnabled(true)--触摸的属性
+    local _scrollView = ccui.ListView:create()
+    _scrollView:setDirection(ccui.ScrollViewDir.vertical)
+    _scrollView:setTouchEnabled(false)--触摸的属性
     _scrollView:setBounceEnabled(true)--弹回的属性
     _scrollView:setScrollBarEnabled(true)
     _scrollView:setInertiaScrollEnabled(true)--滑动的惯性
 
-    local size = {width = 895,height = 230}
+    local size = {width = 500,height = 500}
     _scrollView:setContentSize(cc.size(size.width, size.height))--设置scrollView的大小，相当于是显示的区域
-    _scrollView:setInnerContainerSize(cc.size(size.width, size.height))--设置容器的大小
-    _scrollView:setAnchorPoint(cc.p(0,0));
-    _scrollView:setPosition(cc.p(438,378));
+    -- _scrollView:setInnerContainerSize(cc.size(size.width, size.height))--设置容器的大小
+    _scrollView:setAnchorPoint(cc.p(0,0))
+    _scrollView:setPosition(cc.p(760,170))
     self:addChild(_scrollView)
     self._scrollView = _scrollView
 end
@@ -169,9 +169,7 @@ function LobbyGameEnter:initScrollViewData( ... )
 	for i=1,#gameListData do
 		print("initScrollViewData",i,gameListData[i].gameId)
 		local item = GameIconFactory:createIconBtn(gameListData[i].gameId,handler(self,self.onItemClick))
-		item:setPosition(1000,730-i*150)
-		-- self._scrollView:addItem(item)
-		self:addChild(item)
+		self._scrollView:pushBackCustomItem(item)
 	end
 end
 
@@ -182,7 +180,7 @@ LobbyGameEnter.OVER_DOWNLOAD_ZIP = 2
 LobbyGameEnter.OVER_LOCK = 2
 ]]
 function LobbyGameEnter:_refreshGameList()
-	print("_refreshGameList")
+	print("_refreshGameList",self._scrollView)
 	if self._scrollView == nil then self:_createScrollView() self:initScrollViewData()  end
 	local children = self._scrollView:getChildren() 
 	local manager = cc.exports.lobby.LobbyGameEnterManager:getInstance()

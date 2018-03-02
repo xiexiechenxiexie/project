@@ -55,15 +55,15 @@ function RoomEndedData:ctor( __param )
 		return
 	end
 	dump(__param)
-	self.historyRoomId = __param.TableHistoryId
-	self.roomId = __param.TableID
-	self.gameRound = __param.GameRound --局数
-	self.peopleNumOfRoom = __param.PeopleNum --参与人数
-	self.timeOfCreateRoom = __param.CreateDate
+	self.historyRoomId = __param.historyId
+	self.roomId = __param.roomId
+	self.gameRound = __param.GameRound or 10 --局数
+	self.peopleNumOfRoom = __param.players --参与人数
+	self.timeOfCreateRoom = __param.createdTime
 	self.timeOfCreateRoom = string.sub(self.timeOfCreateRoom,6)
-	self.createrName = string.getMaxLen(__param.NickName,12)
+	self.createrName = string.getMaxLen(__param.nickname,12)
 	if __param.KindID == config.GameIDConfig.KPQZ then
-		local data = NiuNiuRule:parseRule(__param.CurrentRule)
+		local data = NiuNiuRule:parseRule(__param.rule)
 		self.isAutoNiu = data.AccountType == 0
 		self.gameBet = data.GameBet
 	end
@@ -120,12 +120,12 @@ function ChessDetailData:ctor ( __roomList )
 	__roomList = __roomList or {}
 	for _,param in ipairs(__roomList) do
 		local data = {}
-		data.gamerName = param.NickName
-		data.avatarUrl = param.AvatarUrl
-		data.score = param.Score
-		data.flag = param.Flag or 1
-		data.userId = param.UserId
-		data.gender = param.Gender
+		data.gamerName = param.nickname
+		data.avatarUrl = param.avatar
+		data.score = param.score
+		data.flag = param.flag or 1
+		data.userId = param.userId
+		data.gender = param.gender
 		self.listGamers[#self.listGamers + 1] = data
 	end
 end
@@ -403,9 +403,9 @@ function CreateRoomManager:requestGameEnded( __callback )
 		dump(__rsp)
 		if __rsp.status == 200 and next(__rsp.data) then
 			self._listEnded = {}
-			for i,info in ipairs(__rsp.data.roomlist) do
+			for i,info in ipairs(__rsp.data) do
 				dump(info)
-				print(info.TableID)
+				print(info.roomId)
 				local ended = RoomEndedData:create(info)
 				self._listEnded[i] = ended
 
@@ -424,9 +424,9 @@ function CreateRoomManager:requestGameEnded( __callback )
 end
 
 --牌局详情
-function CreateRoomManager:requestChessDetail(__historyRoomId, __callback )
+function CreateRoomManager:requestChessDetail(historyRoomId, __callback )
 	local url = self:findRequestUrl(config.ApiConfig.REQUEST_ROOM_HISTORY_DETAIL)
-	url = url  .. __historyRoomId
+	url = url  ..historyRoomId.."?token="..UserData.token
 	HttpClient:getInstance():get(url,function (__errorMsg,__rsp)
 		if __errorMsg then
 			print("网络错误",__errorMsg)
@@ -435,7 +435,7 @@ function CreateRoomManager:requestChessDetail(__historyRoomId, __callback )
 		dump(__rsp)
 		if __rsp.status == 200 then
 			self._chessDetail = {}
-			self._chessDetail = ChessDetailData:create(__rsp.data.roomlist) 
+			self._chessDetail = ChessDetailData:create(__rsp.data) 
 			if __callback then 
 				__callback(nil,self._chessDetail)
 			end

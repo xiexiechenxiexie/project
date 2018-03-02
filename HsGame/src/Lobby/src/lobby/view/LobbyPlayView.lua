@@ -132,7 +132,7 @@ end
 function LobbyPlayView:_onRequest( ... )
 	lobby.GamePlayManager:getInstance():requestGamePlayList()
 end
-
+ 
 function LobbyPlayView:createLocalImgUIView( __layout,__itemData )
 	local itemData = __itemData
 	local layout = __layout
