@@ -158,17 +158,12 @@ function GameResult:createAllItem(index,playerArr,playerData)
 	end
 
 	local dayingjia = false
-	local num = 0
 	for i,v in ipairs(playerArr) do
-		if index ~= i then
-			if playerArr[index].allSocre >= playerArr[i].allSocre then
-				num = num + 1
-			end
+		if playerArr[index].allSocre >= v.allSocre  and playerArr[index].allSocre > 0 then
+			dayingjia = true
 		end
 	end
-	if num == #playerArr - 1 then
-		dayingjia = true
-	end
+
 	winner:setVisible(dayingjia)
 	effect:setVisible(dayingjia)
 	return playerAllBg
