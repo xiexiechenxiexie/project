@@ -875,6 +875,19 @@
                 <key>sourceSize</key>
                 <string>{515,95}</string>
             </dict>
+            <key>xiala_select.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2045,87},{1,1}}</string>
+                <key>offset</key>
+                <string>{-257,23}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{1,1}}</string>
+                <key>sourceSize</key>
+                <string>{515,47}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -885,7 +898,7 @@
             <key>size</key>
             <string>{2048,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:6a5731be4921aef2fdebe1c5a2162b71:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:42962c4ad1c944333b97e4048fb06a72:1/1$</string>
             <key>textureFileName</key>
             <string>LobbyGameEnter.png</string>
         </dict>
