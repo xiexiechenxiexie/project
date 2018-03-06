@@ -108,6 +108,7 @@ function RankListView:createRankListRecord(ranking,data,__type)
 	listBtn:addClickEventListener(function()
 		local playerInfoView = PlayerInfo.new(data.userId)
 		self:getParent():addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
+		self:getParent():RankViewShow()
 	end)
 	record:addChild(listBtn)
 
