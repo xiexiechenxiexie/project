@@ -50,6 +50,7 @@ local UIDisplay = {
 		local callback = __params.callback
 		local poses = __params.poses or {}
 		local num = __params.num or 1
+		local selectNum = __params.selectNum or 1
 
 		local group = ccui.RadioButtonGroup:create()
 		group:setPosition(groupPos)
@@ -63,7 +64,7 @@ local UIDisplay = {
 			group:addRadioButton(radioButton)
 			
 			radioButton:setPosition(pos)	
-			if i == 1 then
+			if i == selectNum then
 				group:setSelectedButtonWithoutEvent(radioButton)
 			end
 			if parent  then

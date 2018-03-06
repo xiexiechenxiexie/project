@@ -5,6 +5,9 @@
 local RuleTitle = {"底        分:","局        数:","算        牛:","授权入座:","支付方式:"}
 local TextColor = cc.c4b(191, 169, 125, 255) --标题颜色
 local ValueColor = cc.c4b(255,255,255,255) --数值颜色
+local MPQZ_TAG = 1
+local ZYQZ_TAG = 2
+local NNSZ_TAG = 3
 
 local NiuNiuRule = class("NiuNiuRule")
 local RuleWindow = require "RuleWindow"
@@ -16,6 +19,8 @@ function NiuNiuRule:reset()
 	self.isAutoNiu = 0 --是否自动算牛
 	self.isOpenRightToSeat = 0 --是否开启授权入座
 	self.isCostToSeat = 0 --是否开启收费入座
+	self.niuniuType = 0 --牛牛牌型 默认明牌抢庄
+	self.fanbeiRule = 0 --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍 
 	self.cost = 3 --房卡消耗
 	self.roomNum = 5
 
@@ -25,12 +30,11 @@ end
 
 --算牛方法   游戏底分  授权入座 收费入座
 function NiuNiuRule:createRule()
-	local rule = ""..self.isAutoNiu..(self.score-1)..self.isOpenRightToSeat..self.isCostToSeat
+	local rule = ""..self.isAutoNiu..(self.score-1)..self.isOpenRightToSeat..self.isCostToSeat..self.niuniuType..self.fanbeiRule
 	return rule
 end
 
 function NiuNiuRule:parseRule( __str )
-	print("的哈加快速度哈萨克",__str)
 	assert(__str and type(__str) == "string" and  __str ~= "" ,"invalid params")
 	local data = {}
 	local i = 1
@@ -41,6 +45,10 @@ function NiuNiuRule:parseRule( __str )
 	data.AuthorizeSit  =  tonumber(string.sub(__str,i ,i))
 	i = i + 1
 	data.ChargeSit  =  tonumber(string.sub(__str,i ,i))
+	i = i + 1
+	data.niuniuType  =  tonumber(string.sub(__str,i ,i))
+	i = i + 1
+	data.fanbeiRule  =  tonumber(string.sub(__str,i ,i))
 	return data
 end
 
@@ -59,7 +67,7 @@ function NiuNiuRule:createRuleLayer()
     listView:setInertiaScrollEnabled(false)--滑动的惯性
     listView:setScrollBarEnabled(false)
     listView:setDirection(ccui.ScrollViewDir.vertical)
-    listView:setContentSize(1000,380)
+    listView:setContentSize(1000,360)
 	layer:addChild(listView)
 
 	for i=1,#RuleTitle do
@@ -69,12 +77,6 @@ function NiuNiuRule:createRuleLayer()
 		end
 	end
 
-	self:TypeBtn(layer)
-	self.layer = layer
-	return layer
-end
-
-function NiuNiuRule:TypeBtn( __parent )
 	local button = cc.exports.lib.uidisplay.createUIButton({
 			textureType = ccui.TextureResType.plistType,
 			normal = "btnNiuniuShangzhuang.png",
@@ -82,7 +84,8 @@ function NiuNiuRule:TypeBtn( __parent )
 			isActionEnabled = true,
 			pos = cc.p(757-260,155)
 	})
-	__parent:addChild(button)
+	button:setTag(NNSZ_TAG)
+	layer:addChild(button)
 	button = cc.exports.lib.uidisplay.createUIButton({
 			textureType = ccui.TextureResType.plistType,
 			normal = "btnZiyouqiangzhuang.png",
@@ -90,7 +93,8 @@ function NiuNiuRule:TypeBtn( __parent )
 			isActionEnabled = true,
 			pos = cc.p(757,155)
 	})
-	__parent:addChild(button)
+	button:setTag(ZYQZ_TAG)
+	layer:addChild(button)
 	button = cc.exports.lib.uidisplay.createUIButton({
 			textureType = ccui.TextureResType.plistType,
 			normal = "btnMingpaiqiangzhuang.png",
@@ -98,12 +102,12 @@ function NiuNiuRule:TypeBtn( __parent )
 			isActionEnabled = true,
 			pos = cc.p(757+260,155)
 	})
-	__parent:addChild(button)
-end
+	button:setTag(MPQZ_TAG)
+	layer:addChild(button)
 
-function NiuNiuRule:_onBtnClick()
-	local RuleWindow = RuleWindow:new()
-	self.layer:addChild(RuleWindow)
+	self.layer = layer
+
+	return layer
 end
 
 function NiuNiuRule:createRuleItem(index)
@@ -319,6 +323,13 @@ function NiuNiuRule:_onYesNoRadioGroupClick(__selectRadioButton,__index,_eventTy
 	self.isCostToSeat = __index
 end
 
+function NiuNiuRule:_onBtnClick(sender)
+	local index = sender:getTag() - 1
+	self.niuniuType = index
+	local RuleWindow = RuleWindow:new()
+	self.layer:addChild(RuleWindow)
+end
+
 function NiuNiuRule:getCurrRule()
 	local data = {}
 	data.score = self.score
@@ -332,8 +343,17 @@ function NiuNiuRule:getCurrRule()
 	return data
 end
 
+function NiuNiuRule:getNiuNiuType()
+	return self.niuniuType
+end
 
+function NiuNiuRule:setfanbeiRule(fanbeiRule)
+	self.fanbeiRule = fanbeiRule
+end
 
+function NiuNiuRule:getfanbeiRule()
+	return self.fanbeiRule
+end
 
 
 cc.exports.lib.singleInstance:bind(NiuNiuRule)

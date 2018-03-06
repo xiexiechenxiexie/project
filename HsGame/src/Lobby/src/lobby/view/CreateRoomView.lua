@@ -986,21 +986,6 @@ end
 -- 	self:_onDataOnCreatePanelRefresh(self._createInput.chess)
 -- end
 
-function CreateRoomView:_onCreateRoomClick( ... )
-	--创建房间信息接口调用
-	print("_onCreateRoomClick")
-	self:_requestCreateRoom()
-
-end
-
-function CreateRoomView:_requestCreateRoom( ... )
-	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
-	local data = NiuNiuRule:getCurrRule()
-	if not Mall.MallManager.checkNeedGotoMallBuyRoomCard(manager:findNotEnoughRoomCardString(), data.cost) then 
-		manager:requestCreateRoom( data,manager:findActGameId(),data.roomNum)	
-	end
-end
-
 function CreateRoomView:_onBtnHelpClick( ... )
 	local helpView = HelpView.new()
 	cc.Director:getInstance():getRunningScene():addChild(helpView)
