@@ -87,21 +87,21 @@ function JoinChessData:ctor( __param )
 	if Test then
 		return
 	end
-	self.historyRoomId = __param.TableHistoryId
-	self.roomId = __param.TableID --房间Id
-	self.createrName = string.getMaxLen(__param.NickName,12)  --创建者
-	self.score = __param.Score  --战绩
+	self.historyRoomId = __param.historyId
+	self.roomId = __param.roomId --房间Id
+	self.createrName = string.getMaxLen(__param.nickname,12)  --创建者
+	self.score = __param.score  --战绩
 	if __param.KindID == config.GameIDConfig.KPQZ then
-		local data = NiuNiuRule:parseRule(__param.CurrentRule)
+		local data = NiuNiuRule:parseRule(__param.rule)
 		self.isAutoNiu = data.AccountType == 0
 		self.gameBet = data.GameBet
 	end
-	self.gameRound = __param.GameRound
-	self.peopleNum = __param.peopleNum
+	self.gameRound = __param.gameRound
+	self.peopleNum = __param.players
 	--self.createDate = __param.CreateDate
-	self.uid = __param.Uid
+	self.uid = __param.userId
 	self.gameId = __param.KindID
-	self.timeOfCreateRoom = __param.CreateDate
+	self.timeOfCreateRoom = __param.createdTime
 	self.timeOfCreateRoom = string.sub(self.timeOfCreateRoom,6)
  end 
 
@@ -356,7 +356,7 @@ function CreateRoomManager:requestGameMyChess( __callback )
 	end
 
 	local url = self:findRequestUrl(config.ApiConfig.REQUEST_MY_JOIN_ROOM)
-	url = url .. "?token"..UserData.token 
+	url = url .. "?token="..UserData.token 
 	HttpClient:getInstance():get(url,function (__errorMsg,__rsp)
 		if __errorMsg then
 			print("网络错误",__errorMsg)
@@ -364,9 +364,9 @@ function CreateRoomManager:requestGameMyChess( __callback )
 		end
 		dump(__rsp)
 		if __rsp.status == 200 then
-			dump(__rsp.data.roomlist)
+			dump(__rsp.data)
 			self._listJoinChess = {}
-			for i,info in ipairs(__rsp.data.roomlist) do
+			for i,info in ipairs(__rsp.data) do
 				local joinProcess = JoinChessData:create(info)
 				self._listJoinChess[i] = joinProcess
 				if __callback then 

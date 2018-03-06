@@ -546,11 +546,11 @@ function GameScene:onGameSceneGradBanker()
         
         if self.TableInfoArray.IsSit then
             if v.isJoin > 0 then
-                self:setFaPai(switchid,4)
+                self:setFaPai(switchid,v.cardNum)
             end
         else
             if v.isJoin > 0 then
-                self:showTanpai(switchid,4)
+                self:showTanpai(switchid,v.cardNum)
             end
         end
         
@@ -594,11 +594,11 @@ function GameScene:onGameSceneGradBrtting()
         local switchid = conf.swichPos(v.seatid,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
         if self.TableInfoArray.IsSit then
             if v.isJoin > 0 then
-                self:setFaPai(switchid,4)
+                self:setFaPai(switchid,v.cardNum)
             end
         else
             if v.isJoin > 0 then
-                self:showTanpai(switchid,4)
+                self:showTanpai(switchid,v.cardNum)
             end
         end
 
@@ -662,11 +662,11 @@ function GameScene:onGameSceneShowCard()
             local switchid = conf.swichPos(v.seatid,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
             if self.TableInfoArray.IsSit then
                 if v.isJoin > 0 then
-                    self:setFaPai(switchid,5)
+                    self:setFaPai(switchid,v.cardNum)
                 end
             else
                 if v.isJoin > 0 then
-                    self:showTanpai(switchid,5)
+                    self:showTanpai(switchid,v.cardNum)
                 end
             end
             if v.cardNum > 0 then
@@ -682,7 +682,7 @@ function GameScene:onGameSceneShowCard()
         for m,v in ipairs(player) do
             local switchid = conf.swichPos(v.seatid,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
             if v.isJoin > 0 then
-                self:showTanpai(switchid,5)
+                self:showTanpai(switchid,v.cardNum)
             end
         end
         if self.TableInfoArray.IsSit then
@@ -1068,6 +1068,9 @@ end
 
 --开始发牌
 function GameScene:StartFaPai(playerArray)
+    if #self.CardData < 1 then
+        return
+    end
 	for i,v in ipairs(playerArray) do
         local switchId = conf.swichPos(v.seatid,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
         if self.TableInfoArray.isJoin then
@@ -1078,7 +1081,7 @@ function GameScene:StartFaPai(playerArray)
 	end
 end
 
---断线重连专用牌
+--断线重连专用牌self.CardData
 function GameScene:setFaPai(seatId,cardNum)
     local b = true
     if self.TableInfoArray.isJoin and seatId == 1 then
@@ -1352,10 +1355,10 @@ function GameScene:GradbankerBtn(time)
         return
     end
     if self.TableInfoArray.IsSit  then
-        self.panel_pri:show()
+        -- self.panel_pri:show()
     end
 
-    self:createClock(conf.time.gradBank,time)
+    -- self:createClock(conf.time.gradBank,time)
 end
 
 --抢庄
@@ -2206,7 +2209,16 @@ function GameScene:onGameGradBrttingEnd(data)
 
     for i,v in pairs(playerArray) do
         if self.TableInfoArray.isJoin  then
-            self:showLastCard(v.seatid)
+            self.CardData=cardData
+            local a = {}
+            a[#a+1] = cc.CallFunc:create(function() self:StartFaPai(playerArray) end)
+            a[#a+1] = cc.DelayTime:create(0.3)
+            a[#a+1] = cc.CallFunc:create(function()
+                self:setPlayerCard() 
+                end)
+            local seq = cc.Sequence:create(a)
+            self:runAction(seq)
+            -- self:showLastCard(v.seatid)
         else
             self:showTourLastCard(v.seatid)
         end
