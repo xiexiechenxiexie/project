@@ -1,6 +1,7 @@
 --规则弹窗
 
 local fanbei_text = {"牛牛x4      牛九x3      牛八x2      牛七x2","牛牛x3      牛九x2      牛八x2"}
+local special_card_text = {"同花顺(10倍)","炸弹牛(8倍)","葫芦牛(7倍)","同花牛(6倍)","五花牛(5倍)","顺子牛(5倍)"}
 local TextColor = cc.c4b(235,201,126, 255) --标题颜色
 local ValueColor = cc.c4b(255,255,255,255) --数值颜色
 local btnRadioBg = "btnRadioBg.png"
@@ -70,6 +71,7 @@ function RuleWindow:initView()
 															)
 	ruleBg:addChild(label)
 
+	--翻牌规则
 	local fanbei_bg = ccui.ImageView:create("rule_kuang.png",ccui.TextureResType.plistType)
 	fanbei_bg:setPosition(x/2+60,410)
 	ruleBg:addChild(fanbei_bg)
@@ -93,7 +95,7 @@ function RuleWindow:initView()
 											ccui.TextureResType.plistType
 											)
 	fanbei_btn:setPosition(fanbei_bg:getContentSize().width/2,fanbei_bg:getContentSize().height/2)
-	fanbei_btn:addClickEventListener(function(sender)self:onCheckButtonClickedEvent(sender)end)
+	fanbei_btn:addClickEventListener(function(sender)self:onXLButtonClickedEvent(sender)end)
 	fanbei_bg:addChild(fanbei_btn)
 
 	local fanbei_sp = cc.Sprite:createWithSpriteFrameName("xiala_btn.png")
@@ -105,6 +107,37 @@ function RuleWindow:initView()
 	self.fanbei_btn = fanbei_btn
 	self.fanbei_lab = fanbei_lab
 
+	--特殊牌型
+	local getSpecialCardStr = NiuNiuRule:getSpecialCardRule()
+	for i=1,6 do
+		local fanbei_btn = ccui.CheckBox:create("btnRadioBg1.png",
+											"btnRadioBg.png",
+											"btnRadioBg.png",
+											"btnRadioBg1.png",
+											"btnRadioBg1.png",
+											ccui.TextureResType.plistType
+											)
+		local post_x = 130 + 50*(math.modf(i/4))
+		local post_y = 310
+		if i>3 then
+			post_y = 210
+		end
+		fanbei_btn:setPosition(post_x,post_y)
+		fanbei_btn:addClickEventListener(function(sender)self:onCheckButtonClickedEvent(sender)end)
+		ruleBg:addChild(fanbei_btn)
+	end
+
+	--同花顺
+	
+	--炸弹牛
+	--葫芦牛
+	--同花牛
+	--五花顺
+	--顺子牛
+
+	
+
+
 	local button = cc.exports.lib.uidisplay.createUIButton({
 		textureType = ccui.TextureResType.plistType,
 		normal = "btnCreateRoomCmd.png",
@@ -115,12 +148,18 @@ function RuleWindow:initView()
 	ruleBg:addChild(button)
 end
 
-function RuleWindow:onCheckButtonClickedEvent(sender)
+function RuleWindow:onXLButtonClickedEvent(sender)
 	local status = sender:isSelected()
 	if not status then
 		self:popFBLayer()
 		self.fanbei_sp:initWithSpriteFrameName("shangla_btn.png")
 	end
+end
+
+function RuleWindow:onCheckButtonClickedEvent(sender)
+	local status = sender:isSelected()
+	local tag = sender:getTag()
+
 end
 
 function RuleWindow:_onCreateRoomClick()
@@ -218,9 +257,6 @@ function RuleWindow:popFBLayer()
 	self.fanbei_select1 = fanbei_select1
 	self.fanbei_select2 = fanbei_select2
 
-	local 
-	
-
 	self.maskLayer = maskLayer
 end
 
@@ -234,7 +270,8 @@ function RuleWindow:closeFBLayer()
 end
 
 function RuleWindow:onFanBeiButtonClickedEvent(__selectRadioButton,__index,_eventType)
-	print("翻倍翻倍翻倍翻倍翻倍",__index)
+	local count = __selectRadioButton:getTag()
+	print("的金坷垃是第几阿里",__selectRadioButton,count,__index,_eventType)
 	if __index > 0 then
 		self.fanbei_select1:setVisible(false)
 		self.fanbei_select2:setVisible(true)

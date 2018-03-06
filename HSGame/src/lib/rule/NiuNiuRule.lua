@@ -20,7 +20,8 @@ function NiuNiuRule:reset()
 	self.isOpenRightToSeat = 0 --是否开启授权入座
 	self.isCostToSeat = 0 --是否开启收费入座
 	self.niuniuType = 0 --牛牛牌型 默认明牌抢庄
-	self.fanbeiRule = 0 --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍 
+	self.fanbeiRule = 0 --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍
+	self.SpecialCard = "111111" --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍 
 	self.cost = 3 --房卡消耗
 	self.roomNum = 5
 
@@ -30,7 +31,7 @@ end
 
 --算牛方法   游戏底分  授权入座 收费入座
 function NiuNiuRule:createRule()
-	local rule = ""..self.isAutoNiu..(self.score-1)..self.isOpenRightToSeat..self.isCostToSeat..self.niuniuType..self.fanbeiRule
+	local rule = ""..self.isAutoNiu..(self.score-1)..self.isOpenRightToSeat..self.isCostToSeat..self.niuniuType..self.fanbeiRule..self.SpecialCard
 	return rule
 end
 
@@ -49,6 +50,8 @@ function NiuNiuRule:parseRule( __str )
 	data.niuniuType  =  tonumber(string.sub(__str,i ,i))
 	i = i + 1
 	data.fanbeiRule  =  tonumber(string.sub(__str,i ,i))
+	i = i + 1
+	data.SpecialCard = SpecialCard..string.sub(__str,i ,i + 6)
 	return data
 end
 
@@ -353,6 +356,14 @@ end
 
 function NiuNiuRule:getfanbeiRule()
 	return self.fanbeiRule
+end
+
+function NiuNiuRule:setSpecialCardRule(SpecialCard)
+	self.SpecialCard = SpecialCard
+end
+
+function NiuNiuRule:getSpecialCardRule()
+	return self.SpecialCard
 end
 
 
