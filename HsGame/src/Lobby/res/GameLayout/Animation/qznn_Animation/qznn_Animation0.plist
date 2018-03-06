@@ -650,16 +650,16 @@
 				<key>offsetY</key>
 				<real>-5</real>
 			</dict>
-			<key>qznn_di.png</key>
+			<key>nn_di.png</key>
 			<dict>
 				<key>width</key>
-				<integer>434</integer>
+				<integer>433</integer>
 				<key>height</key>
 				<integer>131</integer>
 				<key>originalWidth</key>
-				<integer>434</integer>
+				<integer>433</integer>
 				<key>originalHeight</key>
-				<integer>161</integer>
+				<integer>131</integer>
 				<key>x</key>
 				<integer>360</integer>
 				<key>y</key>
@@ -667,7 +667,7 @@
 				<key>offsetX</key>
 				<real>0</real>
 				<key>offsetY</key>
-				<real>-15</real>
+				<real>0</real>
 			</dict>
 		</dict>
 		<key>metadata</key>
@@ -679,14 +679,14 @@
 			<key>realTextureFileName</key>
 			<string>qznn_Animation0.png</string>
 			<key>size</key>
-			<string>{2048,2048}</string>
+			<string>{2048,1024}</string>
 		</dict>
 		<key>texture</key>
 		<dict>
 			<key>width</key>
 			<integer>2048</integer>
 			<key>height</key>
-			<integer>2048</integer>
+			<integer>1024</integer>
 		</dict>
 	</dict>
 </plist>

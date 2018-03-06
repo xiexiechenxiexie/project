@@ -629,19 +629,19 @@ function CreateRoomView:_addTabBtn( __targetNode )
     self._roomSetText:setAnchorPoint(cc.p(0.5, 0.5))
     self._roomSetText:setColor(cc.c3b(255,255,255))
     self._roomSetText:setPosition(405, size.height-60)
-    __targetNode:addChild(self._roomSetText,10)
+    __targetNode:addChild(self._roomSetText)
 
     self._myRoomText = cc.Label:createWithTTF("我的房间",GameUtils.getFontName(),30)
     self._myRoomText:setAnchorPoint(cc.p(0.5, 0.5))
     self._myRoomText:setColor(cc.c3b(191, 169, 125))
     self._myRoomText:setPosition(405+352, size.height-60)
-    __targetNode:addChild(self._myRoomText,10)
+    __targetNode:addChild(self._myRoomText)
 
     self._myJoinRoomText = cc.Label:createWithTTF("我参与的牌局",GameUtils.getFontName(),30)
     self._myJoinRoomText:setAnchorPoint(cc.p(0.5, 0.5))
     self._myJoinRoomText:setColor(cc.c3b(191, 169, 125))
     self._myJoinRoomText:setPosition(405+352*2, size.height-60)
-    __targetNode:addChild(self._myJoinRoomText,10)
+    __targetNode:addChild(self._myJoinRoomText)
 
 	-- local btnMyRoom =  ccui.Button:create(btnMyRoom0,btnMyRoom1,btnMyRoom1,ccui.TextureResType.plistType)
 	-- __targetNode:addChild(btnMyRoom)
@@ -707,6 +707,7 @@ function CreateRoomView:_addMyRoomAndChessPanel( ... )
 	local imgMyInfo = dir .. "imgCreateRoomBg.png"
 	local imgBg = ccui.ImageView:create(imgMyInfo,ccui.TextureResType.plistType)
 	-- imgBg:setContentSize(cc.size(774,562))
+	self.imgBg = imgBg
 	self:addChild(imgBg)
 	imgBg:setAnchorPoint(0,0)
 	imgBg:setPosition(10,15)
@@ -722,32 +723,59 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 	-- __parent:addChild(imgCreateRoom)
 	-- imgCreateRoom:setPosition(667,375)
 
+	-- local gameBgNiu = "btnNormal.png"
+	-- gameBgNiu = ccui.ImageView:create(gameBgNiu,ccui.TextureResType.plistType)
+	-- __parent:addChild(gameBgNiu,2)
+	-- gameBgNiu:setVisible(true)
+
+	-- local gameBgZjh = "btnNormal.png"
+	-- gameBgZjh = ccui.ImageView:create(gameBgZjh,ccui.TextureResType.plistType)
+	-- __parent:addChild(gameBgZjh,2)
+	-- gameBgZjh:setVisible(false)
+
+	-- local gameTextNiu = cc.Label:createWithTTF("牛  牛",GameUtils.getFontName(),30)
+ --    gameTextNiu:setAnchorPoint(cc.p(0.5, 0.5))
+ --    gameTextNiu:setColor(cc.c3b(255,255,255))
+ --    gameTextNiu:setPosition(133-10,495-15)
+ --    __parent:addChild(gameTextNiu,2)
+
+ --    local gameTextZjh = cc.Label:createWithTTF("炸金花",GameUtils.getFontName(),30)
+ --    gameTextZjh:setAnchorPoint(cc.p(0.5, 0.5))
+ --    gameTextZjh:setColor(cc.c3b(191, 169, 125))
+ --    gameTextZjh:setPosition(133-10,495-100-15)
+ --    __parent:addChild(gameTextZjh,2)
+
+	local slideImg = "btnSelected.png"
+	local buttonNn = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	__parent:addChild(buttonNn)
+	
+	slideImg = "btnSelected.png"
+	local buttonZjh = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	__parent:addChild(buttonZjh)
+
 	local gameBgNiu = "btnNormal.png"
 	gameBgNiu = ccui.ImageView:create(gameBgNiu,ccui.TextureResType.plistType)
-	__parent:addChild(gameBgNiu,10)
+	__parent:addChild(gameBgNiu)
 	gameBgNiu:setVisible(true)
 
 	local gameBgZjh = "btnNormal.png"
 	gameBgZjh = ccui.ImageView:create(gameBgZjh,ccui.TextureResType.plistType)
-	__parent:addChild(gameBgZjh,10)
+	__parent:addChild(gameBgZjh)
 	gameBgZjh:setVisible(false)
 
 	local gameTextNiu = cc.Label:createWithTTF("牛  牛",GameUtils.getFontName(),30)
     gameTextNiu:setAnchorPoint(cc.p(0.5, 0.5))
     gameTextNiu:setColor(cc.c3b(255,255,255))
-    gameTextNiu:setPosition(133,495)
-    __parent:addChild(gameTextNiu,10)
+    gameTextNiu:setPosition(133-10,495-15)
+    __parent:addChild(gameTextNiu)
 
     local gameTextZjh = cc.Label:createWithTTF("炸金花",GameUtils.getFontName(),30)
     gameTextZjh:setAnchorPoint(cc.p(0.5, 0.5))
     gameTextZjh:setColor(cc.c3b(191, 169, 125))
-    gameTextZjh:setPosition(133,495-100)
-    __parent:addChild(gameTextZjh,10)
+    gameTextZjh:setPosition(133-10,495-100-15)
+    __parent:addChild(gameTextZjh)
 
-	local slideImg = "btnSelected.png"
-	local button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
-	__parent:addChild(button)
-	button:addClickEventListener(function ( __sender)
+    buttonNn:addClickEventListener(function ( __sender)
 			manager:setSelectGameId(manager.KPQZ)
 			self:createNNRuleLayer(__parent)
 			gameBgNiu:setVisible(true)
@@ -755,16 +783,10 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 			gameTextNiu:setColor(cc.c3b(255,255,255))
 			gameTextZjh:setColor(cc.c3b(191, 169, 125))
 	end)
-	-- local size = button:getContentSize()
-	-- local x = size.width / 2 + 5
-	-- local y = imgProgressEnded:getContentSize().height * 0.5 - 5
-	button:setPosition(133,495)
-	gameBgNiu:setPosition(133,495)
+	buttonNn:setPosition(133-10,495-15)
+	gameBgNiu:setPosition(133-10,495-15)
 
-	slideImg = "btnSelected.png"
-	button = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
-	__parent:addChild(button)
-	button:addClickEventListener(function ( __sender)
+	buttonZjh:addClickEventListener(function ( __sender)
 			GameUtils.showMsg("游戏正在开发中")
 			-- manager:setSelectGameId(manager.PSZ)
 			-- self:createPSZRuleLayer(__parent)
@@ -773,20 +795,41 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 			-- gameTextNiu:setColor(cc.c3b(191, 169, 125))
 			-- gameTextZjh:setColor(cc.c3b(255,255,255))
 		end)
-	-- local size = button:getContentSize()
-	-- x = imgProgressEnded:getContentSize().width -  size.width / 2 - 5
-	-- y = imgProgressEnded:getContentSize().height * 0.5 - 5
-	button:setPosition(133,495-100)
-	gameBgZjh:setPosition(133,495-100)
+	buttonZjh:setPosition(133-10,495-100-15)
+	gameBgZjh:setPosition(133-10,495-100-15)
 
-	local button = cc.exports.lib.uidisplay.createUIButton({
-			textureType = ccui.TextureResType.plistType,
-			normal = "btnCreateRoomCmd.png",
-			callback = handler(self,self._onCreateRoomClick),
-			isActionEnabled = true,
-			pos = cc.p(405+352,120)
-	})
-	__parent:addChild(button)
+	-- local button = cc.exports.lib.uidisplay.createUIButton({
+	-- 		textureType = ccui.TextureResType.plistType,
+	-- 		normal = "btnCreateRoomCmd.png",
+	-- 		callback = handler(self,self._onCreateRoomClick),
+	-- 		isActionEnabled = true,
+	-- 		pos = cc.p(405+352,120)
+	-- })
+	-- __parent:addChild(button)
+	-- local button = cc.exports.lib.uidisplay.createUIButton({
+	-- 		textureType = ccui.TextureResType.plistType,
+	-- 		normal = "btnNiuniuShangzhuang.png",
+	-- 		-- callback = handler(self,self._onCreateRoomClick),
+	-- 		isActionEnabled = true,
+	-- 		pos = cc.p(757-260,160)
+	-- })
+	-- __parent:addChild(button)
+	-- button = cc.exports.lib.uidisplay.createUIButton({
+	-- 		textureType = ccui.TextureResType.plistType,
+	-- 		normal = "btnZiyouqiangzhuang.png",
+	-- 		-- callback = handler(self,self._onCreateRoomClick),
+	-- 		isActionEnabled = true,
+	-- 		pos = cc.p(757,160)
+	-- })
+	-- __parent:addChild(button)
+	-- button = cc.exports.lib.uidisplay.createUIButton({
+	-- 		textureType = ccui.TextureResType.plistType,
+	-- 		normal = "btnMingpaiqiangzhuang.png",
+	-- 		-- callback = handler(self,self._onCreateRoomClick),
+	-- 		isActionEnabled = true,
+	-- 		pos = cc.p(757+260,160)
+	-- })
+	-- __parent:addChild(button)
 
 	if manager:findSelectedGameId() == manager.KPQZ then
 		self:createNNRuleLayer(__parent)
@@ -1020,7 +1063,7 @@ end
 function CreateRoomView:roomSetLayer( ... )
 	if self._roomSetLayer == nil then
 		self._roomSetLayer = cc.Layer:create()
-		self:addChild(self._roomSetLayer)
+		self.imgBg:addChild(self._roomSetLayer)
 		self:_initCreateRoomPanel(self._roomSetLayer)
 	end
 end
