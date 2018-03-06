@@ -101,6 +101,15 @@ function RankListView:createRankListRecord(ranking,data,__type)
 
 	local size = cc.size(94, 94)
 	local record = ccui.Layout:create()
+	local listBtnImg = "res/Avatar/head_rect_round_stencil_94_94.png"
+	local listBtn = ccui.Button:create(listBtnImg,listBtnImg,listBtnImg,ccui.TextureResType.localType)
+	listBtn:setPosition(-112, -size.height/2)
+	listBtn:setOpacity(0)
+	listBtn:addClickEventListener(function()
+		local playerInfoView = PlayerInfo.new(data.userId)
+		self:getParent():addChild(playerInfoView,ConstantsData.LocalZOrder.DIY_DIALOAG_LAYER)
+	end)
+	record:addChild(listBtn)
 
 	local Gender = data.Gender or 0
     local GenderStr = GameUtils.getDefalutHeadFileByGender(Gender)
@@ -112,8 +121,10 @@ function RankListView:createRankListRecord(ranking,data,__type)
 	 defalutFile = GenderStr,
 	 frameFile = nil,
 		})
-	awatar:setPosition(-105-55, -size.height/2-5-45)
-	record:addChild(awatar)
+	awatar:setPosition(0,0)
+	listBtn:addChild(awatar)
+
+
 
     return record
 end

@@ -7,15 +7,15 @@
             <key>niuniu_cardTypeShuoming.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{691,453}}</string>
+                <string>{{2,2},{716,453}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{691,453}}</string>
+                <string>{{0,0},{716,453}}</string>
                 <key>sourceSize</key>
-                <string>{691,453}</string>
+                <string>{716,453}</string>
             </dict>
             <key>niuniu_help_bg.png</key>
             <dict>
@@ -33,7 +33,7 @@
             <key>niuniu_help_btn_close.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{879,248},{182,75}}</string>
+                <string>{{904,248},{182,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>niuniu_help_btn_close1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{695,248},{182,75}}</string>
+                <string>{{720,248},{182,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>niuniu_help_btn_norml.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{695,125},{263,121}}</string>
+                <string>{{720,125},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>niuniu_help_btn_selected.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{695,2},{263,121}}</string>
+                <string>{{720,2},{263,121}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>niuniu_title_help.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{960,2},{68,34}}</string>
+                <string>{{985,2},{68,34}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -105,7 +105,7 @@
             <key>size</key>
             <string>{1024,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:12e7aeb1f41440dcaa972a6ff85e5bc7:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:9c0b77b8b3107e8c8245fcf6ffba3ab0:1/1$</string>
             <key>textureFileName</key>
             <string>niuniu_help.png</string>
         </dict>

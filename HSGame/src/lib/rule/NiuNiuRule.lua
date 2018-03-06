@@ -7,6 +7,7 @@ local TextColor = cc.c4b(191, 169, 125, 255) --标题颜色
 local ValueColor = cc.c4b(255,255,255,255) --数值颜色
 
 local NiuNiuRule = class("NiuNiuRule")
+local RuleWindow = require "RuleWindow"
 
 function NiuNiuRule:reset()
 	self.GameID = 1   	     	-- 游戏的ID号 唯一标识号
@@ -68,7 +69,41 @@ function NiuNiuRule:createRuleLayer()
 		end
 	end
 
+	self:TypeBtn(layer)
+	self.layer = layer
 	return layer
+end
+
+function NiuNiuRule:TypeBtn( __parent )
+	local button = cc.exports.lib.uidisplay.createUIButton({
+			textureType = ccui.TextureResType.plistType,
+			normal = "btnNiuniuShangzhuang.png",
+			callback = handler(self,self._onBtnClick),
+			isActionEnabled = true,
+			pos = cc.p(757-260,155)
+	})
+	__parent:addChild(button)
+	button = cc.exports.lib.uidisplay.createUIButton({
+			textureType = ccui.TextureResType.plistType,
+			normal = "btnZiyouqiangzhuang.png",
+			callback = handler(self,self._onBtnClick),
+			isActionEnabled = true,
+			pos = cc.p(757,155)
+	})
+	__parent:addChild(button)
+	button = cc.exports.lib.uidisplay.createUIButton({
+			textureType = ccui.TextureResType.plistType,
+			normal = "btnMingpaiqiangzhuang.png",
+			callback = handler(self,self._onBtnClick),
+			isActionEnabled = true,
+			pos = cc.p(757+260,155)
+	})
+	__parent:addChild(button)
+end
+
+function NiuNiuRule:_onBtnClick()
+	local RuleWindow = RuleWindow:new()
+	self.layer:addChild(RuleWindow)
 end
 
 function NiuNiuRule:createRuleItem(index)

@@ -291,7 +291,7 @@ function LobbyScene:initView()
 	self.rankListView = require("lobby/view/RankListView").new()
 	self:addChild(self.rankListView,LobbyLocalZOrder.RANK_LAYER)
 
-	local RichBtn = "rankingList_btn.png"
+	local RichBtn = "rankingList_bg.png"
     self._BtnRankList  = ccui.Button:create(RichBtn, RichBtn, RichBtn, ccui.TextureResType.plistType)
 	self._BtnRankList:setPosition(132,380)
 	self._BtnRankList:setTag(LobbyScene.RANKLIST)
