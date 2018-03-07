@@ -6,6 +6,7 @@ local TextColor = cc.c4b(235,201,126, 255) --标题颜色
 local ValueColor = cc.c4b(255,255,255,255) --数值颜色
 local btnRadioBg = "btnRadioBg.png"
 local btnRadioSelected = "btnRadioSelected.png"
+local specialCard_Tag = 100 --特殊牌型初始tag
 
 local RuleWindow = class("RuleWindow", lib.layer.BaseDialog)
 
@@ -17,7 +18,6 @@ end
 
 -- 初始化试图视图
 function RuleWindow:initView()
-
 	-- 弹窗背景
 	local ruleBg = ccui.ImageView:create("res/common/denglu_tishi_dikuang.png")
 	ruleBg:setPosition(cc.p(self:getContentSize().width/2, self:getContentSize().height/2-20))
@@ -71,6 +71,14 @@ function RuleWindow:initView()
 															)
 	ruleBg:addChild(label)
 
+	local line1 = ccui.ImageView:create("rule_line.png",ccui.TextureResType.plistType)
+	line1:setPosition(x/2,360)
+	ruleBg:addChild(line1)
+
+	local line2 = ccui.ImageView:create("rule_line.png",ccui.TextureResType.plistType)
+	line2:setPosition(x/2,220)
+	ruleBg:addChild(line2)
+
 	--翻牌规则
 	local fanbei_bg = ccui.ImageView:create("rule_kuang.png",ccui.TextureResType.plistType)
 	fanbei_bg:setPosition(x/2+60,410)
@@ -108,34 +116,87 @@ function RuleWindow:initView()
 	self.fanbei_lab = fanbei_lab
 
 	--特殊牌型
-	local getSpecialCardStr = NiuNiuRule:getSpecialCardRule()
+	local specialCardStr = NiuNiuRule:getSpecialCardRule()
+	local specialCardTab = string.toTable(specialCardStr)
 	for i=1,6 do
-		local fanbei_btn = ccui.CheckBox:create("btnRadioBg1.png",
+		local specialCard_btn = ccui.CheckBox:create("btnRadioBg1.png",
 											"btnRadioBg.png",
 											"btnRadioBg.png",
 											"btnRadioBg1.png",
 											"btnRadioBg1.png",
 											ccui.TextureResType.plistType
 											)
-		local post_x = 130 + 50*(math.modf(i/4))
+		local post_x = 280 + 200*((i-1)%3)
 		local post_y = 310
 		if i>3 then
-			post_y = 210
+			post_y = 260
 		end
-		fanbei_btn:setPosition(post_x,post_y)
-		fanbei_btn:addClickEventListener(function(sender)self:onCheckButtonClickedEvent(sender)end)
-		ruleBg:addChild(fanbei_btn)
+		specialCard_btn:setPosition(post_x,post_y)
+		specialCard_btn:setTag(specialCard_Tag+i)
+		specialCard_btn:addClickEventListener(function(sender)self:onCheckButtonClickedEvent(sender)end)
+		ruleBg:addChild(specialCard_btn)
+
+		if specialCardTab[i] == "0" then
+			specialCard_btn:setSelected(true)
+		elseif specialCardTab[i] == "1" then
+			specialCard_btn:setSelected(false)
+		end
+
+		local label = cc.exports.lib.uidisplay.createLabel({fontName = GameUtils.getFontName(),
+															fontSize = 26,
+															text = special_card_text[i],
+															alignment = cc.TEXT_ALIGNMENT_CENTER,
+															color = ValueColor,
+															pos = cc.p(post_x+20,post_y),
+															anchorPoint = cc.p(0,0.5)}
+															)
+		ruleBg:addChild(label)
 	end
 
-	--同花顺
-	
-	--炸弹牛
-	--葫芦牛
-	--同花牛
-	--五花顺
-	--顺子牛
-
-	
+	--最大抢庄
+	if type_index == 0 then
+		line2:setPosition(x/2,225)
+		local label = cc.exports.lib.uidisplay.createLabel({fontName = GameUtils.getFontName(),
+															fontSize = 26,
+															text = "最大抢庄",
+															alignment = cc.TEXT_ALIGNMENT_CENTER,
+															color = TextColor,
+															pos = cc.p(130,190),
+															anchorPoint = cc.p(0,0.5)}
+															)
+		ruleBg:addChild(label)
+		local PosTab = {}
+		for i=1,3 do
+			local pos_t = {}
+			pos_t.x = 280 + 200*(i-1)
+			pos_t.y = 190
+			table.insert(PosTab,pos_t)
+		end
+		local maxQZ = NiuNiuRule:getMaxQZRule()
+		cc.exports.lib.uidisplay.createRadioGroup({
+			groupPos = cc.p(0,0),
+			parent = ruleBg,
+			fileSelect = btnRadioSelected,
+			fileUnselect = btnRadioBg,
+			num = 3,
+			textureType = ccui.TextureResType.plistType,
+			poses = PosTab,
+			selectNum = maxQZ,
+			callback = handler(self,self.onMaxQZButtonClickedEvent)
+		})
+		
+		for i=1,3 do
+			local label = cc.exports.lib.uidisplay.createLabel({fontName = GameUtils.getFontName(),
+																fontSize = 26,
+																text = i.."倍",
+																alignment = cc.TEXT_ALIGNMENT_CENTER,
+																color = ValueColor,
+																pos = cc.p(PosTab[i].x+20,PosTab[i].y),
+																anchorPoint = cc.p(0,0.5)}
+																)
+			ruleBg:addChild(label)
+		end
+	end
 
 
 	local button = cc.exports.lib.uidisplay.createUIButton({
@@ -158,8 +219,20 @@ end
 
 function RuleWindow:onCheckButtonClickedEvent(sender)
 	local status = sender:isSelected()
-	local tag = sender:getTag()
-
+	local index = sender:getTag() - specialCard_Tag
+	local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
+	local specialCardStr = NiuNiuRule:getSpecialCardRule()
+	local specialCardTab = string.toTable(specialCardStr)
+	if status then
+		specialCardTab[index] = "1"
+	else
+		specialCardTab[index] = "0"
+	end
+	local str = ""
+	for i,v in ipairs(specialCardTab) do
+		str = str..v
+	end
+	NiuNiuRule:setSpecialCardRule(str)
 end
 
 function RuleWindow:_onCreateRoomClick()
@@ -270,8 +343,6 @@ function RuleWindow:closeFBLayer()
 end
 
 function RuleWindow:onFanBeiButtonClickedEvent(__selectRadioButton,__index,_eventType)
-	local count = __selectRadioButton:getTag()
-	print("的金坷垃是第几阿里",__selectRadioButton,count,__index,_eventType)
 	if __index > 0 then
 		self.fanbei_select1:setVisible(false)
 		self.fanbei_select2:setVisible(true)
@@ -282,6 +353,11 @@ function RuleWindow:onFanBeiButtonClickedEvent(__selectRadioButton,__index,_even
 	local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
 	NiuNiuRule:setfanbeiRule(__index)
 	self.fanbei_lab:setString(fanbei_text[__index+1])
+end
+
+function RuleWindow:onMaxQZButtonClickedEvent(__selectRadioButton,__index,_eventType)
+	local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
+	NiuNiuRule:setMaxQZRule(__index+1)
 end
 
 return RuleWindow

@@ -9,10 +9,11 @@ local MPQZ_TAG = 1
 local ZYQZ_TAG = 2
 local NNSZ_TAG = 3
 
-local NiuNiuRule = class("NiuNiuRule")
 local RuleWindow = require "RuleWindow"
 
-function NiuNiuRule:reset()
+local NiuNiuRule = class("NiuNiuRule")
+
+function NiuNiuRule:ctor()
 	self.GameID = 1   	     	-- 游戏的ID号 唯一标识号
 	self.score = 1 --底分
 	self.chess = 10 --局数
@@ -21,7 +22,8 @@ function NiuNiuRule:reset()
 	self.isCostToSeat = 0 --是否开启收费入座
 	self.niuniuType = 0 --牛牛牌型 默认明牌抢庄
 	self.fanbeiRule = 0 --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍
-	self.SpecialCard = "111111" --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍 
+	self.specialCard = "111111" --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍
+	self.maxQZ = 1 
 	self.cost = 3 --房卡消耗
 	self.roomNum = 5
 
@@ -31,7 +33,11 @@ end
 
 --算牛方法   游戏底分  授权入座 收费入座
 function NiuNiuRule:createRule()
-	local rule = ""..self.isAutoNiu..(self.score-1)..self.isOpenRightToSeat..self.isCostToSeat..self.niuniuType..self.fanbeiRule..self.SpecialCard
+	local maxQZ = 0
+	if self.niuniuType == 0 then
+		maxQZ = self.maxQZ
+	end
+	local rule = ""..self.isAutoNiu..(self.score-1)..self.isOpenRightToSeat..self.isCostToSeat..self.niuniuType..self.fanbeiRule..self.specialCard..maxQZ
 	return rule
 end
 
@@ -51,7 +57,9 @@ function NiuNiuRule:parseRule( __str )
 	i = i + 1
 	data.fanbeiRule  =  tonumber(string.sub(__str,i ,i))
 	i = i + 1
-	data.SpecialCard = SpecialCard..string.sub(__str,i ,i + 6)
+	data.SpecialCard = string.sub(__str,i ,i + 6)
+	i = i + 7
+	data.maxQZ = tonumber(string.sub(__str,i ,i))
 	return data
 end
 
@@ -60,7 +68,6 @@ function NiuNiuRule:isOpen( __value )
 end
 
 function NiuNiuRule:createRuleLayer()
-	self:reset()
 	local layer = cc.Layer:create()
 
 	local listView=ccui.ListView:create()
@@ -359,11 +366,19 @@ function NiuNiuRule:getfanbeiRule()
 end
 
 function NiuNiuRule:setSpecialCardRule(SpecialCard)
-	self.SpecialCard = SpecialCard
+	self.specialCard = SpecialCard
 end
 
 function NiuNiuRule:getSpecialCardRule()
-	return self.SpecialCard
+	return self.specialCard
+end
+
+function NiuNiuRule:setMaxQZRule(maxQZ)
+	self.maxQZ = maxQZ
+end
+
+function NiuNiuRule:getMaxQZRule()
+	return self.maxQZ
 end
 
 

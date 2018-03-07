@@ -444,6 +444,7 @@ function GameScene:updateTableInfo(TableInfoArray)
     local curNum = self.TableInfoArray.curGameNum
     local allNum = self.TableInfoArray.GameNum
     local ruledata = NiuNiuRule:parseRule(self.TableInfoArray.rule)
+    self.TableInfoArray.ruledata = ruledata
     local playerdata = self.TableInfoArray.playerUidData
     local playerArray = self.TableInfoArray.playerArray
     --自己的椅子id初始值为0
@@ -2209,16 +2210,19 @@ function GameScene:onGameGradBrttingEnd(data)
 
     for i,v in pairs(playerArray) do
         if self.TableInfoArray.isJoin  then
-            self.CardData=cardData
-            local a = {}
-            a[#a+1] = cc.CallFunc:create(function() self:StartFaPai(playerArray) end)
-            a[#a+1] = cc.DelayTime:create(0.3)
-            a[#a+1] = cc.CallFunc:create(function()
-                self:setPlayerCard() 
-                end)
-            local seq = cc.Sequence:create(a)
-            self:runAction(seq)
-            -- self:showLastCard(v.seatid)
+            if self.TableInfoArray.ruledata.niuniuType == 0 then
+                self:showLastCard(v.seatid)
+            else
+                self.CardData=cardData
+                local a = {}
+                a[#a+1] = cc.CallFunc:create(function() self:StartFaPai(playerArray) end)
+                a[#a+1] = cc.DelayTime:create(0.3)
+                a[#a+1] = cc.CallFunc:create(function()
+                    self:setPlayerCard() 
+                    end)
+                local seq = cc.Sequence:create(a)
+                self:runAction(seq)
+            end
         else
             self:showTourLastCard(v.seatid)
         end
