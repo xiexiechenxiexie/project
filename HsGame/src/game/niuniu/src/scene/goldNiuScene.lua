@@ -194,6 +194,10 @@ function goldNiuScene:CreateView()
  	panel_pri1:hide()
  	self.panel = panel
  	self.panel1 = panel1
+    
+    local panelGrab = container:getChildByName("Panel_Rate_Qiang")
+    panelGrab:hide()
+    self.panelGrab = panelGrab
 
  	--聊天
  	local chatBtn = container:getChildByName("Button_chat")

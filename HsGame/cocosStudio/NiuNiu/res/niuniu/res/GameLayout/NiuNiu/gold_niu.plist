@@ -7,11 +7,11 @@
             <key>niuniu_btn_0_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{939,41},{170,79}}</string>
+                <string>{{794,470},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{170,79}}</string>
                 <key>sourceSize</key>
@@ -20,7 +20,7 @@
             <key>niuniu_btn_0_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{706,407},{170,79}}</string>
+                <string>{{622,407},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -33,7 +33,7 @@
             <key>niuniu_btn_10_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{533,407},{171,79}}</string>
+                <string>{{451,326},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>niuniu_btn_10_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{360,407},{171,79}}</string>
+                <string>{{797,308},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -59,7 +59,7 @@
             <key>niuniu_btn_1_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{428,326},{171,79}}</string>
+                <string>{{624,245},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -72,7 +72,7 @@
             <key>niuniu_btn_1_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{255,326},{171,79}}</string>
+                <string>{{278,248},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -85,7 +85,7 @@
             <key>niuniu_btn_20_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{773,326},{170,79}}</string>
+                <string>{{278,410},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -98,7 +98,7 @@
             <key>niuniu_btn_20_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{767,245},{170,79}}</string>
+                <string>{{450,407},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -111,7 +111,7 @@
             <key>niuniu_btn_25_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{767,164},{170,79}}</string>
+                <string>{{796,389},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -124,7 +124,7 @@
             <key>niuniu_btn_25_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{601,326},{170,79}}</string>
+                <string>{{2,463},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>niuniu_btn_2_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{594,245},{171,79}}</string>
+                <string>{{451,245},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -150,7 +150,7 @@
             <key>niuniu_btn_2_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{594,164},{171,79}}</string>
+                <string>{{278,167},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -163,7 +163,7 @@
             <key>niuniu_btn_3_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{421,245},{171,79}}</string>
+                <string>{{839,227},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -176,7 +176,7 @@
             <key>niuniu_btn_3_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{421,164},{171,79}}</string>
+                <string>{{666,164},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -189,7 +189,7 @@
             <key>niuniu_btn_4_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,423},{170,79}}</string>
+                <string>{{2,382},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -202,7 +202,7 @@
             <key>niuniu_btn_4_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,342},{170,79}}</string>
+                <string>{{624,326},{170,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -215,7 +215,7 @@
             <key>niuniu_btn_5_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{248,245},{171,79}}</string>
+                <string>{{493,164},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -228,7 +228,7 @@
             <key>niuniu_btn_5_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{248,164},{171,79}}</string>
+                <string>{{839,146},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -241,11 +241,11 @@
             <key>niuniu_btn_chat_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{878,407},{76,75}}</string>
+                <string>{{450,488},{76,75}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{76,75}}</string>
                 <key>sourceSize</key>
@@ -254,59 +254,7 @@
             <key>niuniu_btn_chat_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{955,428},{72,65}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{72,65}}</string>
-                <key>sourceSize</key>
-                <string>{72,65}</string>
-            </dict>
-            <key>niuniu_btn_more_hide_0.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{955,354},{72,65}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{72,65}}</string>
-                <key>sourceSize</key>
-                <string>{72,65}</string>
-            </dict>
-            <key>niuniu_btn_more_hide_1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{945,280},{72,65}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{72,65}}</string>
-                <key>sourceSize</key>
-                <string>{72,65}</string>
-            </dict>
-            <key>niuniu_btn_more_show_0.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{853,83},{72,65}}</string>
-                <key>offset</key>
-                <string>{0,0}</string>
-                <key>rotated</key>
-                <true/>
-                <key>sourceColorRect</key>
-                <string>{{0,0},{72,65}}</string>
-                <key>sourceSize</key>
-                <string>{72,65}</string>
-            </dict>
-            <key>niuniu_btn_more_show_1.png</key>
-            <dict>
-                <key>frame</key>
-                <string>{{939,213},{72,65}}</string>
+                <string>{{76,544},{72,65}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -316,10 +264,88 @@
                 <key>sourceSize</key>
                 <string>{72,65}</string>
             </dict>
+            <key>niuniu_btn_more_hide_0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,544},{72,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,65}}</string>
+                <key>sourceSize</key>
+                <string>{72,65}</string>
+            </dict>
+            <key>niuniu_btn_more_hide_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{174,506},{72,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,65}}</string>
+                <key>sourceSize</key>
+                <string>{72,65}</string>
+            </dict>
+            <key>niuniu_btn_more_show_0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{352,491},{72,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,65}}</string>
+                <key>sourceSize</key>
+                <string>{72,65}</string>
+            </dict>
+            <key>niuniu_btn_more_show_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{278,491},{72,65}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{72,65}}</string>
+                <key>sourceSize</key>
+                <string>{72,65}</string>
+            </dict>
+            <key>niuniu_btn_qz_0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{197,334},{170,79}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{170,79}}</string>
+                <key>sourceSize</key>
+                <string>{170,79}</string>
+            </dict>
+            <key>niuniu_btn_qz_1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{278,329},{170,79}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{170,79}}</string>
+                <key>sourceSize</key>
+                <string>{170,79}</string>
+            </dict>
             <key>niuniu_has_niu_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{485,83},{193,79}}</string>
+                <string>{{688,2},{193,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -332,7 +358,7 @@
             <key>niuniu_has_niu_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{290,83},{193,79}}</string>
+                <string>{{493,2},{193,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -345,7 +371,7 @@
             <key>niuniu_has_niu_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{680,2},{193,79}}</string>
+                <string>{{2,301},{193,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -358,7 +384,7 @@
             <key>niuniu_no_niu_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{485,2},{193,79}}</string>
+                <string>{{2,220},{193,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -371,7 +397,7 @@
             <key>niuniu_no_niu_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{167,139},{193,79}}</string>
+                <string>{{197,139},{193,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -384,7 +410,7 @@
             <key>niuniu_no_niu_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{290,2},{193,79}}</string>
+                <string>{{2,139},{193,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -397,7 +423,7 @@
             <key>niuniu_sit.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{255,407},{103,103}}</string>
+                <string>{{883,41},{103,103}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -410,11 +436,11 @@
             <key>niuniu_xz_btn_15_0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{174,334},{171,79}}</string>
+                <string>{{666,83},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <true/>
+                <false/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{171,79}}</string>
                 <key>sourceSize</key>
@@ -423,7 +449,7 @@
             <key>niuniu_xz_btn_15_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{680,83},{171,79}}</string>
+                <string>{{493,83},{171,79}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -436,7 +462,7 @@
             <key>player_panel_gold.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{875,41},{38,38}}</string>
+                <string>{{839,83},{38,38}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -462,7 +488,7 @@
             <key>player_panel_kuang.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{875,2},{130,37}}</string>
+                <string>{{883,2},{130,37}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -475,11 +501,11 @@
             <key>player_panel_shu.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,139},{163,201}}</string>
+                <string>{{290,2},{163,201}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{0,0},{163,201}}</string>
                 <key>sourceSize</key>
@@ -493,9 +519,9 @@
             <key>realTextureFileName</key>
             <string>gold_niu.png</string>
             <key>size</key>
-            <string>{1024,512}</string>
+            <string>{1024,1024}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:8d52612012819f7525c9f75cb6665470:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:42c30cf8439e8398fadded741d2e3d80:1/1$</string>
             <key>textureFileName</key>
             <string>gold_niu.png</string>
         </dict>

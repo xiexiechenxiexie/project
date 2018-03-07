@@ -406,7 +406,7 @@
             <PrePosition X="0.8803" Y="0.3870" />
             <PreSize X="0.0000" Y="0.0000" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Panel_Rate" ActionTag="374461463" Tag="735" IconVisible="False" RightMargin="1134.0000" TopMargin="550.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+          <AbstractNodeData Name="Panel_Rate" Visible="False" ActionTag="374461463" Tag="735" IconVisible="False" RightMargin="1134.0000" TopMargin="550.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
             <Size X="200.0000" Y="200.0000" />
             <Children>
               <AbstractNodeData Name="Button_Rate_5" ActionTag="57469105" Tag="731" IconVisible="False" LeftMargin="231.5000" RightMargin="-202.5000" TopMargin="-101.5000" BottomMargin="222.5000" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="141" Scale9Height="57" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
@@ -691,6 +691,49 @@
                 <TextColor A="255" R="65" G="65" B="70" />
                 <PressedFileData Type="PlistSubImage" Path="niuniu_btn_3_1.png" Plist="niuniu/res/GameLayout/NiuNiu/gold_niu.plist" />
                 <NormalFileData Type="PlistSubImage" Path="niuniu_btn_3_0.png" Plist="niuniu/res/GameLayout/NiuNiu/gold_niu.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+            </Children>
+            <AnchorPoint />
+            <Position />
+            <Scale ScaleX="1.0000" ScaleY="1.0000" />
+            <CColor A="255" R="255" G="255" B="255" />
+            <PrePosition />
+            <PreSize X="0.1499" Y="0.2667" />
+            <SingleColor A="255" R="150" G="200" B="255" />
+            <FirstColor A="255" R="150" G="200" B="255" />
+            <EndColor A="255" R="255" G="255" B="255" />
+            <ColorVector ScaleY="1.0000" />
+          </AbstractNodeData>
+          <AbstractNodeData Name="Panel_Rate_Qiang" ActionTag="895015411" Tag="76" IconVisible="False" RightMargin="1134.0000" TopMargin="550.0000" TouchEnable="True" ClipAble="False" BackColorAlpha="102" ColorAngle="90.0000" Scale9Width="1" Scale9Height="1" ctype="PanelObjectData">
+            <Size X="200.0000" Y="200.0000" />
+            <Children>
+              <AbstractNodeData Name="Button_qianig_0" ActionTag="-1088382292" Tag="80" IconVisible="False" LeftMargin="485.4039" RightMargin="-455.4039" TopMargin="-102.1785" BottomMargin="223.1785" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="140" Scale9Height="57" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="170.0000" Y="79.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="570.4039" Y="262.6785" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="2.8520" Y="1.3134" />
+                <PreSize X="0.8500" Y="0.3950" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <PressedFileData Type="PlistSubImage" Path="niuniu_btn_0_1.png" Plist="niuniu/res/GameLayout/NiuNiu/gold_niu.plist" />
+                <NormalFileData Type="PlistSubImage" Path="niuniu_btn_0_0.png" Plist="niuniu/res/GameLayout/NiuNiu/gold_niu.plist" />
+                <OutlineColor A="255" R="255" G="0" B="0" />
+                <ShadowColor A="255" R="110" G="110" B="110" />
+              </AbstractNodeData>
+              <AbstractNodeData Name="Button_qianig_1" ActionTag="1867753033" Tag="79" IconVisible="False" LeftMargin="664.8214" RightMargin="-634.8214" TopMargin="-101.3671" BottomMargin="222.3671" TouchEnable="True" FontSize="14" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="140" Scale9Height="57" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
+                <Size X="170.0000" Y="79.0000" />
+                <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
+                <Position X="749.8214" Y="261.8671" />
+                <Scale ScaleX="1.0000" ScaleY="1.0000" />
+                <CColor A="255" R="255" G="255" B="255" />
+                <PrePosition X="3.7491" Y="1.3093" />
+                <PreSize X="0.8500" Y="0.3950" />
+                <TextColor A="255" R="65" G="65" B="70" />
+                <PressedFileData Type="PlistSubImage" Path="niuniu_btn_qz_1.png" Plist="niuniu/res/GameLayout/NiuNiu/gold_niu.plist" />
+                <NormalFileData Type="PlistSubImage" Path="niuniu_btn_qz_0.png" Plist="niuniu/res/GameLayout/NiuNiu/gold_niu.plist" />
                 <OutlineColor A="255" R="255" G="0" B="0" />
                 <ShadowColor A="255" R="110" G="110" B="110" />
               </AbstractNodeData>
