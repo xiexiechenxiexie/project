@@ -130,22 +130,22 @@ end
 -- 创建界面
 function GameScene:CreateView()
     --测试代码
-    self.clearBtn = ccui.Button:create(GameResPath.."txt_ready.png")
-    self.clearBtn:setPosition(cc.p(700,700))
-    self.clearBtn:setLocalZOrder(1000)
-    self:addChild(self.clearBtn)
-    self.clearBtn:addClickEventListener(function()
-      self:resetTable()
-    end)
+    -- self.clearBtn = ccui.Button:create(GameResPath.."txt_ready.png")
+    -- self.clearBtn:setPosition(cc.p(700,700))
+    -- self.clearBtn:setLocalZOrder(1000)
+    -- self:addChild(self.clearBtn)
+    -- self.clearBtn:addClickEventListener(function()
+    --   self:resetTable()
+    -- end)
 
-    self.reBtn = ccui.Button:create(GameResPath.."txt_ready.png")
-    self.reBtn:setPosition(cc.p(900,700))
-    self.reBtn:setLocalZOrder(1000)
-    self:addChild(self.reBtn)
-    self.reBtn:addClickEventListener(function()
-        self:resetTable()
-        self._gameRequest:RequestTabelInfo()
-    end)
+    -- self.reBtn = ccui.Button:create(GameResPath.."txt_ready.png")
+    -- self.reBtn:setPosition(cc.p(900,700))
+    -- self.reBtn:setLocalZOrder(1000)
+    -- self:addChild(self.reBtn)
+    -- self.reBtn:addClickEventListener(function()
+    --     self:resetTable()
+    --     self._gameRequest:RequestTabelInfo()
+    -- end)
 
 	local bg = display.newSprite(GameResPath.."bg.jpg")
 	bg:setPosition(667,375)
@@ -550,6 +550,7 @@ function GameScene:onGameSceneGradBanker()
     print("断线重连抢庄")
     local tableTime = self.TableInfoArray.tableTime
     local player = self.TableInfoArray.player
+    dump(player)
 
 
     for i,v in ipairs(player) do
@@ -565,7 +566,7 @@ function GameScene:onGameSceneGradBanker()
             end
         end
         
-        if player[i].cardNum > 0 then
+        if v.cardNum > 0 and v.cardDataArray[1] > 0 then
             self.FiveCardData = {}
             for i,j in ipairs(v.cardDataArray) do
                 local value = string.format("%02X",j)
@@ -574,8 +575,10 @@ function GameScene:onGameSceneGradBanker()
         end
 
         for i,v in ipairs(player[i].cardDataArray) do
-            local value = string.format("%02X",v) 
-            self:OnScenePlayerCard(value,i)
+            if v > 0 then
+                local value = string.format("%02X",v) 
+                self:OnScenePlayerCard(value,i)
+            end
         end
 
         if tostring(UserData.userId) == tostring(player[i].uid) then
@@ -613,7 +616,7 @@ function GameScene:onGameSceneGradBrtting()
             end
         end
 
-        if v.cardNum > 0 then
+        if v.cardNum > 0 and v.cardDataArray[1] > 0 then
             self.FiveCardData = {}
             for i,j in ipairs(v.cardDataArray) do
                 local value = string.format("%02X",j)
@@ -621,8 +624,10 @@ function GameScene:onGameSceneGradBrtting()
             end
         end
         for i,v in ipairs(v.cardDataArray) do
-            local value = string.format("%02X",v) 
-            self:OnScenePlayerCard(value,i)
+            if v > 0 then
+                local value = string.format("%02X",v) 
+                self:OnScenePlayerCard(value,i)
+            end
         end
     end
 
@@ -666,8 +671,10 @@ function GameScene:onGameSceneShowCard()
             self.hasNiuBtn:setBright(true)
         end
         for j,v in ipairs(player[index].cardDataArray) do
-            local value = string.format("%02X",v) 
-            self:OnScenePlayerCard(value,j)
+            if v > 0 then
+                local value = string.format("%02X",v) 
+                self:OnScenePlayerCard(value,j)
+            end
         end
         for m,v in ipairs(player) do
             local switchid = conf.swichPos(v.seatid,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
@@ -680,7 +687,7 @@ function GameScene:onGameSceneShowCard()
                     self:showTanpai(switchid,v.cardNum)
                 end
             end
-            if v.cardNum > 0 then
+            if v.cardNum > 0 and v.cardDataArray[1] > 0 then
                 self.FiveCardData = {}
                 for i,j in ipairs(v.cardDataArray) do
                     local value = string.format("%02X",j)
@@ -2254,15 +2261,23 @@ function GameScene:onGameGradBrttingEnd(data)
             end
         end
     else
-        self.CardData=cardData
-        local a = {}
-        a[#a+1] = cc.CallFunc:create(function() self:StartFaPai(playerArray) end)
-        a[#a+1] = cc.DelayTime:create(0.3)
-        a[#a+1] = cc.CallFunc:create(function()
-            self:setPlayerCard() 
-            end)
-        local seq = cc.Sequence:create(a)
-        self:runAction(seq)
+        if (not self.TableInfoArray.isJoin) and self.TableInfoArray.ruledata.niuniuType == 1 then
+            for i,v in ipairs(playerArray) do
+                local switchId = conf.swichPos(v.seatid,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
+                self:showTourFaPai(switchId,5)
+            end
+        else
+            self.CardData = cardData
+            local a = {}
+            a[#a+1] = cc.CallFunc:create(function() self:StartFaPai(playerArray) end)
+            a[#a+1] = cc.DelayTime:create(0.3)
+            a[#a+1] = cc.CallFunc:create(function()
+                self:setPlayerCard() 
+                end)
+            local seq = cc.Sequence:create(a)
+            self:runAction(seq)
+        end
+        
     end
 
     if self.TableInfoArray.isJoin then
