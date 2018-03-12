@@ -130,22 +130,22 @@ end
 -- 创建界面
 function GameScene:CreateView()
     --测试代码
-    -- self.clearBtn = ccui.Button:create(GameResPath.."txt_ready.png")
-    -- self.clearBtn:setPosition(cc.p(700,700))
-    -- self.clearBtn:setLocalZOrder(1000)
-    -- self:addChild(self.clearBtn)
-    -- self.clearBtn:addClickEventListener(function()
-    --   self:resetTable()
-    -- end)
+    self.clearBtn = ccui.Button:create(GameResPath.."txt_ready.png")
+    self.clearBtn:setPosition(cc.p(700,700))
+    self.clearBtn:setLocalZOrder(1000)
+    self:addChild(self.clearBtn)
+    self.clearBtn:addClickEventListener(function()
+      self:resetTable()
+    end)
 
-    -- self.reBtn = ccui.Button:create(GameResPath.."txt_ready.png")
-    -- self.reBtn:setPosition(cc.p(900,700))
-    -- self.reBtn:setLocalZOrder(1000)
-    -- self:addChild(self.reBtn)
-    -- self.reBtn:addClickEventListener(function()
-    --     self:resetTable()
-    --     self._gameRequest:RequestTabelInfo()
-    -- end)
+    self.reBtn = ccui.Button:create(GameResPath.."txt_ready.png")
+    self.reBtn:setPosition(cc.p(900,700))
+    self.reBtn:setLocalZOrder(1000)
+    self:addChild(self.reBtn)
+    self.reBtn:addClickEventListener(function()
+        self:resetTable()
+        self._gameRequest:RequestTabelInfo()
+    end)
 
 	local bg = display.newSprite(GameResPath.."bg.jpg")
 	bg:setPosition(667,375)
@@ -1075,9 +1075,9 @@ function GameScene:StartFaPai(playerArray)
 	for i,v in ipairs(playerArray) do
         local switchId = conf.swichPos(v.seatid,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
         if self.TableInfoArray.isJoin then
-            self:showFaPai(switchId,4)
+            self:showFaPai(switchId,#self.CardData)
         else
-            self:showTourFaPai(switchId,4)
+            self:showTourFaPai(switchId,#self.CardData)
         end
 	end
 end
@@ -1523,6 +1523,9 @@ end
 
 --发送最后一张牌(游客视角)
 function GameScene:showTourLastCard(seatId)
+    if self.TableInfoArray.ruledata.niuniuType ~= 0 then
+        return
+    end
     local switchid = conf.swichPos(seatId,self.TableInfoArray.mySitId,PLAYER_MAX_NUM)
     local cardNode1 = display.newNode()
     cardNode1:setScale(0.6)
@@ -2208,28 +2211,30 @@ function GameScene:onGameGradBrttingEnd(data)
         self:hideGameTips()
     end
 
-    for i,v in pairs(playerArray) do
-        if self.TableInfoArray.isJoin  then
-            if self.TableInfoArray.ruledata.niuniuType == 0 then
+    if self.TableInfoArray.ruledata.niuniuType == 0 then
+        for i,v in pairs(playerArray) do
+            if self.TableInfoArray.isJoin  then
                 self:showLastCard(v.seatid)
             else
-                self.CardData=cardData
-                local a = {}
-                a[#a+1] = cc.CallFunc:create(function() self:StartFaPai(playerArray) end)
-                a[#a+1] = cc.DelayTime:create(0.3)
-                a[#a+1] = cc.CallFunc:create(function()
-                    self:setPlayerCard() 
-                    end)
-                local seq = cc.Sequence:create(a)
-                self:runAction(seq)
+                self:showTourLastCard(v.seatid)
             end
-        else
-            self:showTourLastCard(v.seatid)
         end
-        
+    else
+        self.CardData=cardData
+        local a = {}
+        a[#a+1] = cc.CallFunc:create(function() self:StartFaPai(playerArray) end)
+        a[#a+1] = cc.DelayTime:create(0.3)
+        a[#a+1] = cc.CallFunc:create(function()
+            self:setPlayerCard() 
+            end)
+        local seq = cc.Sequence:create(a)
+        self:runAction(seq)
     end
+
     if self.TableInfoArray.isJoin then
-        self:initPlayerCard(cardData[cardNum],cardNum)
+        if self.TableInfoArray.ruledata.niuniuType == 0 then
+            self:initPlayerCard(cardData[cardNum],cardNum)
+        end
         self:niuBtn()
         self:FiveCard(cardData)
         self:judgeNiu(niuType)

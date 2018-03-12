@@ -57,8 +57,8 @@ function NiuNiuRule:parseRule( __str )
 	i = i + 1
 	data.fanbeiRule  =  tonumber(string.sub(__str,i ,i))
 	i = i + 1
-	data.SpecialCard = string.sub(__str,i ,i + 6)
-	i = i + 7
+	data.SpecialCard = string.sub(__str,i ,i + 5)
+	i = i + 6
 	data.maxQZ = tonumber(string.sub(__str,i ,i))
 	return data
 end
