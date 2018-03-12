@@ -20,7 +20,7 @@ function NiuNiuRule:ctor()
 	self.isAutoNiu = 0 --是否自动算牛
 	self.isOpenRightToSeat = 0 --是否开启授权入座
 	self.isCostToSeat = 0 --是否开启收费入座
-	self.niuniuType = 0 --牛牛牌型 默认明牌抢庄
+	self.niuniuType = 0 --牛牛牌型 默认明牌抢庄(0明牌抢庄1自由抢庄2牛牛抢庄)
 	self.fanbeiRule = 0 --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍
 	self.specialCard = "111111" --牛牛翻倍规则 默认牛牛4倍，牛九3倍，牛七牛八2倍
 	self.maxQZ = 1 

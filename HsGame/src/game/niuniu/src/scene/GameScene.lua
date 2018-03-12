@@ -272,6 +272,10 @@ function GameScene:CreateView()
  	panel_pri1:hide()
  	self.panel_pri = panel_pri
  	self.panel_pri1 = panel_pri1
+    --自由抢庄
+    local panelGrab = container:getChildByName("Panel_Rate_Qiang")
+    panelGrab:hide()
+    self.panelGrab = panelGrab
 
  	--聊天
  	local chatBtn = container:getChildByName("Button_chat")
@@ -299,6 +303,12 @@ function GameScene:CreateView()
         local str = "Button_pre_"..tostring(i-1)
         local bank = panel_pri:getChildByName(str)
         bank:setTag(conf.Tag.bank0+i-1)
+        bank:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
+    end
+    for i=1,2 do
+        local str = "Button_qianig_"..tostring(i-1)
+        local bank = panelGrab:getChildByName(str)
+        bank:setTag(conf.Tag.bankNo+i-1)
         bank:addClickEventListener(function(sender) self:onButtonClickedEvent(sender) end)
     end
 
@@ -908,6 +918,8 @@ function GameScene:onButtonClickedEvent(sender)
         self:ClickPlayerHead(tag)
     elseif tag >= conf.Tag.sit1 and  tag <= conf.Tag.sit5 then
         self:RequestAuthorizeSitApply()
+    elseif tag >= conf.Tag.bankNo and  tag <= conf.Tag.bankGrad then
+        self:Gradbanker(tag)
     end
 end
 
@@ -1355,24 +1367,46 @@ function GameScene:GradbankerBtn(time)
     if self.TableInfoArray.isJoin ==false then
         return
     end
-    if self.TableInfoArray.IsSit  then
-        -- self.panel_pri:show()
-    end
 
-    -- self:createClock(conf.time.gradBank,time)
+    if self.TableInfoArray.IsSit  then
+        if self.TableInfoArray.ruledata.niuniuType == 0 then
+            self.panel_pri:show()
+            if self.TableInfoArray.ruledata.maxQZ == 2 then
+                self.panel_pri:getChildByName("Button_pre_3"):setBright(false)
+                self.panel_pri:getChildByName("Button_pre_3"):setTouchEnabled(false)
+            elseif self.TableInfoArray.ruledata.maxQZ == 1 then
+                self.panel_pri:getChildByName("Button_pre_3"):setBright(false)
+                self.panel_pri:getChildByName("Button_pre_3"):setTouchEnabled(false)
+                self.panel_pri:getChildByName("Button_pre_2"):setBright(false)
+                self.panel_pri:getChildByName("Button_pre_2"):setTouchEnabled(false)
+            end
+        elseif self.TableInfoArray.ruledata.niuniuType == 1 then
+            self.panelGrab:show()
+        end
+    end
+    if self.TableInfoArray.ruledata.niuniuType == 0 or self.TableInfoArray.ruledata.niuniuType == 1 then
+        self:createClock(conf.time.gradBank,time)
+    end
 end
 
 --抢庄
 function GameScene:Gradbanker(tag)
-	self.panel_pri:hide()
-	self._gameRequest:RequestGameGradbanker(UserData.userId,head.C2S_EnumKeyAction.C2S_PLAYER_GRADBANKER,tag-101)
+    print("抢庄时候的tag",tag)
+    if self.TableInfoArray.ruledata.niuniuType == 0 then
+    	self.panel_pri:hide()
+        self._gameRequest:RequestGameGradbanker(UserData.userId,head.C2S_EnumKeyAction.C2S_PLAYER_GRADBANKER,tag-101)
+    elseif self.TableInfoArray.ruledata.niuniuType == 1 then
+        self.panelGrab:hide()
+        self._gameRequest:RequestGameGradbanker(UserData.userId,head.C2S_EnumKeyAction.C2S_PLAYER_GRADBANKER,tag-125)
+    end
 	self:removeClock()
 end
 
 --抢庄隐藏
 function GameScene:GradbankerHide()
-    if self.panel_pri then
+    if self.panel_pri or self.panelGrab then
         self.panel_pri:hide()
+        self.panelGrab:hide()
     end
     self:removeClock()
 end

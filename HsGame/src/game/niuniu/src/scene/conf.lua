@@ -103,6 +103,8 @@ local Tag={
 	"sit4",							--座位4
 	"sit5",							--座位5
 	"chatList",						--聊天界面
+	"bankNo",                       --不抢
+	"bankGrad",                     --抢庄
 }
 conf.Tag=creatEnumTable(Tag,100)
 --金币牛牛抢庄按钮游戏按钮标签
