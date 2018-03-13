@@ -159,24 +159,51 @@ function GameScene:CreateView()
     roomid:setPosition(190,730)
     self.bg:addChild(roomid)
     self.roomid=roomid
+
+    local nnsz = cc.Sprite:create(GameResPath.."rule/rule_nnsz.png")
+    nnsz:setPosition(530,580)
+    self.bg:addChild(nnsz)
+    nnsz:setVisible(false)
+    self.nnsz=nnsz
+    -- local brmp = cc.Sprite:create(GameResPath.."rule/rule_brmp.png")
+    -- brmp:setPosition(530,580)
+    -- self.bg:addChild(brmp)
+    -- brmp:setVisible(false)
+    -- self.brmp=brmp
+    -- local gpnn = cc.Sprite:create(GameResPath.."rule/rule_gpnn.png")
+    -- gpnn:setPosition(530,580)
+    -- self.bg:addChild(gpnn)
+    -- gpnn:setVisible(false)
+    -- self.gpnn=gpnn
+    local mpqz = cc.Sprite:create(GameResPath.."rule/rule_mpqz.png")
+    mpqz:setPosition(530,580)
+    self.bg:addChild(mpqz)
+    mpqz:setVisible(false)
+    self.mpqz=mpqz
+    local zyqz = cc.Sprite:create(GameResPath.."rule/rule_zyqz.png")
+    zyqz:setPosition(530,580)
+    self.bg:addChild(zyqz)
+    zyqz:setVisible(false)
+    self.zyqz=zyqz
+
     --底分
     local difen = cc.Sprite:create(GameResPath.."rule/rule_difen.png")
-    difen:setPosition(570,580)
+    difen:setPosition(620,580)
     self.bg:addChild(difen)
     local atlasFile = GameResPath.."rule/rule_num.png"
     local atlasNode = ccui.TextAtlas:create("0",atlasFile,14,21,"0")
-    atlasNode:setPosition(600,580)
+    atlasNode:setPosition(660,580)
     self.bg:addChild(atlasNode)
     self.atlasNode = atlasNode
 
     --自动算牛
     local zidong = cc.Sprite:create(GameResPath.."rule/rule_zidong.png")
-    zidong:setPosition(680,580)
+    zidong:setPosition(740,580)
     self.bg:addChild(zidong)
     self.zidong=zidong
     --手动算牛
     local shoudong = cc.Sprite:create(GameResPath.."rule/rule_shoudong.png")
-    shoudong:setPosition(680,580)
+    shoudong:setPosition(740,580)
     self.bg:addChild(shoudong)
     self.shoudong=shoudong
 
@@ -454,6 +481,8 @@ function GameScene:updateTableInfo(TableInfoArray)
     local curNum = self.TableInfoArray.curGameNum
     local allNum = self.TableInfoArray.GameNum
     local ruledata = NiuNiuRule:parseRule(self.TableInfoArray.rule)
+    print("桌子同步")
+    dump(ruledata)
     self.TableInfoArray.ruledata = ruledata
     local playerdata = self.TableInfoArray.playerUidData
     local playerArray = self.TableInfoArray.playerArray
@@ -495,6 +524,17 @@ function GameScene:updateTableInfo(TableInfoArray)
         self.zidong:setVisible(false)
         self.shoudong:setVisible(false)
     end
+
+    if ruledata.niuniuType == 0 then
+        self.mpqz:setVisible(true)
+    elseif ruledata.niuniuType == 1 then
+        self.zyqz:setVisible(true)
+    elseif ruledata.niuniuType == 2 then
+        self.nnsz:setVisible(true)
+    else
+
+    end
+
     self.atlasNode:setString(ruledata.GameBet)
     -- if ruledata.AuthorizeSit == 1 then
     --     if playerdata[UserData.userId] == nil then
@@ -1277,6 +1317,7 @@ end
 
 --牌的点数
 function GameScene:cardDianShu(num,i)
+    print("牌的点数",num)
     if num > 10 then
         num = 10
     end
@@ -1307,6 +1348,7 @@ end
 
 --牌点数总和
 function GameScene:sumCardDianshu(sum)
+    print("牌点数总和",sum)
     if self.numnode then
         self.numnode:removeFromParent()
         self.numnode = nil
@@ -1345,6 +1387,8 @@ function GameScene:setValuePos()
     for i,v in ipairs(self.clickCardNode) do
         v:hide()
     end
+    print("设置点击牌值的位置")
+    dump(self.clickCardValue)
 
     local sum = 0
     for i,v in ipairs(self.clickCardValue) do
@@ -1413,7 +1457,12 @@ end
 
 --抢庄的倍数
 function GameScene:gradMultiple(index,multiple)
-    self.gradArray[index]:initWithSpriteFrameName("txt_qiang"..tostring(multiple)..".png")
+    if self.TableInfoArray.ruledata.niuniuType == 1 and multiple == 1 then
+        self.gradArray[index]:initWithSpriteFrameName("txt_qiangzhuang.png")
+    else
+        self.gradArray[index]:initWithSpriteFrameName("txt_qiang"..tostring(multiple)..".png")
+    end
+    -- self.gradArray[index]:initWithSpriteFrameName("txt_qiang"..tostring(multiple)..".png")
     self.gradArray[index]:setVisible(true)
 end
 

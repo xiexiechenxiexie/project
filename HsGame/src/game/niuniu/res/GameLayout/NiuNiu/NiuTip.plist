@@ -7,7 +7,7 @@
             <key>niuniutxt_beishu_1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{62,409},{57,58}}</string>
+                <string>{{192,422},{57,58}}</string>
                 <key>offset</key>
                 <string>{2,0}</string>
                 <key>rotated</key>
@@ -46,7 +46,7 @@
             <key>niuniutxt_beishu_2.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,422},{71,58}}</string>
+                <string>{{132,422},{71,58}}</string>
                 <key>offset</key>
                 <string>{2,0}</string>
                 <key>rotated</key>
@@ -137,7 +137,7 @@
             <key>txt_qiang0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,338},{128,69}}</string>
+                <string>{{2,409},{128,69}}</string>
                 <key>offset</key>
                 <string>{-3,0}</string>
                 <key>rotated</key>
@@ -199,6 +199,19 @@
                 <key>sourceSize</key>
                 <string>{186,69}</string>
             </dict>
+            <key>txt_qiangzhuang.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,338},{128,69}}</string>
+                <key>offset</key>
+                <string>{-4,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{25,0},{128,69}}</string>
+                <key>sourceSize</key>
+                <string>{186,69}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -209,7 +222,7 @@
             <key>size</key>
             <string>{256,512}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:3a98bd501f1c2cb6457e56991c76ea4d:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:838ddab530bd8d9b364589d3c8209864:1/1$</string>
             <key>textureFileName</key>
             <string>NiuTip.png</string>
         </dict>
