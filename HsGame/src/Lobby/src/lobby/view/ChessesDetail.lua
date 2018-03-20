@@ -58,7 +58,7 @@ function ChessesDetail:_addDesc( __bg )
 	local buttonHeight = 28
 	local params = {
 		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findRoomIdString(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = labelColor,pos = cc.p(20,topHeight),anchorPoint = cc.p(0,0.5)},
-		{fontName = GameUtils.getFontName(),fontSize = 24,text = tostring(data.roomId),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueColor,pos = cc.p(110,topHeight),anchorPoint = cc.p(0,0.5)},
+		{fontName = GameUtils.getFontName(),fontSize = 24,text = GameUtils.adjustRoomNum(data.roomId),alignment = cc.TEXT_ALIGNMENT_CENTER,color = valueColor,pos = cc.p(110,topHeight),anchorPoint = cc.p(0,0.5)},
 		
 		-- 创建者
 		{fontName = GameUtils.getFontName(),fontSize = 24,text = manager:findCreateLabelName(),alignment = cc.TEXT_ALIGNMENT_CENTER,color = labelColor,pos = cc.p(280,topHeight),anchorPoint = cc.p(0,0.5)},

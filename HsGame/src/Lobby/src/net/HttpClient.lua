@@ -210,7 +210,7 @@ __urlParam 请求url
 __cbParam 回调函数
 __forceNoInteraction true 弹出网络交互动画 禁止玩家操作  不传或者false 不会播放动画
 ]]
-function HttpClient:get( __urlParam ,__cbParam,__jsonParam,__forceNoInteraction)
+function HttpClient:get( __urlParam ,__cbParam,__forceNoInteraction,__jsonParam)
     print("HttpClient:get >>> " .. __urlParam,__cbParam)
 	local executeFunc = function (__url,__json,__cb)
         local xhr = self:_createXmlRequest(cc.XMLHTTPREQUEST_RESPONSE_STRING)
@@ -221,9 +221,10 @@ function HttpClient:get( __urlParam ,__cbParam,__jsonParam,__forceNoInteraction)
         end)
 
         local _strParam = nil
+        self:initExtendHead(xhr)
         if  __json then 
-            _strParam = cc.exports.lib.JsonUtil:encode(__json)
-            --print("_strParam " .. _strParam)
+            -- _strParam = cc.exports.lib.JsonUtil:encode(__json)
+            _strParam = cc.exports.lib.JsonUtil:decodeform(__json)
         end
         self:initExtendHead(xhr)
         if _strParam then 
@@ -267,11 +268,11 @@ function HttpClient:post( __urlParam,__jsonParam ,__cbParam,__forceNoInteraction
            self:_onReadyStateChanged(xhr,__cb)
         end)
         local _strParam = nil
-        if  __json then 
-            _strParam = cc.exports.lib.JsonUtil:encode(__json)
-            --print("_strParam " .. _strParam)
-        end
         self:initExtendHead(xhr)
+        if  __json then 
+            -- _strParam = cc.exports.lib.JsonUtil:encode(__json)
+            _strParam = cc.exports.lib.JsonUtil:decodeform(__json)
+        end
         if _strParam then 
             xhr:send(_strParam)
         else

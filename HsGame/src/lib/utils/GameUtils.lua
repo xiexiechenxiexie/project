@@ -800,6 +800,25 @@ function GameUtils.formatMoneyNumber( money )
     return strTmp
 end
 
+-- 调整房间号为6位数
+function GameUtils.adjustRoomNum( num )
+    local numStr = tostring(num)
+    if num < 100000 and num >= 10000 then
+        numStr = "0"..numStr
+    elseif num < 10000 and num >= 1000 then
+        numStr = "00"..numStr
+    elseif num < 1000 and num >= 100 then
+        numStr = "000"..numStr
+    elseif num < 100 and num >= 10 then
+        numStr = "0000"..numStr
+    elseif num < 10 and num >= 0 then
+        numStr = "00000"..numStr
+    elseif num < 0 then
+        numStr = "000000"
+    end
+    return numStr
+end
+
 
 GameUtils.COMEOUT_BOTTON = 1
 GameUtils.COMEOUT_TOP = 2

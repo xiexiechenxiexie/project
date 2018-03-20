@@ -20,20 +20,7 @@ SDKConfig.TokenLoginURL = config.ServerConfig:findLoginDomain() .. config.LoginA
 
 -- 获取游客登陆地址
 function SDKConfig.getTokenLoginURL()
-	local loginURL = ""
-
-	local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-	if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) then
-		-- loginURL = SDKConfig.TokenLoginURL .. "ios/"
-		loginURL = SDKConfig.TokenLoginURL
-	elseif  (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-		-- loginURL = SDKConfig.TokenLoginURL .. "android/"
-		loginURL = SDKConfig.TokenLoginURL
-	else
-		-- print("xiaxb--------------unknow targetPlatform")
-		loginURL = SDKConfig.TokenLoginURL
-	end
-	return loginURL
+	return SDKConfig.TokenLoginURL
 end
 
 -- 游客登陆地址
@@ -41,30 +28,17 @@ SDKConfig.GuestLoginURL = config.ServerConfig:findLoginDomain() .. config.LoginA
 
 -- 获取游客登陆地址
 function SDKConfig.getGuestLoginURL()
-	local loginURL = ""
-	local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-	if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) then
-		-- loginURL = SDKConfig.GuestLoginURL .. "ios/"
-		loginURL = SDKConfig.GuestLoginURL
-	elseif  (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-		-- loginURL = SDKConfig.GuestLoginURL .. "android/"
-		loginURL = SDKConfig.GuestLoginURL
-	else
-		-- print("xiaxb--------------unknow targetPlatform")
-		-- loginURL = SDKConfig.GuestLoginURL .. "android"
-		loginURL = SDKConfig.GuestLoginURL
-	end
-	return loginURL
+	return SDKConfig.GuestLoginURL
 end
 
 --微信SDK配置定义
 SDKConfig.WeChat = 
 {
-	AppID								= "wx78ffd4f397e1aa94", --@wechat_appid_wx  wx78ffd4f397e1aa94
-	AppSecret 							= "", --@wechat_secret_wx
+	AppID								= "wxf7049b6098b9fd03", --@wechat_appid_wx  wx78ffd4f397e1aa94
+	AppSecret 							= "47ecd01ba135853a4fa3c626f4b3727a", --@wechat_secret_wx
 	PartnerID 							= "", -- 商户id     --@wechat_partnerid_wx			        
 	PayKey								= "", -- 支付密钥	 --@wechat_paykey_wx
-	URL 								= "http://suit.wang",
+	URL 								= "",
 }
 
 -- 微信登陆地址
@@ -72,17 +46,7 @@ SDKConfig.WeChatLoginURL = config.ServerConfig:findLoginDomain() .. config.Login
 
 -- 获取微信登陆地址
 function SDKConfig.getWeChatLoginURL()
-	local loginURL = ""
-
-	local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-	if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) then
-		loginURL = SDKConfig.WeChatLoginURL .. "ios/"
-	elseif  (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-		loginURL = SDKConfig.WeChatLoginURL .. "android/"
-	else
-		-- print("xiaxb--------------unknow targetPlatform")
-	end
-	return loginURL
+	return SDKConfig.WeChatLoginURL
 end
 
 --QQSDK配置定义
@@ -92,7 +56,7 @@ SDKConfig.QQ =
     AppKey                              = "", --@wechat_secret_wx
     PartnerID                           = "", -- 商户id     --@wechat_partnerid_wx                   
     PayKey                              = "", -- 支付密钥   --@wechat_paykey_wx
-    URL                                 = "http://suit.wang",   ---l.HTTP_URL,
+    URL                                 = "",   ---l.HTTP_URL,
 }
 
 -- 微信登陆地址
@@ -100,17 +64,7 @@ SDKConfig.QQLoginURL = config.ServerConfig:findLoginDomain() .. config.LoginApiC
 
 -- 获取微信登陆地址
 function SDKConfig.getQQLoginURL()
-	local loginURL = ""
-
-	local targetPlatform = cc.Application:getInstance():getTargetPlatform()
-	if (cc.PLATFORM_OS_IPHONE == targetPlatform) or (cc.PLATFORM_OS_IPAD == targetPlatform) then
-		loginURL = SDKConfig.QQLoginURL .. "ios/"
-	elseif  (cc.PLATFORM_OS_ANDROID == targetPlatform) then
-		loginURL = SDKConfig.QQLoginURL .. "android/"
-	else
-		-- print("xiaxb--------------unknow targetPlatform")
-	end
-	return loginURL
+	return SDKConfig.QQLoginURL
 end
 
 cc.exports.config.SDKConfig = SDKConfig
