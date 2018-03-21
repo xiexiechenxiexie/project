@@ -560,7 +560,7 @@
             <key>size</key>
             <string>{256,2048}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:aea8ac79b50cc662267002355d5351c5:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:2b54dbb06be984c530bb9b8e7192edbe:1/1$</string>
             <key>textureFileName</key>
             <string>Lobby.png</string>
         </dict>
