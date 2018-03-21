@@ -34,7 +34,8 @@ function Avatar:create( __param )
 	-- 添加了头像资源路径的获取 config.ServerConfig:findResDomain() add by tangwen
 	if avatarUrl and type(avatarUrl) == "string" and avatarUrl ~= "" then
 		sprite = lib.node.RemoteImageView:create(defalutFile)
-		sprite:setDownloadParams({dir = "awatar",url = config.ServerConfig:findResDomain() .. avatarUrl,userId= userId})
+		-- sprite:setDownloadParams({dir = "awatar",url = config.ServerConfig:findResDomain() .. avatarUrl,userId= userId})
+		sprite:setDownloadParams({dir = "awatar",url = avatarUrl,userId= userId})
 	else
 		sprite = ccui.ImageView:create(defalutFile)
 	end

@@ -193,7 +193,7 @@ function MyRoomInfoLayer:_createProgressItem(__data,__index )
 		,{
 		fontName = GameUtils.getFontName(),
 		fontSize = 30,
-		text = __data.roomId,
+		text = GameUtils.adjustRoomNum(__data.roomId),
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
 		color = cc.c4b(255,255,255, 255),
 		pos = cc.p(70,size.height/2+18),
@@ -298,7 +298,7 @@ function MyRoomInfoLayer:_createEndedItem( __data,__index)
 		,{
 		fontName = GameUtils.getFontName(),
 		fontSize = 24,
-		text = ManagerClazz:getInstance():findRoomIdString(" ") .. __data.roomId,
+		text = ManagerClazz:getInstance():findRoomIdString(" ") .. GameUtils.adjustRoomNum(__data.roomId),
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
 		color = cc.c4b(255,255,255, 255),
 		pos = cc.p(40,size.height/2+18),
@@ -444,7 +444,7 @@ function MyChessInfoLayer:_createJoinChessItems( __data,__index )
 		,{
 		fontName = GameUtils.getFontName(),
 		fontSize = 24,
-		text = ManagerClazz:getInstance():findRoomIdString(" ") .. __data.roomId,
+		text = ManagerClazz:getInstance():findRoomIdString(" ") .. GameUtils.adjustRoomNum(__data.roomId),
 		alignment = cc.TEXT_ALIGNMENT_CENTER,
 		color = cc.c4b(255,255,255, 255),
 		pos = cc.p(40,size.height/2+18),

@@ -511,7 +511,8 @@ function GameScene:updateTableInfo(TableInfoArray)
         self.playerCoinArr[switchid]:setString(conf.switchNum(v.allSocre))
     end
 
-	self.roomid:setString("房间ID:"..tableID)
+    
+	self.roomid:setString("房间ID:"..GameUtils.adjustRoomNum(tableID))
     self.gameNum:setString("第"..self.TableInfoArray.curGameNum.."/"..self.TableInfoArray.GameNum.."局")
 
 

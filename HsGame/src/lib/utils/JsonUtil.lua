@@ -108,5 +108,23 @@ function JsonUtil:encode( luaObj )
     return str
 end
 
+function JsonUtil:decodeform( tab )
+    local str = ""
+    local count = 0
+    for k,v in pairs(tab) do
+        count = count + 1
+    end
+    local index = 1
+    for k,v in pairs(tab) do
+        if index < count then
+            str = str..k.."="..v.."&"
+        else
+            str = str..k.."="..v
+        end
+        index = index +1
+    end
+    return str
+end
+
 cc.exports.lib = cc.exports.lib or {}
 cc.exports.lib.JsonUtil = JsonUtil

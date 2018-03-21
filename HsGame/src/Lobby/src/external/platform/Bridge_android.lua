@@ -9,7 +9,7 @@ local Bridge_android = {}
 
 local luaj = require "cocos.cocos2d.luaj"
 -- ios处理类
-local BRIDGE_CLASS = "com/hsgame/qp/niuniu/AppActivity"
+local BRIDGE_CLASS = "com/yxgame/qp/niuniu/AppActivity"
 
 -- 获取设备机型
 function Bridge_android.getDeviceName()
