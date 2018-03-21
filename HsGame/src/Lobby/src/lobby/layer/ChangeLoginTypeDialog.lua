@@ -66,19 +66,20 @@ function ChangeLoginTypeDialog:_initView()
 	local btnQQLogin = ccui.Button:create("res/common/btn_qq_login.png")
 	btnQQLogin:setPosition(cc.p(dialogBg:getContentSize().width*0.3, dialogBg:getContentSize().height*0.2))
 	dialogBg:addChild(btnQQLogin)
+	btnQQLogin:setVisible(false)
 
 	btnQQLogin:addClickEventListener(callback_Login)
 
 	local btnWechatLogin = ccui.Button:create("res/common/btn_wechat_login.png")
-	btnWechatLogin:setPosition(cc.p(dialogBg:getContentSize().width*0.7, dialogBg:getContentSize().height*0.2))
+	btnWechatLogin:setPosition(cc.p(dialogBg:getContentSize().width*0.5, dialogBg:getContentSize().height*0.2))
 	dialogBg:addChild(btnWechatLogin)
 	btnWechatLogin:addClickEventListener(callback_Login)
 
-	local isWXInstall =  MultiPlatform:getInstance():isPlatformInstalled(LoginManager.LoginType_Wechat)
-    if "no" == isWXInstall then
-    	btnWechatLogin:hide()
-    	btnQQLogin:setPositionX(dialogBg:getContentSize().width*0.5)
-	end
+	-- local isWXInstall =  MultiPlatform:getInstance():isPlatformInstalled(LoginManager.LoginType_Wechat)
+ --    if "no" == isWXInstall then
+ --    	btnWechatLogin:hide()
+ --    	btnQQLogin:setPositionX(dialogBg:getContentSize().width*0.5)
+	-- end
 
 
 end

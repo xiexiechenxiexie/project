@@ -66,7 +66,7 @@ function LoginScene:initView()
 	self.btnGuest = lib.uidisplay.createUIButton({
         normal = "GameLayout/Login/btnTourist.png",
         isActionEnabled = true,
-        pos = cc.p(270,165)
+        pos = cc.p(370,165)
         })
 	self.btnGuest:setTag(LoginManager.LoginType_Guest)
     self:addChild(self.btnGuest)
@@ -79,12 +79,13 @@ function LoginScene:initView()
         })
 	self.btnQQ:setTag(LoginManager.LoginType_QQ)
     self:addChild(self.btnQQ)
+    self.btnQQ:setVisible(false)
 	
     -- 微信登录
 	self.btnWechat = lib.uidisplay.createUIButton({
         normal = "GameLayout/Login/btnWX.png",
         isActionEnabled = true,
-        pos = cc.p(1065,165)       
+        pos = cc.p(965,165)       
         })
 	self.btnWechat:setTag(LoginManager.LoginType_Wechat)	
     self:addChild(self.btnWechat)
