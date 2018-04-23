@@ -102,14 +102,14 @@ local UIDisplay = {
 		local buttonMinus = ccui.Button:create(imgMinus,imgMinusPrssed,imgMinusDisabled,textureType)
 		buttonMinus:setPressedActionEnabled(true)
 
-		buttonMinus:setPosition(cc.p(imgMinusSize.width/2-5,size.height * 0.5-2))
+		buttonMinus:setPosition(cc.p(imgMinusSize.width/2-12,size.height * 0.5-1))
 		imgBg:addChild(buttonMinus)
 
 
 		local buttonAdd = ccui.Button:create(imgAdd,imgAddPrssed,imgAddDisabled,textureType)
 		buttonAdd:setPressedActionEnabled(true)
 		buttonAdd:addClickEventListener(callback)
-		buttonAdd:setPosition(cc.p(size.width - imgAddSize.height/2+5 ,size.height * 0.5-2))
+		buttonAdd:setPosition(cc.p(size.width - imgAddSize.height/2+12 ,size.height * 0.5-1))
 		imgBg:addChild(buttonAdd)
 		buttonAdd:setTag(1)
 
