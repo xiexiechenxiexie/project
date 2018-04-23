@@ -12,7 +12,7 @@ local ZYQZ_TAG = 2
 local NNSZ_TAG = 3
 local specialCard_Tag = 100
 
-local RuleWindow = require "RuleWindow"
+-- local RuleWindow = require "RuleWindow"
 
 local NiuNiuRule = class("NiuNiuRule")
 
@@ -369,7 +369,7 @@ function NiuNiuRule:createRuleItem(index,tag)
 			item:addChild(label)
 		end
 
-		if tag == 3 then
+		if tag == ConstantsData.GameType.TYPE_MINGPAI then
 			local label = cc.exports.lib.uidisplay.createLabel({fontName = GameUtils.getFontName(),
 															fontSize = 24,
 															text = "最大抢庄:",
@@ -433,6 +433,8 @@ function NiuNiuRule:createRuleItem(index,tag)
 	if index > 6 then
 		line:setPosition(450,-45)
 	end
+
+	self.niuniuType = tag
 
 	return item
 end
@@ -574,10 +576,8 @@ function NiuNiuRule:onCheckButtonClickedEvent(sender)
 	self:setSpecialCardRule(str)
 end
 
-function RuleWindow:_onMaxQZButtonClickedEvent(__selectRadioButton,__index,_eventType)
-	print("发的结果就是")
-	-- self:setMaxQZRule(__index+1)
-	self.maxQZ = __index+1
+function NiuNiuRule:_onMaxQZButtonClickedEvent(__selectRadioButton,__index,_eventType)
+	self:setMaxQZRule(__index+1)
 end
 
 --底分
@@ -608,12 +608,12 @@ function NiuNiuRule:_onYesNoRadioGroupClick(__selectRadioButton,__index,_eventTy
 	self.isCostToSeat = __index
 end
 
-function NiuNiuRule:_onBtnClick(sender)
-	local index = sender:getTag() - 1
-	self.niuniuType = index
-	local RuleWindow = RuleWindow:new()
-	self.layer:addChild(RuleWindow)
-end
+-- function NiuNiuRule:_onBtnClick(sender)
+-- 	local index = sender:getTag() - 1
+-- 	self.niuniuType = index
+-- 	local RuleWindow = RuleWindow:new()
+-- 	self.layer:addChild(RuleWindow)
+-- end
 
 function NiuNiuRule:getCurrRule()
 	local data = {}

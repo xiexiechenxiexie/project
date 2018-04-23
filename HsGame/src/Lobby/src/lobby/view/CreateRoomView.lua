@@ -747,7 +747,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 
  	local tagNiu = 1
  	local tagZy  = 2
- 	local tagMp  = 3
+ 	local tagMp  = 0
  	local tagZjh = 4
 
 	local slideImg = "btnSelected.png"
@@ -819,8 +819,8 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
     __parent:addChild(gameTextZjh)
 
     local initCallback = function (__sender)
-    	local tag = __sender ~= nil and __sender:getTag() or tagNiu
-    	if tag == tagNiu then
+    	local tag = __sender ~= nil and __sender:getTag() or ConstantsData.GameType.TYPE_NIUNIU
+    	if tag == ConstantsData.GameType.TYPE_NIUNIU then
     		self:createNiuRule(__parent,tag)
     		gameBgNiu:setVisible(true)
 			gameBgZy:setVisible(false)
@@ -830,7 +830,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 			gameTextZy:setColor(cc.c3b(191, 169, 125))
 			gameTextMp:setColor(cc.c3b(191, 169, 125))
 			gameTextZjh:setColor(cc.c3b(191, 169, 125))
-    	elseif tag == tagZy then
+    	elseif tag == ConstantsData.GameType.TYPE_ZIYOU then
     		self:createZyRule(__parent,tag)
     		gameBgNiu:setVisible(false)
 			gameBgZy:setVisible(true)
@@ -840,7 +840,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 			gameTextZy:setColor(cc.c3b(255,255,255))
 			gameTextMp:setColor(cc.c3b(191, 169, 125))
 			gameTextZjh:setColor(cc.c3b(191, 169, 125))    		
-    	elseif tag == tagMp then
+    	elseif tag == ConstantsData.GameType.TYPE_MINGPAI then
     		self:createMpRule(__parent,tag)
     		gameBgNiu:setVisible(false)
 			gameBgZy:setVisible(false)
@@ -850,7 +850,7 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
 			gameTextZy:setColor(cc.c3b(191, 169, 125))
 			gameTextMp:setColor(cc.c3b(255,255,255))
 			gameTextZjh:setColor(cc.c3b(191, 169, 125))
-    	elseif tag == tagZjh then
+    	elseif tag == ConstantsData.GameType.TYPE_ZJH then
     		GameUtils.showMsg("游戏正在开发中")
     		-- self:createZjhRule(__parent,tag)
 			-- gameBgNiu:setVisible(false)
@@ -865,13 +865,13 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
     end
 
     buttonNn:addClickEventListener(function ( __sender ) initCallback(__sender) end)
-	buttonNn:setTag(tagNiu)
+	buttonNn:setTag(ConstantsData.GameType.TYPE_NIUNIU)
 	buttonZy:addClickEventListener(function ( __sender ) initCallback(__sender) end)
-	buttonZy:setTag(tagZy)
+	buttonZy:setTag(ConstantsData.GameType.TYPE_ZIYOU)
 	buttonMp:addClickEventListener(function ( __sender ) initCallback(__sender) end)
-	buttonMp:setTag(tagMp)
+	buttonMp:setTag(ConstantsData.GameType.TYPE_MINGPAI)
 	buttonZjh:addClickEventListener(function ( __sender ) initCallback(__sender) end)
-	buttonZjh:setTag(tagZjh)
+	buttonZjh:setTag(ConstantsData.GameType.TYPE_ZJH)
 
 	initCallback(nil)
  --    buttonNn:addClickEventListener(function ( __sender)
@@ -921,6 +921,17 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
     endedText:setColor(cc.c3b(191, 169, 125))
     endedText:setPosition(405+352-50,60)
     __parent:addChild(endedText,10)
+end
+
+function CreateRoomView:_onCreateRoomClick()
+	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+	local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
+	local data = NiuNiuRule:getCurrRule()
+	if not Mall.MallManager.checkNeedGotoMallBuyRoomCard(manager:findNotEnoughRoomCardString(), data.cost) then 
+		manager:requestCreateRoom( data,manager:findActGameId(),data.roomNum)	
+	end
+	print("哈哈哈哈")
+	dump(data)
 end
 
 function CreateRoomView:createNiuRule(target,tag)

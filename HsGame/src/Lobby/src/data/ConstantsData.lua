@@ -149,6 +149,11 @@ ConstantsData.CloseScoketType = {
     ABNORMAL_ACCOUNT_CLOSE = 2,--账号异常
 }
 
-
+ConstantsData.GameType = {
+    TYPE_MINGPAI = 0,
+    TYPE_ZIYOU = 1,
+    TYPE_NIUNIU = 2,
+    TYPE_ZJH = 3,
+}
 
 cc.exports.ConstantsData = ConstantsData
