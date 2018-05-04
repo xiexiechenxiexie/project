@@ -369,6 +369,8 @@ end
 
 function MallManager:buyGoods(mallData)
 	-- dump(mallData, "xiaxb--------malldata:" )
+	print("我要买东西买东西买东西买东西买东西买东西")
+	dump(mallData)
 	if MallManager.EXPENDTYPE_CASH == mallData.expendType then
 		-- 现金支付
 		-- print("xiaxb", "payment:" .. mallData.payment)
@@ -379,7 +381,12 @@ function MallManager:buyGoods(mallData)
 			GameUtils.showMsg(MallManager.UNKNOW_PAY_TYPE)
 		elseif 1 == #paymentList then
 			-- 默认支付方式 直接支付
-			mallData.curPayment = mallData.payment
+			-- mallData.curPayment = mallData.payment
+
+			--默认微信
+			mallData.curPayment = 2
+			print("获取订单号11111")
+			dump(mallData)
 			self:pay(mallData)
 		else
 			-- 拥有多种支付方式
@@ -388,6 +395,8 @@ function MallManager:buyGoods(mallData)
 				local payTypeDialog = require("Lobby/src/lobby/layer/PayTypeDialog"):create(mallData)
 				cc.Director:getInstance():getRunningScene():addChild(payTypeDialog, 1000)
 			else
+				print("获取订单号222222")
+				dump(mallData)
 				self:pay(mallData)
 			end	
 		end 
@@ -399,7 +408,8 @@ function MallManager:buyGoods(mallData)
 	    	GameUtils.showMsg(MallManager.DIAMOND_LOST)
 	    	self:gotoBuyDiamond()
 		else
-			self:getGoodsOrder(mallData.goodsId)
+			print("获取订单号33333")
+			self:getGoodsOrder(mallData.goodsId,0,0)
 		end
 	else
 		GameUtils.showMsg(MallManager.UNKNOW_MALL_INFO)
@@ -474,10 +484,13 @@ function MallManager:getReqGoodsOrderParam(_goodsId, _paymentPlatform, _payment)
 	return param
 end
 
--- 请求订单号
+-- 请求订单号 _payment 0钻石内购，1支付宝，2微信，3苹果
 function MallManager:getGoodsOrder(_goodsId, _paymentPlatform, _payment)
+	print("请求订单号请求订单号请求订单号请求订单号",_goodsId, _paymentPlatform, _payment)
 	local url = self:getReqGoodsOrderURL()
-	local param = self:getReqGoodsOrderParam(_goodsId, _paymentPlatform, _payment)
+	-- local param = self:getReqGoodsOrderParam(_goodsId, _paymentPlatform, _payment)
+	local param = { token = UserData.token, goodsId = _goodsId, payment = _payment}
+	dump(param)
 	GameUtils.startLoadingForever(MallManager.LOADING_MALL_INFO)
 	HttpClient:getInstance():post(url, param, handler(self, self.onGetGoodsOrder))
 end

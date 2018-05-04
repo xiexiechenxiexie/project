@@ -85,17 +85,17 @@ function MallItemGold:_initView(line, mallDataList)
 		itemGoldBg:addChild(itemGoldIcon)
 
 		-- 赠送金币文字图片
-		local itemGoldTitleSend = cc.Label:createWithTTF("送金币",GameUtils.getFontName(), 22)
-		itemGoldTitleSend:setColor(cc.c3b(237, 196, 41))
-		itemGoldTitleSend:setPosition(cc.p(itemGoldBg:getContentSize().width/2, itemGoldBg:getContentSize().height*0.35))
-		itemGoldBg:addChild(itemGoldTitleSend)
+		-- local itemGoldTitleSend = cc.Label:createWithTTF("送金币",GameUtils.getFontName(), 22)
+		-- itemGoldTitleSend:setColor(cc.c3b(237, 196, 41))
+		-- itemGoldTitleSend:setPosition(cc.p(itemGoldBg:getContentSize().width/2, itemGoldBg:getContentSize().height*0.35))
+		-- itemGoldBg:addChild(itemGoldTitleSend)
 
 		-- 赠送金币数量
-		local itemGoldTextSendNum = cc.Label:createWithTTF(tostring(mallDataList[index].number),GameUtils.getFontName(), 22)
-		itemGoldTextSendNum:setColor(cc.c3b(237, 196, 41))
-		-- local itemGoldTextSendNum = ccui.TextAtlas:create(GameUtils.formatMoneyNumber(tostring(mallDataList[index].number)), "res/GameLayout/Mall/mall_txt_num.png", 18, 24, ".")
-		itemGoldTextSendNum:setPosition(cc.p(itemGoldBg:getContentSize().width / 2, itemGoldBg:getContentSize().height * 0.25+5))
-		itemGoldBg:addChild(itemGoldTextSendNum)
+		-- local itemGoldTextSendNum = cc.Label:createWithTTF(tostring(mallDataList[index].number),GameUtils.getFontName(), 22)
+		-- itemGoldTextSendNum:setColor(cc.c3b(237, 196, 41))
+		-- -- local itemGoldTextSendNum = ccui.TextAtlas:create(GameUtils.formatMoneyNumber(tostring(mallDataList[index].number)), "res/GameLayout/Mall/mall_txt_num.png", 18, 24, ".")
+		-- itemGoldTextSendNum:setPosition(cc.p(itemGoldBg:getContentSize().width / 2, itemGoldBg:getContentSize().height * 0.25+5))
+		-- itemGoldBg:addChild(itemGoldTextSendNum)
 
 		-- -- 购买button
 		-- local itemGoldBtnBuy = ccui.Button:create()
