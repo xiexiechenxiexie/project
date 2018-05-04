@@ -745,167 +745,275 @@ function CreateRoomView:_initCreateRoomPanel( __parent )
  --    gameTextZjh:setPosition(133-10,495-100-15)
  --    __parent:addChild(gameTextZjh,2)
 
+ 	local tagNiu = 1
+ 	local tagZy  = 2
+ 	local tagMp  = 0
+ 	local tagZjh = 4
+
 	local slideImg = "btnSelected.png"
 	local buttonNn = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	buttonNn:setPosition(123,480)
 	__parent:addChild(buttonNn)
+
+	slideImg = "btnSelected.png"
+	local buttonZy = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	buttonZy:setPosition(123,380)
+	__parent:addChild(buttonZy)
+
+	slideImg = "btnSelected.png"
+	local buttonMp = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	buttonMp:setPosition(123,280)
+	__parent:addChild(buttonMp)
 	
 	slideImg = "btnSelected.png"
 	local buttonZjh = ccui.Button:create(slideImg,slideImg,slideImg,ccui.TextureResType.plistType)
+	buttonZjh:setPosition(123,180)
 	__parent:addChild(buttonZjh)
 
 	local gameBgNiu = "btnNormal.png"
 	gameBgNiu = ccui.ImageView:create(gameBgNiu,ccui.TextureResType.plistType)
+	gameBgNiu:setPosition(123,480)
 	__parent:addChild(gameBgNiu)
 	gameBgNiu:setVisible(true)
 
+	local gameBgZy = "btnNormal.png"
+	gameBgZy = ccui.ImageView:create(gameBgZy,ccui.TextureResType.plistType)
+	gameBgZy:setPosition(123,380)
+	__parent:addChild(gameBgZy)
+	gameBgZy:setVisible(false)
+
+	local gameBgMp = "btnNormal.png"
+	gameBgMp = ccui.ImageView:create(gameBgMp,ccui.TextureResType.plistType)
+	gameBgMp:setPosition(123,280)
+	__parent:addChild(gameBgMp)
+	gameBgMp:setVisible(false)
+
 	local gameBgZjh = "btnNormal.png"
 	gameBgZjh = ccui.ImageView:create(gameBgZjh,ccui.TextureResType.plistType)
+	gameBgZjh:setPosition(123,180)
 	__parent:addChild(gameBgZjh)
 	gameBgZjh:setVisible(false)
 
-	local gameTextNiu = cc.Label:createWithTTF("牛  牛",GameUtils.getFontName(),30)
+	local gameTextNiu = cc.Label:createWithTTF("牛牛上庄",GameUtils.getFontName(),30)
     gameTextNiu:setAnchorPoint(cc.p(0.5, 0.5))
     gameTextNiu:setColor(cc.c3b(255,255,255))
-    gameTextNiu:setPosition(133-10,495-15)
+    gameTextNiu:setPosition(123,480)
     __parent:addChild(gameTextNiu)
+
+    local gameTextZy = cc.Label:createWithTTF("自由抢庄牛牛",GameUtils.getFontName(),30)
+    gameTextZy:setAnchorPoint(cc.p(0.5, 0.5))
+    gameTextZy:setColor(cc.c3b(191, 169, 125))
+    gameTextZy:setPosition(123,380)
+    __parent:addChild(gameTextZy)
+
+    local gameTextMp = cc.Label:createWithTTF("明牌抢庄牛牛",GameUtils.getFontName(),30)
+    gameTextMp:setAnchorPoint(cc.p(0.5, 0.5))
+    gameTextMp:setColor(cc.c3b(191, 169, 125))
+    gameTextMp:setPosition(123,280)
+    __parent:addChild(gameTextMp)
 
     local gameTextZjh = cc.Label:createWithTTF("炸金花",GameUtils.getFontName(),30)
     gameTextZjh:setAnchorPoint(cc.p(0.5, 0.5))
     gameTextZjh:setColor(cc.c3b(191, 169, 125))
-    gameTextZjh:setPosition(133-10,495-100-15)
+    gameTextZjh:setPosition(123,180)
     __parent:addChild(gameTextZjh)
 
-    buttonNn:addClickEventListener(function ( __sender)
-			manager:setSelectGameId(manager.KPQZ)
-			self:createNNRuleLayer(__parent)
-			gameBgNiu:setVisible(true)
+    local initCallback = function (__sender)
+    	local tag = __sender ~= nil and __sender:getTag() or ConstantsData.GameType.TYPE_NIUNIU
+    	if tag == ConstantsData.GameType.TYPE_NIUNIU then
+    		self:createNiuRule(__parent,tag)
+    		gameBgNiu:setVisible(true)
+			gameBgZy:setVisible(false)
+			gameBgMp:setVisible(false)			
 			gameBgZjh:setVisible(false)
 			gameTextNiu:setColor(cc.c3b(255,255,255))
+			gameTextZy:setColor(cc.c3b(191, 169, 125))
+			gameTextMp:setColor(cc.c3b(191, 169, 125))
 			gameTextZjh:setColor(cc.c3b(191, 169, 125))
-	end)
-	buttonNn:setPosition(133-10,495-15)
-	gameBgNiu:setPosition(133-10,495-15)
-
-	buttonZjh:addClickEventListener(function ( __sender)
-			GameUtils.showMsg("游戏正在开发中")
-			-- manager:setSelectGameId(manager.PSZ)
-			-- self:createPSZRuleLayer(__parent)
+    	elseif tag == ConstantsData.GameType.TYPE_ZIYOU then
+    		self:createZyRule(__parent,tag)
+    		gameBgNiu:setVisible(false)
+			gameBgZy:setVisible(true)
+			gameBgMp:setVisible(false)			
+			gameBgZjh:setVisible(false)
+			gameTextNiu:setColor(cc.c3b(191, 169, 125))
+			gameTextZy:setColor(cc.c3b(255,255,255))
+			gameTextMp:setColor(cc.c3b(191, 169, 125))
+			gameTextZjh:setColor(cc.c3b(191, 169, 125))    		
+    	elseif tag == ConstantsData.GameType.TYPE_MINGPAI then
+    		self:createMpRule(__parent,tag)
+    		gameBgNiu:setVisible(false)
+			gameBgZy:setVisible(false)
+			gameBgMp:setVisible(true)			
+			gameBgZjh:setVisible(false)
+			gameTextNiu:setColor(cc.c3b(191, 169, 125))
+			gameTextZy:setColor(cc.c3b(191, 169, 125))
+			gameTextMp:setColor(cc.c3b(255,255,255))
+			gameTextZjh:setColor(cc.c3b(191, 169, 125))
+    	elseif tag == ConstantsData.GameType.TYPE_ZJH then
+    		GameUtils.showMsg("游戏正在开发中")
+    		-- self:createZjhRule(__parent,tag)
 			-- gameBgNiu:setVisible(false)
+			-- gameBgZy:setVisible(false)
+			-- gameBgMp:setVisible(false)			
 			-- gameBgZjh:setVisible(true)
 			-- gameTextNiu:setColor(cc.c3b(191, 169, 125))
+			-- gameTextZy:setColor(cc.c3b(191, 169, 125))
+			-- gameTextMp:setColor(cc.c3b(191, 169, 125))
 			-- gameTextZjh:setColor(cc.c3b(255,255,255))
-		end)
-	buttonZjh:setPosition(133-10,495-100-15)
-	gameBgZjh:setPosition(133-10,495-100-15)
+    	end
+    end
 
-	-- local button = cc.exports.lib.uidisplay.createUIButton({
-	-- 		textureType = ccui.TextureResType.plistType,
-	-- 		normal = "btnCreateRoomCmd.png",
-	-- 		callback = handler(self,self._onCreateRoomClick),
-	-- 		isActionEnabled = true,
-	-- 		pos = cc.p(405+352,120)
-	-- })
-	-- __parent:addChild(button)
-	-- local button = cc.exports.lib.uidisplay.createUIButton({
-	-- 		textureType = ccui.TextureResType.plistType,
-	-- 		normal = "btnNiuniuShangzhuang.png",
-	-- 		-- callback = handler(self,self._onCreateRoomClick),
-	-- 		isActionEnabled = true,
-	-- 		pos = cc.p(757-260,160)
-	-- })
-	-- __parent:addChild(button)
-	-- button = cc.exports.lib.uidisplay.createUIButton({
-	-- 		textureType = ccui.TextureResType.plistType,
-	-- 		normal = "btnZiyouqiangzhuang.png",
-	-- 		-- callback = handler(self,self._onCreateRoomClick),
-	-- 		isActionEnabled = true,
-	-- 		pos = cc.p(757,160)
-	-- })
-	-- __parent:addChild(button)
-	-- button = cc.exports.lib.uidisplay.createUIButton({
-	-- 		textureType = ccui.TextureResType.plistType,
-	-- 		normal = "btnMingpaiqiangzhuang.png",
-	-- 		-- callback = handler(self,self._onCreateRoomClick),
-	-- 		isActionEnabled = true,
-	-- 		pos = cc.p(757+260,160)
-	-- })
-	-- __parent:addChild(button)
+    buttonNn:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	buttonNn:setTag(ConstantsData.GameType.TYPE_NIUNIU)
+	buttonZy:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	buttonZy:setTag(ConstantsData.GameType.TYPE_ZIYOU)
+	buttonMp:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	buttonMp:setTag(ConstantsData.GameType.TYPE_MINGPAI)
+	buttonZjh:addClickEventListener(function ( __sender ) initCallback(__sender) end)
+	buttonZjh:setTag(ConstantsData.GameType.TYPE_ZJH)
 
-	if manager:findSelectedGameId() == manager.KPQZ then
-		self:createNNRuleLayer(__parent)
-		gameBgNiu:setVisible(true)
-		gameBgZjh:setVisible(false)
-		gameTextNiu:setColor(cc.c3b(255,255,255))
-		gameTextZjh:setColor(cc.c3b(191, 169, 125))
-	elseif manager:findSelectedGameId() == manager.PSZ then
-		self:createPSZRuleLayer(__parent)
-		gameBgNiu:setVisible(false)
-		gameBgZjh:setVisible(true)
-		gameTextNiu:setColor(cc.c3b(191, 169, 125))
-		gameTextZjh:setColor(cc.c3b(255,255,255))
-		self:createPSZRuleLayer(__parent)
-	end
+	initCallback(nil)
+ --    buttonNn:addClickEventListener(function ( __sender)
+	-- 		manager:setSelectGameId(manager.KPQZ)
+	-- 		self:createNNRuleLayer(__parent)		
+	-- end)
+	-- buttonZy:addClickEventListener(function ( __sender)
+	-- 		manager:setSelectGameId(manager.KPQZ)
+	-- 		self:createNNRuleLayer(__parent)	
+	-- end)
+	-- buttonMp:addClickEventListener(function ( __sender)
+	-- 		manager:setSelectGameId(manager.KPQZ)
+	-- 		self:createNNRuleLayer(__parent)
+	-- end)
+	-- buttonZjh:addClickEventListener(function ( __sender)
+	-- 		-- manager:setSelectGameId(manager.PSZ)
+	-- 		-- self:createPSZRuleLayer(__parent)
+	-- 	end)
 
+	-- if manager:findSelectedGameId() == manager.KPQZ then
+	-- 	self:createNNRuleLayer(__parent)
+	-- 	gameBgNiu:setVisible(true)
+	-- 	gameBgZjh:setVisible(false)
+	-- 	gameTextNiu:setColor(cc.c3b(255,255,255))
+	-- 	gameTextZjh:setColor(cc.c3b(191, 169, 125))
+	-- elseif manager:findSelectedGameId() == manager.PSZ then
+	-- 	self:createPSZRuleLayer(__parent)
+	-- 	gameBgNiu:setVisible(false)
+	-- 	gameBgZjh:setVisible(true)
+	-- 	gameTextNiu:setColor(cc.c3b(191, 169, 125))
+	-- 	gameTextZjh:setColor(cc.c3b(255,255,255))
+	-- 	self:createPSZRuleLayer(__parent)
+	-- end	
 
-	-- local iconRoomCard = ccui.ImageView:create("res/common/iconRoomCard.png",ccui.TextureResType.localType)
-	-- button:addChild(iconRoomCard)
-	-- iconRoomCard:setPosition(cc.p(145,button:getContentSize().height * 0.5 + 2))
-	-- local param = {fontName = GameUtils.getFontName(),fontSize = 30,text = "X".. self._createInput.cost,alignment = cc.TEXT_ALIGNMENT_CENTER,color = cc.c4b(255,231,148,255),pos = cc.p(164,button:getContentSize().height * 0.5),anchorPoint = cc.p(0,0.5)}
-	-- local label = cc.exports.lib.uidisplay.createLabel(param)
-	-- button:addChild(label)
-	-- self._lbRoomCardInButton = label
+	local button = cc.exports.lib.uidisplay.createUIButton({
+            textureType = ccui.TextureResType.plistType,
+            normal = "btnCreateRoomCmd.png",
+            callback = handler(self,self._onCreateRoomClick),
+            isActionEnabled = true,
+            pos = cc.p(405+352+370,80)
+    })
+    __parent:addChild(button)
 
 
-	-- local button = cc.exports.lib.uidisplay.createUIButton({
-	-- 		textureType = ccui.TextureResType.localType,
-	-- 		normal = "res/common/btnHelp.png",
-	-- 		callback = handler(self,self._onBtnHelpClick),
-	-- 		isActionEnabled = true,
-	-- 		pos = cc.p(size.width -75,size.height - 60)
-	-- })
-	-- __parent:addChild(button)
-
-	
-
-	local endedText = cc.Label:createWithTTF("如果游戏在十分钟内没有正式开始，系统会自动解散房间并退还房卡",GameUtils.getFontName(),20)
+	local endedText = cc.Label:createWithTTF("如果游戏在十分钟内没有正式开始，系统会自动解散房间并退还房卡",GameUtils.getFontName(),18)
     endedText:setAnchorPoint(cc.p(0.5, 0.5))
     endedText:setColor(cc.c3b(191, 169, 125))
-    endedText:setPosition(405+352,60)
+    endedText:setPosition(405+352-50,60)
     __parent:addChild(endedText,10)
 end
 
-
-function CreateRoomView:createNNRuleLayer(target)
-	if target:getChildByTag(lobby.LobbyGameEnterManager.PSZ) then
-		local node = target:getChildByTag(lobby.LobbyGameEnterManager.PSZ)
-		node:setVisible(false)
+function CreateRoomView:_onCreateRoomClick()
+	local manager = cc.exports.lobby.CreateRoomManager:getInstance()
+	local NiuNiuRule=cc.exports.lib.rule.NiuNiuRule:getInstance()
+	local data = NiuNiuRule:getCurrRule()
+	if not Mall.MallManager.checkNeedGotoMallBuyRoomCard(manager:findNotEnoughRoomCardString(), data.cost) then 
+		manager:requestCreateRoom( data,manager:findActGameId(),data.roomNum)	
 	end
-	if target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ) then
-		local node = target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ)
-		node:setVisible(true)
-		return
-	end
-
-	local layer = NiuNiuRule:createRuleLayer()
-	target:addChild(layer)
-	layer:setTag(lobby.LobbyGameEnterManager.KPQZ)
+	print("哈哈哈哈")
+	dump(data)
 end
 
-function CreateRoomView:createPSZRuleLayer(target)
-	if target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ) then
-		local node = target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ)
-		node:setVisible(false)
-	end
-	if target:getChildByTag(lobby.LobbyGameEnterManager.PSZ) then
-		local node = target:getChildByTag(lobby.LobbyGameEnterManager.PSZ)
-		node:setVisible(true)
-		return
-	end
+function CreateRoomView:createNiuRule(target,tag)
+	if self._niuRuleLayer == nil then 
+		self._niuRuleLayer = NiuNiuRule:createRuleLayer(tag)
+		target:addChild(self._niuRuleLayer)
+	end 
+	self._niuRuleLayer:setVisible(true)
 
-	local layer = ZhaJinHuaRule:createRuleLayer()
-	target:addChild(layer)
-	layer:setTag(lobby.LobbyGameEnterManager.PSZ)
+	if self._zyRuleLayer then self._zyRuleLayer:setVisible(false) end
+	if self._mpRuleLayer then self._mpRuleLayer:setVisible(false) end
+	if self._zjhRuleLayer then self._zjhRuleLayer:setVisible(false) end
 end
+
+function CreateRoomView:createZyRule(target,tag)
+	if self._zyRuleLayer == nil then 
+		self._zyRuleLayer = NiuNiuRule:createRuleLayer(tag)
+		target:addChild(self._zyRuleLayer)
+	end 
+	self._zyRuleLayer:setVisible(true) 
+
+	if self._niuRuleLayer then self._niuRuleLayer:setVisible(false) end
+	if self._mpRuleLayer then self._mpRuleLayer:setVisible(false) end
+	if self._zjhRuleLayer then self._zjhRuleLayer:setVisible(false) end
+end
+
+function CreateRoomView:createMpRule(target,tag)
+	if self._mpRuleLayer == nil then 
+		self._mpRuleLayer = NiuNiuRule:createRuleLayer(tag)
+		target:addChild(self._mpRuleLayer)
+	end 
+	self._mpRuleLayer:setVisible(true) 
+
+	if self._niuRuleLayer then self._niuRuleLayer:setVisible(false) end
+	if self._zyRuleLayer then self._zyRuleLayer:setVisible(false) end
+	if self._zjhRuleLayer then self._zjhRuleLayer:setVisible(false) end
+end
+
+function CreateRoomView:createZjhRule(target,tag)
+	if self._zjhRuleLayer == nil then 
+		self._zjhRuleLayer = ZhaJinHuaRule:createRuleLayer(tag)
+		target:addChild(self._zjhRuleLayer)
+	end 
+	self._zjhRuleLayer:setVisible(true) 
+
+	if self._niuRuleLayer then self._niuRuleLayer:setVisible(false) end
+	if self._zyRuleLayer then self._zyRuleLayer:setVisible(false) end
+	if self._mpRuleLayer then self._mpRuleLayer:setVisible(false) end
+end
+
+
+-- function CreateRoomView:createNNRuleLayer(target)
+-- 	if target:getChildByTag(lobby.LobbyGameEnterManager.PSZ) then
+-- 		local node = target:getChildByTag(lobby.LobbyGameEnterManager.PSZ)
+-- 		node:setVisible(false)
+-- 	end
+-- 	if target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ) then
+-- 		local node = target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ)
+-- 		node:setVisible(true)
+-- 		return
+-- 	end
+
+-- 	local layer = NiuNiuRule:createRuleLayer()
+-- 	target:addChild(layer)
+-- 	layer:setTag(lobby.LobbyGameEnterManager.KPQZ)
+-- end
+
+-- function CreateRoomView:createPSZRuleLayer(target)
+-- 	if target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ) then
+-- 		local node = target:getChildByTag(lobby.LobbyGameEnterManager.KPQZ)
+-- 		node:setVisible(false)
+-- 	end
+-- 	if target:getChildByTag(lobby.LobbyGameEnterManager.PSZ) then
+-- 		local node = target:getChildByTag(lobby.LobbyGameEnterManager.PSZ)
+-- 		node:setVisible(true)
+-- 		return
+-- 	end
+
+-- 	local layer = ZhaJinHuaRule:createRuleLayer()
+-- 	target:addChild(layer)
+-- 	layer:setTag(lobby.LobbyGameEnterManager.PSZ)
+-- end
 
 
 --[[--
